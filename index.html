@@ -40,18 +40,19 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             text-decoration: none;
             color: #001C3D;
         }
 
         .logo img {
-            height: 40px;
+            height: 45px;
         }
 
         .logo-text {
             font-size: 18px;
             font-weight: 600;
+            color: #001C3D;
         }
 
         .nav-menu {
@@ -90,8 +91,8 @@
         .hero-section {
             position: relative;
             height: 400px;
-            background: linear-gradient(rgba(0,28,61,0.3), rgba(0,28,61,0.3)),
-                        url('https://www.maastrichtuniversity.nl/sites/default/files/styles/page_photo/public/compacte20versie20um20logo20jpeg_0.jpg');
+            background: linear-gradient(rgba(0,28,61,0.7), rgba(0,28,61,0.3)),
+                        linear-gradient(135deg, #001C3D, #00A2DB);
             background-size: cover;
             background-position: center;
             display: flex;
@@ -380,6 +381,12 @@
             line-height: 1.6;
         }
 
+        /* Clickable card styling */
+        .card-link-wrapper {
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* Footer */
         .footer {
             background: #001C3D;
@@ -434,18 +441,18 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with MSP Logo -->
     <header class="header">
         <div class="header-content">
             <a href="#" class="logo">
-                <img src="https://www.maastrichtuniversity.nl/sites/default/files/styles/page_photo/public/compacte20versie20um20logo20jpeg_0.jpg" alt="UM Logo">
-                <span class="logo-text">Maastricht University</span>
+                <img src="msp-logo.jpg" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
             </a>
             <nav class="nav-menu">
                 <a href="#">Education</a>
                 <a href="#">Research</a>
-                <a href="#">About UM</a>
-                <a href="#">News & events</a>
+                <a href="#">About MSP</a>
+                <a href="#">BTR Info</a>
                 <a href="#" class="my-um-btn">My UM</a>
             </nav>
         </div>
@@ -644,7 +651,7 @@
             </div>
         </section>
 
-        <!-- Resources Section -->
+        <!-- Resources Section with Clickable Cards -->
         <section id="requirements">
             <div class="section-header">
                 <h2>Resources & Requirements</h2>
@@ -652,30 +659,35 @@
             </div>
 
             <div class="card-grid">
-                <div class="card">
-                    <div class="card-image">📚</div>
-                    <div class="card-content">
-                        <h3>BTR Handbook</h3>
-                        <p>Access the complete guide including templates, rubrics, and submission guidelines on Canvas.</p>
-                        <a href="#" class="card-link">Download Handbook →</a>
+                <!-- Clickable Canvas Card -->
+                <a href="https://canvas.maastrichtuniversity.nl" target="_blank" class="card-link-wrapper">
+                    <div class="card">
+                        <div class="card-image">📚</div>
+                        <div class="card-content">
+                            <h3>Canvas - BTR Resources</h3>
+                            <p>Access the complete BTR handbook, templates, rubrics, and submission guidelines.</p>
+                            <span class="card-link">Open Canvas →</span>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
+                <!-- Clickable Collent Card -->
+                <div class="card" onclick="window.open('https://collent.maastrichtuniversity.nl', '_blank')">
                     <div class="card-image">💻</div>
                     <div class="card-content">
                         <h3>Collent Platform</h3>
                         <p>Submit all BTR components through Collent. Ensure you have access before deadlines.</p>
-                        <a href="#" class="card-link">Access Collent →</a>
+                        <span class="card-link">Access Collent →</span>
                     </div>
                 </div>
 
+                <!-- Support Card -->
                 <div class="card">
                     <div class="card-image">👥</div>
                     <div class="card-content">
                         <h3>Support Team</h3>
                         <p>Contact the BTR office at msp-btr@maastrichtuniversity.nl for questions and assistance.</p>
-                        <a href="#" class="card-link">Get Support →</a>
+                        <a href="mailto:msp-btr@maastrichtuniversity.nl" class="card-link">Get Support →</a>
                     </div>
                 </div>
             </div>
@@ -694,8 +706,8 @@
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <p><a href="#">Canvas</a><br>
-                <a href="#">Collent</a><br>
+                <p><a href="https://canvas.maastrichtuniversity.nl" target="_blank">Canvas</a><br>
+                <a href="https://collent.maastrichtuniversity.nl" target="_blank">Collent</a><br>
                 <a href="#">BTR Handbook</a><br>
                 <a href="#">Academic Calendar</a></p>
             </div>
