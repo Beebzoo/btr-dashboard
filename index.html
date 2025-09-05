@@ -454,7 +454,6 @@
             }
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -585,7 +584,9 @@
                     <h3 class="chart-title">Assessment Components</h3>
                     <p class="chart-subtitle">Weight distribution across BTR assessments</p>
                 </div>
-                <canvas id="gradeChart"></canvas>
+                <div style="position: relative; height: 300px;">
+                    <canvas id="gradeChart"></canvas>
+                </div>
             </div>
 
             <!-- Grader Distribution -->
@@ -594,7 +595,9 @@
                     <h3 class="chart-title">Grading Responsibility</h3>
                     <p class="chart-subtitle">Who grades what in the BTR</p>
                 </div>
-                <canvas id="graderChart"></canvas>
+                <div style="position: relative; height: 300px;">
+                    <canvas id="graderChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -918,3 +921,4 @@
     </script>
 </body>
 </html>
+<html>
