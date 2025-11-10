@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing the Thesis - BTR Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #001C3D;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001C3D;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #001C3D;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00A2DB;
+        }
+
+        .my-um-btn {
+            background: #001C3D;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: #00A2DB;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 8px;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 17px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* Overview Box */
+        .overview-box {
+            background: #E6F4FA;
+            border-left: 4px solid #00A2DB;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 1200px;
+            border-radius: 4px;
+        }
+
+        .overview-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Quick Facts Box */
+        .quick-facts {
+            background: white;
+            border: 2px solid #00A2DB;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .quick-facts h3 {
+            color: #002D5A;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quick-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-fact-item {
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        /* Utility Bar */
+        .utility-bar {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .utility-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .utility-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .utility-btn {
+            background: #FF6200;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .utility-btn:hover {
+            background: #e55500;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Accordion Styles */
+        .accordion-section {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-left: 5px solid #002D5A;
+            transition: all 0.3s;
+        }
+
+        .accordion-section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .accordion-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .section-number {
+            background: #FF6200;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #001C3D;
+        }
+
+        .accordion-icon {
+            font-size: 24px;
+            color: #00A2DB;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .accordion-section.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-section.active .accordion-content {
+            max-height: 15000px;
+        }
+
+        .accordion-body {
+            padding: 30px 30px 30px 95px;
+            background: #fafafa;
+        }
+
+        .accordion-body h3 {
+            color: #002D5A;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        .accordion-body h4 {
+            color: #00A2DB;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        .accordion-body p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            margin: 15px 0 15px 20px;
+        }
+
+        .accordion-body li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #E6F4FA;
+            border-left: 4px solid #00A2DB;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #002D5A;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Warning Boxes */
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 5px solid #FF6200;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #FF6200;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Success Boxes */
+        .success-box {
+            background: #E8F5E9;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .success-box strong {
+            color: #2E7D32;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #002D5A;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Footer */
+        .footer {
+            background: #002D5A;
+            color: white;
+            padding: 40px 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #00A2DB;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .accordion-body {
+                padding: 20px;
+            }
+
+            .accordion-title {
+                font-size: 18px;
+            }
+
+            .section-number {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .utility-content {
+                flex-direction: column;
+            }
+
+            .quick-facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.jpg" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
+                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
+                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">BTR Dashboard</a>
+            <span>›</span>
+            <span>Writing the Thesis</span>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>BTR Written Thesis Guidelines</h1>
+            <p>Your comprehensive guide to writing your final thesis - Complete 14-Section Reference</p>
+        </div>
+    </section>
+
+    <!-- Overview Box -->
+    <div class="overview-box">
+        <p>Your written thesis is the fullest account of your BTR work, presenting your results, conclusions, and personal reflection. This document constitutes <strong>25% of your overall BTR grade</strong> and is assessed by both your Research Supervisor and Internal Advisor.</p>
+        <p>You can begin writing immediately after receiving proposal feedback, and many sections can be written as your work progresses. Use this guide to understand what's expected and how to produce a high-quality academic thesis.</p>
+    </div>
+
+    <!-- Quick Facts Box -->
+    <div class="quick-facts">
+        <h3>Key Requirements at a Glance</h3>
+        <div class="quick-facts-grid">
+            <div class="quick-fact-item">📅 <strong>Deadline:</strong> Five weeks before graduation</div>
+            <div class="quick-fact-item">📊 <strong>Weight:</strong> 25% of total BTR grade</div>
+            <div class="quick-fact-item">📄 <strong>Word Count:</strong> 8,000-15,000 words</div>
+            <div class="quick-fact-item">📎 <strong>Upload Limit:</strong> 25MB on Collent</div>
+            <div class="quick-fact-item">✓ <strong>Draft Review:</strong> One review allowed</div>
+            <div class="quick-fact-item">✓ <strong>Citation Style:</strong> Flexible (consult supervisor)</div>
+            <div class="quick-fact-item">⚠️ <strong>Plagiarism:</strong> Automatic fail</div>
+        </div>
+    </div>
+
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-content">
+            <div class="utility-buttons">
+                <button class="utility-btn" onclick="expandAll()">Expand All Sections</button>
+                <button class="utility-btn" onclick="collapseAll()">Collapse All Sections</button>
+            </div>
+            <a href="index.html" style="color: #001C3D; text-decoration: none; font-weight: 600;">← Back to BTR Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
