@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing the Thesis - BTR Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #001C3D;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001C3D;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #001C3D;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00A2DB;
+        }
+
+        .my-um-btn {
+            background: #001C3D;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: #00A2DB;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 8px;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 17px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* Overview Box */
+        .overview-box {
+            background: #E6F4FA;
+            border-left: 4px solid #00A2DB;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 1200px;
+            border-radius: 4px;
+        }
+
+        .overview-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Quick Facts Box */
+        .quick-facts {
+            background: white;
+            border: 2px solid #00A2DB;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .quick-facts h3 {
+            color: #002D5A;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quick-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-fact-item {
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        /* Utility Bar */
+        .utility-bar {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .utility-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .utility-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .utility-btn {
+            background: #FF6200;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .utility-btn:hover {
+            background: #e55500;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Accordion Styles */
+        .accordion-section {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-left: 5px solid #002D5A;
+            transition: all 0.3s;
+        }
+
+        .accordion-section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .accordion-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .section-number {
+            background: #FF6200;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #001C3D;
+        }
+
+        .accordion-icon {
+            font-size: 24px;
+            color: #00A2DB;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .accordion-section.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-section.active .accordion-content {
+            max-height: 10000px;
+        }
+
+        .accordion-body {
+            padding: 30px 30px 30px 95px;
+            background: #fafafa;
+        }
+
+        .accordion-body h3 {
+            color: #002D5A;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        .accordion-body h4 {
+            color: #00A2DB;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        .accordion-body p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            margin: 15px 0 15px 20px;
+        }
+
+        .accordion-body li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #E6F4FA;
+            border-left: 4px solid #00A2DB;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #002D5A;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Warning Boxes */
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 5px solid #FF6200;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #FF6200;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #002D5A;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Footer */
+        .footer {
+            background: #002D5A;
+            color: white;
+            padding: 40px 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #00A2DB;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .accordion-body {
+                padding: 20px;
+            }
+
+            .accordion-title {
+                font-size: 18px;
+            }
+
+            .section-number {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .utility-content {
+                flex-direction: column;
+            }
+
+            .quick-facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.jpg" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
+                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
+                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">BTR Dashboard</a>
+            <span>›</span>
+            <span>Writing the Thesis</span>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>BTR Written Thesis Guidelines</h1>
+            <p>Your comprehensive guide to writing your final thesis</p>
+        </div>
+    </section>
+
+    <!-- Overview Box -->
+    <div class="overview-box">
+        <p>Your written thesis is the fullest account of your BTR work, presenting your results, conclusions, and personal reflection. This document constitutes <strong>25% of your overall BTR grade</strong> and is assessed by both your Research Supervisor and Internal Advisor.</p>
+        <p>You can begin writing immediately after receiving proposal feedback, and many sections can be written as your work progresses. Use this guide to understand what's expected and how to produce a high-quality academic thesis.</p>
+    </div>
+
+    <!-- Quick Facts Box -->
+    <div class="quick-facts">
+        <h3>Key Requirements at a Glance</h3>
+        <div class="quick-facts-grid">
+            <div class="quick-fact-item">📅 <strong>Deadline:</strong> Five weeks before graduation</div>
+            <div class="quick-fact-item">📊 <strong>Weight:</strong> 25% of total BTR grade</div>
+            <div class="quick-fact-item">📄 <strong>Word Count:</strong> 8,000-15,000 words</div>
+            <div class="quick-fact-item">📎 <strong>Upload Limit:</strong> 25MB on Collent</div>
+            <div class="quick-fact-item">✓ <strong>Draft Review:</strong> One review allowed</div>
+            <div class="quick-fact-item">✓ <strong>Citation Style:</strong> Flexible (consult supervisor)</div>
+            <div class="quick-fact-item">⚠️ <strong>Plagiarism:</strong> Automatic fail</div>
+        </div>
+    </div>
+
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-content">
+            <div class="utility-buttons">
+                <button class="utility-btn" onclick="expandAll()">Expand All Sections</button>
+                <button class="utility-btn" onclick="collapseAll()">Collapse All Sections</button>
+            </div>
+            <a href="index.html" style="color: #001C3D; text-decoration: none; font-weight: 600;">← Back to BTR Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+
+        <!-- SECTION 1: Timeline & Submission Deadline -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">1</div>
+                    <div class="accordion-title">Timeline & Submission Deadline</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>When Can I Start Writing?</h3>
+                    <p>You can begin writing your thesis directly after receiving feedback on your proposal. Many parts can be written as your work progresses:</p>
+                    <ul>
+                        <li><strong>Introduction:</strong> Based on your proposal (revised according to feedback)</li>
+                        <li><strong>Methods/Experimental Section:</strong> Write as you conduct your research</li>
+                        <li><strong>Results:</strong> Document as data is collected</li>
+                        <li><strong>Analysis & Discussion:</strong> Typically completed in final weeks</li>
+                        <li><strong>Critical Reflection:</strong> Write during final weeks</li>
+                    </ul>
+
+                    <h3>Deadline</h3>
+                    <p>The written thesis is due <strong>five weeks before graduation</strong>.</p>
+                    <p>Your exact deadline is provided in the personalized calendar you received at the start of your BTR.</p>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Plan Accordingly:</strong>
+                        Set aside several weeks at the end of your research for:
+                        <ul>
+                            <li>Analysis of results</li>
+                            <li>Writing your discussion and conclusions</li>
+                            <li>Completing your critical reflection</li>
+                            <li>Proofreading and formatting</li>
+                            <li>Final submission preparations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: Submission Requirements -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">2</div>
+                    <div class="accordion-title">Submission Requirements</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Where to Submit</h3>
+                    <p><strong>ONLY via Collent</strong> – no other submission method is accepted.</p>
+                    <div class="warning-box">
+                        <strong>⚠️ Important:</strong>
+                        <ul>
+                            <li>Canvas or email submissions will NOT be counted</li>
+                            <li>Your thesis will be considered missing if not submitted via Collent</li>
+                            <li>Make sure you understand the Collent platform before deadline day</li>
+                        </ul>
+                    </div>
+
+                    <p>🔗 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank"><strong>Access Collent Platform</strong></a></p>
+
+                    <h3>File Size Limit: 25 MB Maximum</h3>
+                    <h4>How to Achieve This:</h4>
+                    <ul>
+                        <li>Compress all images to maximum 300 dpi resolution</li>
+                        <li>Use appropriate image formats (JPEG for photos, PNG for diagrams)</li>
+                        <li>Check file size before final submission</li>
+                    </ul>
+
+                    <h3>Special Circumstances</h3>
+                    <h4>Option 1: Heavy Images Throughout Thesis</h4>
+                    <ul>
+                        <li>Save a compressed version (under 25 MB) for Collent upload</li>
+                        <li>Include an external download link (SURFdrive, Google Drive, etc.) on your title page</li>
+                        <li>Clearly indicate: "Full resolution version available at: [link]"</li>
+                        <li><strong>CRITICAL:</strong> Explicitly inform both your Research Supervisor and Internal Advisor about the external link</li>
+                    </ul>
+
+                    <h4>Option 2: Heavy Images Only in Appendix</h4>
+                    <ul>
+                        <li>Create an electronic appendix hosted externally</li>
+                        <li>Provide link at the beginning of your appendix section</li>
+                        <li>Note: "High-resolution appendix available at: [link]"</li>
+                        <li>This can be consulted separately by assessors</li>
+                    </ul>
+
+                    <h3>File Naming Convention</h3>
+                    <p>Use the format: <strong>LastName_StudentID_Thesis.pdf</strong></p>
+                    <p>Example: <em>Jeurissen_i6123456_Thesis.pdf</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Word Count Rules -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">3</div>
+                    <div class="accordion-title">Word Count Rules</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Standard Word Count: 8,000 - 15,000 words</h3>
+
+                    <h4>Shorter Theses:</h4>
+                    <ul>
+                        <li>Allowed without special dispensation</li>
+                        <li>⚠️ <strong>Warning:</strong> Will be marked down if they don't contain all relevant information</li>
+                        <li>Must still include all required sections</li>
+                    </ul>
+
+                    <h4>Longer Theses:</h4>
+                    <ul>
+                        <li>Require approval from Research Supervisor</li>
+                        <li>Must specify exact number of words (not just "longer")</li>
+                        <li><strong>MANDATORY:</strong> Communicate to BTR Administrator at <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></li>
+                        <li>Must be submitted minimum <strong>48 hours before thesis submission deadline</strong></li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Critical Warning:</strong>
+                        <ul>
+                            <li>Theses will be graded harshly if any word extension is not well used</li>
+                            <li>If BTR Office was not informed (regardless of supervisor approval):
+                                <ul>
+                                    <li><strong>Penalty: 0.5 points deducted per 500 words (or part thereof) over 15,000</strong></li>
+                                    <li>Penalty applies to the overall averaged grade from Research Supervisor and Internal Advisor</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>What's INCLUDED in Word Count</h3>
+                    <ul>
+                        <li>✗ All main body text</li>
+                        <li>✗ Introduction</li>
+                        <li>✗ Methods</li>
+                        <li>✗ Results</li>
+                        <li>✗ Discussion</li>
+                        <li>✗ Critical reflection</li>
+                        <li>✗ Figure/table captions</li>
+                        <li>✗ Section headings</li>
+                    </ul>
+
+                    <h3>What's EXCLUDED from Word Count</h3>
+                    <ul>
+                        <li>✓ Title page</li>
+                        <li>✓ Abstract (must be under 200 words separately)</li>
+                        <li>✓ References</li>
+                        <li>✓ Appendices</li>
+                    </ul>
+
+                    <h3>Your Responsibility</h3>
+                    <ul>
+                        <li>Calculate your word count accurately using multiple tools</li>
+                        <li>Declare your word count on the title page</li>
+                        <li>If approaching 15,000 words and need extension: Contact BTR Office 48h+ before deadline</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Title Page Requirements -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">4</div>
+                    <div class="accordion-title">Title Page Requirements</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Your title page must include at minimum the following information:</p>
+
+                    <h3>Required Elements:</h3>
+                    <ul>
+                        <li><strong>Thesis Title</strong>
+                            <ul>
+                                <li>Clear, descriptive, and professional</li>
+                                <li>Should accurately reflect your research</li>
+                            </ul>
+                        </li>
+                        <li><strong>Student Name</strong>
+                            <ul>
+                                <li>Your full name as registered</li>
+                            </ul>
+                        </li>
+                        <li><strong>Matriculation Number (Student ID)</strong>
+                            <ul>
+                                <li>Format: i6XXXXXX</li>
+                            </ul>
+                        </li>
+                        <li><strong>Research Supervisor Name</strong>
+                            <ul>
+                                <li>Full name and affiliation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Word Count Declaration</strong>
+                            <ul>
+                                <li>State total word count (excluding references and appendices)</li>
+                                <li>Example: "Word Count: 12,450 (excluding references and appendices)"</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Optional Elements (consult supervisor):</h3>
+                    <ul>
+                        <li>Internal Advisor name</li>
+                        <li>Submission date</li>
+                        <li>Institution/department names</li>
+                        <li>University logos (check MSP/UM branding guidelines)</li>
+                        <li>External link to high-resolution version (if applicable)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong>Design Tips:</strong>
+                        <ul>
+                            <li>Keep it professional and clean</li>
+                            <li>Use appropriate spacing</li>
+                            <li>Ensure all text is clearly readable</li>
+                            <li>Follow any supervisor-specific preferences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Abstract -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">5</div>
+                    <div class="accordion-title">Abstract</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>What is an Abstract?</h3>
+                    <p>The abstract provides a brief but complete overview of your entire work. It should be placed at the start of your thesis (after title page, before main text).</p>
+
+                    <h3>Requirements</h3>
+                    <p><strong>Maximum Length:</strong> 200 words</p>
+
+                    <h4>Must Include:</h4>
+                    <ul>
+                        <li>Brief background/context</li>
+                        <li>Your research question or aim</li>
+                        <li>Methods used (very briefly)</li>
+                        <li>Key results</li>
+                        <li>Main conclusions</li>
+                        <li>Significance/implications</li>
+                    </ul>
+
+                    <h4>Should NOT Include:</h4>
+                    <ul>
+                        <li>Citations/references</li>
+                        <li>Detailed methodology</li>
+                        <li>Extensive background information</li>
+                        <li>Tables or figures</li>
+                    </ul>
+
+                    <h3>Purpose</h3>
+                    <p>The abstract allows readers to quickly understand:</p>
+                    <ul>
+                        <li>What you studied</li>
+                        <li>How you studied it</li>
+                        <li>What you found</li>
+                        <li>Why it matters</li>
+                    </ul>
+
+                    <p>Someone reading only your abstract should understand the essence of your entire thesis.</p>
+
+                    <div class="info-box">
+                        <strong>Writing Tips:</strong>
+                        <ul>
+                            <li>✓ Write your abstract last (after completing all other sections)</li>
+                            <li>✓ Be concise but comprehensive</li>
+                            <li>✓ Use clear, direct language</li>
+                            <li>✓ Avoid jargon where possible</li>
+                            <li>✓ Make every word count – you only have 200!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue with remaining sections... -->
+        <!-- I'll add SECTION 6 through SECTION 14 in the next part -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Questions about your thesis?</strong> Contact your Research Supervisor or the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">← Back to BTR Dashboard</a> | 
+            <a href="before-you-start.html">Before You Start</a> | 
+            <a href="writing-the-proposal.html">Writing the Proposal</a> | 
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            © Maastricht University - Faculty of Science and Engineering
+        </p>
+    </footer>
+
+    <script>
+        function toggleAccordion(header) {
+            const section = header.parentElement;
+            const wasActive = section.classList.contains('active');
+            
+            // Toggle this section
+            section.classList.toggle('active');
+            
+            // Smooth scroll to section if opening
+            if (!wasActive) {
+                setTimeout(() => {
+                    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.accordion-section').forEach(section => {
+                section.classList.add('active');
+            });
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.accordion-section').forEach(section => {
+                section.classList.remove('active');
+            });
+        }
+
+        // Optional: Add keyboard navigation
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.setAttribute('tabindex', '0');
+            header.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleAccordion(header);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
