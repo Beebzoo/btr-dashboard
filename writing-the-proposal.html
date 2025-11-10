@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing the Proposal - BTR Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #001C3D;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001C3D;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #001C3D;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00A2DB;
+        }
+
+        .my-um-btn {
+            background: #001C3D;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: #00A2DB;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 8px;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        .content-section {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            font-size: 28px;
+            color: #001C3D;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00A2DB;
+        }
+
+        .content-section h3 {
+            font-size: 22px;
+            color: #002D5A;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section h4 {
+            font-size: 18px;
+            color: #00A2DB;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content-section ul, .content-section ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .content-section li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #E6F4FA;
+            border-left: 4px solid #00A2DB;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #002D5A;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Warning Boxes */
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 4px solid #FF6200;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #FF6200;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #002D5A;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Quick Links Box */
+        .quick-links {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid #00A2DB;
+            margin-bottom: 30px;
+        }
+
+        .quick-links h3 {
+            color: #002D5A;
+            margin-bottom: 15px;
+        }
+
+        .quick-links a {
+            display: block;
+            color: #00A2DB;
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .quick-links a:hover {
+            color: #0088bb;
+            padding-left: 10px;
+            transition: all 0.3s;
+        }
+
+        .quick-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #002D5A;
+            color: white;
+            padding: 40px 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #00A2DB;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .content-section {
+                padding: 25px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.jpg" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
+                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
+                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">BTR Dashboard</a>
+            <span>›</span>
+            <span>Writing the Proposal</span>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Writing the BTR Proposal</h1>
+            <p>Your proposal is the foundation of your BTR. It demonstrates your ability to design independent research and sets the direction for your entire thesis project.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <h3>📋 Quick Links</h3>
+            <a href="#overview">Overview & Purpose</a>
+            <a href="#requirements">Requirements & Format</a>
+            <a href="#structure">Proposal Structure</a>
+            <a href="#deadline">Deadline & Submission</a>
+            <a href="#grading">Grading & Assessment</a>
+            <a href="#resources">Resources & Templates</a>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="overview" class="content-section">
+            <h2>Overview & Purpose</h2>
+            
+            <h3>What is the BTR Proposal?</h3>
+            <p>The BTR proposal is a research plan that outlines what you intend to investigate during your Bachelor Thesis Research. It demonstrates your ability to:</p>
+            <ul>
+                <li>Identify a relevant research question</li>
+                <li>Review existing literature in your field</li>
+                <li>Design appropriate research methods</li>
+                <li>Think critically about your research approach</li>
+                <li>Communicate your ideas clearly in academic writing</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Important Note:</strong>
+                Your proposal is a plan, not a promise. It's normal for your research to evolve as you progress. The proposal demonstrates your preparation and thinking at the start of your BTR.
+            </div>
+
+            <h3>Why is it Important?</h3>
+            <p>The proposal serves multiple purposes:</p>
+            <ul>
+                <li><strong>Planning Tool:</strong> Helps you organize your thoughts and approach before diving into research</li>
+                <li><strong>Communication:</strong> Ensures you and your supervisor are aligned on the research direction</li>
+                <li><strong>Assessment:</strong> Worth 15% of your final BTR grade</li>
+                <li><strong>Reference Document:</strong> Guides your work throughout the BTR period</li>
+            </ul>
+        </section>
+
+        <!-- Requirements Section -->
+        <section id="requirements" class="content-section">
+            <h2>Requirements & Format</h2>
+
+            <h3>Basic Requirements</h3>
+            <table>
+                <tr>
+                    <th>Requirement</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td><strong>Length</strong></td>
+                    <td>Maximum 2000 words (excluding references)</td>
+                </tr>
+                <tr>
+                    <td><strong>Format</strong></td>
+                    <td>Academic paper format with clear sections</td>
+                </tr>
+                <tr>
+                    <td><strong>Citation Style</strong></td>
+                    <td>APA 7th edition (or field-specific style approved by supervisor)</td>
+                </tr>
+                <tr>
+                    <td><strong>Language</strong></td>
+                    <td>English</td>
+                </tr>
+                <tr>
+                    <td><strong>File Format</strong></td>
+                    <td>PDF (submitted via Collent)</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ Word Limit is Strict:</strong>
+                Proposals exceeding 2000 words will be penalized. Use concise, clear academic writing. Quality over quantity!
+            </div>
+
+            <h3>Formatting Guidelines</h3>
+            <ul>
+                <li><strong>Font:</strong> 11-12 pt, readable font (Times New Roman, Arial, Calibri)</li>
+                <li><strong>Line Spacing:</strong> 1.5 or double-spaced</li>
+                <li><strong>Margins:</strong> 2.5 cm (1 inch) on all sides</li>
+                <li><strong>Page Numbers:</strong> Include page numbers</li>
+                <li><strong>Headings:</strong> Use clear section headings</li>
+            </ul>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure" class="content-section">
+            <h2>Proposal Structure</h2>
+
+            <p>Your proposal should include the following sections. The exact structure may vary slightly depending on your field, so discuss with your supervisor.</p>
+
+            <h3>1. Title Page</h3>
+            <p>Include:</p>
+            <ul>
+                <li>Proposed thesis title</li>
+                <li>Your name and student number</li>
+                <li>Research Supervisor name and affiliation</li>
+                <li>Internal Advisor name (if known at submission)</li>
+                <li>Date of submission</li>
+                <li>Word count (excluding references)</li>
+            </ul>
+
+            <h3>2. Introduction & Background</h3>
+            <p><strong>Length:</strong> ~400-500 words</p>
+            <p><strong>Content:</strong></p>
+            <ul>
+                <li>Introduce your research topic and its relevance</li>
+                <li>Provide context: Why is this topic important?</li>
+                <li>What is the current state of knowledge in this area?</li>
+                <li>What gap in knowledge does your research address?</li>
+                <li>Clearly state your research question(s) and/or hypothesis</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Writing Tip:</strong>
+                Start broad (general context) and narrow down to your specific research question. Think of it as a funnel: background → gap → your research.
+            </div>
+
+            <h3>3. Literature Review</h3>
+            <p><strong>Length:</strong> ~600-700 words</p>
+            <p><strong>Content:</strong></p>
+            <ul>
+                <li>Review relevant scientific literature in your research area</li>
+                <li>Demonstrate your understanding of the field</li>
+                <li>Identify what is known and what remains unclear</li>
+                <li>Show how previous studies relate to your research question</li>
+                <li>Explain theoretical frameworks or concepts you'll use</li>
+            </ul>
+
+            <p><strong>Tips:</strong></p>
+            <ul>
+                <li>Use recent peer-reviewed sources (ideally within last 5-10 years)</li>
+                <li>Synthesize information rather than just listing studies</li>
+                <li>Be critical: discuss strengths and limitations of previous work</li>
+                <li>Minimum 10-15 quality references expected</li>
+            </ul>
+
+            <h3>4. Research Methods</h3>
+            <p><strong>Length:</strong> ~600-700 words</p>
+            <p><strong>Content:</strong></p>
+            <ul>
+                <li><strong>Research Design:</strong> What type of research will you conduct? (experimental, observational, computational, etc.)</li>
+                <li><strong>Materials:</strong> What equipment, samples, or data will you use?</li>
+                <li><strong>Procedures:</strong> Step-by-step description of your research approach</li>
+                <li><strong>Analysis:</strong> How will you analyze your results? (statistical methods, software, techniques)</li>
+                <li><strong>Timeline:</strong> Brief overview of your research schedule</li>
+            </ul>
+
+            <p><strong>Be specific:</strong></p>
+            <ul>
+                <li>Include actual techniques, protocols, or models you'll use</li>
+                <li>Mention specific software or equipment</li>
+                <li>Explain why these methods are appropriate for your research question</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Common Mistake:</strong>
+                Being too vague in methods. Don't just say "I will analyze the data." Specify HOW you'll analyze it and WITH WHAT tools.
+            </div>
+
+            <h3>5. Expected Outcomes & Significance</h3>
+            <p><strong>Length:</strong> ~200-300 words</p>
+            <p><strong>Content:</strong></p>
+            <ul>
+                <li>What results do you anticipate? (Be realistic and cautious)</li>
+                <li>How might your findings contribute to the field?</li>
+                <li>What are the potential applications or implications?</li>
+                <li>Acknowledge limitations or challenges you may face</li>
+            </ul>
+
+            <h3>6. References</h3>
+            <p><strong>Not counted in word limit</strong></p>
+            <p><strong>Content:</strong></p>
+            <ul>
+                <li>Complete list of all sources cited in APA format (or approved alternative)</li>
+                <li>Use a reference manager (Mendeley, Zotero, EndNote) to ensure consistency</li>
+                <li>Double-check formatting before submission</li>
+            </ul>
+        </section>
+
+        <!-- Deadline Section -->
+        <section id="deadline" class="content-section">
+            <h2>Deadline & Submission</h2>
+
+            <h3>Important Dates</h3>
+            <table>
+                <tr>
+                    <th>Cohort</th>
+                    <th>Proposal Deadline</th>
+                    <th>Expected Grades</th>
+                </tr>
+                <tr>
+                    <td><strong>September 2025</strong></td>
+                    <td>September 29, 2025 at 13:00</td>
+                    <td>October 20, 2025</td>
+                </tr>
+                <tr>
+                    <td><strong>February 2026</strong></td>
+                    <td>March 1, 2026 at 13:00</td>
+                    <td>March 22, 2026</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ Deadline is Strict:</strong>
+                Late submissions will receive a penalty or may not be accepted. Plan ahead and don't wait until the last minute!
+            </div>
+
+            <h3>How to Submit</h3>
+            <ol>
+                <li><strong>Prepare your proposal:</strong> Save as PDF with filename: LastName_FirstName_Proposal.pdf</li>
+                <li><strong>Log in to Collent:</strong> <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent Platform</a></li>
+                <li><strong>Navigate to:</strong> Bachelor Thesis Research > Proposal Submission</li>
+                <li><strong>Upload your PDF</strong></li>
+                <li><strong>Confirm submission:</strong> You should receive a confirmation email</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>Pro Tip:</strong>
+                Submit at least a few hours before the deadline to avoid last-minute technical issues. The system may be slow if many students submit at once!
+            </div>
+
+            <h3>Before You Submit</h3>
+            <p>Checklist:</p>
+            <ul>
+                <li>☐ Proposal is within 2000 word limit</li>
+                <li>☐ All required sections included</li>
+                <li>☐ References formatted correctly in APA style</li>
+                <li>☐ Proofread for spelling and grammar errors</li>
+                <li>☐ Discussed draft with Research Supervisor</li>
+                <li>☐ Saved as PDF with correct filename</li>
+                <li>☐ Checked that all figures/tables are clear and numbered</li>
+            </ul>
+        </section>
+
+        <!-- Grading Section -->
+        <section id="grading" class="content-section">
+            <h2>Grading & Assessment</h2>
+
+            <h3>Who Grades Your Proposal?</h3>
+            <p>Your proposal is graded by:</p>
+            <ul>
+                <li><strong>Research Supervisor (50%)</strong></li>
+                <li><strong>Internal Advisor (50%)</strong></li>
+            </ul>
+            <p>The final grade is the average of both assessors' grades.</p>
+
+            <h3>Proposal Weight in Final BTR Grade</h3>
+            <p>The proposal accounts for <strong>15% of your total BTR grade (30 ECTS)</strong>.</p>
+
+            <h3>Assessment Criteria</h3>
+            <p>Your proposal will be evaluated on:</p>
+
+            <h4>1. Research Question & Objectives (20%)</h4>
+            <ul>
+                <li>Is the research question clear and focused?</li>
+                <li>Is it scientifically relevant and feasible?</li>
+                <li>Are objectives specific and achievable?</li>
+            </ul>
+
+            <h4>2. Literature Review (25%)</h4>
+            <ul>
+                <li>Demonstrates understanding of relevant literature</li>
+                <li>Critical analysis of previous work</li>
+                <li>Identifies knowledge gap effectively</li>
+                <li>Uses appropriate and recent sources</li>
+            </ul>
+
+            <h4>3. Research Methods (30%)</h4>
+            <ul>
+                <li>Methods are appropriate for the research question</li>
+                <li>Sufficient detail and justification provided</li>
+                <li>Shows understanding of techniques and analysis</li>
+                <li>Realistic timeline and feasibility</li>
+            </ul>
+
+            <h4>4. Academic Writing & Structure (25%)</h4>
+            <ul>
+                <li>Clear, concise, and logical organization</li>
+                <li>Proper use of academic language</li>
+                <li>Correct grammar, spelling, and punctuation</li>
+                <li>Proper citations and reference formatting</li>
+                <li>Adherence to word limit and format requirements</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Feedback:</strong>
+                You'll receive detailed feedback from both assessors along with your grade. Use this feedback to improve your final thesis!
+            </div>
+
+            <h3>What if My Proposal Grade is Low?</h3>
+            <p>If you receive a failing grade (below 5.5) or are unsatisfied with your proposal grade:</p>
+            <ul>
+                <li>Review the feedback carefully</li>
+                <li>Discuss concerns with your Research Supervisor</li>
+                <li>Contact your Internal Advisor for clarification</li>
+                <li>Use the feedback to improve your final thesis</li>
+            </ul>
+
+            <p><strong>Important:</strong> There is no resit for the proposal. The grade stands, but strong performance in other BTR components can compensate.</p>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="content-section">
+            <h2>Resources & Templates</h2>
+
+            <h3>Essential Resources</h3>
+            <ul>
+                <li><strong>Proposal Guidelines (Detailed):</strong> Available on Canvas > BTR Module > Proposal Guidelines</li>
+                <li><strong>Proposal Rubric:</strong> See exact grading criteria on Canvas</li>
+                <li><strong>Example Proposals:</strong> Ask your supervisor for examples from previous successful BTR proposals</li>
+                <li><strong>APA Style Guide:</strong> <a href="https://apastyle.apa.org/" target="_blank">Official APA Website</a></li>
+                <li><strong>Writing Support:</strong> Maastricht University Language Centre offers writing workshops</li>
+            </ul>
+
+            <h3>Reference Managers</h3>
+            <p>Use these tools to manage your citations:</p>
+            <ul>
+                <li><strong>Zotero:</strong> Free, open-source (recommended)</li>
+                <li><strong>Mendeley:</strong> Free with cloud storage</li>
+                <li><strong>EndNote:</strong> Available through UM library</li>
+            </ul>
+
+            <h3>Where to Get Help</h3>
+            <ul>
+                <li><strong>Research Supervisor:</strong> Discuss drafts and get feedback</li>
+                <li><strong>Internal Advisor:</strong> Available for questions about structure and academic writing</li>
+                <li><strong>BTR Office:</strong> <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a> for administrative questions</li>
+                <li><strong>Writing Centre:</strong> Book appointments for writing support</li>
+                <li><strong>Library Services:</strong> Help with literature searches and reference management</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Start Early:</strong>
+                Give yourself at least 2-3 weeks to write your proposal. This allows time for literature review, drafting, feedback from your supervisor, and revisions.
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Questions about your proposal?</strong> Contact your Research Supervisor or the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">← Back to BTR Dashboard</a> | 
+            <a href="before-you-start.html">Before You Start</a> | 
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            © Maastricht University - Faculty of Science and Engineering
+        </p>
+    </footer>
+</body>
+</html>
