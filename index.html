@@ -78,71 +78,149 @@
             font-weight: 600;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
-            color: white;
-            padding: 80px 30px;
-            text-align: center;
+        /* Hero Image Section */
+        .hero-image-section {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
         }
 
-        .hero-content {
-            max-width: 800px;
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+        }
+
+        .hero-info-boxes {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .info-box-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-icon {
+            font-size: 32px;
+        }
+
+        .info-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #001C3D;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Introduction Section - UM Orange Style */
+        .intro-section {
+            background: linear-gradient(135deg, #F39425 0%, #FF9D42 100%);
+            padding: 80px 30px;
+        }
+
+        .intro-content {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .intro-text {
+            color: #001C3D;
         }
 
-        .hero p {
+        .intro-subtitle {
             font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.95;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #001C3D;
         }
 
-        .hero-buttons {
+        .intro-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #001C3D;
+            line-height: 1.2;
+        }
+
+        .intro-description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+        }
+
+        .section-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #001C3D;
+        }
+
+        .cta-buttons {
             display: flex;
             gap: 20px;
-            justify-content: center;
+            margin-top: 40px;
             flex-wrap: wrap;
         }
 
-        .btn {
+        .btn-cta {
             padding: 15px 35px;
             font-size: 16px;
-            border: none;
+            font-weight: 600;
             border-radius: 4px;
-            cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             transition: all 0.3s;
-            font-weight: 600;
+            border: 2px solid transparent;
         }
 
-        .btn-primary {
-            background: #00A2DB;
+        .btn-cta-primary {
+            background: #001C3D;
             color: white;
         }
 
-        .btn-primary:hover {
-            background: #0088bb;
+        .btn-cta-primary:hover {
+            background: #003366;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        .btn-secondary {
+        .btn-cta-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: #001C3D;
+            border: 2px solid #001C3D;
         }
 
-        .btn-secondary:hover {
-            background: white;
-            color: #001C3D;
+        .btn-cta-secondary:hover {
+            background: #001C3D;
+            color: white;
             transform: translateY(-2px);
         }
 
@@ -394,8 +472,21 @@
                 width: 100%;
             }
 
-            .hero h1 {
+            .intro-title {
                 font-size: 36px;
+            }
+
+            .section-heading {
+                font-size: 24px;
+            }
+
+            .hero-image-section {
+                height: 350px;
+            }
+
+            .hero-info-boxes {
+                flex-wrap: wrap;
+                gap: 20px;
             }
 
             .nav-menu {
@@ -422,14 +513,58 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Bachelor Thesis Research</h1>
-            <p>Your journey to academic excellence starts here. Track your BTR progress for the September 2025 cohort.</p>
-            <div class="hero-buttons">
-                <a href="#timeline" class="btn btn-primary">September Cohort →</a>
-                <a href="#components" class="btn btn-secondary">February Cohort →</a>
+    <!-- Hero Section with Image -->
+    <section class="hero-image-section">
+        <div class="hero-image-wrapper">
+            <img src="https://www.maastrichtuniversity.nl/sites/default/files/styles/page_photo/public/compontent_afbeelding/msp_students_study_area.jpg" alt="MSP Students" class="hero-background-image">
+            <div class="hero-overlay">
+                <div class="hero-info-boxes">
+                    <div class="info-box-item">
+                        <span class="info-icon">📅</span>
+                        <span class="info-label">September Start</span>
+                    </div>
+                    <div class="info-box-item">
+                        <span class="info-icon">⏱️</span>
+                        <span class="info-label">Full Time</span>
+                    </div>
+                    <div class="info-box-item">
+                        <span class="info-icon">📍</span>
+                        <span class="info-label">Maastricht</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section with UM Orange Background -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <div class="intro-text">
+                <h2 class="intro-subtitle">Bachelor Thesis Research</h2>
+                <h1 class="intro-title">The final step of your MSP journey</h1>
+                <p class="intro-description">
+                    The Bachelor Thesis Research (BTR) is a one-semester, 30 ECTS research project that marks the completion of your Maastricht Science Programme degree. This is where you bring together everything you've learned and demonstrate your growth as an independent researcher.
+                </p>
+                
+                <h3 class="section-heading">What is the BTR?</h3>
+                <p class="intro-description">
+                    During your BTR, you'll conduct high-level academic research in a scientific area of your choosing. You'll experience the complete scientific cycle: formulating research questions, designing experiments, analyzing results, and communicating your findings. You can work with MSP faculty in Maastricht, at other institutions in the Netherlands, or abroad.
+                </p>
+                
+                <h3 class="section-heading">Why the BTR matters</h3>
+                <p class="intro-description">
+                    The BTR prepares you for the real world of scientific research. You'll work with strict deadlines, take full responsibility for your project, and develop the independence needed for a research master's programme or a career in science. This is your opportunity to specialize, contribute to ongoing research, and show what you're capable of.
+                </p>
+                
+                <h3 class="section-heading">Everything you need is here</h3>
+                <p class="intro-description">
+                    This website guides you through the entire BTR process. Find information about requirements and deadlines, prepare your application, access important forms, and get answers to your questions. Whether you're exploring options or ready to apply, we're here to support you.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="before-you-start.html" class="btn-cta btn-cta-primary">Get Started →</a>
+                    <a href="#timeline" class="btn-cta btn-cta-secondary">View Timeline →</a>
+                </div>
             </div>
         </div>
     </section>
