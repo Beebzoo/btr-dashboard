@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTR Dashboard - Bachelor Thesis Research</title>
+    <title>Before You Start the BTR - Complete Checklist</title>
     <style>
         * {
             margin: 0;
@@ -78,420 +78,391 @@
             font-weight: 600;
         }
 
-        /* Hero Image Section */
-        .hero-image-section {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
+        /* Page Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
         }
 
-        .hero-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-background-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-        }
-
-        .hero-info-boxes {
-            max-width: 1400px;
+        .page-hero-content {
+            max-width: 900px;
             margin: 0 auto;
-            display: flex;
-            gap: 40px;
-            justify-content: center;
         }
 
-        .info-box-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
-        .info-icon {
-            font-size: 32px;
+        .page-hero p {
+            font-size: 17px;
+            line-height: 1.8;
+            opacity: 0.95;
         }
 
-        .info-label {
-            font-size: 14px;
+        /* Deadline Banner */
+        .deadline-banner {
+            background: #FF6200;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
             font-weight: 600;
-            color: #001C3D;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* Introduction Section - UM Orange Style */
-        .intro-section {
-            background: linear-gradient(135deg, #F39425 0%, #FF9D42 100%);
-            padding: 80px 30px;
+        .deadline-banner strong {
+            font-size: 18px;
         }
 
-        .intro-content {
+        /* Utility Bar */
+        .utility-bar {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .utility-content {
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .intro-text {
-            color: #001C3D;
-        }
-
-        .intro-subtitle {
-            font-size: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            color: #001C3D;
-        }
-
-        .intro-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #001C3D;
-            line-height: 1.2;
-        }
-
-        .intro-description {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            color: #1a1a1a;
-        }
-
-        .section-heading {
-            font-size: 28px;
-            font-weight: 700;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            color: #001C3D;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .btn-cta {
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .btn-cta-primary {
-            background: #001C3D;
-            color: white;
-        }
-
-        .btn-cta-primary:hover {
-            background: #003366;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .btn-cta-secondary {
-            background: transparent;
-            color: #001C3D;
-            border: 2px solid #001C3D;
-        }
-
-        .btn-cta-secondary:hover {
-            background: #001C3D;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Main Content with Sidebar */
-        .content-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 30px;
-            display: flex;
-            gap: 40px;
-        }
-
-        /* Sidebar Navigation */
-        .sidebar {
-            width: 280px;
-            flex-shrink: 0;
-        }
-
-        .sidebar-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
-            padding-left: 15px;
-        }
-
-        .sidebar-nav {
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-
-        .sidebar-nav a {
-            display: block;
-            padding: 15px 20px;
-            color: #333;
-            text-decoration: none;
-            font-size: 15px;
-            border-left: 4px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .sidebar-nav a:hover {
-            background: #f8f9fa;
-            border-left-color: #00A2DB;
-            color: #00A2DB;
-            padding-left: 25px;
-        }
-
-        .sidebar-nav a:not(:last-child) {
-            border-bottom: 1px solid #eee;
-        }
-
-        /* Main Content Area */
-        .main-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #001C3D;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Section */
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            color: #001C3D;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #00A2DB;
-        }
-
-        /* Timeline Grid */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .timeline-card {
-            background: #f8f9fa;
-            border-left: 4px solid #00A2DB;
-            padding: 20px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .timeline-card:hover {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateX(5px);
-        }
-
-        .timeline-date {
-            font-size: 14px;
-            color: #00A2DB;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .timeline-title {
-            font-size: 18px;
-            color: #001C3D;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .timeline-time {
-            font-size: 13px;
-            color: #666;
-        }
-
-        /* Assessment Components */
-        .component-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .component-item {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 4px;
-            border-left: 4px solid #E84E10;
-        }
-
-        .component-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .component-name {
-            font-size: 18px;
+        .utility-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .utility-btn {
+            background: #FF6200;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .utility-btn:hover {
+            background: #e55500;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* Accordion Styles */
+        .accordion-section {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-left: 5px solid #002D5A;
+            transition: all 0.3s;
+        }
+
+        .accordion-section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .accordion-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .section-number {
+            background: #FF6200;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-size: 22px;
             font-weight: 600;
             color: #001C3D;
         }
 
-        .component-percentage {
+        .accordion-icon {
             font-size: 24px;
-            font-weight: 700;
-            color: #E84E10;
+            color: #00A2DB;
+            transition: transform 0.3s;
+            flex-shrink: 0;
         }
 
-        .component-details {
-            font-size: 14px;
-            color: #666;
+        .accordion-section.active .accordion-icon {
+            transform: rotate(180deg);
         }
 
-        .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
+        .accordion-content {
+            max-height: 0;
             overflow: hidden;
-            margin-top: 10px;
+            transition: max-height 0.4s ease;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #E84E10, #F39425);
+        .accordion-section.active .accordion-content {
+            max-height: 10000px;
+        }
+
+        .accordion-body {
+            padding: 30px 30px 30px 95px;
+            background: #fafafa;
+        }
+
+        .accordion-body h3 {
+            color: #002D5A;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        .accordion-body h4 {
+            color: #00A2DB;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        .accordion-body p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .accordion-body ul, .accordion-body ol {
+            margin: 15px 0 15px 20px;
+        }
+
+        .accordion-body li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Call-to-Action Boxes */
+        .cta-box {
+            background: #E6F4FA;
+            border: 2px solid #00A2DB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .cta-box strong {
+            display: block;
+            color: #002D5A;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Warning Boxes */
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 5px solid #FF6200;
+            padding: 20px;
+            margin: 25px 0;
             border-radius: 4px;
-            transition: width 1s ease;
+        }
+
+        .warning-box strong {
+            color: #FF6200;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #f0f8ff;
+            border-left: 5px solid #00A2DB;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        /* Checklist Styles */
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .checklist-item {
+            padding: 8px 0;
+            font-size: 16px;
+        }
+
+        .checklist-item::before {
+            content: "☐ ";
+            color: #00A2DB;
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        /* Requirements List */
+        .requirement-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid #28A745;
+        }
+
+        .requirement-item.warning {
+            border-left-color: #FFA500;
+        }
+
+        .requirement-item.critical {
+            border-left-color: #DC3545;
+        }
+
+        /* Flowchart Boxes */
+        .flow-box {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .flow-box.green {
+            background: #d4edda;
+            border: 2px solid #28A745;
+            color: #155724;
+        }
+
+        .flow-box.yellow {
+            background: #fff3cd;
+            border: 2px solid #FFA500;
+            color: #856404;
+        }
+
+        .flow-box.orange {
+            background: #fff3e0;
+            border: 2px solid #FF6200;
+            color: #d64500;
+        }
+
+        /* Contact Table */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .contact-card h4 {
+            color: #002D5A;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: #00A2DB;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
         .footer {
-            background: #001C3D;
+            background: #002D5A;
             color: white;
             padding: 40px 30px;
             margin-top: 60px;
+            text-align: center;
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+        .footer p {
+            margin: 10px 0;
         }
 
-        .footer-section h3 {
-            margin-bottom: 15px;
+        .footer a {
             color: #00A2DB;
-        }
-
-        .footer-section a {
-            display: block;
-            color: #ccc;
             text-decoration: none;
-            margin-bottom: 8px;
-            transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: white;
+        .footer a:hover {
+            text-decoration: underline;
         }
 
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .content-wrapper {
-                flex-direction: column;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 32px;
             }
 
-            .sidebar {
-                width: 100%;
+            .accordion-body {
+                padding: 20px;
             }
 
-            .intro-title {
-                font-size: 36px;
+            .accordion-title {
+                font-size: 18px;
             }
 
-            .section-heading {
-                font-size: 24px;
-            }
-
-            .hero-image-section {
-                height: 350px;
-            }
-
-            .hero-info-boxes {
-                flex-wrap: wrap;
-                gap: 20px;
+            .section-number {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
             }
 
             .nav-menu {
                 display: none;
             }
+
+            .utility-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -499,301 +470,906 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="msp-logo.jpg" alt="MSP Logo">
                 <span class="logo-text">Maastricht Science Programme</span>
             </a>
             <nav class="nav-menu">
+                <a href="index.html">BTR Dashboard</a>
                 <a href="#">Education</a>
                 <a href="#">Research</a>
                 <a href="#">About MSP</a>
-                <a href="#">BTR Info</a>
                 <a href="#" class="my-um-btn">My UM</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section with Image -->
-    <section class="hero-image-section">
-        <div class="hero-image-wrapper">
-            <img src="https://www.maastrichtuniversity.nl/sites/default/files/styles/page_photo/public/compontent_afbeelding/msp_students_study_area.jpg" alt="MSP Students" class="hero-background-image">
-            <div class="hero-overlay">
-                <div class="hero-info-boxes">
-                    <div class="info-box-item">
-                        <span class="info-icon">📅</span>
-                        <span class="info-label">September Start</span>
-                    </div>
-                    <div class="info-box-item">
-                        <span class="info-icon">⏱️</span>
-                        <span class="info-label">Full Time</span>
-                    </div>
-                    <div class="info-box-item">
-                        <span class="info-icon">📍</span>
-                        <span class="info-label">Maastricht</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Deadline Banner -->
+    <div class="deadline-banner">
+        <strong>🗓️ Important Deadlines:</strong> September 2026 Start: RTS Deadline July 17, 2025 | February 2026 Start: RTS Deadline December 12, 2025
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Before You Start the BTR: Complete Checklist</h1>
+            <p>
+                You are about to embark on the final step of the Maastricht Science Programme – the Bachelor Thesis Research. This is your opportunity to demonstrate how much you have grown and learned throughout the past two and a half years. The BTR is where you bring together all your knowledge, skills, and scientific curiosity to conduct independent research that contributes to your field. Finding the right project and supervisor can feel daunting at first, but remember: patience and persistence always lead to a great, suitable project! Whether you choose to stay in Maastricht, explore opportunities elsewhere in the Netherlands, or venture abroad, this journey will be one of the most rewarding experiences of your academic career. Follow the steps below carefully to ensure a smooth application process and set yourself up for success.
+            </p>
         </div>
     </section>
 
-    <!-- Introduction Section with UM Orange Background -->
-    <section class="intro-section">
-        <div class="intro-content">
-            <div class="intro-text">
-                <h2 class="intro-subtitle">Bachelor Thesis Research</h2>
-                <h1 class="intro-title">The final step of your MSP journey</h1>
-                <p class="intro-description">
-                    The Bachelor Thesis Research (BTR) is a one-semester, 30 ECTS research project that marks the completion of your Maastricht Science Programme degree. This is where you bring together everything you've learned and demonstrate your growth as an independent researcher.
-                </p>
-                
-                <h3 class="section-heading">What is the BTR?</h3>
-                <p class="intro-description">
-                    During your BTR, you'll conduct high-level academic research in a scientific area of your choosing. You'll experience the complete scientific cycle: formulating research questions, designing experiments, analyzing results, and communicating your findings. You can work with MSP faculty in Maastricht, at other institutions in the Netherlands, or abroad.
-                </p>
-                
-                <h3 class="section-heading">Why the BTR matters</h3>
-                <p class="intro-description">
-                    The BTR prepares you for the real world of scientific research. You'll work with strict deadlines, take full responsibility for your project, and develop the independence needed for a research master's programme or a career in science. This is your opportunity to specialize, contribute to ongoing research, and show what you're capable of.
-                </p>
-                
-                <h3 class="section-heading">Everything you need is here</h3>
-                <p class="intro-description">
-                    This website guides you through the entire BTR process. Find information about requirements and deadlines, prepare your application, access important forms, and get answers to your questions. Whether you're exploring options or ready to apply, we're here to support you.
-                </p>
-
-                <div class="cta-buttons">
-                    <a href="before-you-start.html" class="btn-cta btn-cta-primary">Get Started →</a>
-                    <a href="#timeline" class="btn-cta btn-cta-secondary">View Timeline →</a>
-                </div>
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-content">
+            <div class="utility-buttons">
+                <button class="utility-btn" onclick="expandAll()">Expand All Sections</button>
+                <button class="utility-btn" onclick="collapseAll()">Collapse All Sections</button>
             </div>
+            <a href="index.html" style="color: #001C3D; text-decoration: none; font-weight: 600;">← Back to BTR Dashboard</a>
         </div>
-    </section>
+    </div>
 
-    <!-- Main Content with Sidebar -->
+    <!-- Main Content -->
     <div class="content-wrapper">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-title">Bachelor Thesis Research</div>
-            <nav class="sidebar-nav">
-                <a href="before-you-start.html">Before you Start the BTR</a>
-                <a href="#timeline">Timelines</a>
-                <a href="#proposal">Writing the Proposal</a>
-                <a href="#thesis">Writing the Thesis</a>
-                <a href="#video">Making the BTR Video</a>
-                <a href="#rubrics">Rubrics</a>
-            </nav>
-        </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Stats Bar -->
-            <div class="stats-bar">
-                <div class="stat-card">
-                    <div class="stat-number">30</div>
-                    <div class="stat-label">ECTS Credits</div>
+        <!-- SECTION 1: Eligibility -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">1</div>
+                    <div class="accordion-title">Am I Eligible to Start the BTR?</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Components</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5.5</div>
-                    <div class="stat-label">Min. Grade</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">145</div>
-                    <div class="stat-label">ECTS Required</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">Jan 30</div>
-                    <div class="stat-label">Graduation</div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Credit Requirements</h3>
+                    <p><strong>You need at least 145 ECTS to start your BTR</strong> (out of 150 non-BTR credits)</p>
+
+                    <h4>Your situation:</h4>
+                    
+                    <div class="requirement-item">
+                        <strong>✓ 150+ ECTS:</strong> Free to start BTR. No additional module necessary.
+                    </div>
+
+                    <div class="requirement-item warning">
+                        <strong>✓ Exactly 145 ECTS:</strong> Free to start BTR. Must apply for an additional module to graduate on time (see Section 6 for details).
+                    </div>
+
+                    <div class="requirement-item critical">
+                        <strong>⚠️ Below 145 ECTS:</strong> Provisionally accepted to start BTR only if courses and/or projects are currently under grading. Contact your Academic Advisor to confirm your eligibility.
+                    </div>
+
+                    <h3>GPA Requirements (For BTR Abroad Only)</h3>
+                    <p>If you plan to conduct your BTR outside of Maastricht:</p>
+                    <ul>
+                        <li><strong>Required GPA:</strong> Nominal 7.5 GPA</li>
+                        <li><strong>Below 7.5?</strong> Contact the BTR Office (msp-btr@maastrichtuniversity.nl) to discuss your options. Exceptions may be possible depending on circumstances.</li>
+                    </ul>
+
+                    <h3>Course Completion Requirements (For BTR Abroad)</h3>
+                    <ul>
+                        <li>All courses must be completed before going abroad</li>
+                        <li>Projects must be completed or under final grading</li>
+                    </ul>
+
+                    <div class="cta-box">
+                        <strong>Not sure about your eligibility?</strong>
+                        <p>Schedule a meeting with your Academic Advisor to confirm your credits and discuss your BTR plans.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Timeline Section -->
-            <section id="timeline" class="section">
-                <h2 class="section-title">BTR Timeline - September 2025</h2>
-                <div class="timeline-grid">
-                    <div class="timeline-card">
-                        <div class="timeline-date">September 1, 2025</div>
-                        <div class="timeline-title">BTR Start Date</div>
-                        <div class="timeline-time">Research begins</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">September 29, 2025</div>
-                        <div class="timeline-title">Proposal Deadline</div>
-                        <div class="timeline-time">13:00 submission</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">October 20, 2025</div>
-                        <div class="timeline-title">Proposal Grades</div>
-                        <div class="timeline-time">Feedback released</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">November 10, 2025</div>
-                        <div class="timeline-title">Midterm Grades</div>
-                        <div class="timeline-time">Progress assessment</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">December 8, 2025</div>
-                        <div class="timeline-title">Thesis Submission</div>
-                        <div class="timeline-time">13:00 deadline</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">December 12, 2025</div>
-                        <div class="timeline-title">Video Submission</div>
-                        <div class="timeline-time">13:00 deadline</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">December 12, 2025</div>
-                        <div class="timeline-title">Peer Review Due</div>
-                        <div class="timeline-time">23:59 deadline</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">January 19, 2026</div>
-                        <div class="timeline-title">Final Grades</div>
-                        <div class="timeline-time">Results published</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">January 30, 2026</div>
-                        <div class="timeline-title">BTR Completion</div>
-                        <div class="timeline-time">Graduation day!</div>
-                    </div>
+        <!-- SECTION 2: Preparation -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">2</div>
+                    <div class="accordion-title">Preparation: What to Do Before Applying</div>
                 </div>
-            </section>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Before you submit your Request to Start (RTS), complete these essential preparation steps:</p>
 
-            <!-- Assessment Components Section -->
-            <section id="components" class="section">
-                <h2 class="section-title">Grade Components (30 ECTS)</h2>
-                <div class="component-list">
-                    <div class="component-item">
-                        <div class="component-header">
-                            <span class="component-name">Research Proposal</span>
-                            <span class="component-percentage">15%</span>
-                        </div>
-                        <div class="component-details">Graded by: Research Supervisor + Internal Assessor</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 15%;"></div>
-                        </div>
+                    <h3>A. Watch the BTR Information Materials (Highly Recommended)</h3>
+                    <ul>
+                        <li><strong>BTR Information Presentation:</strong> Available on Canvas under MSP Students > Bachelor Thesis Research</li>
+                        <li><strong>BTR Q&A Session:</strong> Held twice per year (November for February start; February for September start)</li>
+                        <li><strong>All Canvas Materials:</strong> Read all documentation available in the BTR module on Canvas</li>
+                    </ul>
+                    <p>These resources answer most common questions and provide detailed guidance on the entire BTR process.</p>
+
+                    <h3>B. Schedule Academic Advising Appointment (MANDATORY ⚠️)</h3>
+                    <div class="warning-box">
+                        <strong>⚠️ This is a required step before submitting your RTS application.</strong>
+                        <ul>
+                            <li>Your Academic Advisor must confirm you have sufficient credits to start your BTR</li>
+                            <li>This appointment may fall outside regular advising times – it is YOUR responsibility to schedule it early</li>
+                            <li>Bring questions about your eligibility, additional modules, or BTR plans</li>
+                        </ul>
                     </div>
-                    <div class="component-item">
-                        <div class="component-header">
-                            <span class="component-name">Midpoint Practical</span>
-                            <span class="component-percentage">15%</span>
-                        </div>
-                        <div class="component-details">Graded by: Research Supervisor</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 15%;"></div>
-                        </div>
-                    </div>
-                    <div class="component-item">
-                        <div class="component-header">
-                            <span class="component-name">Written Thesis</span>
-                            <span class="component-percentage">25%</span>
-                        </div>
-                        <div class="component-details">Graded by: Research Supervisor + Internal Assessor</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 25%;"></div>
-                        </div>
-                    </div>
-                    <div class="component-item">
-                        <div class="component-header">
-                            <span class="component-name">Final Practical</span>
-                            <span class="component-percentage">35%</span>
-                        </div>
-                        <div class="component-details">Graded by: Research Supervisor + Presentation</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 35%;"></div>
-                        </div>
-                    </div>
-                    <div class="component-item">
-                        <div class="component-header">
-                            <span class="component-name">BTR Video</span>
-                            <span class="component-percentage">10%</span>
-                        </div>
-                        <div class="component-details">Graded by: Internal Assessor + Peer Review</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 10%;"></div>
+
+                    <h4>How to schedule:</h4>
+                    <ul>
+                        <li>Check the Academic Advising schedule on Canvas</li>
+                        <li>Email your Academic Advisor directly</li>
+                        <li>Book through the online appointment system</li>
+                    </ul>
+
+                    <h3>C. Read All Information on Canvas</h3>
+                    <p>Familiarize yourself with:</p>
+                    <ul>
+                        <li>BTR Student Handbook</li>
+                        <li>Proposal Guidelines</li>
+                        <li>Thesis Guidelines</li>
+                        <li>Grading Rubrics</li>
+                        <li>Timeline and deadlines</li>
+                        <li>FAQ documents</li>
+                    </ul>
+
+                    <div class="cta-box">
+                        <strong>✓ Checklist:</strong>
+                        <div class="checklist">
+                            <div class="checklist-item">Watched BTR Information Presentation</div>
+                            <div class="checklist-item">Scheduled Academic Advisor meeting</div>
+                            <div class="checklist-item">Read BTR Handbook on Canvas</div>
+                            <div class="checklist-item">Reviewed proposal and thesis guidelines</div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
 
-            <!-- Requirements Section -->
-            <section class="section">
-                <h2 class="section-title">BTR Requirements</h2>
-                <div class="component-list">
-                    <div class="component-item">
-                        <div class="component-name">Eligibility</div>
-                        <div class="component-details">Students must have completed at least 145 ECTS before starting the BTR</div>
+        <!-- SECTION 3: Finding a Research Supervisor -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">3</div>
+                    <div class="accordion-title">Finding a Research Supervisor</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Finding a thesis topic and Research Supervisor is entirely YOUR responsibility. Be curious, persistent, and don't be afraid to send emails!</p>
+
+                    <h3>Where to Look for Supervisors</h3>
+
+                    <h4>Option 1: Canvas Research Opportunities</h4>
+                    <ul>
+                        <li>Navigate to Canvas > MSP Students > Research Areas of MSP & UM Staff</li>
+                        <li>Browse open BTR projects from MSP faculty</li>
+                        <li>Scroll down for research opportunities outside MSP but within UM</li>
+                    </ul>
+
+                    <h4>Option 2: BTR Advertisement Board</h4>
+                    <ul>
+                        <li>Physical board located on the 1st floor, opposite the lifts</li>
+                        <li>Features current BTR opportunities from various departments</li>
+                        <li>Updated regularly with new projects</li>
+                    </ul>
+
+                    <h4>Option 3: Your Own Initiative</h4>
+                    <ul>
+                        <li>Contact faculty members whose research interests align with yours</li>
+                        <li>Reach out to supervisors from previous projects or courses</li>
+                        <li>Use the internet and academic papers to identify research groups</li>
+                        <li>Send professional emails expressing your interest</li>
+                    </ul>
+
+                    <h3>Research Supervisor Requirements</h3>
+                    <ul>
+                        <li>Generally expected to have a PhD</li>
+                        <li>Should have several years of research experience</li>
+                        <li>Must be willing to supervise throughout your BTR period</li>
+                        <li>For external BTR: Supervisor must be affiliated with a university or research institution</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong>Note:</strong> PhD students may act as day-to-day supervisors but should not be the official Research Supervisor with final responsibility.
                     </div>
-                    <div class="component-item">
-                        <div class="component-name">Supervision</div>
-                        <div class="component-details">Research Supervisor must hold a PhD. Internal Assessor assists with academic writing.</div>
+
+                    <h3>Finding Supervisors at Different Locations</h3>
+
+                    <h4>Within MSP (Maastricht University):</h4>
+                    <ul>
+                        <li>Close at hand for regular meetings</li>
+                        <li>May allow continuation from previous project work</li>
+                        <li>Often already familiar with MSP requirements</li>
+                        <li>Check BTR Advertisement Board and Canvas</li>
+                    </ul>
+
+                    <h4>Within Maastricht (Outside MSP):</h4>
+                    <ul>
+                        <li>Other UM faculties (e.g., Biobased, DKE, M4I)</li>
+                        <li>Still close for additional modules if needed</li>
+                        <li>May offer specialized equipment or expertise</li>
+                        <li>Often already supervisors of MSP projects or courses</li>
+                    </ul>
+
+                    <h4>🌍 Anywhere in the World (Abroad):</h4>
+                    <ul>
+                        <li>Opportunity to enhance your network</li>
+                        <li>Experience science in different environment</li>
+                        <li>Requirements: 7.5 GPA, all courses completed</li>
+                        <li>Identify groups through internet, papers, conferences</li>
+                        <li>Contact potential supervisors directly</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>🌍 Special Requirements for BTR Abroad:</strong>
+                        <ul>
+                            <li>Must have completed all courses</li>
+                            <li>Nominal 7.5 GPA required</li>
+                            <li>Physical presence at host institution required (no remote/online BTR)</li>
+                            <li>External agreement must be signed before starting</li>
+                        </ul>
                     </div>
-                    <div class="component-item">
-                        <div class="component-name">Submission Platforms</div>
-                        <div class="component-details">Canvas for grades and resources. Collent for thesis and video submissions.</div>
-                    </div>
-                    <div class="component-item">
-                        <div class="component-name">Passing Grade</div>
-                        <div class="component-details">Minimum 5.5 required to pass. Average grade is typically around 7.5.</div>
+
+                    <h3>Tips for Contacting Potential Supervisors</h3>
+                    <ol>
+                        <li>Research their work before reaching out</li>
+                        <li>Write professional, concise emails</li>
+                        <li>Clearly express your interests and how they align with their research</li>
+                        <li>Be prepared to discuss your academic background</li>
+                        <li>Follow up if you don't hear back within 1-2 weeks</li>
+                        <li>Be patient – finding the right match takes time!</li>
+                    </ol>
+
+                    <div class="cta-box">
+                        <strong>Need inspiration?</strong>
+                        <p>Browse current BTR projects and research areas on Canvas to discover what's possible!</p>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Request to Start Requirements -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">4</div>
+                    <div class="accordion-title">Request to Start (RTS): What You Need to Submit</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Important Deadlines ⚠️</h3>
+                    <div class="warning-box">
+                        <strong>For September 2026 Start:</strong> RTS Deadline: <strong>July 17, 2025</strong><br>
+                        <strong>For February 2026 Start:</strong> RTS Deadline: <strong>December 12, 2025</strong>
+                    </div>
+
+                    <p><strong>⏰ Processing Time:</strong> You will receive an approval email from the BTR Office at least 3 weeks after submission. During busy periods, it may take longer.</p>
+
+                    <h3>How to Submit Your RTS</h3>
+                    <p><strong>All submissions must be made through Collent.</strong></p>
+                    <ul>
+                        <li>Access Collent Platform: <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a></li>
+                        <li>Log in with your UM credentials</li>
+                        <li>Navigate to: Bachelor Thesis Research > BTR Request to Start</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Do NOT submit via Canvas or email – these will not be processed.</strong>
+                    </div>
+
+                    <h3>Required Documents for RTS</h3>
+
+                    <h4>Document 1: Proof of Correspondence with Research Supervisor 📧</h4>
+                    <p>This must be an email from your prospective supervisor that includes ALL of the following:</p>
+                    <div class="checklist">
+                        <div class="checklist-item">Statement of agreement to supervise you for the BTR</div>
+                        <div class="checklist-item">Start and end dates of your BTR (e.g., "September 2025 – February 2026")</div>
+                        <div class="checklist-item">Subject/title of thesis (working title is acceptable)</div>
+                        <div class="checklist-item">Sent from institutional/university email address (not personal email)</div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Example Format:</strong><br><br>
+                        <em>Dear [Student Name],<br><br>
+                        I am pleased to confirm that I will supervise your Bachelor Thesis Research from September 2025 to February 2026. Your research will focus on [thesis topic/title].<br><br>
+                        [Additional details about the project]<br><br>
+                        Best regards,<br>
+                        Dr. [Supervisor Name]<br>
+                        [Institution]</em>
+                    </div>
+
+                    <h4>Document 2: Brief Thesis Description 📄</h4>
+                    <p><strong>Length:</strong> Half an A4 page (approximately 200-300 words)</p>
+                    <p><strong>Purpose:</strong> This description helps the BTR Office verify that your proposed project fulfills the necessary scientific requirements.</p>
+
+                    <h4>What to include:</h4>
+                    <ol>
+                        <li><strong>Brief background:</strong> Context for your research area</li>
+                        <li><strong>Research question/objectives:</strong> What you aim to investigate</li>
+                        <li><strong>Research techniques/methods:</strong> Approaches you will use</li>
+                        <li><strong>Expected outcomes:</strong> What your research may contribute</li>
+                    </ol>
+
+                    <h4>What Makes a Valid BTR Project?</h4>
+                    <div class="requirement-item">
+                        ✓ Independent research with clear research questions<br>
+                        ✓ Testable hypotheses<br>
+                        ✓ Follows the complete scientific cycle<br>
+                        ✓ Contributes new knowledge or insights
+                    </div>
+
+                    <div class="requirement-item critical">
+                        <strong>❌ Not acceptable:</strong><br>
+                        • Routine laboratory tasks<br>
+                        • General internships without research component<br>
+                        • Purely observational work without analysis<br>
+                        • Repetitive procedures without scientific investigation
+                    </div>
+
+                    <h3>After Submission</h3>
+                    <ol>
+                        <li><strong>BTR Office Review:</strong> Your RTS will be reviewed for scientific merit and completeness</li>
+                        <li><strong>Approval Email:</strong> You will receive confirmation if/when your BTR is approved</li>
+                        <li><strong>Information Booklet:</strong> Approximately 2 weeks before your start date</li>
+                        <li><strong>Internal Advisor Assignment:</strong> Before you submit your proposal</li>
+                    </ol>
+
+                    <div class="cta-box">
+                        <strong>⚠️ IMPORTANT:</strong> Submit your RTS at least 3 weeks before your desired start date. Last-minute submissions may delay your approval and start date.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Course Registration & Backup Course -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">5</div>
+                    <div class="accordion-title">Course Registration & Backup Course (CRITICAL)</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Why You Need a Backup Course</h3>
+                    <p>Because the BTR approval process takes at least 3 weeks, you must register for a backup course before the Course Registration deadline. This ensures you are registered for courses in case your BTR is not approved in time.</p>
+
+                    <div class="warning-box">
+                        <strong>⚠️ CRITICAL: This is YOUR Responsibility</strong>
+                        <p><strong>What you MUST do:</strong></p>
+                        <ol>
+                            <li><strong>Register for ONE backup course</strong> before the Course Registration deadline</li>
+                            <li><strong>IF your BTR is approved:</strong> YOU must withdraw yourself from the backup course</li>
+                            <li><strong>IF you don't withdraw:</strong> The course will remain on your schedule and a FAIL will appear on your transcript if you don't attend/complete it</li>
+                        </ol>
+                    </div>
+
+                    <h3>Step-by-Step Process</h3>
+
+                    <h4>Before BTR Approval:</h4>
+                    <ol>
+                        <li>Choose an appropriate backup course (typically a Period 1 or Period 4 course)</li>
+                        <li>Register for this course during the Course Registration period</li>
+                        <li>Submit your BTR Request to Start on Collent</li>
+                    </ol>
+
+                    <h4>After BTR Approval:</h4>
+                    <ol>
+                        <li>Receive approval email from BTR Office</li>
+                        <li><strong>Immediately withdraw yourself from the backup course</strong></li>
+                        <li>Confirm withdrawal is processed in your student portal</li>
+                    </ol>
+
+                    <h4>If BTR NOT Approved in Time:</h4>
+                    <ol>
+                        <li>Attend the backup course as planned</li>
+                        <li>Reapply for BTR for the next start period</li>
+                    </ol>
+
+                    <h3>Common Mistakes to Avoid</h3>
+                    <div class="requirement-item critical">
+                        ❌ Assuming the BTR Office will withdraw you from the backup course<br>
+                        ❌ Forgetting to register for a backup course at all<br>
+                        ❌ Registering for multiple backup courses (only 1 is needed)<br>
+                        ❌ Missing the withdrawal deadline after BTR approval
+                    </div>
+
+                    <div class="cta-box">
+                        <strong>⚠️ REMEMBER:</strong> The BTR Office does NOT withdraw you from backup courses. This is entirely YOUR responsibility. Set a reminder for yourself!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Additional Module -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">6</div>
+                    <div class="accordion-title">Additional Module: Reaching 180 ECTS</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Many students need to take an additional module alongside their BTR to reach the required 180 ECTS for graduation.</p>
+
+                    <h3>Who Needs an Additional Module?</h3>
+                    <p>If you start your BTR with <strong>exactly 145 ECTS</strong>, you will need to complete an additional 5 ECTS module during your BTR to graduate on time (145 + 30 BTR + 5 additional = 180 total).</p>
+
+                    <h3>Important Restrictions</h3>
+                    <div class="warning-box">
+                        <strong>Location Requirement:</strong>
+                        <ul>
+                            <li>Additional modules are ONLY allowed if your BTR is in or near Maastricht</li>
+                            <li>You cannot take an additional module if doing BTR abroad</li>
+                            <li>Must be practical to attend classes alongside BTR work</li>
+                        </ul>
+                    </div>
+
+                    <h4>Module Limits:</h4>
+                    <ul>
+                        <li>Maximum ONE additional module during entire BTR</li>
+                        <li>Maximum 5 ECTS</li>
+                        <li>Cannot be taken in first year or first two semesters of studies</li>
+                    </ul>
+
+                    <h3>Approval Process (Multiple Steps Required)</h3>
+
+                    <h4>Step 1: Research Supervisor Approval</h4>
+                    <p><strong>⏰ BEFORE you start your BTR</strong></p>
+                    <ul>
+                        <li>Your Research Supervisor must approve that you are taking an additional module</li>
+                        <li>Discuss how you will manage the workload</li>
+                        <li>Supervisor is not obligated to approve</li>
+                    </ul>
+
+                    <h4>Step 2: Board of Examiners (BoE) Approval</h4>
+                    <p><strong>⏰ By the Course Registration Deadline</strong></p>
+                    <ul>
+                        <li>Submit Additional Module Request via Intranet > Forms > Additional Module</li>
+                        <li>BoE will evaluate based on your GPA and Progress Rate (PR)</li>
+                        <li><strong>Your BTR must already be approved</strong> before BoE will consider additional module request</li>
+                    </ul>
+
+                    <h4>Step 3: Course Registration</h4>
+                    <ul>
+                        <li>Include the additional module on your Course Registration form</li>
+                        <li>Register for both your backup course AND the additional module</li>
+                        <li>If BTR approved: withdraw from backup, keep additional module</li>
+                    </ul>
+
+                    <h3>What If You Fail the Additional Module?</h3>
+                    <div class="warning-box">
+                        <strong>⚠️ If you need a resit for the additional module, this can delay your graduation date.</strong>
+                        <ul>
+                            <li>Resits typically occur after the BTR end date</li>
+                            <li>You may not graduate in the same ceremony as your cohort</li>
+                            <li>Plan accordingly and take the additional module seriously</li>
+                        </ul>
+                    </div>
+
+                    <div class="cta-box">
+                        <strong>📋 Additional Module Checklist:</strong>
+                        <div class="checklist">
+                            <div class="checklist-item">Confirmed with Research Supervisor (BEFORE BTR starts)</div>
+                            <div class="checklist-item">Submitted Additional Module request to BoE (by Course Reg deadline)</div>
+                            <div class="checklist-item">Noted on RTS form</div>
+                            <div class="checklist-item">Registered for backup course + additional module</div>
+                            <div class="checklist-item">Plan to withdraw from backup course after BTR approval</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: External/Abroad Legal Agreements -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">7</div>
+                    <div class="accordion-title">Legal Agreements for External/Abroad BTR</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>If you are conducting your BTR outside of Maastricht University, several legal agreements must be completed and signed BEFORE you can start.</p>
+
+                    <h3>External Agreement (MANDATORY) ⚠️</h3>
+                    <p><strong>Required for:</strong> ALL students doing BTR outside of Maastricht University</p>
+
+                    <div class="warning-box">
+                        <strong>⚠️ CRITICAL: You CANNOT start your BTR until this agreement is fully signed.</strong>
+                    </div>
+
+                    <h4>What is it?</h4>
+                    <p>A legally binding agreement between:</p>
+                    <ol>
+                        <li>Maastricht University</li>
+                        <li>The host institution (company/university/research center)</li>
+                        <li>You (the student)</li>
+                    </ol>
+
+                    <h4>Purpose:</h4>
+                    <ul>
+                        <li>Clarifies responsibilities of all parties</li>
+                        <li>Establishes liability and insurance coverage</li>
+                        <li>Confirms supervision arrangements</li>
+                        <li>Outlines intellectual property rights</li>
+                    </ul>
+
+                    <h3>Timeline Requirements</h3>
+                    <div class="warning-box">
+                        <strong>Minimum 3 weeks before BTR start date:</strong>
+                        <ul>
+                            <li>Submit all legal documents to BTR Office for review</li>
+                            <li>Allow time for legal checking</li>
+                            <li>Allow time for negotiations if needed</li>
+                            <li>Allow time for signatures from all parties</li>
+                        </ul>
+                        <p><strong>⚠️ Documents submitted less than 1 month before your start date are considered too close and may cause delays or prevent you from starting on time.</strong></p>
+                    </div>
+
+                    <h3>How to Complete the External Agreement</h3>
+
+                    <h4>Step 1: Download the Template</h4>
+                    <p>Available on Canvas: MSP Students > Bachelor Thesis Research > Forms</p>
+
+                    <h4>Step 2: Fill in Required Information</h4>
+                    <p><strong>University Section:</strong></p>
+                    <ul>
+                        <li>Institution: Maastricht University</li>
+                        <li>Faculty/Department: Faculty of Science and Engineering / Maastricht Science Programme</li>
+                        <li>Address: Paul-Henri Spaaklaan 1, 6229 EN, Maastricht</li>
+                        <li>Email: msp-btr@maastrichtuniversity.nl</li>
+                    </ul>
+
+                    <h4>Step 3: Submit to BTR Office</h4>
+                    <ul>
+                        <li>Email to: msp-btr@maastrichtuniversity.nl</li>
+                        <li>Subject line: "External Agreement - [Your Name] - [Start Date]"</li>
+                        <li>Attach completed form</li>
+                        <li>Submit at least 3 weeks before start date</li>
+                    </ul>
+
+                    <h3>Non-Disclosure Agreements (NDAs)</h3>
+                    <p><strong>Increasingly common</strong>, especially with industry partners and private companies.</p>
+
+                    <h4>What to do:</h4>
+                    <ol>
+                        <li>Host institution provides their NDA template</li>
+                        <li>Submit to BTR Office for legal checking</li>
+                        <li>BTR Office coordinates with UM legal department</li>
+                        <li>Cannot be signed without UM approval</li>
+                        <li>Allow extra time for NDA review (3+ weeks)</li>
+                    </ol>
+
+                    <h3>What Happens If Agreements Aren't Signed in Time?</h3>
+                    <div class="requirement-item critical">
+                        <ul>
+                            <li>Your BTR start date will be delayed</li>
+                            <li>You may need to postpone to the next cohort (6 months later)</li>
+                            <li>You will need to maintain course registration</li>
+                        </ul>
+                    </div>
+
+                    <div class="cta-box">
+                        <strong>📋 Legal Documents Checklist:</strong>
+                        <div class="checklist">
+                            <div class="checklist-item">Downloaded External Agreement template</div>
+                            <div class="checklist-item">Completed all sections of External Agreement</div>
+                            <div class="checklist-item">Submitted to BTR Office (3+ weeks before start)</div>
+                            <div class="checklist-item">Obtained NDA from host (if required)</div>
+                            <div class="checklist-item">Submitted NDA for legal review</div>
+                            <div class="checklist-item">Collected all necessary signatures</div>
+                            <div class="checklist-item">Kept copies of all signed documents</div>
+                        </div>
+                        <p>Questions about legal agreements? Contact: msp-btr@maastrichtuniversity.nl</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 8: Going Abroad -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">8</div>
+                    <div class="accordion-title">Going Abroad: What to Do After BTR Approval</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Congratulations on your BTR approval! If you're heading abroad, there are several important steps to complete before departure.</p>
+
+                    <h3>Contact the International Relations Office (IRO)</h3>
+                    <div class="warning-box">
+                        <strong>⚠️ MANDATORY: Contact IRO AFTER receiving BTR approval</strong>
+                        <p><strong>Email:</strong> msp-iro@maastrichtuniversity.nl</p>
+                        <p><strong>When to contact:</strong> Immediately after receiving your BTR approval email from the BTR Office</p>
+                    </div>
+
+                    <h3>Emergency Contact Form (MANDATORY)</h3>
+                    <p><strong>Required for:</strong> ALL students leaving the Netherlands for BTR</p>
+                    <p><strong>What is it?</strong></p>
+                    <ul>
+                        <li>Form providing emergency contact information</li>
+                        <li>Allows UM to reach you in case of emergency</li>
+                        <li>Allows UM to notify your emergency contacts if needed</li>
+                    </ul>
+
+                    <h3>Erasmus+ Grant Application (EU Destinations Only)</h3>
+                    <h4>Eligibility:</h4>
+                    <ul>
+                        <li>BTR at a partner institution in the EU or UK</li>
+                        <li>Must be Erasmus+ partner university</li>
+                    </ul>
+
+                    <h4>What it covers:</h4>
+                    <ul>
+                        <li>Partial coverage of living expenses abroad</li>
+                        <li>Monthly grant amount varies by destination country</li>
+                        <li>Does not cover all costs – prepare additional budget</li>
+                    </ul>
+
+                    <h3>Practical Preparations</h3>
+
+                    <h4>Passport & Visa:</h4>
+                    <ul>
+                        <li>Ensure passport is valid for at least 6 months beyond your return date</li>
+                        <li>For non-EU destinations: Obtain necessary visa well in advance (can take 2-3 months)</li>
+                        <li>For EU destinations: Check if residence permit needs renewal</li>
+                    </ul>
+
+                    <h4>Health Insurance:</h4>
+                    <ul>
+                        <li>Confirm your health insurance covers you abroad</li>
+                        <li>Obtain European Health Insurance Card (EHIC) for EU destinations</li>
+                        <li>Consider additional travel insurance</li>
+                        <li>Some host institutions require specific insurance coverage</li>
+                    </ul>
+
+                    <h4>Finances:</h4>
+                    <p>Prepare detailed budget including:</p>
+                    <ul>
+                        <li>Rent and utilities</li>
+                        <li>Food and daily expenses</li>
+                        <li>Travel costs (flights, local transport)</li>
+                        <li>Research/lab fees (if applicable)</li>
+                        <li>Emergency funds</li>
+                    </ul>
+
+                    <div class="cta-box">
+                        <strong>🌍 Going Abroad Checklist:</strong>
+                        <div class="checklist">
+                            <div class="checklist-item">Contacted IRO immediately after BTR approval</div>
+                            <div class="checklist-item">Completed Emergency Contact Form</div>
+                            <div class="checklist-item">Applied for Erasmus+ grant (if eligible)</div>
+                            <div class="checklist-item">Checked passport validity (6+ months)</div>
+                            <div class="checklist-item">Applied for visa (if needed)</div>
+                            <div class="checklist-item">Arranged health insurance coverage</div>
+                            <div class="checklist-item">Secured accommodation</div>
+                            <div class="checklist-item">Created detailed budget</div>
+                        </div>
+                        <p>Questions? Contact IRO: msp-iro@maastrichtuniversity.nl</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 9: After Submission -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">9</div>
+                    <div class="accordion-title">After Submission: What to Expect</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>You've submitted your Request to Start – great work! Here's what happens next and how to prepare for your BTR journey.</p>
+
+                    <h3>Approval Process</h3>
+                    <p><strong>Timeline:</strong></p>
+                    <ul>
+                        <li>Minimum 3 weeks after RTS submission</li>
+                        <li>May be longer during busy periods (July-August, December-January)</li>
+                        <li>BTR Office reviews for scientific merit and completeness</li>
+                    </ul>
+
+                    <h3>Internal Advisor Assignment</h3>
+                    <p><strong>When:</strong> Before you submit your proposal (approximately 2 weeks before BTR start)</p>
+
+                    <h4>Role of Internal Advisor:</h4>
+                    <ul>
+                        <li>Grades your proposal alongside Research Supervisor</li>
+                        <li>Grades your final thesis alongside Research Supervisor</li>
+                        <li>Grades your BTR video (50%) alongside peer review (50%)</li>
+                        <li>Meets with you for progress check-in after proposal submission</li>
+                        <li>Available for consultation throughout BTR</li>
+                    </ul>
+
+                    <h3>Information Booklet</h3>
+                    <p><strong>When:</strong> Approximately 2 weeks before your BTR start date</p>
+                    <p><strong>What's included:</strong></p>
+                    <ul>
+                        <li>Detailed BTR timeline and deadlines</li>
+                        <li>Grading rubrics and assessment criteria</li>
+                        <li>Submission instructions for Collent</li>
+                        <li>Contact information for BTR Office and Internal Advisor</li>
+                        <li>FAQs and troubleshooting</li>
+                    </ul>
+
+                    <h3>BTR Timeline After Approval</h3>
+                    <h4>Typical September Start (dates are approximate):</h4>
+                    <ul>
+                        <li>September 1: BTR Start Date</li>
+                        <li>September 29: Proposal Submission Deadline (13:00)</li>
+                        <li>October 20: Proposal Grades Published</li>
+                        <li>November 10: Midterm Practical Grades Published</li>
+                        <li>December 8: Final Thesis Submission Deadline (13:00)</li>
+                        <li>December 12: BTR Video Submission Deadline (13:00)</li>
+                        <li>December 12: Video Peer-Review Deadline (23:59)</li>
+                        <li>January 19: Final Grades Published</li>
+                        <li>January 30: End of BTR / Graduation from MSP</li>
+                    </ul>
+
+                    <div class="cta-box">
+                        <strong>✓ Post-Approval Checklist:</strong>
+                        <div class="checklist">
+                            <div class="checklist-item">Received and saved approval email</div>
+                            <div class="checklist-item">Noted official BTR start date</div>
+                            <div class="checklist-item">Contacted Research Supervisor to prepare</div>
+                            <div class="checklist-item">Read information booklet thoroughly</div>
+                            <div class="checklist-item">Completed all IRO requirements (if going abroad)</div>
+                            <div class="checklist-item">Set up access/accounts at host institution</div>
+                            <div class="checklist-item">Ready to start your research journey!</div>
+                        </div>
+                        <p>You're all set! Best of luck with your BTR! 🎓</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 10: Resources & Contacts -->
+        <div class="accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="accordion-title-wrapper">
+                    <div class="section-number">10</div>
+                    <div class="accordion-title">Resources & Contact Information</div>
+                </div>
+                <div class="accordion-icon">▼</div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Key Contacts</h3>
+
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h4>BTR Office</h4>
+                            <p><strong>Email:</strong> <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
+                            <p><strong>BTR Administrator:</strong> Martijn Jeurissen</p>
+                            <p><strong>BTR Coordinator:</strong> Panos Christakoglou</p>
+                            <p><em>Primary contact for all BTR matters</em></p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4>International Relations Office</h4>
+                            <p><strong>Email:</strong> <a href="mailto:msp-iro@maastrichtuniversity.nl">msp-iro@maastrichtuniversity.nl</a></p>
+                            <p><em>For students going abroad, Erasmus+ grants, emergency contact forms</em></p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4>Board of Examiners</h4>
+                            <p><em>For additional module requests, special circumstances, academic regulations</em></p>
+                            <p>Contact via Intranet forms</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4>Your Academic Advisor</h4>
+                            <p><em>For credit confirmation, study planning, academic guidance</em></p>
+                            <p>Find your advisor on Student Portal or Canvas</p>
+                        </div>
+                    </div>
+
+                    <h3>Important Platforms & Systems</h3>
+
+                    <h4>Collent (All BTR Submissions):</h4>
+                    <p><strong>Link:</strong> <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent Platform</a></p>
+                    <p><strong>What it's for:</strong></p>
+                    <ul>
+                        <li>Request to Start submission</li>
+                        <li>Proposal submission</li>
+                        <li>Thesis submission</li>
+                        <li>Video submission</li>
+                        <li>Video peer review</li>
+                        <li>Viewing grades</li>
+                    </ul>
+
+                    <h4>Canvas (Information & Resources):</h4>
+                    <p><strong>Location:</strong> Canvas > Courses > MSP Students > Modules > Bachelor Thesis Research</p>
+                    <p><strong>What's available:</strong></p>
+                    <ul>
+                        <li>BTR handbooks (students and supervisors)</li>
+                        <li>Proposal, thesis, and video guidelines</li>
+                        <li>Grading rubrics</li>
+                        <li>Research areas and opportunities</li>
+                        <li>Legal forms and templates</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Important:</strong> All BTR-related emails MUST include msp-btr@maastrichtuniversity.nl as primary recipient or in CC.
+                    </div>
+
+                    <div class="cta-box">
+                        <strong>Need help? Don't hesitate to reach out!</strong>
+                        <p>📧 BTR Office: msp-btr@maastrichtuniversity.nl<br>
+                        🌍 IRO: msp-iro@maastrichtuniversity.nl</p>
+                        <p>We're here to support you throughout your BTR journey!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <a href="mailto:btr@maastrichtuniversity.nl">btr@maastrichtuniversity.nl</a>
-                <a href="tel:+31433882222">+31 43 388 2222</a>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <a href="https://canvas.maastrichtuniversity.nl" target="_blank">Canvas Portal</a>
-                <a href="https://collent.com" target="_blank">Collent Submissions</a>
-                <a href="#">BTR Handbook</a>
-            </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <a href="#">FAQ</a>
-                <a href="#">APA Style Guide</a>
-                <a href="#">Writing Support</a>
-            </div>
-            <div class="footer-section">
-                <h3>Maastricht University</h3>
-                <p>Minderbroedersberg 4-6<br>6211 LK Maastricht<br>The Netherlands</p>
-            </div>
-        </div>
+        <p><strong>Still have questions?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+        <p>Good luck with your Bachelor Thesis Research! 🎓</p>
+        <p style="margin-top: 20px; font-size: 14px;">
+            <a href="index.html">BTR Dashboard</a> | 
+            <a href="#">Canvas</a> | 
+            <a href="#">Student Portal</a> | 
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            © Maastricht University - Faculty of Science and Engineering
+        </p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animate progress bars on load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
+        function toggleAccordion(header) {
+            const section = header.parentElement;
+            const wasActive = section.classList.contains('active');
+            
+            // Toggle this section
+            section.classList.toggle('active');
+            
+            // Smooth scroll to section if opening
+            if (!wasActive) {
                 setTimeout(() => {
-                    bar.style.width = width;
+                    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
+            }
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.accordion-section').forEach(section => {
+                section.classList.add('active');
+            });
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.accordion-section').forEach(section => {
+                section.classList.remove('active');
+            });
+        }
+
+        // Optional: Add keyboard navigation
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.setAttribute('tabindex', '0');
+            header.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleAccordion(header);
+                }
             });
         });
     </script>
