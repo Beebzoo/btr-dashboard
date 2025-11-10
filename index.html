@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTR Dashboard - Maastricht Science Programme</title>
+    <title>BTR Dashboard - Bachelor Thesis Research</title>
     <style>
         * {
             margin: 0;
@@ -12,26 +12,24 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background-color: #ffffff;
+            font-family: 'Verdana', Arial, sans-serif;
+            background: #f5f5f5;
             color: #333;
             line-height: 1.6;
         }
 
-        /* Header - UM Style */
+        /* Header Styles */
         .header {
-            background: #fff;
+            background: #001C3D;
+            color: white;
             padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,20 +38,19 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0px;
+            gap: 8px;
             text-decoration: none;
-            color: #001C3D;
+            color: white;
         }
 
         .logo img {
-    height: 60px;
-    margin-left: 20px;  /* Pushes the logo 20px to the right */
+            height: 60px;
         }
 
         .logo-text {
             font-size: 18px;
             font-weight: 600;
-            color: #001C3D;
+            color: white;
         }
 
         .nav-menu {
@@ -63,10 +60,9 @@
         }
 
         .nav-menu a {
-            color: #001C3D;
+            color: white;
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
             transition: color 0.3s;
         }
 
@@ -75,331 +71,297 @@
         }
 
         .my-um-btn {
-            background: #001C3D;
-            color: white;
+            background: white;
+            color: #001C3D;
             padding: 8px 20px;
             border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background 0.3s;
+            font-weight: 600;
         }
 
-        .my-um-btn:hover {
-            background: #002d5c;
-        }
-
-        /* Hero Section - UM Style */
-        .hero-section {
-            position: relative;
-            height: 400px;
-            background: linear-gradient(rgba(0,28,61,0.7), rgba(0,28,61,0.3)),
-                        linear-gradient(135deg, #001C3D, #00A2DB);
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .hero-overlay {
-            background: #001C3D;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
             color: white;
-            padding: 40px;
-            max-width: 500px;
-            margin-left: 80px;
+            padding: 80px 30px;
+            text-align: center;
         }
 
-        .hero-overlay h1 {
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
             font-size: 48px;
-            font-weight: 700;
             margin-bottom: 20px;
-            line-height: 1.2;
+            font-weight: 700;
         }
 
-        .hero-overlay p {
+        .hero p {
             font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            margin-bottom: 40px;
+            opacity: 0.95;
         }
 
         .hero-buttons {
             display: flex;
             gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
         }
 
         .btn-primary {
             background: #00A2DB;
             color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
         }
 
         .btn-primary:hover {
-            background: #0090c7;
-            transform: translateX(5px);
+            background: #0088bb;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
         }
 
         .btn-secondary:hover {
             background: white;
             color: #001C3D;
+            transform: translateY(-2px);
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
+        /* Main Content with Sidebar */
+        .content-wrapper {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Section Headers */
-        .section-header {
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-size: 32px;
-            color: #001C3D;
-            margin-bottom: 10px;
-        }
-
-        .section-header p {
-            font-size: 18px;
-            color: #666;
-        }
-
-        /* Card Grid - UM Style */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            transform: translateY(-5px);
-        }
-
-        .card-image {
-            height: 200px;
-            background: linear-gradient(135deg, #001C3D, #00A2DB);
-            position: relative;
+            padding: 40px 30px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 48px;
+            gap: 40px;
         }
 
-        .card-content {
-            padding: 25px;
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
         }
 
-        .card-badge {
-            display: inline-block;
-            background: #E84E10;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
+        .sidebar-title {
             font-size: 12px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
             font-weight: 600;
-        }
-
-        .card h3 {
-            font-size: 20px;
-            color: #001C3D;
-            margin-bottom: 10px;
-        }
-
-        .card p {
             color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            padding-left: 15px;
         }
 
-        .card-link {
-            color: #00A2DB;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: gap 0.3s;
-        }
-
-        .card-link:hover {
-            gap: 10px;
-        }
-
-        /* Timeline Section - Clean Style */
-        .timeline-section {
-            background: #f8f9fa;
-            padding: 60px 0;
-            margin-bottom: 60px;
-        }
-
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .timeline-item {
+        .sidebar-nav {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            border-left: 4px solid #00A2DB;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            border-left: 4px solid transparent;
             transition: all 0.3s;
         }
 
-        .timeline-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .sidebar-nav a:hover {
+            background: #f8f9fa;
+            border-left-color: #00A2DB;
+            color: #00A2DB;
+            padding-left: 25px;
         }
 
-        .timeline-date {
-            font-size: 24px;
-            font-weight: bold;
-            color: #E84E10;
-            margin-bottom: 5px;
+        .sidebar-nav a:not(:last-child) {
+            border-bottom: 1px solid #eee;
         }
 
-        .timeline-month {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-size: 16px;
-            color: #001C3D;
-            font-weight: 600;
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            min-width: 0;
         }
 
         /* Stats Bar */
         .stats-bar {
-            background: #001C3D;
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 60px;
-        }
-
-        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        .stat-item {
-            padding: 20px;
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
         .stat-number {
-            font-size: 48px;
-            font-weight: bold;
-            color: #00A2DB;
-            margin-bottom: 10px;
+            font-size: 36px;
+            font-weight: 700;
+            color: #001C3D;
+            margin-bottom: 5px;
         }
 
         .stat-label {
             font-size: 14px;
+            color: #666;
             text-transform: uppercase;
-            opacity: 0.9;
+            letter-spacing: 0.5px;
         }
 
-        /* Grade Components - Modern Style */
-        .components-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .component-card {
+        /* Section */
+        .section {
             background: white;
-            border: 2px solid #f0f0f0;
+            padding: 30px;
             border-radius: 8px;
-            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #001C3D;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #00A2DB;
+        }
+
+        /* Timeline Grid */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .timeline-card {
+            background: #f8f9fa;
+            border-left: 4px solid #00A2DB;
+            padding: 20px;
+            border-radius: 4px;
             transition: all 0.3s;
         }
 
-        .component-card:hover {
-            border-color: #00A2DB;
-            box-shadow: 0 4px 12px rgba(0,162,219,0.1);
+        .timeline-card:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(5px);
         }
 
-        .component-percentage {
-            font-size: 36px;
-            font-weight: bold;
+        .timeline-date {
+            font-size: 14px;
             color: #00A2DB;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            color: #001C3D;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-time {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Assessment Components */
+        .component-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .component-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #E84E10;
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
         }
 
         .component-name {
             font-size: 18px;
-            color: #001C3D;
             font-weight: 600;
-            margin-bottom: 10px;
+            color: #001C3D;
+        }
+
+        .component-percentage {
+            font-size: 24px;
+            font-weight: 700;
+            color: #E84E10;
         }
 
         .component-details {
             font-size: 14px;
             color: #666;
-            line-height: 1.6;
         }
 
-        /* Clickable card styling */
-        .card-link-wrapper {
-            text-decoration: none;
-            color: inherit;
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E84E10, #F39425);
+            border-radius: 4px;
+            transition: width 1s ease;
         }
 
         /* Footer */
         .footer {
             background: #001C3D;
             color: white;
-            padding: 40px 0;
-            margin-top: 80px;
+            padding: 40px 30px;
+            margin-top: 60px;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
@@ -410,29 +372,30 @@
             color: #00A2DB;
         }
 
-        .footer-section p, .footer-section a {
-            color: rgba(255,255,255,0.8);
+        .footer-section a {
+            display: block;
+            color: #ccc;
             text-decoration: none;
-            line-height: 1.8;
+            margin-bottom: 8px;
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: #00A2DB;
+            color: white;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-overlay {
-                margin-left: 20px;
-                padding: 30px;
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .content-wrapper {
+                flex-direction: column;
             }
 
-            .hero-overlay h1 {
-                font-size: 32px;
+            .sidebar {
+                width: 100%;
             }
 
-            .card-grid {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 36px;
             }
 
             .nav-menu {
@@ -442,11 +405,11 @@
     </style>
 </head>
 <body>
-    <!-- Header with MSP Logo -->
+    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="#" class="logo">
-                <img src="msp-logo.jpg" alt="MSP Logo" style="height: 70px;">
+                <img src="msp-logo.jpg" alt="MSP Logo">
                 <span class="logo-text">Maastricht Science Programme</span>
             </a>
             <nav class="nav-menu">
@@ -460,239 +423,190 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-overlay">
+    <section class="hero">
+        <div class="hero-content">
             <h1>Bachelor Thesis Research</h1>
             <p>Your journey to academic excellence starts here. Track your BTR progress for the September 2025 cohort.</p>
             <div class="hero-buttons">
-                <a href="#timeline" class="btn-primary">View Timeline →</a>
-                <a href="#components" class="btn-secondary">Grade Components →</a>
+                <a href="#timeline" class="btn btn-primary">View Timeline →</a>
+                <a href="#components" class="btn btn-secondary">Grade Components →</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
+    <!-- Main Content with Sidebar -->
+    <div class="content-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-title">Bachelor Thesis Research</div>
+            <nav class="sidebar-nav">
+                <a href="#before-start">Before you Start the BTR</a>
+                <a href="#timeline">Timelines</a>
+                <a href="#proposal">Writing the Proposal</a>
+                <a href="#thesis">Writing the Thesis</a>
+                <a href="#video">Making the BTR Video</a>
+                <a href="#rubrics">Rubrics</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-card">
                     <div class="stat-number">30</div>
                     <div class="stat-label">ECTS Credits</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <div class="stat-number">5</div>
                     <div class="stat-label">Components</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <div class="stat-number">5.5</div>
                     <div class="stat-label">Min. Grade</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">152</div>
-                    <div class="stat-label">Days Duration</div>
-                </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <div class="stat-number">145</div>
                     <div class="stat-label">ECTS Required</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Key Information Cards -->
-        <section class="section-header">
-            <h2>BTR at a Glance</h2>
-            <p>Everything you need to know about your Bachelor Thesis Research</p>
-        </section>
-
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-image">📅</div>
-                <div class="card-content">
-                    <span class="card-badge">Timeline</span>
-                    <h3>September 2025 Start</h3>
-                    <p>Begin your thesis journey on September 1st with Internal Advisor allocation and research preparation.</p>
-                    <a href="#timeline" class="card-link">View full timeline →</a>
+                <div class="stat-card">
+                    <div class="stat-number">Jan 30</div>
+                    <div class="stat-label">Graduation</div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-image">📊</div>
-                <div class="card-content">
-                    <span class="card-badge">Assessment</span>
-                    <h3>5 Graded Components</h3>
-                    <p>Your BTR consists of proposal, practical work, written thesis, presentation, and video components.</p>
-                    <a href="#components" class="card-link">See breakdown →</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-image">✅</div>
-                <div class="card-content">
-                    <span class="card-badge">Requirements</span>
-                    <h3>145 ECTS to Start</h3>
-                    <p>Ensure you meet all eligibility requirements including completed credits and supervisor arrangements.</p>
-                    <a href="#requirements" class="card-link">Check requirements →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Timeline Section -->
-        <section id="timeline" class="timeline-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>BTR Timeline</h2>
-                    <p>Key dates and deadlines for September 2025 cohort</p>
-                </div>
-                
+            <!-- Timeline Section -->
+            <section id="timeline" class="section">
+                <h2 class="section-title">BTR Timeline - September 2025</h2>
                 <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <div class="timeline-date">1</div>
-                        <div class="timeline-month">September</div>
-                        <div class="timeline-title">BTR Start</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">September 1, 2025</div>
+                        <div class="timeline-title">BTR Start Date</div>
+                        <div class="timeline-time">Research begins</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">29</div>
-                        <div class="timeline-month">September</div>
-                        <div class="timeline-title">Proposal Due</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">September 29, 2025</div>
+                        <div class="timeline-title">Proposal Deadline</div>
+                        <div class="timeline-time">13:00 submission</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">20</div>
-                        <div class="timeline-month">October</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">October 20, 2025</div>
                         <div class="timeline-title">Proposal Grades</div>
+                        <div class="timeline-time">Feedback released</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">10</div>
-                        <div class="timeline-month">November</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">November 10, 2025</div>
                         <div class="timeline-title">Midterm Grades</div>
+                        <div class="timeline-time">Progress assessment</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">8</div>
-                        <div class="timeline-month">December</div>
-                        <div class="timeline-title">Thesis Due</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">December 8, 2025</div>
+                        <div class="timeline-title">Thesis Submission</div>
+                        <div class="timeline-time">13:00 deadline</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">12</div>
-                        <div class="timeline-month">December</div>
-                        <div class="timeline-title">Video Due</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">December 12, 2025</div>
+                        <div class="timeline-title">Video Submission</div>
+                        <div class="timeline-time">13:00 deadline</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">19</div>
-                        <div class="timeline-month">January</div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">December 12, 2025</div>
+                        <div class="timeline-title">Peer Review Due</div>
+                        <div class="timeline-time">23:59 deadline</div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">January 19, 2026</div>
                         <div class="timeline-title">Final Grades</div>
+                        <div class="timeline-time">Results published</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">30</div>
-                        <div class="timeline-month">January</div>
-                        <div class="timeline-title">Graduation</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Grade Components -->
-        <section id="components">
-            <div class="section-header">
-                <h2>Assessment Components</h2>
-                <p>How your BTR grade is calculated</p>
-            </div>
-
-            <div class="components-grid">
-                <div class="component-card">
-                    <div class="component-percentage">15%</div>
-                    <div class="component-name">Research Proposal</div>
-                    <div class="component-details">
-                        Max 2000 words<br>
-                        Due: September 29<br>
-                        Graded by: RS + IA
+                    <div class="timeline-card">
+                        <div class="timeline-date">January 30, 2026</div>
+                        <div class="timeline-title">BTR Completion</div>
+                        <div class="timeline-time">Graduation day!</div>
                     </div>
                 </div>
+            </section>
 
-                <div class="component-card">
-                    <div class="component-percentage">15%</div>
-                    <div class="component-name">Midpoint Practical</div>
-                    <div class="component-details">
-                        Skills assessment<br>
-                        Due: November<br>
-                        Graded by: RS
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="component-percentage">25%</div>
-                    <div class="component-name">Written Thesis</div>
-                    <div class="component-details">
-                        Final document<br>
-                        Due: December 8<br>
-                        Graded by: RS + IA
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="component-percentage">35%</div>
-                    <div class="component-name">Final Practical</div>
-                    <div class="component-details">
-                        Including presentation<br>
-                        Due: December<br>
-                        Graded by: RS + Group
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="component-percentage">10%</div>
-                    <div class="component-name">BTR Video</div>
-                    <div class="component-details">
-                        5-7 minutes<br>
-                        Due: December 12<br>
-                        Graded by: IA + Peer
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Resources Section with Clickable Cards -->
-        <section id="requirements">
-            <div class="section-header">
-                <h2>Resources & Requirements</h2>
-                <p>Essential information for BTR success</p>
-            </div>
-
-            <div class="card-grid">
-                <!-- Clickable Canvas Card -->
-                <a href="https://canvas.maastrichtuniversity.nl" target="_blank" class="card-link-wrapper">
-                    <div class="card">
-                        <div class="card-image">📚</div>
-                        <div class="card-content">
-                            <h3>Canvas - BTR Resources</h3>
-                            <p>Access the complete BTR handbook, templates, rubrics, and submission guidelines.</p>
-                            <span class="card-link">Open Canvas →</span>
+            <!-- Assessment Components Section -->
+            <section id="components" class="section">
+                <h2 class="section-title">Grade Components (30 ECTS)</h2>
+                <div class="component-list">
+                    <div class="component-item">
+                        <div class="component-header">
+                            <span class="component-name">Research Proposal</span>
+                            <span class="component-percentage">15%</span>
+                        </div>
+                        <div class="component-details">Graded by: Research Supervisor + Internal Assessor</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%;"></div>
                         </div>
                     </div>
-                </a>
-
-                <!-- Clickable Collent Card -->
-                <div class="card" onclick="window.open('https://collent.maastrichtuniversity.nl', '_blank')">
-                    <div class="card-image">💻</div>
-                    <div class="card-content">
-                        <h3>Collent Platform</h3>
-                        <p>Submit all BTR components through Collent. Ensure you have access before deadlines.</p>
-                        <span class="card-link">Access Collent →</span>
+                    <div class="component-item">
+                        <div class="component-header">
+                            <span class="component-name">Midpoint Practical</span>
+                            <span class="component-percentage">15%</span>
+                        </div>
+                        <div class="component-details">Graded by: Research Supervisor</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%;"></div>
+                        </div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-header">
+                            <span class="component-name">Written Thesis</span>
+                            <span class="component-percentage">25%</span>
+                        </div>
+                        <div class="component-details">Graded by: Research Supervisor + Internal Assessor</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-header">
+                            <span class="component-name">Final Practical</span>
+                            <span class="component-percentage">35%</span>
+                        </div>
+                        <div class="component-details">Graded by: Research Supervisor + Presentation</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 35%;"></div>
+                        </div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-header">
+                            <span class="component-name">BTR Video</span>
+                            <span class="component-percentage">10%</span>
+                        </div>
+                        <div class="component-details">Graded by: Internal Assessor + Peer Review</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 10%;"></div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Support Card -->
-                <div class="card">
-                    <div class="card-image">👥</div>
-                    <div class="card-content">
-                        <h3>Support Team</h3>
-                        <p>Contact the BTR office at msp-btr@maastrichtuniversity.nl for questions and assistance.</p>
-                        <a href="mailto:msp-btr@maastrichtuniversity.nl" class="card-link">Get Support →</a>
+            <!-- Requirements Section -->
+            <section class="section">
+                <h2 class="section-title">BTR Requirements</h2>
+                <div class="component-list">
+                    <div class="component-item">
+                        <div class="component-name">Eligibility</div>
+                        <div class="component-details">Students must have completed at least 145 ECTS before starting the BTR</div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-name">Supervision</div>
+                        <div class="component-details">Research Supervisor must hold a PhD. Internal Assessor assists with academic writing.</div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-name">Submission Platforms</div>
+                        <div class="component-details">Canvas for grades and resources. Collent for thesis and video submissions.</div>
+                    </div>
+                    <div class="component-item">
+                        <div class="component-name">Passing Grade</div>
+                        <div class="component-details">Minimum 5.5 required to pass. Average grade is typically around 7.5.</div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </div>
 
     <!-- Footer -->
@@ -700,35 +614,36 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Maastricht Science Programme<br>
-                Faculty of Science and Engineering<br>
-                Minderbroedersberg 4-6<br>
-                6211 LK Maastricht</p>
+                <a href="mailto:btr@maastrichtuniversity.nl">btr@maastrichtuniversity.nl</a>
+                <a href="tel:+31433882222">+31 43 388 2222</a>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="https://canvas.maastrichtuniversity.nl" target="_blank">Canvas</a><br>
-                <a href="https://collent.maastrichtuniversity.nl" target="_blank">Collent</a><br>
-                <a href="#">BTR Handbook</a><br>
-                <a href="#">Academic Calendar</a></p>
+                <h3>Resources</h3>
+                <a href="https://canvas.maastrichtuniversity.nl" target="_blank">Canvas Portal</a>
+                <a href="https://collent.com" target="_blank">Collent Submissions</a>
+                <a href="#">BTR Handbook</a>
             </div>
             <div class="footer-section">
                 <h3>Support</h3>
-                <p>BTR Coordinator<br>
-                msp-btr@maastrichtuniversity.nl<br>
-                +31 43 388 2222</p>
+                <a href="#">FAQ</a>
+                <a href="#">APA Style Guide</a>
+                <a href="#">Writing Support</a>
+            </div>
+            <div class="footer-section">
+                <h3>Maastricht University</h3>
+                <p>Minderbroedersberg 4-6<br>6211 LK Maastricht<br>The Netherlands</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ 
+                    target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
@@ -736,36 +651,16 @@
             });
         });
 
-        // Add animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.card, .timeline-item, .component-card');
-            
-            elements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-                
-                if (isVisible && !element.classList.contains('animated')) {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(20px)';
-                    element.classList.add('animated');
-                    
-                    setTimeout(() => {
-                        element.style.transition = 'all 0.5s ease';
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }, 100);
-                }
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
             });
-        }
-
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
