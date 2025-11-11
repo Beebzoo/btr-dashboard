@@ -320,6 +320,47 @@
             color: #001C3D;
         }
 
+        /* Subsection Toggle */
+        .subsection-toggle {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #002D5A;
+            transition: background 0.3s;
+            border-left: 3px solid #00BCD4;
+        }
+
+        .subsection-toggle:hover {
+            background: #e9ecef;
+        }
+
+        .subsection-toggle .sub-arrow {
+            font-size: 16px;
+            transition: transform 0.3s;
+        }
+
+        .subsection-toggle.active .sub-arrow {
+            transform: rotate(180deg);
+        }
+
+        .subsection-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-left: 15px;
+        }
+
+        .subsection-content.active {
+            max-height: 1000px;
+            transition: max-height 0.4s ease-in;
+        }
+
         .warning-text {
             background: #FFF3E0;
             border-left: 4px solid #FF6200;
@@ -499,40 +540,65 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="platform-info">
-                        <h4>1. Submit Request to Start (RTS)</h4>
-                        <ul>
-                            <li>Upload proof of correspondence with supervisor</li>
-                            <li>Upload brief thesis description (½ page)</li>
-                            <li>Note if taking additional module</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>1. Submit Request to Start (RTS)</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Upload proof of correspondence with supervisor</li>
+                                <li>Upload brief thesis description (½ page)</li>
+                                <li>Note if taking additional module</li>
+                            </ul>
+                        </div>
 
-                        <h4>2. Submit All BTR Components:</h4>
-                        <ul>
-                            <li>Proposal (max 10MB)</li>
-                            <li>Midterm Practical Work form</li>
-                            <li>Final Thesis (max 25MB)</li>
-                            <li>Final Practical Work form</li>
-                            <li>Video submission (WeTransfer link + consent form)</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>2. Submit All BTR Components</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Proposal (max 10MB)</li>
+                                <li>Midterm Practical Work form</li>
+                                <li>Final Thesis (max 25MB)</li>
+                                <li>Final Practical Work form</li>
+                                <li>Video submission (WeTransfer link + consent form)</li>
+                            </ul>
+                        </div>
 
-                        <h4>3. View Internal Advisor Assignment</h4>
-                        <ul>
-                            <li>Can see who their IA is once assigned</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>3. View Internal Advisor Assignment</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Can see who their IA is once assigned</li>
+                            </ul>
+                        </div>
 
-                        <h4>4. Peer Review Video</h4>
-                        <ul>
-                            <li>Access assigned peer's video</li>
-                            <li>Submit peer review assessment</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>4. Peer Review Video</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Access assigned peer's video</li>
+                                <li>Submit peer review assessment</li>
+                            </ul>
+                        </div>
 
-                        <h4>5. Track Submission Status</h4>
-                        <ul>
-                            <li>See which assignments are outstanding</li>
-                            <li>Automatic deadline reminders</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>5. Track Submission Status</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>See which assignments are outstanding</li>
+                                <li>Automatic deadline reminders</li>
+                            </ul>
+                        </div>
 
-                        <p><strong>File Naming:</strong> Name_IDNumber_DocumentType (e.g., AbedNadir_i612345_Proposal)</p>
+                        <p style="margin-top: 20px;"><strong>File Naming:</strong> Name_IDNumber_DocumentType (e.g., AbedNadir_i612345_Proposal)</p>
                     </div>
                 </div>
 
@@ -546,57 +612,77 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="platform-info">
-                        <h4>1. View All Grades & Feedback:</h4>
-                        <ul>
-                            <li>Proposal grades + rubrics</li>
-                            <li>Midterm practical grades</li>
-                            <li>Final thesis grades + rubrics</li>
-                            <li>Final practical grades</li>
-                            <li>Video grades + rubrics</li>
-                            <li>Detailed feedback from RS and IA</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>1. View All Grades & Feedback</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Proposal grades + rubrics</li>
+                                <li>Midterm practical grades</li>
+                                <li>Final thesis grades + rubrics</li>
+                                <li>Final practical grades</li>
+                                <li>Video grades + rubrics</li>
+                                <li>Detailed feedback from RS and IA</li>
+                            </ul>
+                        </div>
 
-                        <h4>2. Access BTR Documents:</h4>
-                        <ul>
-                            <li><strong>General Information folder:</strong>
-                                <ul>
-                                    <li>Checklist to start BTR</li>
-                                    <li>BTR Information Presentation</li>
-                                    <li>BTR information booklet</li>
-                                </ul>
-                            </li>
-                            <li><strong>IRO Information folder:</strong>
-                                <ul>
-                                    <li>Emergency contact form</li>
-                                    <li>Erasmus grant application form</li>
-                                    <li>Useful IRO links</li>
-                                </ul>
-                            </li>
-                            <li><strong>Possible Research Opportunities folder:</strong>
-                                <ul>
-                                    <li>Research areas of MSP staff</li>
-                                    <li>External thesis opportunities</li>
-                                    <li>Potential supervisor information</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>2. Access BTR Documents</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li><strong>General Information folder:</strong>
+                                    <ul>
+                                        <li>Checklist to start BTR</li>
+                                        <li>BTR Information Presentation</li>
+                                        <li>BTR information booklet</li>
+                                    </ul>
+                                </li>
+                                <li><strong>IRO Information folder:</strong>
+                                    <ul>
+                                        <li>Emergency contact form</li>
+                                        <li>Erasmus grant application form</li>
+                                        <li>Useful IRO links</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Possible Research Opportunities folder:</strong>
+                                    <ul>
+                                        <li>Research areas of MSP staff</li>
+                                        <li>External thesis opportunities</li>
+                                        <li>Potential supervisor information</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <h4>3. Guidelines & Resources:</h4>
-                        <ul>
-                            <li>Proposal guidelines</li>
-                            <li>Written thesis guidelines</li>
-                            <li>Video guidelines</li>
-                            <li>Grading rubrics for all components</li>
-                            <li>BTR handbook</li>
-                            <li>FAQ document</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>3. Guidelines & Resources</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Proposal guidelines</li>
+                                <li>Written thesis guidelines</li>
+                                <li>Video guidelines</li>
+                                <li>Grading rubrics for all components</li>
+                                <li>BTR handbook</li>
+                                <li>FAQ document</li>
+                            </ul>
+                        </div>
 
-                        <h4>4. Announcements:</h4>
-                        <ul>
-                            <li>Important BTR updates</li>
-                            <li>Deadline reminders</li>
-                            <li>Policy changes</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>4. Announcements</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Important BTR updates</li>
+                                <li>Deadline reminders</li>
+                                <li>Policy changes</li>
+                            </ul>
+                        </div>
 
                         <div class="warning-text">
                             Canvas is ONLY for viewing/downloading - NO submissions!
@@ -614,15 +700,20 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="platform-info">
-                        <h4>Additional Module Request Form</h4>
-                        <ul>
-                            <li>Must be submitted <strong>BEFORE</strong> Course Registration deadline</li>
-                            <li>Required if taking module alongside BTR</li>
-                            <li>Needs BoE approval before registering</li>
-                            <li>Only allowed for BTR in/near Maastricht (not abroad)</li>
-                            <li>Maximum <strong>ONE</strong> additional module during entire BTR</li>
-                            <li>Must also note on RTS form in Collent</li>
-                        </ul>
+                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
+                            <span>Additional Module Request Form</span>
+                            <span class="sub-arrow">▼</span>
+                        </div>
+                        <div class="subsection-content">
+                            <ul>
+                                <li>Must be submitted <strong>BEFORE</strong> Course Registration deadline</li>
+                                <li>Required if taking module alongside BTR</li>
+                                <li>Needs BoE approval before registering</li>
+                                <li>Only allowed for BTR in/near Maastricht (not abroad)</li>
+                                <li>Maximum <strong>ONE</strong> additional module during entire BTR</li>
+                                <li>Must also note on RTS form in Collent</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -703,6 +794,14 @@
             // Toggle active class
             element.classList.toggle('active');
             infoDiv.classList.toggle('active');
+        }
+
+        function toggleSubsection(element) {
+            const contentDiv = element.nextElementSibling;
+            
+            // Toggle active class
+            element.classList.toggle('active');
+            contentDiv.classList.toggle('active');
         }
     </script>
 </body>
