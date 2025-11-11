@@ -837,13 +837,13 @@
             <div class="game-score">Score: <span id="gameScore">0</span> | High Score: <span id="highScore">0</span></div>
         </div>
         <div class="game-container">
-            <canvas id="gameCanvas" class="game-canvas" width="1000" height="400"></canvas>
+            <canvas id="gameCanvas" class="game-canvas" width="1200" height="400"></canvas>
         </div>
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        function toggleInfo(element) {
+      function toggleInfo(element) {
             const infoDiv = element.nextElementSibling;
             const isActive = infoDiv.classList.contains('active');
             
@@ -893,15 +893,15 @@
             
             // Initialize game
             score = 0;
-            gameSpeed = 7;
+            gameSpeed = 6;
             gravity = 0.7;
             obstacles = [];
             
             player = {
                 x: 100,
-                y: 330,
-                width: 30,
-                height: 35,
+                y: 310,
+                width: 35,
+                height: 50,
                 velocityY: 0,
                 jumping: false
             };
@@ -935,6 +935,32 @@
             document.removeEventListener('keydown', handleKeyPress);
         }
 
+        function drawGraduationCap(x, y, size) {
+            // Cap board (flat top)
+            ctx.fillStyle = '#001C3D';
+            ctx.fillRect(x - size * 0.7, y - size * 0.3, size * 1.4, size * 0.15);
+            
+            // Cap base (rounded)
+            ctx.fillStyle = '#001C3D';
+            ctx.beginPath();
+            ctx.arc(x, y, size * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Tassel
+            ctx.strokeStyle = '#E84E10';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x, y - size * 0.3);
+            ctx.lineTo(x + size * 0.5, y - size * 0.5);
+            ctx.stroke();
+            
+            // Tassel end
+            ctx.fillStyle = '#E84E10';
+            ctx.beginPath();
+            ctx.arc(x + size * 0.5, y - size * 0.5, size * 0.15, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
         function gameLoop() {
             if (!gameRunning) return;
             
@@ -965,24 +991,28 @@
             player.y += player.velocityY;
             
             // Ground collision
-            if (player.y > 330) {
-                player.y = 330;
+            if (player.y > 310) {
+                player.y = 310;
                 player.velocityY = 0;
                 player.jumping = false;
             }
             
-            // Draw player (smaller, agile thesis book icon)
+            // Draw player - BTR book with graduation cap
+            // Book body
             ctx.fillStyle = '#E84E10';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.fillRect(player.x, player.y + 15, player.width, player.height - 15);
             ctx.fillStyle = '#fff';
-            ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
+            ctx.fillRect(player.x + 3, player.y + 18, player.width - 6, player.height - 21);
             ctx.fillStyle = '#001C3D';
             ctx.font = 'bold 12px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
+            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 10);
             
-            // Spawn tree obstacles with much wider random spacing
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (300 + Math.random() * 400)) {
+            // Graduation cap on top of book
+            drawGraduationCap(player.x + player.width/2, player.y + 10, 12);
+            
+            // Spawn tree obstacles with MUCH wider spacing
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (400 + Math.random() * 500)) {
                 // Random tree height
                 let treeHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
@@ -1023,10 +1053,10 @@
                 ctx.closePath();
                 ctx.fill();
                 
-                // Check collision with trunk and foliage
-                if (player.x < tree.x + tree.width &&
-                    player.x + player.width > tree.x &&
-                    player.y < tree.y + tree.height &&
+                // Check collision - adjusted for new player height
+                if (player.x < tree.x + tree.width - 5 &&
+                    player.x + player.width > tree.x + 5 &&
+                    player.y + 15 < tree.y + tree.height &&
                     player.y + player.height > tree.y) {
                     gameOver();
                     return;
@@ -1039,8 +1069,8 @@
                     document.getElementById('gameScore').textContent = score;
                     
                     // Progressive difficulty - speed increases gradually
-                    if (score % 3 === 0) {
-                        gameSpeed += 0.4;
+                    if (score % 4 === 0) {
+                        gameSpeed += 0.3;
                     }
                 }
             }
@@ -1093,3 +1123,4 @@
     </script>
 </body>
 </html>
+
