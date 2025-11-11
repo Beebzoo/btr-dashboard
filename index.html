@@ -428,7 +428,6 @@
             margin-top: 60px;
             text-align: center;
             width: 100%;
-            position: relative;
         }
 
         .footer-content {
@@ -571,7 +570,7 @@
                 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
                 <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
                 <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="/cdn-cgi/l/email-protection#c1acb2b1eca3b5b381aca0a0b2b5b3a8a2a9b5b4afa8b7a4b3b2a8b5b8efafad">Contact</a>
                 <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
             </nav>
         </div>
@@ -812,7 +811,7 @@
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer - UPDATED STRUCTURE -->
     <footer class="footer">
         <div class="footer-content">
             <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
@@ -833,17 +832,17 @@
     <!-- Game Overlay -->
     <div class="game-overlay" id="gameOverlay">
         <div class="game-info">
-            <h2>🎓 BTR Axidus Thesis Runner!</h2>
+            <h2>🦖 BTR Thesis Runner!</h2>
             <p>Press SPACE to jump | Press ESC to exit</p>
             <div class="game-score">Score: <span id="gameScore">0</span> | High Score: <span id="highScore">0</span></div>
         </div>
         <div class="game-container">
-            <canvas id="gameCanvas" class="game-canvas" width="1200" height="400"></canvas>
+            <canvas id="gameCanvas" class="game-canvas" width="1000" height="400"></canvas>
         </div>
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleInfo(element) {
             const infoDiv = element.nextElementSibling;
             const isActive = infoDiv.classList.contains('active');
@@ -900,9 +899,9 @@
             
             player = {
                 x: 100,
-                y: 310,
-                width: 35,
-                height: 50,
+                y: 330,
+                width: 30,
+                height: 35,
                 velocityY: 0,
                 jumping: false
             };
@@ -936,32 +935,6 @@
             document.removeEventListener('keydown', handleKeyPress);
         }
 
-        function drawGraduationCap(x, y, size) {
-            // Cap board (flat top)
-            ctx.fillStyle = '#001C3D';
-            ctx.fillRect(x - size * 0.7, y - size * 0.3, size * 1.4, size * 0.15);
-            
-            // Cap base (rounded)
-            ctx.fillStyle = '#001C3D';
-            ctx.beginPath();
-            ctx.arc(x, y, size * 0.4, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Tassel
-            ctx.strokeStyle = '#E84E10';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(x, y - size * 0.3);
-            ctx.lineTo(x + size * 0.5, y - size * 0.5);
-            ctx.stroke();
-            
-            // Tassel end
-            ctx.fillStyle = '#E84E10';
-            ctx.beginPath();
-            ctx.arc(x + size * 0.5, y - size * 0.5, size * 0.15, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
         function gameLoop() {
             if (!gameRunning) return;
             
@@ -992,121 +965,82 @@
             player.y += player.velocityY;
             
             // Ground collision
-            if (player.y > 310) {
-                player.y = 310;
+            if (player.y > 330) {
+                player.y = 330;
                 player.velocityY = 0;
                 player.jumping = false;
             }
             
-            // Draw player - BTR book with graduation cap
-            // Book body
+            // Draw player (smaller, agile thesis book icon)
             ctx.fillStyle = '#E84E10';
-            ctx.fillRect(player.x, player.y + 15, player.width, player.height - 15);
+            ctx.fillRect(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#fff';
-            ctx.fillRect(player.x + 3, player.y + 18, player.width - 6, player.height - 21);
+            ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
             ctx.fillStyle = '#001C3D';
             ctx.font = 'bold 12px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 10);
+            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
             
-            // Graduation cap on top of book (bigger!)
-            drawGraduationCap(player.x + player.width/2, player.y + 10, 18);
-            
-            // Spawn DNA obstacles with MUCH wider spacing
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (400 + Math.random() * 500)) {
-                // Random DNA height
-                let dnaHeight = 40 + Math.floor(Math.random() * 30);
+            // Spawn tree obstacles with much wider random spacing
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (300 + Math.random() * 400)) {
+                // Random tree height
+                let treeHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
                     x: canvas.width,
-                    y: 380 - dnaHeight,
+                    y: 380 - treeHeight,
                     width: 35,
-                    height: dnaHeight
+                    height: treeHeight,
+                    trunkHeight: Math.floor(treeHeight * 0.4)
                 });
             }
             
-            // Update and draw obstacles (DNA helixes)
+            // Update and draw obstacles (trees)
             for (let i = obstacles.length - 1; i >= 0; i--) {
-                let dna = obstacles[i];
-                dna.x -= gameSpeed;
+                let tree = obstacles[i];
+                tree.x -= gameSpeed;
                 
-                // Draw DNA helix
-                let segments = 8; // Number of base pairs
-                let segmentHeight = dna.height / segments;
-                let helixWidth = 20;
-                let centerX = dna.x + dna.width / 2;
-
-                // Draw the two strands of the helix
-                for (let j = 0; j <= segments; j++) {
-                    let y = dna.y + j * segmentHeight;
-                    let angle = (j / segments) * Math.PI * 4; // 2 full rotations
-                    let offset = Math.sin(angle) * (helixWidth / 2);
-                    
-                    // Left strand (blue)
-                    if (j > 0) {
-                        ctx.strokeStyle = '#00A2DB';
-                        ctx.lineWidth = 3;
-                        ctx.beginPath();
-                        let prevY = dna.y + (j - 1) * segmentHeight;
-                        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
-                        let prevOffset = Math.sin(prevAngle) * (helixWidth / 2);
-                        ctx.moveTo(centerX + prevOffset, prevY);
-                        ctx.lineTo(centerX + offset, y);
-                        ctx.stroke();
-                    }
-                    
-                    // Right strand (orange)
-                    if (j > 0) {
-                        ctx.strokeStyle = '#E84E10';
-                        ctx.lineWidth = 3;
-                        ctx.beginPath();
-                        let prevY = dna.y + (j - 1) * segmentHeight;
-                        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
-                        let prevOffset = -Math.sin(prevAngle) * (helixWidth / 2);
-                        ctx.moveTo(centerX + prevOffset, prevY);
-                        ctx.lineTo(centerX - offset, y);
-                        ctx.stroke();
-                    }
-                    
-                    // Draw base pairs (connecting lines)
-                    if (j < segments) {
-                        ctx.strokeStyle = '#666';
-                        ctx.lineWidth = 2;
-                        ctx.beginPath();
-                        ctx.moveTo(centerX + offset, y);
-                        ctx.lineTo(centerX - offset, y);
-                        ctx.stroke();
-                        
-                        // Draw nucleotide dots
-                        ctx.fillStyle = '#00A2DB';
-                        ctx.beginPath();
-                        ctx.arc(centerX + offset, y, 3, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        ctx.fillStyle = '#E84E10';
-                        ctx.beginPath();
-                        ctx.arc(centerX - offset, y, 3, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
+                // Draw tree trunk
+                let trunkWidth = 12;
+                let trunkX = tree.x + (tree.width - trunkWidth) / 2;
+                ctx.fillStyle = '#6D4C41';
+                ctx.fillRect(trunkX, tree.y + (tree.height - tree.trunkHeight), trunkWidth, tree.trunkHeight);
                 
-                // Check collision with DNA helix - adjusted for new player height
-                if (player.x < dna.x + dna.width - 5 &&
-                    player.x + player.width > dna.x + 5 &&
-                    player.y + 15 < dna.y + dna.height &&
-                    player.y + player.height > dna.y) {
+                // Draw tree foliage (triangle)
+                ctx.fillStyle = '#2E7D32';
+                ctx.beginPath();
+                ctx.moveTo(tree.x + tree.width/2, tree.y); // top point
+                ctx.lineTo(tree.x, tree.y + (tree.height - tree.trunkHeight)); // bottom left
+                ctx.lineTo(tree.x + tree.width, tree.y + (tree.height - tree.trunkHeight)); // bottom right
+                ctx.closePath();
+                ctx.fill();
+                
+                // Add some highlights on foliage
+                ctx.fillStyle = '#4CAF50';
+                ctx.beginPath();
+                ctx.moveTo(tree.x + tree.width/2, tree.y + 5);
+                ctx.lineTo(tree.x + 10, tree.y + (tree.height - tree.trunkHeight) - 10);
+                ctx.lineTo(tree.x + tree.width - 10, tree.y + (tree.height - tree.trunkHeight) - 10);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Check collision with trunk and foliage
+                if (player.x < tree.x + tree.width &&
+                    player.x + player.width > tree.x &&
+                    player.y < tree.y + tree.height &&
+                    player.y + player.height > tree.y) {
                     gameOver();
                     return;
                 }
                 
                 // Remove off-screen obstacles and increment score
-                if (dna.x + dna.width < 0) {
+                if (tree.x + tree.width < 0) {
                     obstacles.splice(i, 1);
                     score++;
                     document.getElementById('gameScore').textContent = score;
                     
                     // Progressive difficulty - speed increases gradually
-                    if (score % 4 === 0) {
-                        gameSpeed += 0.3;
+                    if (score % 3 === 0) {
+                        gameSpeed += 0.4;
                     }
                 }
             }
@@ -1159,4 +1093,3 @@
     </script>
 </body>
 </html>
-
