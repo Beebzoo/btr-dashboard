@@ -428,6 +428,7 @@
             margin-top: 60px;
             text-align: center;
             width: 100%;
+            position: relative;
         }
 
         .footer-content {
@@ -570,7 +571,7 @@
                 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
                 <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
                 <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="/cdn-cgi/l/email-protection#c1acb2b1eca3b5b381aca0a0b2b5b3a8a2a9b5b4afa8b7a4b3b2a8b5b8efafad">Contact</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
                 <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
             </nav>
         </div>
@@ -811,7 +812,7 @@
         </main>
     </div>
 
-    <!-- Footer - UPDATED STRUCTURE -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
@@ -842,8 +843,8 @@
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-      function toggleInfo(element) {
+    <script>
+        function toggleInfo(element) {
             const infoDiv = element.nextElementSibling;
             const isActive = infoDiv.classList.contains('active');
             
@@ -1008,82 +1009,107 @@
             ctx.textAlign = 'center';
             ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 10);
             
-            // Graduation cap on top of book
+            // Graduation cap on top of book (bigger!)
             drawGraduationCap(player.x + player.width/2, player.y + 10, 18);
             
-            // Spawn tree obstacles with MUCH wider spacing
+            // Spawn DNA obstacles with MUCH wider spacing
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (400 + Math.random() * 500)) {
-                // Random tree height
-                let treeHeight = 40 + Math.floor(Math.random() * 30);
+                // Random DNA height
+                let dnaHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
                     x: canvas.width,
-                    y: 380 - treeHeight,
+                    y: 380 - dnaHeight,
                     width: 35,
-                    height: treeHeight,
-                    trunkHeight: Math.floor(treeHeight * 0.4)
+                    height: dnaHeight
                 });
             }
             
-           // Draw DNA helix
-let dna = tree;
-let segments = 8; // Number of base pairs
-let segmentHeight = dna.height / segments;
-let helixWidth = 20;
-let centerX = dna.x + dna.width / 2;
+            // Update and draw obstacles (DNA helixes)
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let dna = obstacles[i];
+                dna.x -= gameSpeed;
+                
+                // Draw DNA helix
+                let segments = 8; // Number of base pairs
+                let segmentHeight = dna.height / segments;
+                let helixWidth = 20;
+                let centerX = dna.x + dna.width / 2;
 
-// Draw the two strands of the helix
-for (let j = 0; j <= segments; j++) {
-    let y = dna.y + j * segmentHeight;
-    let angle = (j / segments) * Math.PI * 4; // 2 full rotations
-    let offset = Math.sin(angle) * (helixWidth / 2);
-    
-    // Left strand (blue)
-    if (j > 0) {
-        ctx.strokeStyle = '#00A2DB';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        let prevY = dna.y + (j - 1) * segmentHeight;
-        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
-        let prevOffset = Math.sin(prevAngle) * (helixWidth / 2);
-        ctx.moveTo(centerX + prevOffset, prevY);
-        ctx.lineTo(centerX + offset, y);
-        ctx.stroke();
-    }
-    
-    // Right strand (orange)
-    if (j > 0) {
-        ctx.strokeStyle = '#E84E10';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        let prevY = dna.y + (j - 1) * segmentHeight;
-        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
-        let prevOffset = -Math.sin(prevAngle) * (helixWidth / 2);
-        ctx.moveTo(centerX + prevOffset, prevY);
-        ctx.lineTo(centerX - offset, y);
-        ctx.stroke();
-    }
-    
-    // Draw base pairs (connecting lines)
-    if (j < segments) {
-        ctx.strokeStyle = '#666';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(centerX + offset, y);
-        ctx.lineTo(centerX - offset, y);
-        ctx.stroke();
-        
-        // Draw nucleotide dots
-        ctx.fillStyle = '#00A2DB';
-        ctx.beginPath();
-        ctx.arc(centerX + offset, y, 3, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.fillStyle = '#E84E10';
-        ctx.beginPath();
-        ctx.arc(centerX - offset, y, 3, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
+                // Draw the two strands of the helix
+                for (let j = 0; j <= segments; j++) {
+                    let y = dna.y + j * segmentHeight;
+                    let angle = (j / segments) * Math.PI * 4; // 2 full rotations
+                    let offset = Math.sin(angle) * (helixWidth / 2);
+                    
+                    // Left strand (blue)
+                    if (j > 0) {
+                        ctx.strokeStyle = '#00A2DB';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        let prevY = dna.y + (j - 1) * segmentHeight;
+                        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
+                        let prevOffset = Math.sin(prevAngle) * (helixWidth / 2);
+                        ctx.moveTo(centerX + prevOffset, prevY);
+                        ctx.lineTo(centerX + offset, y);
+                        ctx.stroke();
+                    }
+                    
+                    // Right strand (orange)
+                    if (j > 0) {
+                        ctx.strokeStyle = '#E84E10';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        let prevY = dna.y + (j - 1) * segmentHeight;
+                        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
+                        let prevOffset = -Math.sin(prevAngle) * (helixWidth / 2);
+                        ctx.moveTo(centerX + prevOffset, prevY);
+                        ctx.lineTo(centerX - offset, y);
+                        ctx.stroke();
+                    }
+                    
+                    // Draw base pairs (connecting lines)
+                    if (j < segments) {
+                        ctx.strokeStyle = '#666';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX + offset, y);
+                        ctx.lineTo(centerX - offset, y);
+                        ctx.stroke();
+                        
+                        // Draw nucleotide dots
+                        ctx.fillStyle = '#00A2DB';
+                        ctx.beginPath();
+                        ctx.arc(centerX + offset, y, 3, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        ctx.fillStyle = '#E84E10';
+                        ctx.beginPath();
+                        ctx.arc(centerX - offset, y, 3, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+                
+                // Check collision with DNA helix - adjusted for new player height
+                if (player.x < dna.x + dna.width - 5 &&
+                    player.x + player.width > dna.x + 5 &&
+                    player.y + 15 < dna.y + dna.height &&
+                    player.y + player.height > dna.y) {
+                    gameOver();
+                    return;
+                }
+                
+                // Remove off-screen obstacles and increment score
+                if (dna.x + dna.width < 0) {
+                    obstacles.splice(i, 1);
+                    score++;
+                    document.getElementById('gameScore').textContent = score;
+                    
+                    // Progressive difficulty - speed increases gradually
+                    if (score % 4 === 0) {
+                        gameSpeed += 0.3;
+                    }
+                }
+            }
             
             requestAnimationFrame(gameLoop);
         }
@@ -1133,7 +1159,3 @@ for (let j = 0; j <= segments; j++) {
     </script>
 </body>
 </html>
-
-
-
-
