@@ -894,7 +894,7 @@
             // Initialize game
             score = 0;
             gameSpeed = 7;
-            gravity = 0.7;
+            gravity = 1.0;
             obstacles = [];
             
             player = {
@@ -919,7 +919,7 @@
         function handleKeyPress(e) {
             if (e.code === 'Space' && !player.jumping && gameRunning) {
                 e.preventDefault();
-                player.velocityY = -13;
+                player.velocityY = -16;
                 player.jumping = true;
             }
             
@@ -1093,5 +1093,6 @@
     </script>
 </body>
 </html>
+
 
 
