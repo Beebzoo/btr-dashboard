@@ -570,7 +570,7 @@
                 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
                 <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
                 <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="/cdn-cgi/l/email-protection#c1acb2b1eca3b5b381aca0a0b2b5b3a8a2a9b5b4afa8b7a4b3b2a8b5b8efafad">Contact</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
                 <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
             </nav>
         </div>
@@ -842,7 +842,7 @@
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         function toggleInfo(element) {
             const infoDiv = element.nextElementSibling;
             const isActive = infoDiv.classList.contains('active');
@@ -969,8 +969,8 @@
                 player.y = 330;
                 player.velocityY = 0;
                 player.jumping = false;
-         } else if (player.y > 310 && player.velocityY > 0) {
-            // Speed up landing in the last bit
+            } else if (player.y > 310 && player.velocityY > 0) {
+                // Speed up landing in the last bit
                 player.velocityY *= 1.1;
             }
             
@@ -984,59 +984,93 @@
             ctx.textAlign = 'center';
             ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
             
-            // Spawn tree obstacles with much wider random spacing
+            // Spawn DNA strand obstacles with much wider random spacing
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (300 + Math.random() * 400)) {
-                // Random tree height
-                let treeHeight = 40 + Math.floor(Math.random() * 30);
+                // Random DNA strand height
+                let dnaHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
                     x: canvas.width,
-                    y: 380 - treeHeight,
+                    y: 380 - dnaHeight,
                     width: 35,
-                    height: treeHeight,
-                    trunkHeight: Math.floor(treeHeight * 0.4)
+                    height: dnaHeight
                 });
             }
             
-            // Update and draw obstacles (trees)
+            // Update and draw obstacles (DNA strands)
             for (let i = obstacles.length - 1; i >= 0; i--) {
-                let tree = obstacles[i];
-                tree.x -= gameSpeed;
+                let dna = obstacles[i];
+                dna.x -= gameSpeed;
                 
-                // Draw tree trunk
-                let trunkWidth = 12;
-                let trunkX = tree.x + (tree.width - trunkWidth) / 2;
-                ctx.fillStyle = '#6D4C41';
-                ctx.fillRect(trunkX, tree.y + (tree.height - tree.trunkHeight), trunkWidth, tree.trunkHeight);
-                
-                // Draw tree foliage (triangle)
-                ctx.fillStyle = '#2E7D32';
+                // Draw DNA double helix
+                let centerX = dna.x + dna.width / 2;
+                let dnaWidth = 25;
+                let segments = 8;
+                let segmentHeight = dna.height / segments;
+
+                // Draw the two strands (helixes)
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#00BCD4'; // Light blue strand
                 ctx.beginPath();
-                ctx.moveTo(tree.x + tree.width/2, tree.y); // top point
-                ctx.lineTo(tree.x, tree.y + (tree.height - tree.trunkHeight)); // bottom left
-                ctx.lineTo(tree.x + tree.width, tree.y + (tree.height - tree.trunkHeight)); // bottom right
-                ctx.closePath();
-                ctx.fill();
-                
-                // Add some highlights on foliage
-                ctx.fillStyle = '#4CAF50';
+                for (let j = 0; j <= segments; j++) {
+                    let y = dna.y + (j * segmentHeight);
+                    let offsetX = Math.sin(j * 0.8) * (dnaWidth / 2);
+                    if (j === 0) {
+                        ctx.moveTo(centerX + offsetX, y);
+                    } else {
+                        ctx.lineTo(centerX + offsetX, y);
+                    }
+                }
+                ctx.stroke();
+
+                ctx.strokeStyle = '#E84E10'; // Orange strand
                 ctx.beginPath();
-                ctx.moveTo(tree.x + tree.width/2, tree.y + 5);
-                ctx.lineTo(tree.x + 10, tree.y + (tree.height - tree.trunkHeight) - 10);
-                ctx.lineTo(tree.x + tree.width - 10, tree.y + (tree.height - tree.trunkHeight) - 10);
-                ctx.closePath();
-                ctx.fill();
+                for (let j = 0; j <= segments; j++) {
+                    let y = dna.y + (j * segmentHeight);
+                    let offsetX = Math.sin(j * 0.8 + Math.PI) * (dnaWidth / 2);
+                    if (j === 0) {
+                        ctx.moveTo(centerX + offsetX, y);
+                    } else {
+                        ctx.lineTo(centerX + offsetX, y);
+                    }
+                }
+                ctx.stroke();
+
+                // Draw base pairs (rungs connecting the strands)
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 2;
+                for (let j = 0; j < segments; j++) {
+                    let y = dna.y + (j * segmentHeight) + (segmentHeight / 2);
+                    let x1 = centerX + Math.sin(j * 0.8 + (segmentHeight / (2 * segmentHeight))) * (dnaWidth / 2);
+                    let x2 = centerX + Math.sin(j * 0.8 + Math.PI + (segmentHeight / (2 * segmentHeight))) * (dnaWidth / 2);
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y);
+                    ctx.lineTo(x2, y);
+                    ctx.stroke();
+                    
+                    // Add nucleotide base circles
+                    ctx.fillStyle = '#00BCD4';
+                    ctx.beginPath();
+                    ctx.arc(x1, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.fillStyle = '#E84E10';
+                    ctx.beginPath();
+                    ctx.arc(x2, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
                 
-                // Check collision with trunk and foliage
-                if (player.x < tree.x + tree.width &&
-                    player.x + player.width > tree.x &&
-                    player.y < tree.y + tree.height &&
-                    player.y + player.height > tree.y) {
+                // Check collision with DNA strand
+                if (player.x < dna.x + dna.width &&
+                    player.x + player.width > dna.x &&
+                    player.y < dna.y + dna.height &&
+                    player.y + player.height > dna.y) {
                     gameOver();
                     return;
                 }
                 
                 // Remove off-screen obstacles and increment score
-                if (tree.x + tree.width < 0) {
+                if (dna.x + dna.width < 0) {
                     obstacles.splice(i, 1);
                     score++;
                     document.getElementById('gameScore').textContent = score;
@@ -1096,10 +1130,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
