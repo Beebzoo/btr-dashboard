@@ -420,13 +420,20 @@
             color: #666;
         }
 
-        /* Footer */
+        /* Footer - FIXED FOR FULL WIDTH */
         .footer {
             background: #002D5A;
             color: white;
-            padding: 40px 30px;
+            padding: 40px 0;
             margin-top: 60px;
             text-align: center;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
         }
 
         .footer p {
@@ -714,19 +721,23 @@
                     </div>
                 </div>
             </div>
+        </main>
+    </div>
 
-    <!-- Footer -->
+    <!-- Footer - UPDATED STRUCTURE -->
     <footer class="footer">
-        <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
-        <p style="margin-top: 20px;">
-            <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
-            <a href="writing-the-thesis.html">Thesis Guidelines</a> | 
-            <a href="btr-video.html">Video Guidelines</a> | 
-            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-        </p>
-        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-            © Maastricht University - Faculty of Science and Engineering
-        </p>
+        <div class="footer-content">
+            <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+            <p style="margin-top: 20px;">
+                <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
+                <a href="writing-the-thesis.html">Thesis Guidelines</a> | 
+                <a href="btr-video.html">Video Guidelines</a> | 
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+                © Maastricht University - Faculty of Science and Engineering
+            </p>
+        </div>
     </footer>
 
     <script>
@@ -749,9 +760,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
