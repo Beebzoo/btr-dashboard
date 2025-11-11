@@ -893,7 +893,7 @@
             
             // Initialize game
             score = 0;
-            gameSpeed = 6;
+            gameSpeed = 7;
             gravity = 0.7;
             obstacles = [];
             
@@ -1009,7 +1009,7 @@
             ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 10);
             
             // Graduation cap on top of book
-            drawGraduationCap(player.x + player.width/2, player.y + 10, 12);
+            drawGraduationCap(player.x + player.width/2, player.y + 10, 18);
             
             // Spawn tree obstacles with MUCH wider spacing
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (400 + Math.random() * 500)) {
@@ -1123,4 +1123,5 @@
     </script>
 </body>
 </html>
+
 
