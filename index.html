@@ -209,8 +209,8 @@
 
         /* Platform Boxes */
         .platform-boxes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 30px;
             margin: 40px 0;
         }
@@ -460,10 +460,6 @@
 
             .nav-menu {
                 display: none;
-            }
-
-            .platform-boxes {
-                grid-template-columns: 1fr;
             }
         }
     </style>
