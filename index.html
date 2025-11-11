@@ -498,6 +498,7 @@
             border: 3px solid #001C3D;
             display: block;
             background: #fff;
+            border-radius: 4px;
         }
 
         .game-info {
@@ -831,7 +832,7 @@
             <div class="game-score">Score: <span id="gameScore">0</span> | High Score: <span id="highScore">0</span></div>
         </div>
         <div class="game-container">
-            <canvas id="gameCanvas" class="game-canvas" width="600" height="200"></canvas>
+            <canvas id="gameCanvas" class="game-canvas" width="800" height="300"></canvas>
         </div>
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
@@ -887,15 +888,15 @@
             
             // Initialize game
             score = 0;
-            gameSpeed = 5;
-            gravity = 0.6;
+            gameSpeed = 6;
+            gravity = 0.8;
             obstacles = [];
             
             player = {
-                x: 50,
-                y: 150,
-                width: 30,
-                height: 40,
+                x: 80,
+                y: 220,
+                width: 40,
+                height: 50,
                 velocityY: 0,
                 jumping: false
             };
@@ -913,7 +914,7 @@
         function handleKeyPress(e) {
             if (e.code === 'Space' && !player.jumping && gameRunning) {
                 e.preventDefault();
-                player.velocityY = -12;
+                player.velocityY = -15;
                 player.jumping = true;
             }
             
@@ -935,37 +936,48 @@
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // Draw score at top
+            ctx.fillStyle = '#001C3D';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('Score: ' + score, 20, 40);
+            ctx.font = '16px Arial';
+            ctx.fillText('Speed: ' + gameSpeed.toFixed(1) + 'x', 20, 65);
+            
             // Draw ground
             ctx.fillStyle = '#001C3D';
-            ctx.fillRect(0, 190, canvas.width, 10);
+            ctx.fillRect(0, 285, canvas.width, 15);
             
             // Update player
             player.velocityY += gravity;
             player.y += player.velocityY;
             
             // Ground collision
-            if (player.y > 150) {
-                player.y = 150;
+            if (player.y > 220) {
+                player.y = 220;
                 player.velocityY = 0;
                 player.jumping = false;
             }
             
-            // Draw player (thesis book icon)
+            // Draw player (bigger thesis book icon)
             ctx.fillStyle = '#E84E10';
             ctx.fillRect(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#fff';
             ctx.fillRect(player.x + 5, player.y + 5, player.width - 10, player.height - 10);
             ctx.fillStyle = '#001C3D';
-            ctx.font = '12px Arial';
-            ctx.fillText('BTR', player.x + 5, player.y + 25);
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 5);
             
-            // Spawn obstacles
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 200) {
+            // Spawn obstacles with random spacing
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (200 + Math.random() * 300)) {
+                // Random obstacle height (some taller, some shorter)
+                let obstacleHeight = 20 + Math.floor(Math.random() * 20);
                 obstacles.push({
                     x: canvas.width,
-                    y: 170,
-                    width: 20,
-                    height: 20
+                    y: 270 - obstacleHeight,
+                    width: 25,
+                    height: obstacleHeight
                 });
             }
             
@@ -974,12 +986,13 @@
                 let obs = obstacles[i];
                 obs.x -= gameSpeed;
                 
-                // Draw obstacle (deadline icon)
+                // Draw obstacle (deadline icon - bigger)
                 ctx.fillStyle = '#00BCD4';
                 ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
                 ctx.fillStyle = '#fff';
-                ctx.font = 'bold 14px Arial';
-                ctx.fillText('!', obs.x + 6, obs.y + 15);
+                ctx.font = 'bold 18px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('!', obs.x + obs.width/2, obs.y + obs.height/2 + 6);
                 
                 // Check collision
                 if (player.x < obs.x + obs.width &&
@@ -996,9 +1009,9 @@
                     score++;
                     document.getElementById('gameScore').textContent = score;
                     
-                    // Increase difficulty
-                    if (score % 5 === 0) {
-                        gameSpeed += 0.5;
+                    // Progressive difficulty - speed increases more gradually
+                    if (score % 3 === 0) {
+                        gameSpeed += 0.3;
                     }
                 }
             }
@@ -1017,15 +1030,25 @@
             }
             
             // Show game over message
-            ctx.fillStyle = 'rgba(0, 28, 61, 0.7)';
+            ctx.fillStyle = 'rgba(0, 28, 61, 0.85)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 30px Arial';
+            ctx.font = 'bold 40px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('Thesis Submitted!', canvas.width / 2, canvas.height / 2 - 20);
-            ctx.font = '16px Arial';
-            ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 10);
-            ctx.fillText('Press SPACE to play again', canvas.width / 2, canvas.height / 2 + 40);
+            ctx.fillText('Thesis Submitted!', canvas.width / 2, canvas.height / 2 - 40);
+            ctx.font = 'bold 24px Arial';
+            ctx.fillStyle = '#00BCD4';
+            ctx.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2 + 10);
+            
+            if (score > highScore - 1) {
+                ctx.fillStyle = '#E84E10';
+                ctx.font = 'bold 20px Arial';
+                ctx.fillText('🎉 NEW HIGH SCORE! 🎉', canvas.width / 2, canvas.height / 2 + 45);
+            }
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = '18px Arial';
+            ctx.fillText('Press SPACE to play again', canvas.width / 2, canvas.height / 2 + 80);
             
             // Allow restart
             setTimeout(() => {
