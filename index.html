@@ -1024,56 +1024,66 @@
                 });
             }
             
-            // Update and draw obstacles (trees)
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                let tree = obstacles[i];
-                tree.x -= gameSpeed;
-                
-                // Draw tree trunk
-                let trunkWidth = 12;
-                let trunkX = tree.x + (tree.width - trunkWidth) / 2;
-                ctx.fillStyle = '#6D4C41';
-                ctx.fillRect(trunkX, tree.y + (tree.height - tree.trunkHeight), trunkWidth, tree.trunkHeight);
-                
-                // Draw tree foliage (triangle)
-                ctx.fillStyle = '#2E7D32';
-                ctx.beginPath();
-                ctx.moveTo(tree.x + tree.width/2, tree.y); // top point
-                ctx.lineTo(tree.x, tree.y + (tree.height - tree.trunkHeight)); // bottom left
-                ctx.lineTo(tree.x + tree.width, tree.y + (tree.height - tree.trunkHeight)); // bottom right
-                ctx.closePath();
-                ctx.fill();
-                
-                // Add some highlights on foliage
-                ctx.fillStyle = '#4CAF50';
-                ctx.beginPath();
-                ctx.moveTo(tree.x + tree.width/2, tree.y + 5);
-                ctx.lineTo(tree.x + 10, tree.y + (tree.height - tree.trunkHeight) - 10);
-                ctx.lineTo(tree.x + tree.width - 10, tree.y + (tree.height - tree.trunkHeight) - 10);
-                ctx.closePath();
-                ctx.fill();
-                
-                // Check collision - adjusted for new player height
-                if (player.x < tree.x + tree.width - 5 &&
-                    player.x + player.width > tree.x + 5 &&
-                    player.y + 15 < tree.y + tree.height &&
-                    player.y + player.height > tree.y) {
-                    gameOver();
-                    return;
-                }
-                
-                // Remove off-screen obstacles and increment score
-                if (tree.x + tree.width < 0) {
-                    obstacles.splice(i, 1);
-                    score++;
-                    document.getElementById('gameScore').textContent = score;
-                    
-                    // Progressive difficulty - speed increases gradually
-                    if (score % 4 === 0) {
-                        gameSpeed += 0.3;
-                    }
-                }
-            }
+           // Draw DNA helix
+let dna = tree;
+let segments = 8; // Number of base pairs
+let segmentHeight = dna.height / segments;
+let helixWidth = 20;
+let centerX = dna.x + dna.width / 2;
+
+// Draw the two strands of the helix
+for (let j = 0; j <= segments; j++) {
+    let y = dna.y + j * segmentHeight;
+    let angle = (j / segments) * Math.PI * 4; // 2 full rotations
+    let offset = Math.sin(angle) * (helixWidth / 2);
+    
+    // Left strand (blue)
+    if (j > 0) {
+        ctx.strokeStyle = '#00A2DB';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let prevY = dna.y + (j - 1) * segmentHeight;
+        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
+        let prevOffset = Math.sin(prevAngle) * (helixWidth / 2);
+        ctx.moveTo(centerX + prevOffset, prevY);
+        ctx.lineTo(centerX + offset, y);
+        ctx.stroke();
+    }
+    
+    // Right strand (orange)
+    if (j > 0) {
+        ctx.strokeStyle = '#E84E10';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let prevY = dna.y + (j - 1) * segmentHeight;
+        let prevAngle = ((j - 1) / segments) * Math.PI * 4;
+        let prevOffset = -Math.sin(prevAngle) * (helixWidth / 2);
+        ctx.moveTo(centerX + prevOffset, prevY);
+        ctx.lineTo(centerX - offset, y);
+        ctx.stroke();
+    }
+    
+    // Draw base pairs (connecting lines)
+    if (j < segments) {
+        ctx.strokeStyle = '#666';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(centerX + offset, y);
+        ctx.lineTo(centerX - offset, y);
+        ctx.stroke();
+        
+        // Draw nucleotide dots
+        ctx.fillStyle = '#00A2DB';
+        ctx.beginPath();
+        ctx.arc(centerX + offset, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.fillStyle = '#E84E10';
+        ctx.beginPath();
+        ctx.arc(centerX - offset, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
             
             requestAnimationFrame(gameLoop);
         }
@@ -1123,6 +1133,7 @@
     </script>
 </body>
 </html>
+
 
 
 
