@@ -969,6 +969,9 @@
                 player.y = 330;
                 player.velocityY = 0;
                 player.jumping = false;
+         } else if (player.y > 310 && player.velocityY > 0) {
+            // Speed up landing in the last bit
+                player.velocityY *= 1.1;
             }
             
             // Draw player (smaller, agile thesis book icon)
@@ -1093,6 +1096,7 @@
     </script>
 </body>
 </html>
+
 
 
 
