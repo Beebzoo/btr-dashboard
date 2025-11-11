@@ -449,6 +449,82 @@
             text-decoration: underline;
         }
 
+        /* Easter Egg Circle */
+        .easter-egg {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            width: 20px;
+            height: 20px;
+            background: #E84E10;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.6;
+        }
+
+        .easter-egg:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Game Overlay */
+        .game-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 28, 61, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .game-overlay.active {
+            display: flex;
+        }
+
+        .game-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .game-canvas {
+            border: 3px solid #001C3D;
+            display: block;
+            background: #fff;
+        }
+
+        .game-info {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .game-score {
+            font-size: 18px;
+            color: #00BCD4;
+            margin-top: 10px;
+        }
+
+        .close-game {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .content-wrapper {
@@ -468,6 +544,11 @@
             .nav-menu {
                 display: none;
             }
+
+            .game-canvas {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -483,7 +564,7 @@
                 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
                 <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
                 <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="/cdn-cgi/l/email-protection#c1acb2b1eca3b5b381aca0a0b2b5b3a8a2a9b5b4afa8b7a4b3b2a8b5b8efafad">Contact</a>
                 <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
             </nav>
         </div>
@@ -738,9 +819,24 @@
                 © Maastricht University - Faculty of Science and Engineering
             </p>
         </div>
+        <!-- Easter Egg Circle -->
+        <div class="easter-egg" id="easterEgg" onclick="easterEggClick()"></div>
     </footer>
 
-    <script>
+    <!-- Game Overlay -->
+    <div class="game-overlay" id="gameOverlay">
+        <div class="game-info">
+            <h2>🦖 BTR Thesis Runner!</h2>
+            <p>Press SPACE to jump | Press ESC to exit</p>
+            <div class="game-score">Score: <span id="gameScore">0</span> | High Score: <span id="highScore">0</span></div>
+        </div>
+        <div class="game-container">
+            <canvas id="gameCanvas" class="game-canvas" width="600" height="200"></canvas>
+        </div>
+        <p class="close-game">Press ESC to return to dashboard</p>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleInfo(element) {
             const infoDiv = element.nextElementSibling;
             const isActive = infoDiv.classList.contains('active');
@@ -756,6 +852,191 @@
             // Toggle active class
             element.classList.toggle('active');
             contentDiv.classList.toggle('active');
+        }
+
+        // Easter Egg Activation
+        let clickCount = 0;
+        let clickTimer = null;
+
+        function easterEggClick() {
+            clickCount++;
+            
+            if (clickTimer) clearTimeout(clickTimer);
+            
+            if (clickCount === 3) {
+                startGame();
+                clickCount = 0;
+            } else {
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 1000);
+            }
+        }
+
+        // Game Variables
+        let canvas, ctx;
+        let gameRunning = false;
+        let score = 0;
+        let highScore = localStorage.getItem('btrHighScore') || 0;
+        let player, obstacles, gameSpeed, gravity;
+
+        function startGame() {
+            document.getElementById('gameOverlay').classList.add('active');
+            canvas = document.getElementById('gameCanvas');
+            ctx = canvas.getContext('2d');
+            
+            // Initialize game
+            score = 0;
+            gameSpeed = 5;
+            gravity = 0.6;
+            obstacles = [];
+            
+            player = {
+                x: 50,
+                y: 150,
+                width: 30,
+                height: 40,
+                velocityY: 0,
+                jumping: false
+            };
+            
+            document.getElementById('gameScore').textContent = score;
+            document.getElementById('highScore').textContent = highScore;
+            
+            gameRunning = true;
+            gameLoop();
+            
+            // Add keyboard controls
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        function handleKeyPress(e) {
+            if (e.code === 'Space' && !player.jumping && gameRunning) {
+                e.preventDefault();
+                player.velocityY = -12;
+                player.jumping = true;
+            }
+            
+            if (e.code === 'Escape') {
+                closeGame();
+            }
+        }
+
+        function closeGame() {
+            document.getElementById('gameOverlay').classList.remove('active');
+            gameRunning = false;
+            obstacles = [];
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw ground
+            ctx.fillStyle = '#001C3D';
+            ctx.fillRect(0, 190, canvas.width, 10);
+            
+            // Update player
+            player.velocityY += gravity;
+            player.y += player.velocityY;
+            
+            // Ground collision
+            if (player.y > 150) {
+                player.y = 150;
+                player.velocityY = 0;
+                player.jumping = false;
+            }
+            
+            // Draw player (thesis book icon)
+            ctx.fillStyle = '#E84E10';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(player.x + 5, player.y + 5, player.width - 10, player.height - 10);
+            ctx.fillStyle = '#001C3D';
+            ctx.font = '12px Arial';
+            ctx.fillText('BTR', player.x + 5, player.y + 25);
+            
+            // Spawn obstacles
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 200) {
+                obstacles.push({
+                    x: canvas.width,
+                    y: 170,
+                    width: 20,
+                    height: 20
+                });
+            }
+            
+            // Update and draw obstacles
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.x -= gameSpeed;
+                
+                // Draw obstacle (deadline icon)
+                ctx.fillStyle = '#00BCD4';
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText('!', obs.x + 6, obs.y + 15);
+                
+                // Check collision
+                if (player.x < obs.x + obs.width &&
+                    player.x + player.width > obs.x &&
+                    player.y < obs.y + obs.height &&
+                    player.y + player.height > obs.y) {
+                    gameOver();
+                    return;
+                }
+                
+                // Remove off-screen obstacles and increment score
+                if (obs.x + obs.width < 0) {
+                    obstacles.splice(i, 1);
+                    score++;
+                    document.getElementById('gameScore').textContent = score;
+                    
+                    // Increase difficulty
+                    if (score % 5 === 0) {
+                        gameSpeed += 0.5;
+                    }
+                }
+            }
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            
+            // Update high score
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('btrHighScore', highScore);
+                document.getElementById('highScore').textContent = highScore;
+            }
+            
+            // Show game over message
+            ctx.fillStyle = 'rgba(0, 28, 61, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Thesis Submitted!', canvas.width / 2, canvas.height / 2 - 20);
+            ctx.font = '16px Arial';
+            ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 10);
+            ctx.fillText('Press SPACE to play again', canvas.width / 2, canvas.height / 2 + 40);
+            
+            // Allow restart
+            setTimeout(() => {
+                const restartHandler = (e) => {
+                    if (e.code === 'Space') {
+                        document.removeEventListener('keydown', restartHandler);
+                        startGame();
+                    }
+                };
+                document.addEventListener('keydown', restartHandler);
+            }, 500);
         }
     </script>
 </body>
