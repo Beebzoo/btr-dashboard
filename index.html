@@ -930,11 +930,13 @@
         let gameRunning = false;
         let score = 0;
         let highScore = localStorage.getItem('btrHighScore') || 0;
-        let player, bottomObstacles, topObstacles, gameSpeed, gravity;
+        let player, bottomObstacles, flyingBooks, gameSpeed, gravity;
         let animationFrame = 0;
         let clouds = [];
         let raindrops = [];
         let lastMilestone = 0;
+        let canDoubleJump = false;
+        let hasDoubleJumped = false;
 
         function startGame() {
             document.getElementById('gameOverlay').classList.add('active');
@@ -946,10 +948,12 @@
             gameSpeed = 10;
             gravity = 1.0;
             bottomObstacles = [];
-            topObstacles = [];
+            flyingBooks = [];
             animationFrame = 0;
             raindrops = [];
             lastMilestone = 0;
+            canDoubleJump = false;
+            hasDoubleJumped = false;
             
             // Initialize clouds
             clouds = [
@@ -984,13 +988,25 @@
         }
 
         function handleKeyPress(e) {
-            // Jump with Space or ArrowUp
-            if ((e.code === 'Space' || e.code === 'ArrowUp') && !player.jumping && gameRunning) {
+            // Jump with Space or ArrowUp - DOUBLE JUMP ENABLED
+            if ((e.code === 'Space' || e.code === 'ArrowUp') && gameRunning) {
                 e.preventDefault();
-                player.velocityY = -17;
-                player.jumping = true;
-                player.ducking = false;
-                player.height = player.normalHeight;
+                
+                // First jump - from ground
+                if (!player.jumping) {
+                    player.velocityY = -17;
+                    player.jumping = true;
+                    player.ducking = false;
+                    player.height = player.normalHeight;
+                    canDoubleJump = true;
+                    hasDoubleJumped = false;
+                } 
+                // Double jump - in air
+                else if (canDoubleJump && !hasDoubleJumped) {
+                    player.velocityY = -18;
+                    hasDoubleJumped = true;
+                    canDoubleJump = false;
+                }
             }
             
             // Duck with ArrowDown
@@ -1019,7 +1035,7 @@
             document.getElementById('gameOverlay').classList.remove('active');
             gameRunning = false;
             bottomObstacles = [];
-            topObstacles = [];
+            flyingBooks = [];
             document.removeEventListener('keydown', handleKeyPress);
             document.removeEventListener('keyup', handleKeyUp);
         }
@@ -1115,53 +1131,66 @@
         }
 
         function drawPlayer() {
-            // Body (person shape) - BLACK COLOR, SIDE VIEW
-            ctx.fillStyle = '#000000';
+            // Body (person shape) - SHINY BLACK with gradient
+            let gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
+            gradient.addColorStop(0, '#333333');
+            gradient.addColorStop(0.5, '#000000');
+            gradient.addColorStop(1, '#1a1a1a');
+            ctx.fillStyle = gradient;
             
-            // Head (larger)
+            // Head (larger) with shine
             ctx.beginPath();
             ctx.arc(player.x + player.width/2, player.y + 12, 12, 0, Math.PI * 2);
             ctx.fill();
+            
+            // Head shine/highlight
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.beginPath();
+            ctx.arc(player.x + player.width/2 - 3, player.y + 9, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Reset to gradient
+            ctx.fillStyle = gradient;
             
             // Torso (longer, rectangular)
             let torsoHeight = player.ducking ? 12 : 24;
             ctx.fillRect(player.x + player.width/2 - 8, player.y + 24, 16, torsoHeight);
             
-            // Running arms (side view, pumping motion)
-            let armSwing = Math.sin(animationFrame * 0.2) * 10;
+            // Running arms (side view, MORE DYNAMIC pumping motion)
+            let armSwing = Math.sin(animationFrame * 0.3) * 15; // Increased from 10 to 15
             
-            // Front arm (moving forward and back)
+            // Front arm (moving forward and back MORE)
             ctx.save();
             ctx.translate(player.x + player.width/2 + 8, player.y + 28);
-            ctx.rotate(armSwing * 0.05);
-            ctx.fillRect(-3, 0, 6, 16);
+            ctx.rotate(armSwing * 0.08); // Increased rotation
+            ctx.fillRect(-3, 0, 6, 18); // Slightly longer arms
             ctx.restore();
             
             // Back arm (opposite motion)
             ctx.save();
             ctx.translate(player.x + player.width/2 - 8, player.y + 28);
-            ctx.rotate(-armSwing * 0.05);
-            ctx.fillRect(-3, 0, 6, 16);
+            ctx.rotate(-armSwing * 0.08);
+            ctx.fillRect(-3, 0, 6, 18);
             ctx.restore();
             
-            // Running legs (side view, alternating)
+            // Running legs (side view, MORE DYNAMIC alternating)
             if (!player.jumping && !player.ducking) {
-                let legCycle = Math.floor(animationFrame / 4) % 8;
+                let legCycle = Math.floor(animationFrame / 3) % 8; // Faster cycle (was /4)
                 
-                // Front leg
+                // Front leg - MORE EXAGGERATED swing
                 let frontLegAngle = 0;
                 if (legCycle < 4) {
-                    frontLegAngle = (legCycle / 4) * 0.6 - 0.3; // Swing forward
+                    frontLegAngle = (legCycle / 4) * 0.9 - 0.45; // Increased swing
                 } else {
-                    frontLegAngle = ((8 - legCycle) / 4) * 0.6 - 0.3; // Swing back
+                    frontLegAngle = ((8 - legCycle) / 4) * 0.9 - 0.45;
                 }
                 
                 ctx.save();
                 ctx.translate(player.x + player.width/2 + 4, player.y + 48);
                 ctx.rotate(frontLegAngle);
-                ctx.fillRect(-4, 0, 8, 20);
+                ctx.fillRect(-4, 0, 8, 22); // Longer legs
                 // Foot
-                ctx.fillRect(-4, 20, 12, 4);
+                ctx.fillRect(-4, 22, 12, 4);
                 ctx.restore();
                 
                 // Back leg (opposite motion)
@@ -1170,9 +1199,9 @@
                 ctx.save();
                 ctx.translate(player.x + player.width/2 - 4, player.y + 48);
                 ctx.rotate(backLegAngle);
-                ctx.fillRect(-4, 0, 8, 20);
+                ctx.fillRect(-4, 0, 8, 22);
                 // Foot
-                ctx.fillRect(-4, 20, 12, 4);
+                ctx.fillRect(-4, 22, 12, 4);
                 ctx.restore();
                 
             } else if (player.ducking) {
@@ -1184,23 +1213,23 @@
                 ctx.fillRect(player.x + player.width/2 + 6, player.y + 50, 12, 4);
             } else {
                 // Legs together when jumping
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 48, 8, 20);
-                ctx.fillRect(player.x + player.width/2 + 4, player.y + 48, 8, 20);
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 48, 8, 22);
+                ctx.fillRect(player.x + player.width/2 + 4, player.y + 48, 8, 22);
                 // Feet
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 68, 12, 4);
-                ctx.fillRect(player.x + player.width/2 + 4, player.y + 68, 12, 4);
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 70, 12, 4);
+                ctx.fillRect(player.x + player.width/2 + 4, player.y + 70, 12, 4);
             }
 
-            // Graduation cap - MORE DETAILED
+            // Graduation cap - MORE DETAILED with shine
             let capX = player.x + player.width/2;
             let capY = player.y;
 
             // Cap base (the part that sits on head)
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
-            ctx.arc(capX, capY + 6, 13, Math.PI, 2 * Math.PI); // Rounded base
+            ctx.arc(capX, capY + 6, 13, Math.PI, 2 * Math.PI);
             ctx.fill();
-            ctx.fillRect(capX - 13, capY + 6, 26, 3); // Band around head
+            ctx.fillRect(capX - 13, capY + 6, 26, 3);
 
             // Mortarboard (flat square top)
             ctx.fillStyle = '#001C3D';
@@ -1212,25 +1241,30 @@
             ctx.closePath();
             ctx.fill();
 
+            // Cap shine
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.fillRect(capX - 15, capY - 1, 10, 2);
+
             // Button on top of cap
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
             ctx.arc(capX, capY - 2, 3, 0, Math.PI * 2);
             ctx.fill();
 
-            // Tassel (hanging from button)
+            // Tassel (hanging from button) - slightly animated
+            let tasselSwing = Math.sin(animationFrame * 0.1) * 2;
             ctx.strokeStyle = '#E84E10';
             ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(capX, capY - 2);
-            ctx.lineTo(capX + 14, capY - 12);
+            ctx.lineTo(capX + 14 + tasselSwing, capY - 12);
             ctx.stroke();
 
             // Tassel tip (multiple strands)
             ctx.fillStyle = '#E84E10';
             for (let i = 0; i < 5; i++) {
                 ctx.beginPath();
-                ctx.arc(capX + 14 + (i - 2) * 1.5, capY - 12 - i * 0.5, 1.5, 0, Math.PI * 2);
+                ctx.arc(capX + 14 + tasselSwing + (i - 2) * 1.5, capY - 12 - i * 0.5, 1.5, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -1333,6 +1367,8 @@
                 player.y = groundY - player.height;
                 player.velocityY = 0;
                 player.jumping = false;
+                canDoubleJump = false;
+                hasDoubleJumped = false;
             } else if (player.y > 310 && player.velocityY > 0) {
                 player.velocityY *= 1.1;
             }
@@ -1340,65 +1376,54 @@
             // Draw player
             drawPlayer();
             
-            // Spawn BOTTOM DNA strand obstacles (always present)
-            let baseMinSpacing = 350;
-            let baseMaxSpacing = 550;
-            let speedScaling = gameSpeed * 25;
+            // Spawn BOTTOM DNA strand obstacles - TWO SIZES, MORE VARIATION
+            let baseMinSpacing = 280; // Reduced from 350
+            let baseMaxSpacing = 450; // Reduced from 550
+            let speedScaling = gameSpeed * 20; // Reduced scaling
             
             let minSpacing = baseMinSpacing + speedScaling;
             let maxSpacing = baseMaxSpacing + speedScaling;
             
-            // Check if we need to spawn bottom obstacle
-            let canSpawnBottom = bottomObstacles.length === 0 || bottomObstacles[bottomObstacles.length - 1].x < canvas.width - minSpacing;
+            // More random spacing variation
+            let randomRange = Math.random() * (maxSpacing - minSpacing);
+            let targetSpacing = minSpacing + randomRange;
             
-            // Check if top obstacle would interfere
-            let topObstacleNear = false;
-            for (let topObs of topObstacles) {
-                if (topObs.x > canvas.width - maxSpacing && topObs.x < canvas.width) {
-                    topObstacleNear = true;
-                    break;
-                }
-            }
-            
-            if (canSpawnBottom && !topObstacleNear) {
-                let randomRange = Math.random() * (maxSpacing - minSpacing);
-                let targetSpacing = minSpacing + randomRange;
+            if (bottomObstacles.length === 0 || bottomObstacles[bottomObstacles.length - 1].x < canvas.width - targetSpacing) {
+                // Randomly choose size: 60% small, 40% big
+                let isSmall = Math.random() < 0.6;
+                let dnaHeight = isSmall ? (35 + Math.floor(Math.random() * 25)) : (70 + Math.floor(Math.random() * 30));
                 
-                if (bottomObstacles.length === 0 || bottomObstacles[bottomObstacles.length - 1].x < canvas.width - targetSpacing) {
-                    let dnaHeight = 40 + Math.floor(Math.random() * 35);
-                    bottomObstacles.push({
-                        x: canvas.width,
-                        y: 380 - dnaHeight,
-                        width: 35,
-                        height: dnaHeight
-                    });
-                }
+                bottomObstacles.push({
+                    x: canvas.width,
+                    y: 380 - dnaHeight,
+                    width: 35,
+                    height: dnaHeight,
+                    size: isSmall ? 'small' : 'big'
+                });
             }
             
-            // Spawn TOP DNA strands (only after score 20)
+            // Spawn FLYING BOOKS (after score 20)
             if (score >= 20) {
-                let canSpawnTop = topObstacles.length === 0 || topObstacles[topObstacles.length - 1].x < canvas.width - minSpacing;
+                let bookMinSpacing = 500 + (gameSpeed * 30);
+                let bookMaxSpacing = 900 + (gameSpeed * 50);
                 
-                // Check if bottom obstacle would interfere
-                let bottomObstacleNear = false;
-                for (let bottomObs of bottomObstacles) {
-                    if (bottomObs.x > canvas.width - maxSpacing && bottomObs.x < canvas.width) {
-                        bottomObstacleNear = true;
-                        break;
-                    }
-                }
-                
-                if (canSpawnTop && !bottomObstacleNear) {
-                    let randomRange = Math.random() * (maxSpacing - minSpacing);
-                    let targetSpacing = minSpacing + randomRange;
+                if (flyingBooks.length === 0 || flyingBooks[flyingBooks.length - 1].x < canvas.width - bookMinSpacing) {
+                    let bookRandomRange = Math.random() * (bookMaxSpacing - bookMinSpacing);
+                    let bookTargetSpacing = bookMinSpacing + bookRandomRange;
                     
-                    if (topObstacles.length === 0 || topObstacles[topObstacles.length - 1].x < canvas.width - targetSpacing) {
-                        let dnaHeight = 50 + Math.floor(Math.random() * 40);
-                        topObstacles.push({
+                    if (flyingBooks.length === 0 || flyingBooks[flyingBooks.length - 1].x < canvas.width - bookTargetSpacing) {
+                        let bookLabels = ['Thesis', 'Proposal', 'Video', 'Midterm'];
+                        let randomLabel = bookLabels[Math.floor(Math.random() * bookLabels.length)];
+                        
+                        // Flying at head height (player needs to duck)
+                        let bookHeight = 260;
+                        
+                        flyingBooks.push({
                             x: canvas.width,
-                            y: 0,
-                            width: 35,
-                            height: dnaHeight
+                            y: bookHeight,
+                            width: 90,
+                            height: 35,
+                            label: randomLabel
                         });
                     }
                 }
@@ -1432,25 +1457,42 @@
                 }
             }
             
-            // Update and draw TOP DNA obstacles
-            for (let i = topObstacles.length - 1; i >= 0; i--) {
-                let dna = topObstacles[i];
-                dna.x -= gameSpeed;
+            // Update and draw FLYING BOOKS
+            for (let i = flyingBooks.length - 1; i >= 0; i--) {
+                let book = flyingBooks[i];
+                book.x -= gameSpeed * 1.2;
                 
-                drawDNA(dna.x, dna.y, dna.width, dna.height, true);
+                // Draw the book
+                ctx.fillStyle = '#E84E10';
+                ctx.fillRect(book.x, book.y, book.width, book.height);
+                ctx.strokeStyle = '#001C3D';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(book.x, book.y, book.width, book.height);
                 
-                // Collision detection
-                if (player.x < dna.x + dna.width &&
-                    player.x + player.width > dna.x &&
-                    player.y < dna.y + dna.height &&
-                    player.y + player.height > dna.y) {
-                    gameOver();
-                    return;
+                // Book spine
+                ctx.fillStyle = '#C73E0F';
+                ctx.fillRect(book.x, book.y, 8, book.height);
+                
+                // Label on book
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 14px Montserrat, Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(book.label, book.x + book.width/2, book.y + book.height/2 + 5);
+                
+                // Collision detection - only if NOT ducking
+                if (!player.ducking) {
+                    if (player.x < book.x + book.width &&
+                        player.x + player.width > book.x &&
+                        player.y < book.y + book.height &&
+                        player.y + player.height > book.y) {
+                        gameOver();
+                        return;
+                    }
                 }
                 
-                // Remove off-screen obstacles
-                if (dna.x + dna.width < 0) {
-                    topObstacles.splice(i, 1);
+                // Remove off-screen books
+                if (book.x + book.width < 0) {
+                    flyingBooks.splice(i, 1);
                 }
             }
             
