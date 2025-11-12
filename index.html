@@ -1015,17 +1015,19 @@
                 ctx.arc(capX + 12, capY + 4, 2, 0, Math.PI * 2);
                 ctx.fill();
             
-            // Spawn DNA strand obstacles with much wider random spacing
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (300 + Math.random() * 400)) {
-                // Random DNA strand height
-                let dnaHeight = 40 + Math.floor(Math.random() * 30);
+           // Spawn DNA strand obstacles - spacing scales with speed to keep it fair
+            let minSpacing = 300 + (gameSpeed * 40); // Increases spacing as speed increases
+            let maxSpacing = 500 + (gameSpeed * 50); // Also scales the random range
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (minSpacing + Math.random() * maxSpacing)) {
+             // Random DNA strand height
+            let dnaHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
-                    x: canvas.width,
-                    y: 380 - dnaHeight,
-                    width: 35,
-                    height: dnaHeight
-                });
-            }
+                x: canvas.width,
+                y: 380 - dnaHeight,
+                width: 35,
+                height: dnaHeight
+    });
+}
             
             // Update and draw obstacles (DNA strands)
             for (let i = obstacles.length - 1; i >= 0; i--) {
@@ -1161,4 +1163,5 @@
     </script>
 </body>
 </html>
+
 
