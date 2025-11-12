@@ -965,11 +965,11 @@
             
             player = {
                 x: 100,
-                y: 345,
+                y: 355,
                 width: 40,
-                height: 35,
-                normalHeight: 35,
-                duckHeight: 25,
+                height: 25,
+                normalHeight: 25,
+                duckHeight: 18,
                 velocityY: 0,
                 jumping: false,
                 ducking: false,
@@ -1349,16 +1349,43 @@
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw blue sky gradient
+            // Draw blue sky gradient (DARKER after score 20)
             let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#87CEEB');
-            gradient.addColorStop(0.7, '#B0E0E6');
-            gradient.addColorStop(1, '#fff');
+            if (score >= 20) {
+                // Dark stormy sky
+                gradient.addColorStop(0, '#4A5568');
+                gradient.addColorStop(0.7, '#718096');
+                gradient.addColorStop(1, '#A0AEC0');
+            } else {
+                // Bright sky
+                gradient.addColorStop(0, '#87CEEB');
+                gradient.addColorStop(0.7, '#B0E0E6');
+                gradient.addColorStop(1, '#fff');
+            }
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Draw sun
-            drawSun();
+            // Draw sun (DARKER after score 20)
+            if (score >= 20) {
+                // Dim sun during storm
+                ctx.fillStyle = '#B8860B';
+                ctx.beginPath();
+                ctx.arc(1450, 80, 40, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Dim sun rays
+                ctx.strokeStyle = '#B8860B';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 8; i++) {
+                    let angle = (Math.PI * 2 / 8) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(1450 + Math.cos(angle) * 50, 80 + Math.sin(angle) * 50);
+                    ctx.lineTo(1450 + Math.cos(angle) * 60, 80 + Math.sin(angle) * 60);
+                    ctx.stroke();
+                }
+            } else {
+                drawSun();
+            }
             
             // Update and draw clouds
             for (let cloud of clouds) {
@@ -1369,21 +1396,23 @@
                 drawCloud(cloud.x, cloud.y, cloud.size);
             }
             
-            // Rain effect after score 50
-            if (score >= 50) {
-                // Create new raindrops
-                if (Math.random() < 0.3) {
-                    raindrops.push({
-                        x: Math.random() * canvas.width,
-                        y: 0,
-                        speed: 5 + Math.random() * 3,
-                        length: 10 + Math.random() * 10
-                    });
+            // Rain effect after score 20 - INTENSE STORM
+            if (score >= 20) {
+                // Create MANY more raindrops for intense storm
+                if (Math.random() < 0.9) { // 90% chance each frame (was 30%)
+                    for (let r = 0; r < 3; r++) { // 3 drops at once
+                        raindrops.push({
+                            x: Math.random() * canvas.width,
+                            y: 0,
+                            speed: 8 + Math.random() * 5, // Faster rain (was 5-8)
+                            length: 15 + Math.random() * 20 // Longer drops (was 10-20)
+                        });
+                    }
                 }
                 
-                // Update and draw raindrops
-                ctx.strokeStyle = 'rgba(173, 216, 230, 0.6)';
-                ctx.lineWidth = 2;
+                // Update and draw raindrops - HEAVIER RAIN
+                ctx.strokeStyle = 'rgba(173, 216, 230, 0.8)'; // More visible (was 0.6)
+                ctx.lineWidth = 3; // Thicker drops (was 2)
                 for (let i = raindrops.length - 1; i >= 0; i--) {
                     let drop = raindrops[i];
                     drop.y += drop.speed;
@@ -1474,32 +1503,6 @@
                 });
             }
             
-            // Spawn FLYING BOOKS (after score 20)
-            if (score >= 20) {
-                let bookMinSpacing = 500 + (gameSpeed * 30);
-                let bookMaxSpacing = 900 + (gameSpeed * 50);
-                
-                if (flyingBooks.length === 0 || flyingBooks[flyingBooks.length - 1].x < canvas.width - bookMinSpacing) {
-                    let bookRandomRange = Math.random() * (bookMaxSpacing - bookMinSpacing);
-                    let bookTargetSpacing = bookMinSpacing + bookRandomRange;
-                    
-                    if (flyingBooks.length === 0 || flyingBooks[flyingBooks.length - 1].x < canvas.width - bookTargetSpacing) {
-                        let bookLabels = ['Thesis', 'Proposal', 'Video', 'Midterm'];
-                        let randomLabel = bookLabels[Math.floor(Math.random() * bookLabels.length)];
-                        
-                        // Flying at head height (player needs to duck)
-                        let bookHeight = 260;
-                        
-                        flyingBooks.push({
-                            x: canvas.width,
-                            y: bookHeight,
-                            width: 90,
-                            height: 35,
-                            label: randomLabel
-                        });
-                    }
-                }
-            }
             
             // Update and draw BOTTOM DNA obstacles
             for (let i = bottomObstacles.length - 1; i >= 0; i--) {
@@ -1529,44 +1532,6 @@
                 }
             }
             
-            // Update and draw FLYING BOOKS
-            for (let i = flyingBooks.length - 1; i >= 0; i--) {
-                let book = flyingBooks[i];
-                book.x -= gameSpeed * 1.2;
-                
-                // Draw the book
-                ctx.fillStyle = '#E84E10';
-                ctx.fillRect(book.x, book.y, book.width, book.height);
-                ctx.strokeStyle = '#001C3D';
-                ctx.lineWidth = 3;
-                ctx.strokeRect(book.x, book.y, book.width, book.height);
-                
-                // Book spine
-                ctx.fillStyle = '#C73E0F';
-                ctx.fillRect(book.x, book.y, 8, book.height);
-                
-                // Label on book
-                ctx.fillStyle = '#fff';
-                ctx.font = 'bold 14px Montserrat, Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText(book.label, book.x + book.width/2, book.y + book.height/2 + 5);
-                
-                // Collision detection - only if NOT ducking
-                if (!player.ducking) {
-                    if (player.x < book.x + book.width &&
-                        player.x + player.width > book.x &&
-                        player.y < book.y + book.height &&
-                        player.y + player.height > book.y) {
-                        gameOver();
-                        return;
-                    }
-                }
-                
-                // Remove off-screen books
-                if (book.x + book.width < 0) {
-                    flyingBooks.splice(i, 1);
-                }
-            }
             
             requestAnimationFrame(gameLoop);
         }
