@@ -975,14 +975,45 @@
             }
             
             // Draw player (smaller, agile thesis book icon)
-            ctx.fillStyle = '#E84E10';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
-            ctx.fillStyle = '#001C3D';
-            ctx.font = 'bold 12px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
+                ctx.fillStyle = '#E84E10';
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
+                ctx.fillStyle = '#001C3D';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
+
+                // Draw graduation cap on top of BTR book
+                let capX = player.x + player.width/2;
+                let capY = player.y - 8;
+
+                // Cap base (square top)
+                ctx.fillStyle = '#001C3D';
+                ctx.fillRect(capX - 12, capY - 3, 24, 3);
+
+                // Cap top (mortarboard)
+                ctx.beginPath();
+                ctx.moveTo(capX - 10, capY);
+                ctx.lineTo(capX + 10, capY);
+                ctx.lineTo(capX + 12, capY - 2);
+                ctx.lineTo(capX - 12, capY - 2);
+                ctx.closePath();
+                ctx.fill();
+
+                // Tassel
+                ctx.strokeStyle = '#00BCD4';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(capX + 8, capY - 1);
+                ctx.lineTo(capX + 12, capY + 4);
+                ctx.stroke();
+
+                // Tassel tip
+                ctx.fillStyle = '#00BCD4';
+                ctx.beginPath();
+                ctx.arc(capX + 12, capY + 4, 2, 0, Math.PI * 2);
+                ctx.fill();
             
             // Spawn DNA strand obstacles with much wider random spacing
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (300 + Math.random() * 400)) {
@@ -1130,3 +1161,4 @@
     </script>
 </body>
 </html>
+
