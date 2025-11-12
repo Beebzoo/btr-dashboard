@@ -1122,7 +1122,7 @@
 
             // Tassel - UP by default, DOWN when ducking
             let tasselStartY = capY - 1;
-            let tasselEndY = player.ducking ? capY + 10 : capY - 8; // UP when not ducking, DOWN when ducking
+            let tasselEndY = player.ducking ? capY + 10 : capY - 15; // UP when not ducking, DOWN when ducking
             
             ctx.strokeStyle = '#00BCD4';
             ctx.lineWidth = 2;
@@ -1353,3 +1353,4 @@
     </script>
 </body>
 </html>
+
