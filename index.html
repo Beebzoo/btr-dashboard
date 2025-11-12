@@ -933,6 +933,8 @@
         let player, bottomObstacles, topObstacles, gameSpeed, gravity;
         let animationFrame = 0;
         let clouds = [];
+        let raindrops = [];
+        let lastMilestone = 0;
 
         function startGame() {
             document.getElementById('gameOverlay').classList.add('active');
@@ -946,6 +948,8 @@
             bottomObstacles = [];
             topObstacles = [];
             animationFrame = 0;
+            raindrops = [];
+            lastMilestone = 0;
             
             // Initialize clouds
             clouds = [
@@ -957,11 +961,11 @@
             
             player = {
                 x: 100,
-                y: 280,
-                width: 30,
-                height: 50,
-                normalHeight: 50,
-                duckHeight: 30,
+                y: 300,
+                width: 40,
+                height: 70,
+                normalHeight: 70,
+                duckHeight: 40,
                 velocityY: 0,
                 jumping: false,
                 ducking: false,
@@ -1111,82 +1115,124 @@
         }
 
         function drawPlayer() {
-            // Body (person shape)
-            ctx.fillStyle = '#00BCD4';
+            // Body (person shape) - BLACK COLOR, SIDE VIEW
+            ctx.fillStyle = '#000000';
             
-            // Head
+            // Head (larger)
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2, player.y + 8, 8, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2, player.y + 12, 12, 0, Math.PI * 2);
             ctx.fill();
             
-            // Torso
-            ctx.fillRect(player.x + player.width/2 - 6, player.y + 16, 12, player.ducking ? 8 : 16);
+            // Torso (longer, rectangular)
+            let torsoHeight = player.ducking ? 12 : 24;
+            ctx.fillRect(player.x + player.width/2 - 8, player.y + 24, 16, torsoHeight);
             
-            // Arms
-            ctx.fillRect(player.x + player.width/2 - 10, player.y + 18, 4, 10);
-            ctx.fillRect(player.x + player.width/2 + 6, player.y + 18, 4, 10);
+            // Running arms (side view, pumping motion)
+            let armSwing = Math.sin(animationFrame * 0.2) * 10;
             
-            // Animated legs
+            // Front arm (moving forward and back)
+            ctx.save();
+            ctx.translate(player.x + player.width/2 + 8, player.y + 28);
+            ctx.rotate(armSwing * 0.05);
+            ctx.fillRect(-3, 0, 6, 16);
+            ctx.restore();
+            
+            // Back arm (opposite motion)
+            ctx.save();
+            ctx.translate(player.x + player.width/2 - 8, player.y + 28);
+            ctx.rotate(-armSwing * 0.05);
+            ctx.fillRect(-3, 0, 6, 16);
+            ctx.restore();
+            
+            // Running legs (side view, alternating)
             if (!player.jumping && !player.ducking) {
-                let legCycle = Math.floor(animationFrame / 5) % 4;
-                player.legPhase = legCycle;
+                let legCycle = Math.floor(animationFrame / 4) % 8;
                 
-                let leftLegOffset = 0;
-                if (legCycle === 0) leftLegOffset = -3;
-                if (legCycle === 1) leftLegOffset = 0;
-                if (legCycle === 2) leftLegOffset = 3;
-                if (legCycle === 3) leftLegOffset = 0;
+                // Front leg
+                let frontLegAngle = 0;
+                if (legCycle < 4) {
+                    frontLegAngle = (legCycle / 4) * 0.6 - 0.3; // Swing forward
+                } else {
+                    frontLegAngle = ((8 - legCycle) / 4) * 0.6 - 0.3; // Swing back
+                }
                 
-                let rightLegOffset = 0;
-                if (legCycle === 0) rightLegOffset = 3;
-                if (legCycle === 1) rightLegOffset = 0;
-                if (legCycle === 2) rightLegOffset = -3;
-                if (legCycle === 3) rightLegOffset = 0;
+                ctx.save();
+                ctx.translate(player.x + player.width/2 + 4, player.y + 48);
+                ctx.rotate(frontLegAngle);
+                ctx.fillRect(-4, 0, 8, 20);
+                // Foot
+                ctx.fillRect(-4, 20, 12, 4);
+                ctx.restore();
                 
-                // Left leg
-                ctx.fillRect(player.x + player.width/2 - 5 + leftLegOffset, player.y + 32, 4, 12);
-                // Right leg
-                ctx.fillRect(player.x + player.width/2 + 1 + rightLegOffset, player.y + 32, 4, 12);
+                // Back leg (opposite motion)
+                let backLegAngle = -frontLegAngle;
+                
+                ctx.save();
+                ctx.translate(player.x + player.width/2 - 4, player.y + 48);
+                ctx.rotate(backLegAngle);
+                ctx.fillRect(-4, 0, 8, 20);
+                // Foot
+                ctx.fillRect(-4, 20, 12, 4);
+                ctx.restore();
+                
             } else if (player.ducking) {
-                // Legs extended when ducking
-                ctx.fillRect(player.x + player.width/2 - 5, player.y + 24, 4, 8);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 24, 4, 8);
+                // Legs extended forward when ducking
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 36, 8, 14);
+                ctx.fillRect(player.x + player.width/2 + 6, player.y + 36, 8, 14);
+                // Feet
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 50, 12, 4);
+                ctx.fillRect(player.x + player.width/2 + 6, player.y + 50, 12, 4);
             } else {
                 // Legs together when jumping
-                ctx.fillRect(player.x + player.width/2 - 5, player.y + 32, 4, 12);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 32, 4, 12);
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 48, 8, 20);
+                ctx.fillRect(player.x + player.width/2 + 4, player.y + 48, 8, 20);
+                // Feet
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 68, 12, 4);
+                ctx.fillRect(player.x + player.width/2 + 4, player.y + 68, 12, 4);
             }
 
-            // Graduation cap
+            // Graduation cap - MORE DETAILED
             let capX = player.x + player.width/2;
             let capY = player.y;
 
-            // Cap base (square top)
+            // Cap base (the part that sits on head)
             ctx.fillStyle = '#001C3D';
-            ctx.fillRect(capX - 12, capY - 4, 24, 4);
-
-            // Cap top (mortarboard)
             ctx.beginPath();
-            ctx.moveTo(capX - 10, capY);
-            ctx.lineTo(capX + 10, capY);
-            ctx.lineTo(capX + 12, capY - 3);
-            ctx.lineTo(capX - 12, capY - 3);
+            ctx.arc(capX, capY + 6, 13, Math.PI, 2 * Math.PI); // Rounded base
+            ctx.fill();
+            ctx.fillRect(capX - 13, capY + 6, 26, 3); // Band around head
+
+            // Mortarboard (flat square top)
+            ctx.fillStyle = '#001C3D';
+            ctx.beginPath();
+            ctx.moveTo(capX - 18, capY + 2);
+            ctx.lineTo(capX + 18, capY + 2);
+            ctx.lineTo(capX + 20, capY - 2);
+            ctx.lineTo(capX - 20, capY - 2);
             ctx.closePath();
             ctx.fill();
 
-            // Tassel
-            ctx.strokeStyle = '#E84E10';
-            ctx.lineWidth = 2;
+            // Button on top of cap
+            ctx.fillStyle = '#001C3D';
             ctx.beginPath();
-            ctx.moveTo(capX + 8, capY - 1);
-            ctx.lineTo(capX + 12, capY - 8);
+            ctx.arc(capX, capY - 2, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Tassel (hanging from button)
+            ctx.strokeStyle = '#E84E10';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(capX, capY - 2);
+            ctx.lineTo(capX + 14, capY - 12);
             ctx.stroke();
 
-            // Tassel tip
+            // Tassel tip (multiple strands)
             ctx.fillStyle = '#E84E10';
-            ctx.beginPath();
-            ctx.arc(capX + 12, capY - 8, 2, 0, Math.PI * 2);
-            ctx.fill();
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(capX + 14 + (i - 2) * 1.5, capY - 12 - i * 0.5, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
         function gameLoop() {
@@ -1217,6 +1263,54 @@
                 drawCloud(cloud.x, cloud.y, cloud.size);
             }
             
+            // Rain effect after score 50
+            if (score >= 50) {
+                // Create new raindrops
+                if (Math.random() < 0.3) {
+                    raindrops.push({
+                        x: Math.random() * canvas.width,
+                        y: 0,
+                        speed: 5 + Math.random() * 3,
+                        length: 10 + Math.random() * 10
+                    });
+                }
+                
+                // Update and draw raindrops
+                ctx.strokeStyle = 'rgba(173, 216, 230, 0.6)';
+                ctx.lineWidth = 2;
+                for (let i = raindrops.length - 1; i >= 0; i--) {
+                    let drop = raindrops[i];
+                    drop.y += drop.speed;
+                    
+                    // Draw raindrop
+                    ctx.beginPath();
+                    ctx.moveTo(drop.x, drop.y);
+                    ctx.lineTo(drop.x, drop.y + drop.length);
+                    ctx.stroke();
+                    
+                    // Remove if off screen
+                    if (drop.y > canvas.height) {
+                        raindrops.splice(i, 1);
+                    }
+                }
+            }
+            
+            // Check for milestone achievements (every 50 points)
+            if (score > 0 && score % 50 === 0 && score !== lastMilestone) {
+                lastMilestone = score;
+            }
+            
+            // Display milestone message
+            if (lastMilestone > 0 && score === lastMilestone && animationFrame % 120 < 60) {
+                ctx.fillStyle = '#E84E10';
+                ctx.font = 'bold 48px Montserrat, Arial';
+                ctx.textAlign = 'center';
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 3;
+                ctx.strokeText(lastMilestone + ' POINTS!', canvas.width / 2, 200);
+                ctx.fillText(lastMilestone + ' POINTS!', canvas.width / 2, 200);
+            }
+            
             // Draw score at top
             ctx.fillStyle = '#001C3D';
             ctx.font = 'bold 28px Montserrat, Arial';
@@ -1234,7 +1328,7 @@
             player.y += player.velocityY;
             
             // Ground collision
-            let groundY = player.ducking ? 350 : 330;
+            let groundY = player.ducking ? 365 : 380;
             if (player.y > groundY - player.height) {
                 player.y = groundY - player.height;
                 player.velocityY = 0;
