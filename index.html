@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTR Dashboard - Maastricht Science Programme</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -12,7 +18,7 @@
         }
 
         body {
-            font-family: 'Verdana', Arial, sans-serif;
+            font-family: 'Open Sans', Arial, sans-serif;
             background: #ffffff;
             color: #333;
             line-height: 1.6;
@@ -51,6 +57,7 @@
             font-size: 18px;
             font-weight: 600;
             color: #001C3D;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-menu {
@@ -64,6 +71,7 @@
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .nav-menu a:hover {
@@ -76,6 +84,7 @@
             padding: 8px 20px;
             border-radius: 4px;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Hero Section */
@@ -90,12 +99,14 @@
             font-size: 48px;
             margin-bottom: 20px;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero p {
             font-size: 20px;
             margin-bottom: 40px;
             opacity: 0.95;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .cohort-buttons {
@@ -115,6 +126,7 @@
             font-weight: 600;
             transition: all 0.3s;
             border: 2px solid #00BCD4;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .cohort-btn:hover {
@@ -151,6 +163,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .sidebar-nav {
@@ -167,6 +181,7 @@
             text-decoration: none;
             border-left: 3px solid transparent;
             transition: all 0.3s;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .sidebar-nav a:hover,
@@ -189,22 +204,27 @@
         }
 
         .info-section h2 {
-            font-size: 28px;
+            font-size: 32px;
             color: #001C3D;
             margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .info-section h3 {
-            font-size: 22px;
+            font-size: 24px;
             color: #002D5A;
             margin-top: 30px;
             margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .info-section p {
             margin-bottom: 15px;
             font-size: 16px;
             line-height: 1.8;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Platform Boxes */
@@ -233,10 +253,11 @@
             padding: 30px;
             text-decoration: none;
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             text-align: center;
             transition: opacity 0.3s;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .platform-link:hover {
@@ -279,6 +300,7 @@
             color: #002D5A;
             transition: background 0.3s;
             border-top: 1px solid #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .info-toggle:hover {
@@ -299,6 +321,8 @@
             font-size: 18px;
             margin-top: 20px;
             margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .platform-info h4:first-child {
@@ -314,10 +338,17 @@
             margin-bottom: 8px;
             font-size: 15px;
             line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .platform-info strong {
             color: #001C3D;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .platform-info p {
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Subsection Toggle */
@@ -334,6 +365,7 @@
             color: #002D5A;
             transition: background 0.3s;
             border-left: 3px solid #00BCD4;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .subsection-toggle:hover {
@@ -369,6 +401,7 @@
             border-radius: 4px;
             font-weight: 600;
             color: #FF6200;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Timeline Section */
@@ -385,6 +418,8 @@
             margin-bottom: 30px;
             padding-bottom: 15px;
             border-bottom: 3px solid #00BCD4;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .timeline-grid {
@@ -406,6 +441,7 @@
             color: #00BCD4;
             font-weight: 700;
             margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .timeline-title {
@@ -413,11 +449,13 @@
             color: #001C3D;
             font-weight: 600;
             margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .timeline-desc {
             font-size: 15px;
             color: #666;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Footer - FIXED FOR FULL WIDTH */
@@ -438,11 +476,13 @@
 
         .footer p {
             margin: 10px 0;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .footer a {
             color: #00BCD4;
             text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .footer a:hover {
@@ -510,12 +550,18 @@
         .game-info h2 {
             font-size: 24px;
             margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .game-info p {
+            font-family: 'Open Sans', sans-serif;
         }
 
         .game-score {
             font-size: 18px;
             color: #00BCD4;
             margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .close-game {
@@ -524,6 +570,7 @@
             margin-top: 15px;
             font-size: 14px;
             opacity: 0.8;
+            font-family: 'Open Sans', sans-serif;
         }
 
         /* Responsive */
@@ -1031,10 +1078,10 @@
             
             // Draw score at top
             ctx.fillStyle = '#001C3D';
-            ctx.font = 'bold 28px Arial';
+            ctx.font = 'bold 28px Montserrat, Arial';
             ctx.textAlign = 'left';
             ctx.fillText('Score: ' + score, 30, 50);
-            ctx.font = '18px Arial';
+            ctx.font = '18px Open Sans, Arial';
             ctx.fillText('Speed: ' + gameSpeed.toFixed(1) + 'x', 30, 80);
             
             // Draw ground
@@ -1060,7 +1107,7 @@
             ctx.fillStyle = '#fff';
             ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
             ctx.fillStyle = '#001C3D';
-            ctx.font = 'bold 14px Arial';
+            ctx.font = 'bold 14px Montserrat, Arial';
             ctx.textAlign = 'center';
             ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 5);
 
@@ -1122,7 +1169,7 @@
 
             // Tassel - UP by default, DOWN when ducking
             let tasselStartY = capY - 1;
-            let tasselEndY = player.ducking ? capY + 10 : capY - 15; // UP when not ducking, DOWN when ducking
+            let tasselEndY = player.ducking ? capY + 10 : capY - 15; // UP when not ducking (LONGER), DOWN when ducking
             
             ctx.strokeStyle = '#00BCD4';
             ctx.lineWidth = 2;
@@ -1247,8 +1294,8 @@
             
             // Spawn flying boxes ONLY after score 20, MUCH LESS FREQUENTLY
             if (score >= 20) {
-                let flyingMinSpacing = 900 + (gameSpeed * 80); // Much longer minimum spacing
-                let flyingMaxSpacing = 1600 + (gameSpeed * 100); // Much longer maximum spacing
+                let flyingMinSpacing = 900 + (gameSpeed * 80);
+                let flyingMaxSpacing = 1600 + (gameSpeed * 100);
                 let flyingRandomRange = Math.random() * (flyingMaxSpacing - flyingMinSpacing);
                 let flyingTargetSpacing = flyingMinSpacing + flyingRandomRange;
                 
@@ -1256,8 +1303,8 @@
                     let boxLabels = ['Proposal', 'Midterm', 'Thesis', 'BTR Video'];
                     let randomLabel = boxLabels[Math.floor(Math.random() * boxLabels.length)];
                     
-                    // Flying height adjusted to hit tassel when UP (not ducked)
-                    let flyHeight = player.y - 20; // Higher so it hits the UP tassel position
+                    // Flying height adjusted to hit tassel when UP
+                    let flyHeight = player.y - 20;
                     
                     flyingBoxes.push({
                         x: canvas.width,
@@ -1283,13 +1330,12 @@
                 
                 // Draw label
                 ctx.fillStyle = '#fff';
-                ctx.font = 'bold 12px Arial';
+                ctx.font = 'bold 12px Montserrat, Arial';
                 ctx.textAlign = 'center';
                 ctx.fillText(box.label, box.x + box.width/2, box.y + box.height/2 + 4);
                 
                 // Collision detection with TASSEL (only when tassel is UP)
                 if (!player.ducking) {
-                    // Check if tassel circle overlaps with box rectangle
                     if (tasselX + tasselRadius > box.x && 
                         tasselX - tasselRadius < box.x + box.width &&
                         tasselY + tasselRadius > box.y &&
@@ -1322,21 +1368,21 @@
             ctx.fillStyle = 'rgba(0, 28, 61, 0.85)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 48px Arial';
+            ctx.font = 'bold 48px Montserrat, Arial';
             ctx.textAlign = 'center';
             ctx.fillText('Thesis Submitted!', canvas.width / 2, canvas.height / 2 - 50);
-            ctx.font = 'bold 28px Arial';
+            ctx.font = 'bold 28px Montserrat, Arial';
             ctx.fillStyle = '#00BCD4';
             ctx.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2 + 10);
             
             if (score > highScore - 1) {
                 ctx.fillStyle = '#E84E10';
-                ctx.font = 'bold 24px Arial';
+                ctx.font = 'bold 24px Montserrat, Arial';
                 ctx.fillText('🎉 NEW HIGH SCORE! 🎉', canvas.width / 2, canvas.height / 2 + 55);
             }
             
             ctx.fillStyle = '#fff';
-            ctx.font = '20px Arial';
+            ctx.font = '20px Open Sans, Arial';
             ctx.fillText('Press SPACE to play again', canvas.width / 2, canvas.height / 2 + 100);
             
             // Allow restart
@@ -1353,7 +1399,3 @@
     </script>
 </body>
 </html>
-
-
-
-
