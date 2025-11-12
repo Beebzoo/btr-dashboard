@@ -833,7 +833,7 @@
     <div class="game-overlay" id="gameOverlay">
         <div class="game-info">
             <h2>🎓 BTR Axidus Thesis Runner!</h2>
-            <p>Press SPACE to jump | Press ESC to exit</p>
+            <p>Press SPACE or ↑ to jump | Press ↓ to duck | Press ESC to exit</p>
             <div class="game-score">Score: <span id="gameScore">0</span> | High Score: <span id="highScore">0</span></div>
         </div>
         <div class="game-container">
@@ -902,8 +902,11 @@
                 y: 330,
                 width: 30,
                 height: 35,
+                normalHeight: 35,
+                duckHeight: 20,
                 velocityY: 0,
-                jumping: false
+                jumping: false,
+                ducking: false
             };
             
             document.getElementById('gameScore').textContent = score;
@@ -914,17 +917,38 @@
             
             // Add keyboard controls
             document.addEventListener('keydown', handleKeyPress);
+            document.addEventListener('keyup', handleKeyUp);
         }
 
         function handleKeyPress(e) {
-            if (e.code === 'Space' && !player.jumping && gameRunning) {
+            // Jump with Space or ArrowUp
+            if ((e.code === 'Space' || e.code === 'ArrowUp') && !player.jumping && gameRunning) {
                 e.preventDefault();
                 player.velocityY = -17;
                 player.jumping = true;
+                player.ducking = false;
+                player.height = player.normalHeight;
+            }
+            
+            // Duck with ArrowDown
+            if (e.code === 'ArrowDown' && !player.jumping && gameRunning) {
+                e.preventDefault();
+                player.ducking = true;
+                player.height = player.duckHeight;
+                player.y = 330 - player.duckHeight + player.normalHeight; // Adjust y position
             }
             
             if (e.code === 'Escape') {
                 closeGame();
+            }
+        }
+
+        function handleKeyUp(e) {
+            // Stop ducking when down arrow is released
+            if (e.code === 'ArrowDown' && player.ducking && gameRunning) {
+                player.ducking = false;
+                player.height = player.normalHeight;
+                player.y = 330; // Return to normal ground position
             }
         }
 
@@ -933,6 +957,7 @@
             gameRunning = false;
             obstacles = [];
             document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener('keyup', handleKeyUp);
         }
 
         function gameLoop() {
@@ -975,59 +1000,64 @@
             }
             
             // Draw player (smaller, agile thesis book icon)
-                ctx.fillStyle = '#E84E10';
-                ctx.fillRect(player.x, player.y, player.width, player.height);
-                ctx.fillStyle = '#fff';
-                ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
-                ctx.fillStyle = '#001C3D';
-                ctx.font = 'bold 12px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
+            ctx.fillStyle = '#E84E10';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
+            ctx.fillStyle = '#001C3D';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 4);
 
-                // Draw graduation cap on top of BTR book
-                let capX = player.x + player.width/2;
-                let capY = player.y - 8;
+            // Draw graduation cap on top of BTR book
+            let capX = player.x + player.width/2;
+            let capY = player.y - 8;
 
-                // Cap base (square top)
-                ctx.fillStyle = '#001C3D';
-                ctx.fillRect(capX - 12, capY - 3, 24, 3);
+            // Adjust cap for ducking
+            if (player.ducking) {
+                capY = player.y - 5; // Cap closer when ducking
+            }
 
-                // Cap top (mortarboard)
-                ctx.beginPath();
-                ctx.moveTo(capX - 10, capY);
-                ctx.lineTo(capX + 10, capY);
-                ctx.lineTo(capX + 12, capY - 2);
-                ctx.lineTo(capX - 12, capY - 2);
-                ctx.closePath();
-                ctx.fill();
+            // Cap base (square top)
+            ctx.fillStyle = '#001C3D';
+            ctx.fillRect(capX - 12, capY - 3, 24, 3);
 
-                // Tassel
-                ctx.strokeStyle = '#00BCD4';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(capX + 8, capY - 1);
-                ctx.lineTo(capX + 12, capY + 4);
-                ctx.stroke();
+            // Cap top (mortarboard)
+            ctx.beginPath();
+            ctx.moveTo(capX - 10, capY);
+            ctx.lineTo(capX + 10, capY);
+            ctx.lineTo(capX + 12, capY - 2);
+            ctx.lineTo(capX - 12, capY - 2);
+            ctx.closePath();
+            ctx.fill();
 
-                // Tassel tip
-                ctx.fillStyle = '#00BCD4';
-                ctx.beginPath();
-                ctx.arc(capX + 12, capY + 4, 2, 0, Math.PI * 2);
-                ctx.fill();
+            // Tassel
+            ctx.strokeStyle = '#00BCD4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(capX + 8, capY - 1);
+            ctx.lineTo(capX + 12, capY + 4);
+            ctx.stroke();
+
+            // Tassel tip
+            ctx.fillStyle = '#00BCD4';
+            ctx.beginPath();
+            ctx.arc(capX + 12, capY + 4, 2, 0, Math.PI * 2);
+            ctx.fill();
             
-           // Spawn DNA strand obstacles - spacing scales with speed to keep it fair
+            // Spawn DNA strand obstacles - spacing scales with speed to keep it fair
             let minSpacing = 300 + (gameSpeed * 40); // Increases spacing as speed increases
             let maxSpacing = 500 + (gameSpeed * 50); // Also scales the random range
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - (minSpacing + Math.random() * maxSpacing)) {
-             // Random DNA strand height
-            let dnaHeight = 40 + Math.floor(Math.random() * 30);
+                // Random DNA strand height
+                let dnaHeight = 40 + Math.floor(Math.random() * 30);
                 obstacles.push({
-                x: canvas.width,
-                y: 380 - dnaHeight,
-                width: 35,
-                height: dnaHeight
-    });
-}
+                    x: canvas.width,
+                    y: 380 - dnaHeight,
+                    width: 35,
+                    height: dnaHeight
+                });
+            }
             
             // Update and draw obstacles (DNA strands)
             for (let i = obstacles.length - 1; i >= 0; i--) {
@@ -1163,5 +1193,3 @@
     </script>
 </body>
 </html>
-
-
