@@ -967,7 +967,7 @@
                 x: 100,
                 y: 350,
                 width: 40,
-                height: 70,
+                height: 50,
                 normalHeight: 70,
                 duckHeight: 40,
                 velocityY: 0,
@@ -1434,7 +1434,7 @@
             player.y += player.velocityY;
             
             // Ground collision
-            let groundY = 380;
+            let groundY = 340;
             if (player.y > groundY - player.height) {
                 player.y = groundY - player.height;
                 player.velocityY = 0;
@@ -1616,3 +1616,4 @@
     </script>
 </body>
 </html>
+
