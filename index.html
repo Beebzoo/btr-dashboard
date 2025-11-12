@@ -965,7 +965,7 @@
             
             player = {
                 x: 100,
-                y: 300,
+                y: 315,
                 width: 40,
                 height: 70,
                 normalHeight: 70,
@@ -1131,108 +1131,177 @@
         }
 
         function drawPlayer() {
-            // Body (person shape) - SHINY BLACK with gradient, EVEN SMALLER & SKINNIER
+            // Body (stick figure with ROUNDED limbs) - SHINY BLACK with gradient
             let gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
             gradient.addColorStop(0, '#333333');
             gradient.addColorStop(0.5, '#000000');
             gradient.addColorStop(1, '#1a1a1a');
-            ctx.fillStyle = gradient;
             
-            // Head (even smaller) with shine
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Head with shine
+            ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2, player.y + 7, 7, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2 - 3, player.y + 7, 7, 0, Math.PI * 2); // Shifted forward for lean
             ctx.fill();
             
             // Head shine/highlight
             ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2 - 2, player.y + 5, 2, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2 - 4, player.y + 5, 2, 0, Math.PI * 2);
             ctx.fill();
             
             // Reset to gradient
             ctx.fillStyle = gradient;
+            ctx.strokeStyle = gradient;
             
-            // Torso (even skinnier, rectangular)
-            let torsoHeight = player.ducking ? 7 : 14;
-            let torsoWidth = 6; // Even skinnier from 10
-            ctx.fillRect(player.x + player.width/2 - torsoWidth/2, player.y + 14, torsoWidth, torsoHeight);
+            // Torso (rounded line, LEANING FORWARD)
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            let torsoStartX = player.x + player.width/2 - 3;
+            let torsoStartY = player.y + 14;
+            let torsoEndX = player.ducking ? player.x + player.width/2 + 5 : player.x + player.width/2;
+            let torsoEndY = player.ducking ? player.y + 21 : player.y + 28;
+            ctx.moveTo(torsoStartX, torsoStartY);
+            ctx.lineTo(torsoEndX, torsoEndY);
+            ctx.stroke();
             
-            // Running arms (side view, MORE DYNAMIC pumping motion, EVEN SKINNIER)
-            let armSwing = Math.sin(animationFrame * 0.3) * 15;
+            // Running arms (ROUNDED, pumping motion, leaning forward)
+            let armSwing = Math.sin(animationFrame * 0.3) * 0.5;
+            ctx.lineWidth = 3;
             
-            // Front arm (moving forward and back MORE, EVEN SKINNIER)
-            ctx.save();
-            ctx.translate(player.x + player.width/2 + 3, player.y + 16);
-            ctx.rotate(armSwing * 0.08);
-            ctx.fillRect(-1.5, 0, 3, 10); // Even skinnier: 3 wide, shorter
-            ctx.restore();
+            // Front arm (swinging forward)
+            ctx.beginPath();
+            let frontArmStartX = torsoStartX;
+            let frontArmStartY = torsoStartY + 3;
+            let frontArmEndX = frontArmStartX + 8 + Math.cos(armSwing) * 8;
+            let frontArmEndY = frontArmStartY + 8 + Math.sin(armSwing) * 8;
+            ctx.moveTo(frontArmStartX, frontArmStartY);
+            ctx.lineTo(frontArmEndX, frontArmEndY);
+            ctx.stroke();
             
-            // Back arm (opposite motion, EVEN SKINNIER)
-            ctx.save();
-            ctx.translate(player.x + player.width/2 - 3, player.y + 16);
-            ctx.rotate(-armSwing * 0.08);
-            ctx.fillRect(-1.5, 0, 3, 10);
-            ctx.restore();
+            // Back arm (swinging backward)
+            ctx.beginPath();
+            let backArmStartX = torsoStartX;
+            let backArmStartY = torsoStartY + 3;
+            let backArmEndX = backArmStartX - 6 + Math.cos(armSwing + Math.PI) * 6;
+            let backArmEndY = backArmStartY + 6 + Math.sin(armSwing + Math.PI) * 6;
+            ctx.moveTo(backArmStartX, backArmStartY);
+            ctx.lineTo(backArmEndX, backArmEndY);
+            ctx.stroke();
             
-            // Running legs (side view, MORE DYNAMIC alternating, CENTERED UNDER BODY, SKINNIER)
+            // Hand circles (rounded ends)
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(frontArmEndX, frontArmEndY, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(backArmEndX, backArmEndY, 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Running legs (ROUNDED, more dynamic)
+            ctx.lineWidth = 4;
+            
             if (!player.jumping && !player.ducking) {
                 let legCycle = Math.floor(animationFrame / 3) % 8;
                 
-                // Front leg - MORE EXAGGERATED swing, CENTERED, SKINNIER
-                let frontLegAngle = 0;
-                if (legCycle < 4) {
-                    frontLegAngle = (legCycle / 4) * 0.9 - 0.45;
-                } else {
-                    frontLegAngle = ((8 - legCycle) / 4) * 0.9 - 0.45;
-                }
-                
-                ctx.save();
-                ctx.translate(player.x + player.width/2 + 1.5, player.y + 28); // Centered under body
-                ctx.rotate(frontLegAngle);
-                ctx.fillRect(-2, 0, 4, 13); // Even skinnier: 4 wide, shorter
-                // Foot
-                ctx.fillRect(-2, 13, 7, 2);
-                ctx.restore();
-                
-                // Back leg (opposite motion, CENTERED, SKINNIER)
+                // Calculate leg angles for running motion
+                let frontLegAngle = (legCycle < 4) ? 
+                    (legCycle / 4) * Math.PI * 0.4 - Math.PI * 0.2 : 
+                    ((8 - legCycle) / 4) * Math.PI * 0.4 - Math.PI * 0.2;
                 let backLegAngle = -frontLegAngle;
                 
-                ctx.save();
-                ctx.translate(player.x + player.width/2 - 1.5, player.y + 28); // Centered under body
-                ctx.rotate(backLegAngle);
-                ctx.fillRect(-2, 0, 4, 13);
-                // Foot
-                ctx.fillRect(-2, 13, 7, 2);
-                ctx.restore();
+                // Front leg (rounded)
+                ctx.beginPath();
+                let frontLegStartX = torsoEndX;
+                let frontLegStartY = torsoEndY;
+                let frontLegMidX = frontLegStartX + Math.sin(frontLegAngle) * 8;
+                let frontLegMidY = frontLegStartY + Math.cos(frontLegAngle) * 8;
+                let frontLegEndX = frontLegMidX + Math.sin(frontLegAngle + 0.3) * 10;
+                let frontLegEndY = frontLegMidY + Math.cos(frontLegAngle + 0.3) * 10;
+                
+                ctx.moveTo(frontLegStartX, frontLegStartY);
+                ctx.quadraticCurveTo(frontLegMidX, frontLegMidY, frontLegEndX, frontLegEndY);
+                ctx.stroke();
+                
+                // Back leg (rounded)
+                ctx.beginPath();
+                let backLegStartX = torsoEndX - 2;
+                let backLegStartY = torsoEndY;
+                let backLegMidX = backLegStartX + Math.sin(backLegAngle) * 8;
+                let backLegMidY = backLegStartY + Math.cos(backLegAngle) * 8;
+                let backLegEndX = backLegMidX + Math.sin(backLegAngle + 0.3) * 10;
+                let backLegEndY = backLegMidY + Math.cos(backLegAngle + 0.3) * 10;
+                
+                ctx.moveTo(backLegStartX, backLegStartY);
+                ctx.quadraticCurveTo(backLegMidX, backLegMidY, backLegEndX, backLegEndY);
+                ctx.stroke();
+                
+                // Feet (rounded ends)
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(frontLegEndX, frontLegEndY, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(backLegEndX, backLegEndY, 2.5, 0, Math.PI * 2);
+                ctx.fill();
                 
             } else if (player.ducking) {
-                // Legs extended forward when ducking, CENTERED, SKINNIER
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 21, 4, 8);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 21, 4, 8);
+                // Ducking pose - legs extended forward
+                ctx.beginPath();
+                ctx.moveTo(torsoEndX, torsoEndY);
+                ctx.lineTo(torsoEndX + 10, torsoEndY + 8);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(torsoEndX - 2, torsoEndY);
+                ctx.lineTo(torsoEndX + 8, torsoEndY + 10);
+                ctx.stroke();
+                
                 // Feet
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 29, 7, 2);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 29, 7, 2);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(torsoEndX + 10, torsoEndY + 8, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(torsoEndX + 8, torsoEndY + 10, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                
             } else {
-                // Legs together when jumping, CENTERED, SKINNIER
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 28, 4, 13);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 28, 4, 13);
+                // Jumping - legs together
+                ctx.beginPath();
+                ctx.moveTo(torsoEndX, torsoEndY);
+                ctx.lineTo(torsoEndX + 2, torsoEndY + 15);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(torsoEndX - 2, torsoEndY);
+                ctx.lineTo(torsoEndX, torsoEndY + 15);
+                ctx.stroke();
+                
                 // Feet
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 41, 7, 2);
-                ctx.fillRect(player.x + player.width/2 + 1, player.y + 41, 7, 2);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(torsoEndX + 2, torsoEndY + 15, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(torsoEndX, torsoEndY + 15, 2.5, 0, Math.PI * 2);
+                ctx.fill();
             }
 
-            // Graduation cap - smaller to match head size, LOWER TASSEL
-            let capX = player.x + player.width/2;
+            // Graduation cap - positioned on leaning head
+            let capX = player.x + player.width/2 - 3;
             let capY = player.y;
 
-            // Cap base (the part that sits on head) - smaller
+            // Cap base (the part that sits on head)
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
             ctx.arc(capX, capY + 4, 8, Math.PI, 2 * Math.PI);
             ctx.fill();
             ctx.fillRect(capX - 8, capY + 4, 16, 2);
 
-            // Mortarboard (flat square top) - smaller
+            // Mortarboard (flat square top)
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
             ctx.moveTo(capX - 12, capY + 2);
@@ -1246,22 +1315,22 @@
             ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
             ctx.fillRect(capX - 10, capY, 6, 1);
 
-            // Button on top of cap - smaller
+            // Button on top of cap
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
             ctx.arc(capX, capY - 1, 1.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Tassel (hanging LOWER from button) - slightly animated, smaller
+            // Tassel (hanging from button) - slightly animated
             let tasselSwing = Math.sin(animationFrame * 0.1) * 2;
             ctx.strokeStyle = '#E84E10';
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(capX, capY - 1);
-            ctx.lineTo(capX + 9 + tasselSwing, capY + 6); // Lower: +6
+            ctx.lineTo(capX + 9 + tasselSwing, capY + 6);
             ctx.stroke();
 
-            // Tassel tip (multiple strands hanging DOWN) - smaller
+            // Tassel tip (multiple strands hanging DOWN)
             ctx.fillStyle = '#E84E10';
             for (let i = 0; i < 4; i++) {
                 ctx.beginPath();
@@ -1363,7 +1432,7 @@
             player.y += player.velocityY;
             
             // Ground collision
-            let groundY = player.ducking ? 365 : 380;
+            let groundY = player.ducking ? 373 : 378;
             if (player.y > groundY - player.height) {
                 player.y = groundY - player.height;
                 player.velocityY = 0;
