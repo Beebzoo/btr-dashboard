@@ -886,26 +886,34 @@
         let highScore = localStorage.getItem('btrHighScore') || 0;
         let player, obstacles, flyingBoxes, gameSpeed, gravity;
         let animationFrame = 0;
+        let clouds = [];
 
         function startGame() {
             document.getElementById('gameOverlay').classList.add('active');
             canvas = document.getElementById('gameCanvas');
             ctx = canvas.getContext('2d');
             
-            // Initialize game - START FASTER
+            // Initialize game
             score = 0;
-            gameSpeed = 10; // Increased from 7 to 10
+            gameSpeed = 10;
             gravity = 1.0;
             obstacles = [];
             flyingBoxes = [];
             animationFrame = 0;
             
-            // Made player bigger
+            // Initialize clouds
+            clouds = [
+                { x: 200, y: 50, size: 60, speed: 0.3 },
+                { x: 500, y: 80, size: 80, speed: 0.2 },
+                { x: 900, y: 40, size: 70, speed: 0.25 },
+                { x: 1300, y: 70, size: 65, speed: 0.28 }
+            ];
+            
             player = {
                 x: 100,
-                y: 280, // Adjusted for bigger player
-                width: 35, // Increased from 30
-                height: 45, // Increased from 35
+                y: 280,
+                width: 35,
+                height: 45,
                 normalHeight: 45,
                 duckHeight: 25,
                 velocityY: 0,
@@ -962,6 +970,37 @@
             document.removeEventListener('keyup', handleKeyUp);
         }
 
+        function drawSun() {
+            // Sun
+            ctx.fillStyle = '#FFD700';
+            ctx.beginPath();
+            ctx.arc(1450, 80, 40, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Sun rays
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 3;
+            for (let i = 0; i < 8; i++) {
+                let angle = (Math.PI * 2 / 8) * i;
+                ctx.beginPath();
+                ctx.moveTo(1450 + Math.cos(angle) * 50, 80 + Math.sin(angle) * 50);
+                ctx.lineTo(1450 + Math.cos(angle) * 65, 80 + Math.sin(angle) * 65);
+                ctx.stroke();
+            }
+        }
+
+        function drawCloud(x, y, size) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            
+            // Cloud circles
+            ctx.beginPath();
+            ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
+            ctx.arc(x + size * 0.4, y - size * 0.1, size * 0.4, 0, Math.PI * 2);
+            ctx.arc(x + size * 0.8, y, size * 0.5, 0, Math.PI * 2);
+            ctx.arc(x + size * 0.4, y + size * 0.2, size * 0.45, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
         function gameLoop() {
             if (!gameRunning) return;
             
@@ -970,12 +1009,25 @@
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw sky gradient
+            // Draw blue sky gradient
             let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#e6f2ff');
+            gradient.addColorStop(0, '#87CEEB'); // Sky blue
+            gradient.addColorStop(0.7, '#B0E0E6'); // Lighter blue
             gradient.addColorStop(1, '#fff');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw sun
+            drawSun();
+            
+            // Update and draw clouds
+            for (let cloud of clouds) {
+                cloud.x -= cloud.speed;
+                if (cloud.x + cloud.size < 0) {
+                    cloud.x = canvas.width + cloud.size;
+                }
+                drawCloud(cloud.x, cloud.y, cloud.size);
+            }
             
             // Draw score at top
             ctx.fillStyle = '#001C3D';
@@ -1002,19 +1054,19 @@
                 player.velocityY *= 1.1;
             }
             
-            // Draw player body (BTR book) - BIGGER
+            // Draw player body (BTR book)
             ctx.fillStyle = '#E84E10';
             ctx.fillRect(player.x, player.y, player.width, player.height);
             ctx.fillStyle = '#fff';
             ctx.fillRect(player.x + 3, player.y + 3, player.width - 6, player.height - 6);
             ctx.fillStyle = '#001C3D';
-            ctx.font = 'bold 14px Arial'; // Bigger font
+            ctx.font = 'bold 14px Arial';
             ctx.textAlign = 'center';
             ctx.fillText('BTR', player.x + player.width/2, player.y + player.height/2 + 5);
 
-            // Draw animated legs - running motion
+            // Draw animated legs
             if (!player.jumping) {
-                let legCycle = Math.floor(animationFrame / 5) % 4; // Cycles through 4 positions
+                let legCycle = Math.floor(animationFrame / 5) % 4;
                 player.legPhase = legCycle;
                 
                 ctx.fillStyle = '#001C3D';
@@ -1033,7 +1085,7 @@
                 ctx.strokeStyle = '#001C3D';
                 ctx.stroke();
                 
-                // Right leg (opposite phase)
+                // Right leg
                 let rightLegOffset = 0;
                 if (legCycle === 0) rightLegOffset = 3;
                 if (legCycle === 1) rightLegOffset = 0;
@@ -1051,15 +1103,15 @@
                 ctx.fillRect(player.x + player.width/2 + 5 + rightLegOffset - 3, player.y + player.height + 12, 6, 3);
             }
 
-            // Draw graduation cap on top of BTR book - BIGGER
+            // Draw graduation cap - TASSEL STARTS UP
             let capX = player.x + player.width/2;
-            let capY = player.y - 12; // Higher because player is bigger
+            let capY = player.y - 12;
 
-            // Cap base (square top) - BIGGER
+            // Cap base (square top)
             ctx.fillStyle = '#001C3D';
-            ctx.fillRect(capX - 16, capY - 4, 32, 4); // Bigger cap
+            ctx.fillRect(capX - 16, capY - 4, 32, 4);
 
-            // Cap top (mortarboard) - BIGGER
+            // Cap top (mortarboard)
             ctx.beginPath();
             ctx.moveTo(capX - 14, capY);
             ctx.lineTo(capX + 14, capY);
@@ -1068,36 +1120,40 @@
             ctx.closePath();
             ctx.fill();
 
-            // Tassel - animated to be UP normally, DOWN when ducking
-            let tasselY = player.ducking ? capY + 8 : capY - 2; // Duck it down when pressing down
+            // Tassel - UP by default, DOWN when ducking
+            let tasselStartY = capY - 1;
+            let tasselEndY = player.ducking ? capY + 10 : capY - 8; // UP when not ducking, DOWN when ducking
             
             ctx.strokeStyle = '#00BCD4';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(capX + 11, capY - 1);
-            ctx.lineTo(capX + 16, tasselY);
+            ctx.moveTo(capX + 11, tasselStartY);
+            ctx.lineTo(capX + 16, tasselEndY);
             ctx.stroke();
 
-            // Tassel tip - BIGGER
+            // Tassel tip
             ctx.fillStyle = '#00BCD4';
             ctx.beginPath();
-            ctx.arc(capX + 16, tasselY, 3, 0, Math.PI * 2); // Bigger tassel
+            ctx.arc(capX + 16, tasselEndY, 3, 0, Math.PI * 2);
             ctx.fill();
             
-            // Spawn DNA strand obstacles - MORE RANDOM SPACING that scales with speed
-            let baseMinSpacing = 280; // Base minimum spacing
-            let baseMaxSpacing = 600; // Base maximum spacing
-            let speedScaling = gameSpeed * 35; // How much spacing increases with speed
+            // Store tassel position for collision detection
+            let tasselX = capX + 16;
+            let tasselY = tasselEndY;
+            let tasselRadius = 3;
+            
+            // Spawn DNA strand obstacles
+            let baseMinSpacing = 280;
+            let baseMaxSpacing = 600;
+            let speedScaling = gameSpeed * 35;
             
             let minSpacing = baseMinSpacing + speedScaling;
             let maxSpacing = baseMaxSpacing + speedScaling;
             
-            // Add more randomness to the range
             let randomRange = Math.random() * (maxSpacing - minSpacing);
             let targetSpacing = minSpacing + randomRange;
             
             if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - targetSpacing) {
-                // Random DNA strand height
                 let dnaHeight = 40 + Math.floor(Math.random() * 35);
                 obstacles.push({
                     x: canvas.width,
@@ -1118,7 +1174,6 @@
                 let segments = 8;
                 let segmentHeight = dna.height / segments;
 
-                // Draw the two strands
                 ctx.lineWidth = 3;
                 ctx.strokeStyle = '#00BCD4';
                 ctx.beginPath();
@@ -1146,7 +1201,6 @@
                 }
                 ctx.stroke();
 
-                // Draw base pairs
                 ctx.strokeStyle = '#666';
                 ctx.lineWidth = 2;
                 for (let j = 0; j < segments; j++) {
@@ -1170,7 +1224,7 @@
                     ctx.fill();
                 }
                 
-                // Collision with DNA (legs don't count for collision)
+                // Collision with DNA
                 if (player.x < dna.x + dna.width &&
                     player.x + player.width > dna.x &&
                     player.y < dna.y + dna.height &&
@@ -1185,39 +1239,40 @@
                     score++;
                     document.getElementById('gameScore').textContent = score;
                     
-                    // Progressive difficulty
                     if (score % 3 === 0) {
-                        gameSpeed += 0.5; // Slightly slower increase since we start faster
+                        gameSpeed += 0.5;
                     }
                 }
             }
             
-            // Spawn flying boxes (submission deadlines) - MORE RANDOM SPACING
-            let flyingMinSpacing = 400 + (gameSpeed * 40);
-            let flyingMaxSpacing = 800 + (gameSpeed * 60);
-            let flyingRandomRange = Math.random() * (flyingMaxSpacing - flyingMinSpacing);
-            let flyingTargetSpacing = flyingMinSpacing + flyingRandomRange;
-            
-            if (flyingBoxes.length === 0 || flyingBoxes[flyingBoxes.length - 1].x < canvas.width - flyingTargetSpacing) {
-                let boxLabels = ['Proposal', 'Midterm', 'Thesis', 'BTR Video'];
-                let randomLabel = boxLabels[Math.floor(Math.random() * boxLabels.length)];
+            // Spawn flying boxes ONLY after score 20, MUCH LESS FREQUENTLY
+            if (score >= 20) {
+                let flyingMinSpacing = 900 + (gameSpeed * 80); // Much longer minimum spacing
+                let flyingMaxSpacing = 1600 + (gameSpeed * 100); // Much longer maximum spacing
+                let flyingRandomRange = Math.random() * (flyingMaxSpacing - flyingMinSpacing);
+                let flyingTargetSpacing = flyingMinSpacing + flyingRandomRange;
                 
-                // Flying height should be where the tassel is normally (to encourage ducking)
-                let flyHeight = player.y - 25; // At tassel height
-                
-                flyingBoxes.push({
-                    x: canvas.width,
-                    y: flyHeight,
-                    width: 80,
-                    height: 30,
-                    label: randomLabel
-                });
+                if (flyingBoxes.length === 0 || flyingBoxes[flyingBoxes.length - 1].x < canvas.width - flyingTargetSpacing) {
+                    let boxLabels = ['Proposal', 'Midterm', 'Thesis', 'BTR Video'];
+                    let randomLabel = boxLabels[Math.floor(Math.random() * boxLabels.length)];
+                    
+                    // Flying height adjusted to hit tassel when UP (not ducked)
+                    let flyHeight = player.y - 20; // Higher so it hits the UP tassel position
+                    
+                    flyingBoxes.push({
+                        x: canvas.width,
+                        y: flyHeight,
+                        width: 80,
+                        height: 30,
+                        label: randomLabel
+                    });
+                }
             }
             
             // Update and draw flying boxes
             for (let i = flyingBoxes.length - 1; i >= 0; i--) {
                 let box = flyingBoxes[i];
-                box.x -= gameSpeed * 1.3; // Boxes move slightly faster
+                box.x -= gameSpeed * 1.3;
                 
                 // Draw the box
                 ctx.fillStyle = '#FF6200';
@@ -1232,12 +1287,9 @@
                 ctx.textAlign = 'center';
                 ctx.fillText(box.label, box.x + box.width/2, box.y + box.height/2 + 4);
                 
-                // Collision detection with TASSEL (not the player body)
-                let tasselX = capX + 16;
-                let tasselRadius = 3;
-                
-                // Check if tassel hits the box (only when tassel is UP - not ducking)
+                // Collision detection with TASSEL (only when tassel is UP)
                 if (!player.ducking) {
+                    // Check if tassel circle overlaps with box rectangle
                     if (tasselX + tasselRadius > box.x && 
                         tasselX - tasselRadius < box.x + box.width &&
                         tasselY + tasselRadius > box.y &&
