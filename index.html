@@ -1131,140 +1131,141 @@
         }
 
         function drawPlayer() {
-            // Body (person shape) - SHINY BLACK with gradient
+            // Body (person shape) - SHINY BLACK with gradient, EVEN SMALLER & SKINNIER
             let gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
             gradient.addColorStop(0, '#333333');
             gradient.addColorStop(0.5, '#000000');
             gradient.addColorStop(1, '#1a1a1a');
             ctx.fillStyle = gradient;
             
-            // Head (larger) with shine
+            // Head (even smaller) with shine
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2, player.y + 12, 12, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2, player.y + 7, 7, 0, Math.PI * 2);
             ctx.fill();
             
             // Head shine/highlight
             ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2 - 3, player.y + 9, 4, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2 - 2, player.y + 5, 2, 0, Math.PI * 2);
             ctx.fill();
             
             // Reset to gradient
             ctx.fillStyle = gradient;
             
-            // Torso (longer, rectangular)
-            let torsoHeight = player.ducking ? 12 : 24;
-            ctx.fillRect(player.x + player.width/2 - 8, player.y + 24, 16, torsoHeight);
+            // Torso (even skinnier, rectangular)
+            let torsoHeight = player.ducking ? 7 : 14;
+            let torsoWidth = 6; // Even skinnier from 10
+            ctx.fillRect(player.x + player.width/2 - torsoWidth/2, player.y + 14, torsoWidth, torsoHeight);
             
-            // Running arms (side view, MORE DYNAMIC pumping motion)
-            let armSwing = Math.sin(animationFrame * 0.3) * 15; // Increased from 10 to 15
+            // Running arms (side view, MORE DYNAMIC pumping motion, EVEN SKINNIER)
+            let armSwing = Math.sin(animationFrame * 0.3) * 15;
             
-            // Front arm (moving forward and back MORE)
+            // Front arm (moving forward and back MORE, EVEN SKINNIER)
             ctx.save();
-            ctx.translate(player.x + player.width/2 + 8, player.y + 28);
-            ctx.rotate(armSwing * 0.08); // Increased rotation
-            ctx.fillRect(-3, 0, 6, 18); // Slightly longer arms
+            ctx.translate(player.x + player.width/2 + 3, player.y + 16);
+            ctx.rotate(armSwing * 0.08);
+            ctx.fillRect(-1.5, 0, 3, 10); // Even skinnier: 3 wide, shorter
             ctx.restore();
             
-            // Back arm (opposite motion)
+            // Back arm (opposite motion, EVEN SKINNIER)
             ctx.save();
-            ctx.translate(player.x + player.width/2 - 8, player.y + 28);
+            ctx.translate(player.x + player.width/2 - 3, player.y + 16);
             ctx.rotate(-armSwing * 0.08);
-            ctx.fillRect(-3, 0, 6, 18);
+            ctx.fillRect(-1.5, 0, 3, 10);
             ctx.restore();
             
-            // Running legs (side view, MORE DYNAMIC alternating)
+            // Running legs (side view, MORE DYNAMIC alternating, CENTERED UNDER BODY, SKINNIER)
             if (!player.jumping && !player.ducking) {
-                let legCycle = Math.floor(animationFrame / 3) % 8; // Faster cycle (was /4)
+                let legCycle = Math.floor(animationFrame / 3) % 8;
                 
-                // Front leg - MORE EXAGGERATED swing
+                // Front leg - MORE EXAGGERATED swing, CENTERED, SKINNIER
                 let frontLegAngle = 0;
                 if (legCycle < 4) {
-                    frontLegAngle = (legCycle / 4) * 0.9 - 0.45; // Increased swing
+                    frontLegAngle = (legCycle / 4) * 0.9 - 0.45;
                 } else {
                     frontLegAngle = ((8 - legCycle) / 4) * 0.9 - 0.45;
                 }
                 
                 ctx.save();
-                ctx.translate(player.x + player.width/2 + 4, player.y + 48);
+                ctx.translate(player.x + player.width/2 + 1.5, player.y + 28); // Centered under body
                 ctx.rotate(frontLegAngle);
-                ctx.fillRect(-4, 0, 8, 22); // Longer legs
+                ctx.fillRect(-2, 0, 4, 13); // Even skinnier: 4 wide, shorter
                 // Foot
-                ctx.fillRect(-4, 22, 12, 4);
+                ctx.fillRect(-2, 13, 7, 2);
                 ctx.restore();
                 
-                // Back leg (opposite motion)
+                // Back leg (opposite motion, CENTERED, SKINNIER)
                 let backLegAngle = -frontLegAngle;
                 
                 ctx.save();
-                ctx.translate(player.x + player.width/2 - 4, player.y + 48);
+                ctx.translate(player.x + player.width/2 - 1.5, player.y + 28); // Centered under body
                 ctx.rotate(backLegAngle);
-                ctx.fillRect(-4, 0, 8, 22);
+                ctx.fillRect(-2, 0, 4, 13);
                 // Foot
-                ctx.fillRect(-4, 22, 12, 4);
+                ctx.fillRect(-2, 13, 7, 2);
                 ctx.restore();
                 
             } else if (player.ducking) {
-                // Legs extended forward when ducking
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 36, 8, 14);
-                ctx.fillRect(player.x + player.width/2 + 6, player.y + 36, 8, 14);
+                // Legs extended forward when ducking, CENTERED, SKINNIER
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 21, 4, 8);
+                ctx.fillRect(player.x + player.width/2 + 1, player.y + 21, 4, 8);
                 // Feet
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 50, 12, 4);
-                ctx.fillRect(player.x + player.width/2 + 6, player.y + 50, 12, 4);
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 29, 7, 2);
+                ctx.fillRect(player.x + player.width/2 + 1, player.y + 29, 7, 2);
             } else {
-                // Legs together when jumping
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 48, 8, 22);
-                ctx.fillRect(player.x + player.width/2 + 4, player.y + 48, 8, 22);
+                // Legs together when jumping, CENTERED, SKINNIER
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 28, 4, 13);
+                ctx.fillRect(player.x + player.width/2 + 1, player.y + 28, 4, 13);
                 // Feet
-                ctx.fillRect(player.x + player.width/2 - 4, player.y + 70, 12, 4);
-                ctx.fillRect(player.x + player.width/2 + 4, player.y + 70, 12, 4);
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 41, 7, 2);
+                ctx.fillRect(player.x + player.width/2 + 1, player.y + 41, 7, 2);
             }
 
-            // Graduation cap - MORE DETAILED with shine
+            // Graduation cap - smaller to match head size, LOWER TASSEL
             let capX = player.x + player.width/2;
             let capY = player.y;
 
-            // Cap base (the part that sits on head)
+            // Cap base (the part that sits on head) - smaller
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
-            ctx.arc(capX, capY + 6, 13, Math.PI, 2 * Math.PI);
+            ctx.arc(capX, capY + 4, 8, Math.PI, 2 * Math.PI);
             ctx.fill();
-            ctx.fillRect(capX - 13, capY + 6, 26, 3);
+            ctx.fillRect(capX - 8, capY + 4, 16, 2);
 
-            // Mortarboard (flat square top)
+            // Mortarboard (flat square top) - smaller
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
-            ctx.moveTo(capX - 18, capY + 2);
-            ctx.lineTo(capX + 18, capY + 2);
-            ctx.lineTo(capX + 20, capY - 2);
-            ctx.lineTo(capX - 20, capY - 2);
+            ctx.moveTo(capX - 12, capY + 2);
+            ctx.lineTo(capX + 12, capY + 2);
+            ctx.lineTo(capX + 13, capY - 1);
+            ctx.lineTo(capX - 13, capY - 1);
             ctx.closePath();
             ctx.fill();
 
             // Cap shine
             ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-            ctx.fillRect(capX - 15, capY - 1, 10, 2);
+            ctx.fillRect(capX - 10, capY, 6, 1);
 
-            // Button on top of cap
+            // Button on top of cap - smaller
             ctx.fillStyle = '#001C3D';
             ctx.beginPath();
-            ctx.arc(capX, capY - 2, 3, 0, Math.PI * 2);
+            ctx.arc(capX, capY - 1, 1.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Tassel (hanging from button) - slightly animated
+            // Tassel (hanging LOWER from button) - slightly animated, smaller
             let tasselSwing = Math.sin(animationFrame * 0.1) * 2;
             ctx.strokeStyle = '#E84E10';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(capX, capY - 2);
-            ctx.lineTo(capX + 14 + tasselSwing, capY - 12);
+            ctx.moveTo(capX, capY - 1);
+            ctx.lineTo(capX + 9 + tasselSwing, capY + 6); // Lower: +6
             ctx.stroke();
 
-            // Tassel tip (multiple strands)
+            // Tassel tip (multiple strands hanging DOWN) - smaller
             ctx.fillStyle = '#E84E10';
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 4; i++) {
                 ctx.beginPath();
-                ctx.arc(capX + 14 + tasselSwing + (i - 2) * 1.5, capY - 12 - i * 0.5, 1.5, 0, Math.PI * 2);
+                ctx.arc(capX + 9 + tasselSwing + (i - 1.5) * 1.2, capY + 6 + i * 0.4, 1, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
