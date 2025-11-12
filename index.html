@@ -831,7 +831,7 @@
 
                 <!-- Intranet Box -->
                 <div class="platform-box intranet">
-                    <a href="https://intranet.maastrichtuniversity.nl/en/msp-students/forms-and-downloads/forms/additional-module" target="_blank" class="platform-link">
+                    <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank" class="platform-link">
                         Intranet
                     </a>
                     <div class="info-toggle" onclick="toggleInfo(this)">
@@ -965,11 +965,11 @@
             
             player = {
                 x: 100,
-                y: 335,
+                y: 345,
                 width: 40,
-                height: 45,
-                normalHeight: 45,
-                duckHeight: 30,
+                height: 35,
+                normalHeight: 35,
+                duckHeight: 25,
                 velocityY: 0,
                 jumping: false,
                 ducking: false,
@@ -992,9 +992,9 @@
             if ((e.code === 'Space' || e.code === 'ArrowUp') && gameRunning) {
                 e.preventDefault();
                 
-                // First jump - from ground
+                // First jump - from ground (LOWER jump)
                 if (!player.jumping) {
-                    player.velocityY = -17;
+                    player.velocityY = -14;
                     player.jumping = true;
                     player.ducking = false;
                     player.height = player.normalHeight;
@@ -1003,7 +1003,7 @@
                 } 
                 // Double jump - in air
                 else if (canDoubleJump && !hasDoubleJumped) {
-                    player.velocityY = -18;
+                    player.velocityY = -14;
                     hasDoubleJumped = true;
                     canDoubleJump = false;
                 }
@@ -1463,7 +1463,7 @@
             if (bottomObstacles.length === 0 || bottomObstacles[bottomObstacles.length - 1].x < canvas.width - targetSpacing) {
                 // Randomly choose size: 60% small, 40% big
                 let isSmall = Math.random() < 0.6;
-                let dnaHeight = isSmall ? (35 + Math.floor(Math.random() * 25)) : (70 + Math.floor(Math.random() * 30));
+                let dnaHeight = isSmall ? (30 + Math.floor(Math.random() * 20)) : (85 + Math.floor(Math.random() * 25));
                 
                 bottomObstacles.push({
                     x: canvas.width,
@@ -1616,4 +1616,3 @@
     </script>
 </body>
 </html>
-
