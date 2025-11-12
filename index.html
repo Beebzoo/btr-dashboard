@@ -965,7 +965,7 @@
             
             player = {
                 x: 100,
-                y: 315,
+                y: 330,
                 width: 40,
                 height: 70,
                 normalHeight: 70,
@@ -1140,53 +1140,56 @@
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             
-            // Head with shine
+            // Head with shine - LEANING FORWARD TO RIGHT
             ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2 - 3, player.y + 7, 7, 0, Math.PI * 2); // Shifted forward for lean
+            ctx.arc(player.x + player.width/2 + 2, player.y + 7, 7, 0, Math.PI * 2); // More forward
             ctx.fill();
             
             // Head shine/highlight
             ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
             ctx.beginPath();
-            ctx.arc(player.x + player.width/2 - 4, player.y + 5, 2, 0, Math.PI * 2);
+            ctx.arc(player.x + player.width/2 + 1, player.y + 5, 2, 0, Math.PI * 2);
             ctx.fill();
             
             // Reset to gradient
             ctx.fillStyle = gradient;
             ctx.strokeStyle = gradient;
             
-            // Torso (rounded line, LEANING FORWARD)
+            // Torso (rounded line, LEANING FORWARD TO RIGHT MORE)
             ctx.lineWidth = 6;
             ctx.beginPath();
-            let torsoStartX = player.x + player.width/2 - 3;
+            let torsoStartX = player.x + player.width/2 + 2;
             let torsoStartY = player.y + 14;
-            let torsoEndX = player.ducking ? player.x + player.width/2 + 5 : player.x + player.width/2;
+            let torsoEndX = player.ducking ? player.x + player.width/2 + 8 : player.x + player.width/2 + 5;
             let torsoEndY = player.ducking ? player.y + 21 : player.y + 28;
             ctx.moveTo(torsoStartX, torsoStartY);
             ctx.lineTo(torsoEndX, torsoEndY);
             ctx.stroke();
             
-            // Running arms (ROUNDED, pumping motion, leaning forward)
-            let armSwing = Math.sin(animationFrame * 0.3) * 0.5;
+            // Running arms (ROUNDED, SAME LENGTH, pumping UP and DOWN like a runner)
+            let armSwing = Math.sin(animationFrame * 0.3);
             ctx.lineWidth = 3;
+            let armLength = 12; // SAME LENGTH for both arms
             
-            // Front arm (swinging forward)
+            // Front arm (swinging UP and DOWN)
             ctx.beginPath();
             let frontArmStartX = torsoStartX;
-            let frontArmStartY = torsoStartY + 3;
-            let frontArmEndX = frontArmStartX + 8 + Math.cos(armSwing) * 8;
-            let frontArmEndY = frontArmStartY + 8 + Math.sin(armSwing) * 8;
+            let frontArmStartY = torsoStartY + 2;
+            let frontArmAngle = -0.8 + armSwing * 0.8; // Up and down motion
+            let frontArmEndX = frontArmStartX + Math.cos(frontArmAngle) * armLength;
+            let frontArmEndY = frontArmStartY + Math.sin(frontArmAngle) * armLength;
             ctx.moveTo(frontArmStartX, frontArmStartY);
             ctx.lineTo(frontArmEndX, frontArmEndY);
             ctx.stroke();
             
-            // Back arm (swinging backward)
+            // Back arm (opposite swing UP and DOWN)
             ctx.beginPath();
             let backArmStartX = torsoStartX;
-            let backArmStartY = torsoStartY + 3;
-            let backArmEndX = backArmStartX - 6 + Math.cos(armSwing + Math.PI) * 6;
-            let backArmEndY = backArmStartY + 6 + Math.sin(armSwing + Math.PI) * 6;
+            let backArmStartY = torsoStartY + 2;
+            let backArmAngle = -0.8 - armSwing * 0.8; // Opposite direction
+            let backArmEndX = backArmStartX + Math.cos(backArmAngle) * armLength;
+            let backArmEndY = backArmStartY + Math.sin(backArmAngle) * armLength;
             ctx.moveTo(backArmStartX, backArmStartY);
             ctx.lineTo(backArmEndX, backArmEndY);
             ctx.stroke();
@@ -1200,42 +1203,41 @@
             ctx.arc(backArmEndX, backArmEndY, 2, 0, Math.PI * 2);
             ctx.fill();
             
-            // Running legs (ROUNDED, more dynamic)
+            // Running legs (ROUNDED, SAME LENGTH, proper running motion)
             ctx.lineWidth = 4;
+            let legLength = 16; // SAME LENGTH for both legs
             
             if (!player.jumping && !player.ducking) {
                 let legCycle = Math.floor(animationFrame / 3) % 8;
                 
-                // Calculate leg angles for running motion
-                let frontLegAngle = (legCycle < 4) ? 
-                    (legCycle / 4) * Math.PI * 0.4 - Math.PI * 0.2 : 
-                    ((8 - legCycle) / 4) * Math.PI * 0.4 - Math.PI * 0.2;
-                let backLegAngle = -frontLegAngle;
+                // Calculate leg angles for proper running motion
+                let frontLegSwing = (legCycle < 4) ? 
+                    (legCycle / 4) - 0.5 : 
+                    ((8 - legCycle) / 4) - 0.5;
+                let backLegSwing = -frontLegSwing;
                 
-                // Front leg (rounded)
+                // Front leg
                 ctx.beginPath();
                 let frontLegStartX = torsoEndX;
                 let frontLegStartY = torsoEndY;
-                let frontLegMidX = frontLegStartX + Math.sin(frontLegAngle) * 8;
-                let frontLegMidY = frontLegStartY + Math.cos(frontLegAngle) * 8;
-                let frontLegEndX = frontLegMidX + Math.sin(frontLegAngle + 0.3) * 10;
-                let frontLegEndY = frontLegMidY + Math.cos(frontLegAngle + 0.3) * 10;
+                let frontLegAngle = Math.PI * 0.5 + frontLegSwing * 0.6; // Forward/back swing
+                let frontLegEndX = frontLegStartX + Math.cos(frontLegAngle) * legLength;
+                let frontLegEndY = frontLegStartY + Math.sin(frontLegAngle) * legLength;
                 
                 ctx.moveTo(frontLegStartX, frontLegStartY);
-                ctx.quadraticCurveTo(frontLegMidX, frontLegMidY, frontLegEndX, frontLegEndY);
+                ctx.lineTo(frontLegEndX, frontLegEndY);
                 ctx.stroke();
                 
-                // Back leg (rounded)
+                // Back leg
                 ctx.beginPath();
-                let backLegStartX = torsoEndX - 2;
+                let backLegStartX = torsoEndX;
                 let backLegStartY = torsoEndY;
-                let backLegMidX = backLegStartX + Math.sin(backLegAngle) * 8;
-                let backLegMidY = backLegStartY + Math.cos(backLegAngle) * 8;
-                let backLegEndX = backLegMidX + Math.sin(backLegAngle + 0.3) * 10;
-                let backLegEndY = backLegMidY + Math.cos(backLegAngle + 0.3) * 10;
+                let backLegAngle = Math.PI * 0.5 + backLegSwing * 0.6; // Opposite swing
+                let backLegEndX = backLegStartX + Math.cos(backLegAngle) * legLength;
+                let backLegEndY = backLegStartY + Math.sin(backLegAngle) * legLength;
                 
                 ctx.moveTo(backLegStartX, backLegStartY);
-                ctx.quadraticCurveTo(backLegMidX, backLegMidY, backLegEndX, backLegEndY);
+                ctx.lineTo(backLegEndX, backLegEndY);
                 ctx.stroke();
                 
                 // Feet (rounded ends)
@@ -1248,50 +1250,50 @@
                 ctx.fill();
                 
             } else if (player.ducking) {
-                // Ducking pose - legs extended forward
+                // Ducking pose - legs extended forward, same length
                 ctx.beginPath();
                 ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX + 10, torsoEndY + 8);
+                ctx.lineTo(torsoEndX + 12, torsoEndY + 10);
                 ctx.stroke();
                 
                 ctx.beginPath();
-                ctx.moveTo(torsoEndX - 2, torsoEndY);
-                ctx.lineTo(torsoEndX + 8, torsoEndY + 10);
+                ctx.moveTo(torsoEndX, torsoEndY);
+                ctx.lineTo(torsoEndX + 10, torsoEndY + 12);
                 ctx.stroke();
                 
                 // Feet
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(torsoEndX + 10, torsoEndY + 8, 2.5, 0, Math.PI * 2);
+                ctx.arc(torsoEndX + 12, torsoEndY + 10, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(torsoEndX + 8, torsoEndY + 10, 2.5, 0, Math.PI * 2);
+                ctx.arc(torsoEndX + 10, torsoEndY + 12, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 
             } else {
-                // Jumping - legs together
+                // Jumping - legs together, same length
                 ctx.beginPath();
                 ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX + 2, torsoEndY + 15);
+                ctx.lineTo(torsoEndX + 2, torsoEndY + legLength);
                 ctx.stroke();
                 
                 ctx.beginPath();
-                ctx.moveTo(torsoEndX - 2, torsoEndY);
-                ctx.lineTo(torsoEndX, torsoEndY + 15);
+                ctx.moveTo(torsoEndX, torsoEndY);
+                ctx.lineTo(torsoEndX - 2, torsoEndY + legLength);
                 ctx.stroke();
                 
                 // Feet
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(torsoEndX + 2, torsoEndY + 15, 2.5, 0, Math.PI * 2);
+                ctx.arc(torsoEndX + 2, torsoEndY + legLength, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(torsoEndX, torsoEndY + 15, 2.5, 0, Math.PI * 2);
+                ctx.arc(torsoEndX - 2, torsoEndY + legLength, 2.5, 0, Math.PI * 2);
                 ctx.fill();
             }
 
             // Graduation cap - positioned on leaning head
-            let capX = player.x + player.width/2 - 3;
+            let capX = player.x + player.width/2 + 2;
             let capY = player.y;
 
             // Cap base (the part that sits on head)
@@ -1432,7 +1434,7 @@
             player.y += player.velocityY;
             
             // Ground collision
-            let groundY = player.ducking ? 373 : 378;
+            let groundY = 380;
             if (player.y > groundY - player.height) {
                 player.y = groundY - player.height;
                 player.velocityY = 0;
