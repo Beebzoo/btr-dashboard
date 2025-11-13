@@ -965,7 +965,7 @@
             
             player = {
                 x: 100,
-                y: 355,
+                y: 330,
                 width: 40,
                 height: 25,
                 normalHeight: 25,
@@ -1463,7 +1463,7 @@
             player.y += player.velocityY;
             
             // Ground collision
-            let groundY = 380;
+            let groundY = 355;
             if (player.y > groundY - player.height) {
                 player.y = groundY - player.height;
                 player.velocityY = 0;
@@ -1581,3 +1581,4 @@
     </script>
 </body>
 </html>
+
