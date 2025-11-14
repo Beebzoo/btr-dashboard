@@ -19,7 +19,7 @@
 
         body {
             font-family: 'Open Sans', Arial, sans-serif;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
             line-height: 1.6;
         }
@@ -29,7 +29,10 @@
             background: white;
             color: #001C3D;
             padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-content {
@@ -89,25 +92,65 @@
         .page-hero {
             background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
             color: white;
-            padding: 60px 30px;
+            padding: 80px 30px 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '🎬';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .page-hero-content {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .page-hero h1 {
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 15px;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
         }
 
         .page-hero p {
-            font-size: 17px;
+            font-size: 20px;
             opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00A2DB;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
         }
 
         /* Breadcrumb */
@@ -139,79 +182,154 @@
 
         /* Main Content */
         .content-wrapper {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto;
             padding: 0 30px;
         }
 
-        .content-section {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-            border: 1px solid #e0e0e0;
+        /* Quick Navigation Cards */
+        .quick-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        .content-section h2 {
-            font-size: 28px;
+        .quick-nav-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid #00A2DB;
+        }
+
+        .quick-nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .quick-nav-card h3 {
+            font-size: 18px;
             color: #001C3D;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #00A2DB;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-nav-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #003d6e 0%, #002849 100%);
+        }
+
+        .section-header h2 {
+            font-size: 26px;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .content-section h3 {
-            font-size: 22px;
+        .toggle-icon {
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .section-card.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .section-card.active .section-content {
+            max-height: 10000px;
+            transition: max-height 0.6s ease-in;
+        }
+
+        .section-inner {
+            padding: 40px;
+        }
+
+        .section-inner h3 {
+            font-size: 24px;
             color: #002D5A;
             margin-top: 30px;
             margin-bottom: 15px;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
+            border-bottom: 3px solid #00A2DB;
+            padding-bottom: 10px;
         }
 
-        .content-section h4 {
-            font-size: 18px;
+        .section-inner h4 {
+            font-size: 20px;
             color: #002D5A;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 25px;
+            margin-bottom: 12px;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
 
-        .content-section h5 {
-            font-size: 16px;
-            color: #00324d;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .content-section p {
+        .section-inner p {
             margin-bottom: 15px;
             font-size: 16px;
             line-height: 1.8;
         }
 
-        .content-section ul, .content-section ol {
+        .section-inner ul, .section-inner ol {
             margin: 15px 0 15px 30px;
         }
 
-        .content-section li {
+        .section-inner li {
             margin-bottom: 10px;
             font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Info Boxes */
         .info-box {
-            background: #E6F7FF;
+            background: linear-gradient(135deg, #E6F7FF 0%, #B3E5FC 100%);
             border-left: 4px solid #00A2DB;
-            padding: 20px;
+            padding: 25px;
             margin: 25px 0;
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,162,219,0.1);
         }
 
         .info-box strong {
@@ -219,15 +337,17 @@
             font-size: 18px;
             display: block;
             margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Warning Boxes */
         .warning-box {
-            background: #FFF3E0;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
             border-left: 4px solid #FF6200;
-            padding: 20px;
+            padding: 25px;
             margin: 25px 0;
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(255,98,0,0.1);
         }
 
         .warning-box strong {
@@ -235,63 +355,195 @@
             font-size: 18px;
             display: block;
             margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Success Boxes */
+        .success-box {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 4px solid #4CAF50;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(76,175,80,0.1);
+        }
+
+        .success-box strong {
+            color: #2E7D32;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .comparison-card {
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-card.do {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .comparison-card.dont {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 4px solid #F44336;
+        }
+
+        .comparison-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .comparison-card.do h4 {
+            color: #2E7D32;
+        }
+
+        .comparison-card.dont h4 {
+            color: #C62828;
         }
 
         /* Table Styles */
-        table {
+        .spec-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        table th {
-            background: #002D5A;
+        .spec-table th {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
             color: white;
-            padding: 12px;
+            padding: 15px;
             text-align: left;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        table td {
-            padding: 12px;
+        .spec-table td {
+            padding: 15px;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        table tr:hover {
+        .spec-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .spec-table tr:hover {
+            background: #f5f7fa;
+        }
+
+        /* Checklist Items */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
             background: #f8f9fa;
-        }
-
-        /* Quick Links Box */
-        .quick-links {
-            background: white;
-            padding: 25px;
             border-radius: 8px;
-            border: 2px solid #00A2DB;
-            margin-bottom: 30px;
-        }
-
-        .quick-links h3 {
-            color: #002D5A;
-            margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;  
-        }
-
-        .quick-links a {
-            display: block;
-            color: #00A2DB;
-            text-decoration: none;
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .quick-links a:hover {
-            color: #0088bb;
-            padding-left: 10px;
             transition: all 0.3s;
         }
 
-        .quick-links a:last-child {
-            border-bottom: none;
+        .checklist-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #00A2DB;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            counter-reset: step-counter;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+
+        .process-step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00A2DB 0%, #0088bb 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .process-step h4 {
+            margin-top: 0;
+        }
+
+        /* Resource Cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid #00A2DB;
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .resource-card h4 {
+            color: #002D5A;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .resource-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .resource-card li {
+            padding: 5px 0;
+            font-size: 14px;
         }
 
         /* Footer */
@@ -319,16 +571,48 @@
         /* Responsive */
         @media (max-width: 768px) {
             .page-hero h1 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
-            .content-section {
+            .video-stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+
+            .section-inner {
                 padding: 25px;
             }
 
             .nav-menu {
                 display: none;
             }
+
+            .quick-nav {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for section opening */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card.active .section-inner {
+            animation: fadeIn 0.4s ease-out;
         }
     </style>
 </head>
@@ -355,7 +639,7 @@
         <div class="breadcrumb-content">
             <a href="index.html">BTR Dashboard</a>
             <span>›</span>
-            <span>BTR Video</span>
+            <span>BTR Video Guidelines</span>
         </div>
     </div>
 
@@ -363,1497 +647,1152 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <h1>BTR Video Guidelines</h1>
-            <p>Communicating your research to non-scientists</p>
+            <p>Communicating Your Research to Non-Scientists</p>
+            
+            <div class="video-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5-7</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10%</div>
+                    <div class="stat-label">of BTR Grade</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2GB</div>
+                    <div class="stat-label">Max File Size</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Key Elements</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Main Content -->
     <div class="content-wrapper">
 
-        <!-- Quick Links -->
-        <div class="quick-links">
-            <h3>📋 Quick Links</h3>
-            <a href="#different">What Makes Your Video Different</a>
-            <a href="#content">Required Content Elements</a>
-            <a href="#technical">Technical Specifications</a>
-            <a href="#audio">Audio Quality</a>
-            <a href="#presentation">Presentation & Delivery</a>
-            <a href="#visual">Visual Elements & Editing</a>
-            <a href="#copyright">Copyright & Open Source Materials</a>
-            <a href="#subtitles">Subtitles & Accessibility</a>
-            <a href="#resources">University Resources & Support</a>
-            <a href="#submission">Submission Process</a>
-            <a href="#consent">Video Consent Form</a>
-            <a href="#grading">Grading & Peer Review</a>
-            <a href="#peer">Peer Review Requirements</a>
-            <a href="#checklist">Video Production Checklist</a>
-            <a href="#faq">Common Questions & Troubleshooting</a>
+        <!-- Quick Navigation -->
+        <div class="quick-nav">
+            <a href="#different" class="quick-nav-card">
+                <h3>🎯 What Makes It Different</h3>
+                <p>This is NOT a research presentation - learn the key differences</p>
+            </a>
+            <a href="#content" class="quick-nav-card">
+                <h3>📝 Required Content</h3>
+                <p>Four essential elements your video must address</p>
+            </a>
+            <a href="#technical" class="quick-nav-card">
+                <h3>⚙️ Technical Specs</h3>
+                <p>Format requirements, resolution, and file specifications</p>
+            </a>
+            <a href="#presentation" class="quick-nav-card">
+                <h3>🎭 Presentation Tips</h3>
+                <p>How to deliver your message effectively on camera</p>
+            </a>
+            <a href="#copyright" class="quick-nav-card">
+                <h3>⚖️ Copyright Rules</h3>
+                <p>Critical information about using images, videos, and music</p>
+            </a>
+            <a href="#submission" class="quick-nav-card">
+                <h3>📤 Submission Process</h3>
+                <p>Two-step submission via SURFdrive and Collent</p>
+            </a>
+            <a href="#peer" class="quick-nav-card">
+                <h3>👥 Peer Review</h3>
+                <p>Mandatory review requirement - 1.0 penalty if skipped</p>
+            </a>
+            <a href="#checklist" class="quick-nav-card">
+                <h3>✅ Final Checklist</h3>
+                <p>Everything to verify before submission</p>
+            </a>
         </div>
 
         <!-- Section 1: What Makes Your Video Different -->
-        <section id="different" class="content-section">
-            <h2>What Makes Your Video Different</h2>
-            
-            <h3>This is NOT a Research Presentation</h3>
-            <p>Your BTR video is fundamentally different from academic presentations or your thesis defense.</p>
+        <section id="different" class="section-card active">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎯 What Makes Your Video Different</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="warning-box">
+                        <strong>This is NOT a Research Presentation</strong>
+                        <p>Your BTR video is fundamentally different from academic presentations or your thesis defense. It's aimed at communicating your research to <strong>non-scientists</strong>, not experts in your field.</p>
+                    </div>
 
-            <h4>Key Difference:</h4>
-            <p>✓ <strong>BTR Video:</strong> Aimed at communicating your research to <strong>non-scientists</strong></p>
-            <p>✗ <strong>Research Presentation:</strong> Aimed at scientists in your field</p>
+                    <div class="comparison-table">
+                        <div class="comparison-card dont">
+                            <h4>❌ Don't Do This</h4>
+                            <ul>
+                                <li>Use complex, difficult-to-explain scientific terms</li>
+                                <li>Assume audience has specialized knowledge</li>
+                                <li>Focus primarily on technical methodology</li>
+                                <li>Record your defense presentation and submit that</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card do">
+                            <h4>✓ Do This Instead</h4>
+                            <ul>
+                                <li>Explain concepts in simple, accessible language</li>
+                                <li>Use analogies and examples anyone can understand</li>
+                                <li>Focus on why your research matters to society</li>
+                                <li>Make it engaging and relatable</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <h4>What This Means:</h4>
-            
-            <p><strong>❌ Don't:</strong></p>
-            <ul>
-                <li>Use complex, difficult-to-explain scientific terms</li>
-                <li>Assume audience has specialized knowledge</li>
-                <li>Focus primarily on technical methodology</li>
-                <li>Record your defense presentation and submit that</li>
-            </ul>
+                    <h3>Your Target Audience</h3>
+                    <p><strong>Think of your video as being watched by:</strong></p>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>👨‍👩‍👧 Family Members</h4>
+                            <p>Your parents or grandparents (unless they're scientists!)</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🎓 High School Students</h4>
+                            <p>Someone interested in science but without specialist training</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🏛️ Policy Makers</h4>
+                            <p>People deciding on research funding priorities</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>📰 Journalists</h4>
+                            <p>Writers covering scientific advances for the public</p>
+                        </div>
+                    </div>
 
-            <p><strong>✓ Do:</strong></p>
-            <ul>
-                <li>Explain concepts in simple, accessible language</li>
-                <li>Use analogies and examples that anyone can understand</li>
-                <li>Focus on why your research matters to society</li>
-                <li>Make it engaging and relatable</li>
-            </ul>
-
-            <h3>Your Target Audience</h3>
-            <p><strong>Think of your video as being watched by:</strong></p>
-            <ul>
-                <li>Your parents or grandparents (unless they're scientists!)</li>
-                <li>A high school student interested in science</li>
-                <li>A policy maker deciding on research funding</li>
-                <li>A journalist writing about scientific advances</li>
-                <li>Anyone curious about science but without specialist training</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>Your Goal:</strong>
-                <p>Make them understand and care about your research, even without scientific background.</p>
+                    <div class="success-box">
+                        <strong>Your Goal:</strong>
+                        <p>Make them understand and care about your research, even without scientific background.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Section 2: Required Content Elements -->
-        <section id="content" class="content-section">
-            <h2>Required Content Elements</h2>
-            
-            <p>Your video must address <strong>four key elements</strong>. Each is essential and will be assessed.</p>
-
-            <h3>1. Scientific Importance ⚗️</h3>
-            
-            <h4>What to Explain:</h4>
-            <ul>
-                <li>How does this work increase our knowledge of the world/universe?</li>
-                <li>What gap in scientific understanding does it fill?</li>
-                <li>What didn't we know before that we know now (or will know)?</li>
-                <li>How does it fit into the bigger scientific picture?</li>
-            </ul>
-
-            <h4>Approach:</h4>
-            <ul>
-                <li>Place your work in the context of broader scientific questions</li>
-                <li>Explain what previous research established</li>
-                <li>Show where the gap was</li>
-                <li>Demonstrate how your work begins to fill that gap</li>
-            </ul>
-
-            <p><strong>Example Framing:</strong></p>
-            <p>"Scientists have known X for years, but we didn't understand Y. My research helps us understand Y by..."</p>
-
-            <h3>2. Societal Importance 🌍</h3>
-            
-            <h4>What to Explain:</h4>
-            <ul>
-                <li>What contribution does your work make to a better world?</li>
-                <li>How might it improve people's lives?</li>
-                <li>What are the potential real-world applications?</li>
-            </ul>
-
-            <h4>Possible Impacts:</h4>
-            
-            <p><strong>For Applied Research:</strong></p>
-            <ul>
-                <li>Improvements to human health and welfare</li>
-                <li>Environmental benefits</li>
-                <li>Technological advances</li>
-                <li>Economic benefits</li>
-                <li>Solutions to practical problems</li>
-            </ul>
-
-            <p><strong>For "Blue Sky" Research:</strong></p>
-            <p>Even pure research without obvious applications needs societal justification:</p>
-            <ul>
-                <li>Why does this knowledge matter?</li>
-                <li>Why should society fund this research?</li>
-                <li>What are the potential long-term benefits?</li>
-                <li>How does it contribute to human understanding?</li>
-                <li>Could it lead to unexpected applications?</li>
-            </ul>
-
-            <h4>Be Honest:</h4>
-            <p>If your work is primarily curiosity-driven, explain:</p>
-            <ul>
-                <li>Why understanding this is inherently valuable</li>
-                <li>How fundamental research often leads to unexpected breakthroughs</li>
-                <li>Examples of how "useless" research became transformative</li>
-            </ul>
-
-            <h3>3. Ethical Considerations ⚖️</h3>
-            
-            <div class="warning-box">
-                <strong>CRITICAL:</strong>
-                <p>There is no piece of science free from ethical considerations.</p>
+        <section id="content" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📝 Required Content Elements</h2>
+                <span class="toggle-icon">▼</span>
             </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <p>Your video must address <strong>four key elements</strong>. Each is essential and will be assessed.</p>
 
-            <h4>What to Discuss:</h4>
-            <p>Every research project has ethical dimensions. Your video must address these.</p>
+                    <h3>1. Scientific Importance ⚗️</h3>
+                    <div class="info-box">
+                        <strong>Key Question:</strong>
+                        <p>How does this work increase our knowledge of the world/universe?</p>
+                    </div>
 
-            <h4>Common Ethical Areas:</h4>
-            
-            <p><strong>Work with Living Subjects:</strong></p>
-            <ul>
-                <li>Animal welfare considerations</li>
-                <li>Human participant rights and protections</li>
-                <li>Consent and privacy issues</li>
-                <li>Potential harm or risk</li>
-                <li>Justification for methods used</li>
-            </ul>
+                    <h4>What to Explain:</h4>
+                    <ul>
+                        <li>What gap in scientific understanding does it fill?</li>
+                        <li>What didn't we know before that we know now (or will know)?</li>
+                        <li>How does it fit into the bigger scientific picture?</li>
+                    </ul>
 
-            <p><strong>Data Ethics:</strong></p>
-            <ul>
-                <li>How data is collected</li>
-                <li>Privacy and anonymity protections</li>
-                <li>Data storage and security</li>
-                <li>Who has access to data</li>
-                <li>Data sharing practices</li>
-                <li>Long-term data management</li>
-            </ul>
+                    <h4>Example Framing:</h4>
+                    <div class="success-box">
+                        <p>"Scientists have known X for years, but we didn't understand Y. My research helps us understand Y by..."</p>
+                    </div>
 
-            <p><strong>Resource Allocation:</strong></p>
-            <ul>
-                <li>Is this research the best use of (public) funding?</li>
-                <li>Given limited resources, why prioritize this work?</li>
-                <li>Opportunity costs of research choices</li>
-            </ul>
+                    <h3>2. Societal Importance 🌍</h3>
+                    <div class="info-box">
+                        <strong>Key Question:</strong>
+                        <p>What contribution does your work make to a better world?</p>
+                    </div>
 
-            <p><strong>Environmental Impact:</strong></p>
-            <ul>
-                <li>Energy consumption</li>
-                <li>Waste production</li>
-                <li>Use of materials or chemicals</li>
-                <li>Long-term environmental effects</li>
-            </ul>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>Applied Research</h4>
+                            <ul>
+                                <li>Health improvements</li>
+                                <li>Environmental benefits</li>
+                                <li>Technological advances</li>
+                                <li>Economic benefits</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>"Blue Sky" Research</h4>
+                            <ul>
+                                <li>Why this knowledge matters</li>
+                                <li>Long-term benefits</li>
+                                <li>Unexpected applications</li>
+                                <li>Human understanding</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <p><strong>Dual-Use Concerns:</strong></p>
-            <ul>
-                <li>Could results be misused?</li>
-                <li>Potential negative applications</li>
-                <li>Responsibilities in disseminating findings</li>
-            </ul>
+                    <h3>3. Ethical Considerations ⚖️</h3>
+                    <div class="warning-box">
+                        <strong>CRITICAL:</strong>
+                        <p>There is no piece of science free from ethical considerations. You MUST address this.</p>
+                    </div>
 
-            <p><strong>Social Justice:</strong></p>
-            <ul>
-                <li>Who benefits from this research?</li>
-                <li>Who might be harmed or excluded?</li>
-                <li>Equity considerations</li>
-            </ul>
+                    <h4>Common Ethical Areas:</h4>
+                    <ul>
+                        <li><strong>Living Subjects:</strong> Animal welfare, human rights, consent, potential harm</li>
+                        <li><strong>Data Ethics:</strong> Privacy, anonymity, security, access, long-term management</li>
+                        <li><strong>Resource Allocation:</strong> Best use of funding, opportunity costs</li>
+                        <li><strong>Environmental Impact:</strong> Energy consumption, waste, materials, long-term effects</li>
+                        <li><strong>Dual-Use Concerns:</strong> Potential for misuse, responsibility in dissemination</li>
+                        <li><strong>Social Justice:</strong> Who benefits, who might be harmed, equity considerations</li>
+                    </ul>
 
-            <h4>Your Approach:</h4>
-            <ul>
-                <li>Identify which ethical dimensions apply to your work</li>
-                <li>Address them thoughtfully and honestly</li>
-                <li>Show awareness that research carries responsibilities</li>
-                <li>Demonstrate that you've thought critically about these issues</li>
-            </ul>
+                    <div class="comparison-table">
+                        <div class="comparison-card dont">
+                            <h4>❌ Never Say</h4>
+                            <p>"My research has no ethical considerations"</p>
+                        </div>
+                        <div class="comparison-card do">
+                            <h4>✓ Always Say</h4>
+                            <p>"The key ethical considerations in my work are..."</p>
+                        </div>
+                    </div>
 
-            <div class="warning-box">
-                <strong>⚠️ Don't Say:</strong> "My research has no ethical considerations"<br>
-                <strong>✓ Do Say:</strong> "The key ethical considerations in my work are..."
+                    <h3>4. Clear Structure & Storytelling 📖</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h4>Opening Statement</h4>
+                            <ul>
+                                <li>Hook the audience immediately</li>
+                                <li>State clearly what your research is about</li>
+                                <li>Why should they care?</li>
+                            </ul>
+                        </div>
+                        <div class="process-step">
+                            <h4>Middle (Main Content)</h4>
+                            <ul>
+                                <li>Logically organized sections</li>
+                                <li>Clear transitions between ideas</li>
+                                <li>Progressive building of understanding</li>
+                                <li>Visual aids to support explanations</li>
+                            </ul>
+                        </div>
+                        <div class="process-step">
+                            <h4>Conclusion</h4>
+                            <ul>
+                                <li>Summarize key takeaways</li>
+                                <li>Reinforce why it matters</li>
+                                <li>Leave audience with clear understanding</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <h3>4. Clear Structure & Storytelling 📖</h3>
-            
-            <h4>Your video must have:</h4>
-            
-            <p><strong>Opening Statement:</strong></p>
-            <ul>
-                <li>Hook the audience immediately</li>
-                <li>State clearly what your research is about</li>
-                <li>Why should they care?</li>
-            </ul>
-
-            <p><strong>Middle (Main Content):</strong></p>
-            <ul>
-                <li>Logically organized sections</li>
-                <li>Clear transitions between ideas</li>
-                <li>Progressive building of understanding</li>
-                <li>Visual aids to support explanations</li>
-            </ul>
-
-            <p><strong>Conclusion:</strong></p>
-            <ul>
-                <li>Summarize key takeaways</li>
-                <li>Reinforce why it matters</li>
-                <li>Leave audience with clear understanding of significance</li>
-            </ul>
-
-            <h4>Storytelling Tips:</h4>
-            <ul>
-                <li>✓ Create a narrative arc (problem → investigation → findings → impact)</li>
-                <li>✓ Use the "inverted pyramid" - most important points first</li>
-                <li>✓ Build complexity gradually - simple to more detailed</li>
-                <li>✓ Connect back to your opening throughout</li>
-            </ul>
         </section>
 
         <!-- Section 3: Technical Specifications -->
-        <section id="technical" class="content-section">
-            <h2>Technical Specifications</h2>
-            
-            <h3>Video Format Requirements</h3>
-            
-            <table>
-                <tr>
-                    <th>Specification</th>
-                    <th>Requirement</th>
-                </tr>
-                <tr>
-                    <td><strong>File Format</strong></td>
-                    <td>MP4 (MPEG-4)</td>
-                </tr>
-                <tr>
-                    <td><strong>Duration</strong></td>
-                    <td>5-7 minutes (videos significantly shorter or longer may be penalized)</td>
-                </tr>
-                <tr>
-                    <td><strong>File Size</strong></td>
-                    <td>Maximum 2GB</td>
-                </tr>
-                <tr>
-                    <td><strong>Orientation</strong></td>
-                    <td>Landscape mode strongly recommended (16:9 aspect ratio)</td>
-                </tr>
-                <tr>
-                    <td><strong>Resolution</strong></td>
-                    <td>Minimum 720p (1280 x 720), Preferred 1080p (1920 x 1080) or higher</td>
-                </tr>
-            </table>
-
-            <h3>Frame Composition</h3>
-            
-            <p><strong>Full Frame:</strong></p>
-            <ul>
-                <li>Video should fill entire frame</li>
-                <li>No black bars around edges</li>
-                <li>Properly cropped and formatted</li>
-            </ul>
-
-            <p><strong>Focus:</strong></p>
-            <ul>
-                <li>Face should be in focus when appearing</li>
-                <li>Important visual elements should be sharp and clear</li>
-            </ul>
-
-            <p><strong>Background:</strong></p>
-            <ul>
-                <li>Clean and appropriate</li>
-                <li>Not distracting</li>
-                <li>Professional appearance</li>
-                <li>Consider location carefully</li>
-            </ul>
-        </section>
-
-        <!-- Section 4: Audio Quality -->
-        <section id="audio" class="content-section">
-            <h2>Audio Quality</h2>
-            
-            <div class="warning-box">
-                <strong>Audio is Critical for Viewer Experience</strong>
-                <p>Poor audio quality will significantly impact your grade and audience engagement.</p>
+        <section id="technical" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>⚙️ Technical Specifications</h2>
+                <span class="toggle-icon">▼</span>
             </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Video Format Requirements</h3>
+                    
+                    <table class="spec-table">
+                        <tr>
+                            <th>Specification</th>
+                            <th>Requirement</th>
+                        </tr>
+                        <tr>
+                            <td><strong>File Format</strong></td>
+                            <td>MP4 (MPEG-4)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duration</strong></td>
+                            <td>5-7 minutes (videos significantly shorter or longer may be penalized)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>File Size</strong></td>
+                            <td>Maximum 2GB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orientation</strong></td>
+                            <td>Landscape mode strongly recommended (16:9 aspect ratio)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resolution</strong></td>
+                            <td>Minimum 720p (1280 x 720), Preferred 1080p (1920 x 1080) or higher</td>
+                        </tr>
+                    </table>
 
-            <h3>Requirements</h3>
-            
-            <p><strong>Clear Voice:</strong></p>
-            <ul>
-                <li>Speak clearly and at appropriate volume</li>
-                <li>Articulate carefully</li>
-                <li>Vary tone to maintain interest (avoid monotone)</li>
-                <li>Pace yourself - not too fast, not too slow</li>
-            </ul>
+                    <h3>Quality Requirements</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>🎥 Video Quality</h4>
+                            <ul>
+                                <li>Full frame (no black bars)</li>
+                                <li>Face in focus</li>
+                                <li>Clean background</li>
+                                <li>No shaking (use tripod)</li>
+                                <li>Good lighting</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🔊 Audio Quality</h4>
+                            <ul>
+                                <li>Clear voice</li>
+                                <li>No background noise</li>
+                                <li>Perfect sync with video</li>
+                                <li>Consistent volume</li>
+                                <li>No echo</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <p><strong>No Background Noise:</strong></p>
-            <ul>
-                <li>Record in quiet environment</li>
-                <li>No traffic sounds</li>
-                <li>No phone notifications</li>
-                <li>No people chatting in background</li>
-                <li>No echo or reverb</li>
-            </ul>
-
-            <p><strong>Audio-Video Synchronization:</strong></p>
-            <ul>
-                <li>Audio must perfectly match video</li>
-                <li>No lag or delay</li>
-                <li>Test before final submission</li>
-            </ul>
-
-            <h3>Recording Tips</h3>
-            
-            <p><strong>Environment:</strong></p>
-            <ul>
-                <li>✓ Record in quiet room</li>
-                <li>✓ Close windows (traffic noise)</li>
-                <li>✓ Turn off phones and notifications</li>
-                <li>✓ Inform others not to interrupt</li>
-                <li>✓ Consider time of day (avoid noisy periods)</li>
-            </ul>
-
-            <p><strong>Equipment:</strong></p>
-            <ul>
-                <li>✓ Use external microphone if possible (better than built-in)</li>
-                <li>✓ Test audio levels before recording</li>
-                <li>✓ Position microphone appropriately (6-12 inches from mouth)</li>
-                <li>✓ Record test clip and listen critically</li>
-            </ul>
-
-            <p><strong>If Audio is Poor:</strong></p>
-            <ul>
-                <li>Consider re-recording</li>
-                <li>Use audio editing software to reduce noise (carefully)</li>
-                <li>Ensure any edits don't create unnatural sound</li>
-            </ul>
-        </section>
-
-        <!-- Section 5: Presentation & Delivery -->
-        <section id="presentation" class="content-section">
-            <h2>Presentation & Delivery</h2>
-            
-            <h3>Your On-Camera Presence Matters</h3>
-            <p>How you present yourself impacts how your message is received.</p>
-
-            <h3>Appearance</h3>
-            
-            <p><strong>Dress Appropriately:</strong></p>
-            <ul>
-                <li>Professional but comfortable</li>
-                <li>Solid colors often work better than patterns</li>
-                <li>⚠️ <strong>Avoid checkered patterns</strong> (can create visual artifacts on camera)</li>
-                <li>Consider what suits your research topic's tone</li>
-            </ul>
-
-            <p><strong>Grooming & Posture:</strong></p>
-            <ul>
-                <li>Look presentable and professional</li>
-                <li>Good posture - sit or stand up straight</li>
-                <li>Face clearly visible</li>
-                <li>Hair not obscuring face</li>
-            </ul>
-
-            <h3>Body Language & Delivery</h3>
-            
-            <p><strong>Energy Level:</strong></p>
-            <ul>
-                <li>Seem relaxed but <strong>not too relaxed</strong></li>
-                <li>Maintain <strong>high energy levels</strong> throughout</li>
-                <li>Show enthusiasm for your work</li>
-                <li>Avoid appearing bored or disinterested</li>
-            </ul>
-
-            <p><strong>Eye Contact:</strong></p>
-            <ul>
-                <li><strong>Look into the camera</strong> (not at screen or notes)</li>
-                <li>Creates connection with audience</li>
-                <li>Looking elsewhere appears shifty or uncertain</li>
-                <li>Practice looking at camera lens specifically</li>
-            </ul>
-
-            <p><strong>Facial Expressions:</strong></p>
-            <ul>
-                <li>Appropriate to content</li>
-                <li>Show genuine interest</li>
-                <li>Smile when appropriate</li>
-                <li>Avoid appearing robotic or overly serious</li>
-            </ul>
-
-            <h3>Communication Style</h3>
-            
-            <p><strong>Language:</strong></p>
-            <ul>
-                <li><strong>No jargon</strong> - explain everything in accessible terms</li>
-                <li><strong>Use examples and analogies</strong> to illustrate complex points</li>
-                <li><strong>Stick to the point</strong> - don't ramble or digress</li>
-                <li>Be concise and clear</li>
-            </ul>
-
-            <p><strong>Tone:</strong></p>
-            <ul>
-                <li>Consider the <strong>style appropriate to your topic</strong></li>
-                <li>Humor can work but be careful with sensitive topics</li>
-                <li><strong>Example:</strong> Don't use humor when discussing terminal disease</li>
-                <li>Match tone to subject matter seriousness</li>
-            </ul>
-
-            <p><strong>Pacing:</strong></p>
-            <ul>
-                <li>Not too fast (audience needs time to process)</li>
-                <li>Not too slow (maintains interest)</li>
-                <li>Pause between major points</li>
-                <li>Use pacing to emphasize important information</li>
-            </ul>
-        </section>
-
-        <!-- Section 6: Visual Elements & Editing -->
-        <section id="visual" class="content-section">
-            <h2>Visual Elements & Editing</h2>
-            
-            <h3>PowerPoint Slides - Use Strategically</h3>
-            
-            <div class="warning-box">
-                <strong>⚠️ Important:</strong> We want a <strong>video</strong>, not a PowerPoint presentation.
-            </div>
-
-            <h4>Using PowerPoint:</h4>
-            <p>✓ <strong>Acceptable:</strong> Using PowerPoint slides as part of your video</p>
-            <p>✗ <strong>Not Acceptable:</strong> Entire video being only PowerPoint slides</p>
-            <p>✗ <strong>Not Acceptable:</strong> Submitting PowerPoint file directly</p>
-
-            <div class="info-box">
-                <strong>Critical Requirement: We want to see YOU</strong>
-                <ul>
-                    <li>Your face must appear <strong>at some point</strong> in the video</li>
-                    <li>Minimum: talking head in introduction and/or conclusion</li>
-                    <li>Better: appear throughout, perhaps in corner with slides</li>
-                    <li>Best: mix of direct presentation and visual aids</li>
-                </ul>
-            </div>
-
-            <h4>Converting PowerPoint to Video:</h4>
-            <ul>
-                <li>Save presentation as MPEG-4 video (*.mp4)</li>
-                <li>Microsoft Office has built-in conversion feature</li>
-                <li>You cannot submit .pptx files - must be video format</li>
-            </ul>
-
-            <h3>Visual Design Elements</h3>
-            
-            <p><strong>If Using Talking Head in Corner:</strong></p>
-            <ul>
-                <li>Position yourself in one corner of frame</li>
-                <li>Ensures you're visible while showing visuals</li>
-                <li>Keep consistent positioning throughout</li>
-            </ul>
-
-            <p><strong>Photos & Images:</strong></p>
-            <ul>
-                <li><strong>High resolution</strong> - not pixelated or distorted</li>
-                <li>Properly sized to fill frame appropriately</li>
-                <li>Clear and relevant to narration</li>
-                <li><strong>Must be copyright-free</strong> (see Copyright section below)</li>
-            </ul>
-
-            <p><strong>Visual Flow:</strong></p>
-            <ul>
-                <li><strong>Keep it visually interesting</strong></li>
-                <li>Don't stay on same image/slide for too long</li>
-                <li>Vary visual elements</li>
-                <li>Match visuals to narration</li>
-                <li>Use transitions thoughtfully (not excessive)</li>
-            </ul>
-
-            <h3>Technical Quality Checks</h3>
-            
-            <p><strong>Stability:</strong></p>
-            <ul>
-                <li>Video should <strong>not be shaky</strong></li>
-                <li>Use tripod or secure camera position</li>
-                <li>No handheld recording unless necessary</li>
-            </ul>
-
-            <p><strong>Clarity:</strong></p>
-            <ul>
-                <li>Image should <strong>not be cloudy or blurred</strong></li>
-                <li>Clean camera lens before recording</li>
-                <li>Ensure adequate lighting</li>
-                <li>Check focus</li>
-            </ul>
-
-            <p><strong>Lighting:</strong></p>
-            <ul>
-                <li>Face should be well-lit</li>
-                <li>Avoid backlighting (don't sit in front of window)</li>
-                <li>Even lighting without harsh shadows</li>
-                <li>Natural or artificial light both work if properly used</li>
-            </ul>
-        </section>
-
-        <!-- Section 7: Copyright -->
-        <section id="copyright" class="content-section">
-            <h2>Copyright & Open Source Materials</h2>
-            
-            <div class="warning-box">
-                <strong>⚠️ CRITICAL: Copyright Compliance</strong>
-                <p>You MUST NOT use copyrighted material in your video.</p>
-            </div>
-
-            <h3>What You Cannot Use</h3>
-            <ul>
-                <li>❌ <strong>Other people's videos</strong> (clips from YouTube, films, TV, etc.)</li>
-                <li>❌ <strong>Copyrighted images</strong> (stock photos without license, others' photographs)</li>
-                <li>❌ <strong>Copyrighted music</strong> (commercial songs, background music with rights)</li>
-                <li>❌ <strong>Copyrighted graphics</strong> (branded logos without permission, illustrations)</li>
-            </ul>
-
-            <h3>Why This Matters</h3>
-            
-            <p><strong>Serious Consequences:</strong></p>
-            <ul>
-                <li>Videos may be shared publicly for promotional purposes (if you consent)</li>
-                <li>Other people may see these videos</li>
-                <li>If someone sees copyrighted material you've "stolen," there could be legal trouble</li>
-                <li>University could face copyright infringement claims</li>
-                <li>You could face academic integrity violations</li>
-            </ul>
-
-            <p><strong>Your Responsibility:</strong></p>
-            <ul>
-                <li>Ensure all materials are properly licensed</li>
-                <li>Document sources for all visual elements</li>
-                <li>When in doubt, don't use it</li>
-            </ul>
-
-            <h3>What You CAN Use</h3>
-            
-            <p><strong>✓ Your own original content</strong></p>
-            <ul>
-                <li>Photos you've taken yourself</li>
-                <li>Graphics/diagrams you've created</li>
-                <li>Your own voice and presentation</li>
-                <li>Lab equipment, experiments, etc. you have permission to film</li>
-            </ul>
-
-            <p><strong>✓ Open source materials</strong></p>
-            <ul>
-                <li>Creative Commons licensed images (check specific CC license)</li>
-                <li>Public domain materials</li>
-                <li>Properly licensed stock photos/videos (free or purchased)</li>
-                <li>University or research group materials you have permission to use</li>
-            </ul>
-
-            <p><strong>✓ Properly licensed content</strong></p>
-            <ul>
-                <li>Materials with explicit permission from creator</li>
-                <li>Licensed stock resources</li>
-                <li>Open access scientific figures (with proper attribution)</li>
-            </ul>
-
-            <h3>Finding Open Source Materials</h3>
-            
-            <p><strong>Image Sources:</strong></p>
-            <ul>
-                <li>Unsplash (free high-quality photos)</li>
-                <li>Pixabay (free images and videos)</li>
-                <li>Pexels (free stock photos)</li>
-                <li>Wikimedia Commons (check licenses)</li>
-                <li>Creative Commons Search</li>
-            </ul>
-
-            <p><strong>Video Sources:</strong></p>
-            <ul>
-                <li>Pexels Videos</li>
-                <li>Pixabay Videos</li>
-                <li>Videvo (free stock footage)</li>
-            </ul>
-
-            <p><strong>Music Sources (if using background music):</strong></p>
-            <ul>
-                <li>YouTube Audio Library</li>
-                <li>Free Music Archive</li>
-                <li>Incompetech (royalty-free music)</li>
-                <li>Always check license terms!</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>⚠️ Verify License Terms:</strong>
-                <ul>
-                    <li>Some Creative Commons licenses require attribution</li>
-                    <li>Some prohibit commercial use (but educational use usually OK)</li>
-                    <li>Read license details for each resource</li>
-                    <li>Keep records of licenses for materials used</li>
-                </ul>
-            </div>
-
-            <h3>Attribution</h3>
-            <p><strong>If license requires attribution:</strong></p>
-            <ul>
-                <li>Include credits at end of video</li>
-                <li>List all sources with proper attribution</li>
-                <li>Format: "Image by [creator] from [source]"</li>
-            </ul>
-        </section>
-
-        <!-- Section 8: Subtitles & Accessibility -->
-        <section id="subtitles" class="content-section">
-            <h2>Subtitles & Accessibility</h2>
-            
-            <h3>Subtitles - Recommended but Not Required</h3>
-
-            <h4>Benefits of Subtitles:</h4>
-            
-            <p><strong>Accessibility:</strong></p>
-            <ul>
-                <li>Essential for deaf or hard-of-hearing viewers</li>
-                <li>Helps non-native English speakers</li>
-                <li>Allows viewing in sound-sensitive environments</li>
-            </ul>
-
-            <p><strong>Practical Uses:</strong></p>
-            <ul>
-                <li>Videos can be watched without sound (public spaces, libraries)</li>
-                <li>Improves comprehension of technical terms</li>
-                <li>Viewers can read along while listening</li>
-            </ul>
-
-            <p><strong>Professional Quality:</strong></p>
-            <ul>
-                <li>Makes video more polished</li>
-                <li>Shows extra effort and consideration</li>
-                <li>Improves overall viewing experience</li>
-            </ul>
-
-            <h3>Creating Subtitles</h3>
-            
-            <p><strong>Options:</strong></p>
-
-            <h4>1. YouTube Auto-Captions (Free)</h4>
-            <ul>
-                <li>Upload video to YouTube (can be private/unlisted)</li>
-                <li>YouTube generates automatic captions</li>
-                <li>Download .srt file</li>
-                <li>Edit for accuracy</li>
-                <li>Add to final video</li>
-            </ul>
-
-            <h4>2. Video Editing Software</h4>
-            <ul>
-                <li>Most editing programs have subtitle features</li>
-                <li>Add text overlays timed to speech</li>
-                <li>Export with burned-in subtitles</li>
-            </ul>
-
-            <h4>3. Online Subtitle Tools</h4>
-            <ul>
-                <li>Subtitle Edit (free software)</li>
-                <li>Amara (online subtitle editor)</li>
-                <li>Various subtitle generation services</li>
-            </ul>
-
-            <h4>4. Manual Creation</h4>
-            <ul>
-                <li>Create .srt or .vtt subtitle file</li>
-                <li>Time stamps for each caption</li>
-                <li>Embed in video or provide as separate track</li>
-            </ul>
-
-            <h3>Subtitle Best Practices</h3>
-            
-            <p><strong>If You Include Subtitles:</strong></p>
-            <ul>
-                <li>✓ <strong>Accurate transcription</strong> of spoken words</li>
-                <li>✓ <strong>Properly timed</strong> to match speech</li>
-                <li>✓ <strong>Readable</strong> text size and font</li>
-                <li>✓ <strong>High contrast</strong> (white text on dark background or vice versa)</li>
-                <li>✓ <strong>Appropriate duration</strong> - text visible long enough to read</li>
-                <li>✓ <strong>Include sound descriptions</strong> [if relevant] for non-speech sounds</li>
-                <li>✓ <strong>Proofread carefully</strong> - spelling and timing</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>⚠️ Note:</strong> Subtitles are not absolutely necessary, and can be <strong>technically difficult</strong>
-                <p><strong>Decision:</strong> Weigh benefit vs. time investment</p>
-                <ul>
-                    <li>For students with experience: Recommended</li>
-                    <li>For students without experience: Optional</li>
-                    <li>Don't add subtitles if they'll be poorly done (better to have none)</li>
-                </ul>
+                    <div class="warning-box">
+                        <strong>Audio is Critical</strong>
+                        <p>Poor audio quality will significantly impact your grade and audience engagement. Record in a quiet environment with good equipment.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Section 9: University Resources -->
-        <section id="resources" class="content-section">
-            <h2>University Resources & Support</h2>
-            
-            <h3>Maastricht University Library Facilities</h3>
-            
-            <p><strong>Professional Video Recording Facilities Available:</strong></p>
-            <p>The UM Libraries provide facilities you can use to help shoot your video.</p>
-
-            <p><strong>What's Available:</strong></p>
-            <ul>
-                <li>Video recording equipment</li>
-                <li>Professional lighting setups</li>
-                <li>Green screen capabilities</li>
-                <li>Audio recording equipment</li>
-                <li>Editing workstations (potentially)</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>Tips for Using Library Facilities:</strong>
-                <ul>
-                    <li>Book in advance (popular before BTR video deadlines!)</li>
-                    <li>Allow extra time for setup and familiarization</li>
-                    <li>Consider doing test recordings before final shoot</li>
-                    <li>Ask staff for guidance if unsure about equipment</li>
-                </ul>
+        <!-- Section 4: Presentation & Delivery -->
+        <section id="presentation" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🎭 Presentation & Delivery</h2>
+                <span class="toggle-icon">▼</span>
             </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Your On-Camera Presence Matters</h3>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-card do">
+                            <h4>✓ Professional Appearance</h4>
+                            <ul>
+                                <li>Dress appropriately but comfortably</li>
+                                <li>Use solid colors (avoid checkered patterns)</li>
+                                <li>Good posture - sit/stand straight</li>
+                                <li>Face clearly visible</li>
+                                <li>Look well-groomed and prepared</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card do">
+                            <h4>✓ Engaging Delivery</h4>
+                            <ul>
+                                <li>Maintain high energy levels</li>
+                                <li>Show enthusiasm for your work</li>
+                                <li>Look into the camera (eye contact)</li>
+                                <li>Appropriate facial expressions</li>
+                                <li>Avoid appearing bored or robotic</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <h3>Additional University Support</h3>
-            
-            <p><strong>IT Services:</strong></p>
-            <ul>
-                <li>Video editing software availability</li>
-                <li>Technical support for format conversion</li>
-                <li>File compression assistance</li>
-            </ul>
+                    <h3>Communication Style</h3>
+                    
+                    <div class="info-box">
+                        <strong>The Golden Rules:</strong>
+                        <ul>
+                            <li><strong>No jargon</strong> - explain everything in accessible terms</li>
+                            <li><strong>Use examples and analogies</strong> to illustrate complex points</li>
+                            <li><strong>Stick to the point</strong> - don't ramble or digress</li>
+                            <li><strong>Match tone to subject</strong> - humor is fine for some topics, not others</li>
+                            <li><strong>Pace yourself</strong> - not too fast, not too slow</li>
+                        </ul>
+                    </div>
 
-            <p><strong>Academic Skills Center:</strong></p>
-            <ul>
-                <li>Presentation skills workshops</li>
-                <li>Communication training</li>
-                <li>May offer video presentation guidance</li>
-            </ul>
+                    <h3>Visual Elements</h3>
+                    
+                    <div class="warning-box">
+                        <strong>⚠️ Important:</strong>
+                        <p>We want a <strong>video</strong>, not a PowerPoint presentation. Your face must appear at some point in the video.</p>
+                    </div>
 
-            <p><strong>Your Internal Advisor:</strong></p>
-            <ul>
-                <li>Can provide feedback on draft videos (if time allows)</li>
-                <li>Guidance on content appropriateness</li>
-                <li>Clarification of requirements</li>
-            </ul>
-
-            <p><strong>BTR Administrator:</strong></p>
-            <ul>
-                <li>Questions about technical requirements</li>
-                <li>Submission issues</li>
-                <li>Deadline clarifications</li>
-                <li>Email: <strong>msp-btr@maastrichtuniversity.nl</strong></li>
-            </ul>
-        </section>
-
-        <!-- Section 10: Submission Process -->
-        <section id="submission" class="content-section">
-            <h2>Submission Process</h2>
-            
-            <h3>Submission Deadline</h3>
-            <p><strong>When:</strong> Few days after thesis deadline at <strong>13:00 sharp</strong></p>
-            <p>Your exact deadline is in the personalized calendar provided at BTR start.</p>
-
-            <div class="warning-box">
-                <strong>⚠️ Late submissions may not be accepted</strong> - plan accordingly!
-            </div>
-
-            <h3>Two-Step Submission Process</h3>
-            <p><strong>You must complete BOTH steps:</strong></p>
-
-            <h4>Step 1: Upload to SURFdrive (Backup/Archive)</h4>
-            <p>🔗 <strong>SURFdrive Upload Link:</strong> https://surfdrive.surf.nl/files/index.php/s/WBdfOTCn6awXuWk</p>
-
-            <p><strong>Why SURFdrive:</strong></p>
-            <ul>
-                <li>Secure university server storage</li>
-                <li>Serves as permanent archive</li>
-                <li>Backup in case WeTransfer link expires before grading</li>
-                <li>University maintains copies for record-keeping</li>
-            </ul>
-
-            <p><strong>File Naming REQUIRED:</strong></p>
-            <p>Must include your student ID number and full name</p>
-            <p><strong>Format:</strong> StudentID_Lastname_Firstname_BTR_Video.mp4</p>
-            <p><strong>Example:</strong> i6259596_Jeurissen_Martijn_BTR_Video.mp4</p>
-
-            <div class="warning-box">
-                <strong>⚠️ Critical:</strong> Incorrect file naming may cause processing delays
-            </div>
-
-            <h4>Step 2: Submit WeTransfer Link via Collent</h4>
-            
-            <p><strong>Process:</strong></p>
-            <ol>
-                <li><strong>Upload video to WeTransfer</strong> (www.wetransfer.com)
+                    <h4>Using PowerPoint:</h4>
                     <ul>
-                        <li>Free for files up to 2GB</li>
-                        <li>Generate sharing link</li>
+                        <li>✓ <strong>Acceptable:</strong> Using PowerPoint slides as part of your video</li>
+                        <li>✗ <strong>Not Acceptable:</strong> Entire video being only PowerPoint slides</li>
+                        <li>✗ <strong>Not Acceptable:</strong> Submitting PowerPoint file directly</li>
                     </ul>
-                </li>
-                <li><strong>Also upload Video Consent Form to WeTransfer</strong>
+
+                    <div class="success-box">
+                        <strong>Best Practice:</strong>
+                        <p>Mix of direct presentation (you speaking to camera) and visual aids (slides, images, diagrams). Consider picture-in-picture with you in a corner while showing visuals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Copyright -->
+        <section id="copyright" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>⚖️ Copyright & Legal Compliance</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="warning-box">
+                        <strong>⚠️ CRITICAL: Copyright Compliance</strong>
+                        <p>You MUST NOT use copyrighted material in your video. Videos may be shared publicly, and copyright violations could lead to legal issues and academic integrity violations.</p>
+                    </div>
+
+                    <h3>What You Cannot Use</h3>
+                    <div class="comparison-table">
+                        <div class="comparison-card dont">
+                            <h4>❌ Prohibited</h4>
+                            <ul>
+                                <li>Other people's videos (YouTube clips, films, TV)</li>
+                                <li>Copyrighted images without license</li>
+                                <li>Commercial music or copyrighted background music</li>
+                                <li>Branded logos without permission</li>
+                                <li>Others' illustrations or graphics</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card do">
+                            <h4>✓ Allowed</h4>
+                            <ul>
+                                <li>Your own original photos and videos</li>
+                                <li>Graphics/diagrams you've created</li>
+                                <li>Creative Commons licensed materials</li>
+                                <li>Public domain content</li>
+                                <li>Properly licensed stock resources</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Finding Open Source Materials</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>📸 Images</h4>
+                            <ul>
+                                <li>Unsplash</li>
+                                <li>Pixabay</li>
+                                <li>Pexels</li>
+                                <li>Wikimedia Commons</li>
+                                <li>Creative Commons Search</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🎬 Videos</h4>
+                            <ul>
+                                <li>Pexels Videos</li>
+                                <li>Pixabay Videos</li>
+                                <li>Videvo</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🎵 Music</h4>
+                            <ul>
+                                <li>YouTube Audio Library</li>
+                                <li>Free Music Archive</li>
+                                <li>Incompetech</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>⚠️ Remember</h4>
+                            <ul>
+                                <li>Check license terms</li>
+                                <li>Provide attribution if required</li>
+                                <li>Keep records of licenses</li>
+                                <li>When in doubt, don't use it</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Submission Process -->
+        <section id="submission" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📤 Submission Process</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="warning-box">
+                        <strong>⚠️ Important Deadline</strong>
+                        <p>Submission deadline: Few days after thesis deadline at <strong>13:00 sharp</strong>. Late submissions may not be accepted!</p>
+                    </div>
+
+                    <h3>Two-Step Submission Process</h3>
+                    <p><strong>You must complete BOTH steps:</strong></p>
+
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h4>Upload to SURFdrive (Backup/Archive)</h4>
+                            <p><strong>Link:</strong> <a href="https://surfdrive.surf.nl/files/index.php/s/WBdfOTCn6awXuWk" target="_blank">https://surfdrive.surf.nl/files/index.php/s/WBdfOTCn6awXuWk</a></p>
+                            
+                            <div class="info-box">
+                                <strong>File Naming REQUIRED:</strong>
+                                <p><strong>Format:</strong> StudentID_Lastname_Firstname_BTR_Video.mp4</p>
+                                <p><strong>Example:</strong> i6259596_Jeurissen_Martijn_BTR_Video.mp4</p>
+                            </div>
+
+                            <h5>Why SURFdrive:</h5>
+                            <ul>
+                                <li>Secure university server storage</li>
+                                <li>Permanent archive</li>
+                                <li>Backup if WeTransfer expires</li>
+                                <li>University record-keeping</li>
+                            </ul>
+                        </div>
+
+                        <div class="process-step">
+                            <h4>Submit WeTransfer Link via Collent</h4>
+                            
+                            <ol>
+                                <li>Upload video to <strong>WeTransfer</strong> (www.wetransfer.com)</li>
+                                <li>Also upload <strong>Video Consent Form</strong> to WeTransfer</li>
+                                <li>Generate sharing link</li>
+                                <li>Submit link in <strong>Collent</strong></li>
+                                <li>Complete consent form directly in Collent</li>
+                            </ol>
+
+                            <div class="warning-box">
+                                <strong>⚠️ Remember:</strong>
+                                <p>WeTransfer links expire (typically 7 days). This is why SURFdrive backup is essential. Submit well before deadline!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>File Size: 2GB Maximum</h3>
+                    
+                    <h4>If Your File is Too Large:</h4>
                     <ul>
-                        <li>Required for all submissions</li>
-                        <li>See Consent Form section below</li>
+                        <li>Use video editing software to compress</li>
+                        <li>Export at lower bitrate (5-10 Mbps sufficient)</li>
+                        <li>Use H.264 codec for efficiency</li>
+                        <li>Consider 720p instead of 1080p if necessary</li>
                     </ul>
-                </li>
-                <li><strong>Submit WeTransfer link in Collent</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Video Consent Form -->
+        <section id="consent" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📋 Video Consent Form</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Your Rights & Choices</h3>
+                    
+                    <div class="info-box">
+                        <strong>You Have the Right to Say "NO"</strong>
+                        <p>The consent form determines whether we can use your video for promotional purposes after grading.</p>
+                    </div>
+
+                    <div class="comparison-table">
+                        <div class="comparison-card">
+                            <h4>Voting "NO" Means:</h4>
+                            <ul>
+                                <li>Video used ONLY for grading</li>
+                                <li>NOT shared outside assessment process</li>
+                                <li>NOT used for promotional materials</li>
+                                <li>NOT shown at events or websites</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Voting "YES" Means:</h4>
+                            <ul>
+                                <li>May be used for promotional purposes</li>
+                                <li>Could be shown at MSP events</li>
+                                <li>Might be on MSP/UM websites</li>
+                                <li>Could promote BTR to future students</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="success-box">
+                        <strong>Your Choice - No Pressure:</strong>
+                        <ul>
+                            <li>Either choice is completely acceptable</li>
+                            <li>Your grade is NOT affected by your decision</li>
+                            <li>Many students say yes, many say no - both are fine</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ MANDATORY:</strong>
+                        <p>You MUST fill in the consent form (even if you vote "NO") to complete your submission. The form is integrated into the Collent submission process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Grading & Peer Review -->
+        <section id="grading" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>📊 Grading & Assessment</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Who Grades Your Video?</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>1. Your Internal Advisor</h4>
+                            <p>MSP faculty member assigned to your BTR</p>
+                            <ul>
+                                <li>Assesses content quality</li>
+                                <li>Evaluates presentation</li>
+                                <li>Uses grading rubric</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>2. A Peer from Your Cohort</h4>
+                            <p>Another BTR student</p>
+                            <ul>
+                                <li>Fresh perspective</li>
+                                <li>Non-scientist accessibility</li>
+                                <li>Same grading rubric</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Final Grade Calculation:</strong>
+                        <p>Average of both assessors' scores = <strong>10% of total BTR grade</strong></p>
+                    </div>
+
+                    <h3>Grading Criteria</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>📝 Content</h4>
+                            <ul>
+                                <li>Scientific importance</li>
+                                <li>Societal importance</li>
+                                <li>Ethical considerations</li>
+                                <li>Information accuracy</li>
+                                <li>Appropriate depth</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🗣️ Communication</h4>
+                            <ul>
+                                <li>Clear, accessible language</li>
+                                <li>Logical structure</li>
+                                <li>Engaging delivery</li>
+                                <li>Use of examples</li>
+                                <li>Staying on point</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🎥 Technical Quality</h4>
+                            <ul>
+                                <li>Video quality</li>
+                                <li>Audio quality</li>
+                                <li>Professional appearance</li>
+                                <li>Effective visuals</li>
+                                <li>Appropriate editing</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>⏱️ Duration</h4>
+                            <ul>
+                                <li>Stays within 5-7 minutes</li>
+                                <li>Penalties for significant deviation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Peer Review Requirements -->
+        <section id="peer" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>👥 Peer Review Requirements</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="warning-box">
+                        <strong>⚠️ MANDATORY - NOT OPTIONAL</strong>
+                        <p>In addition to having your video evaluated, you are <strong>required</strong> to conduct a peer review of another student's video.</p>
+                    </div>
+
+                    <h3>Why Peer Review Matters</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>📚 Educational Value</h4>
+                            <ul>
+                                <li>Learn from others' approaches</li>
+                                <li>Develop evaluation skills</li>
+                                <li>Understand effective communication</li>
+                                <li>Practice giving feedback</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🤝 Reciprocal Process</h4>
+                            <ul>
+                                <li>Someone reviews your video</li>
+                                <li>You review someone else's</li>
+                                <li>Fair system for all</li>
+                                <li>Everyone gets peer feedback</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Timing & Process</h3>
+                    
+                    <div class="warning-box">
+                        <strong>⚠️ STRONGLY RECOMMENDED:</strong>
+                        <p>Complete peer review on the <strong>same afternoon</strong> as submission deadline</p>
+                    </div>
+
+                    <h4>Why Same Day?</h4>
                     <ul>
-                        <li>Log into Collent platform</li>
-                        <li>Find BTR Video submission</li>
-                        <li>Paste WeTransfer link in submission field</li>
-                        <li>Complete consent form directly in Collent</li>
+                        <li>WeTransfer links are fresh and active</li>
+                        <li>Assessment criteria fresh in mind</li>
+                        <li>Completes BTR obligations immediately</li>
+                        <li>Avoids forgetting and penalties</li>
                     </ul>
-                </li>
-            </ol>
 
-            <div class="info-box">
-                <strong>⚠️ Important:</strong>
-                <ul>
-                    <li>WeTransfer links expire (typically 7 days)</li>
-                    <li>This is why SURFdrive backup is essential</li>
-                    <li>Submit well before deadline to allow time for issues</li>
-                </ul>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h4>Receive Assignment</h4>
+                            <p>After deadline, check Collent/email for your assigned video</p>
+                        </div>
+                        <div class="process-step">
+                            <h4>Watch & Take Notes</h4>
+                            <p>Access video via WeTransfer link, watch carefully, use grading rubric</p>
+                        </div>
+                        <div class="process-step">
+                            <h4>Complete Review Form</h4>
+                            <p>Submit detailed feedback in Collent by specified deadline</p>
+                        </div>
+                    </div>
+
+                    <h3>Providing Good Feedback</h3>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-card do">
+                            <h4>✓ Do This</h4>
+                            <ul>
+                                <li>Be specific with examples</li>
+                                <li>Be constructive and helpful</li>
+                                <li>Be fair and consistent</li>
+                                <li>Be respectful of effort</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card dont">
+                            <h4>❌ Don't Do This</h4>
+                            <ul>
+                                <li>Be overly harsh or personal</li>
+                                <li>Give only vague comments</li>
+                                <li>Skip sections of rubric</li>
+                                <li>Rush through carelessly</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Consequences of Non-Completion</h3>
+                    
+                    <div class="warning-box">
+                        <strong>⚠️ SERIOUS PENALTY:</strong>
+                        <p style="font-size: 20px; margin-top: 15px;"><strong>Failing to submit peer review = 1.0 point deduction from YOUR video grade</strong></p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Example Impact:</strong>
+                        <ul>
+                            <li>Your video receives 8.0 average from assessors</li>
+                            <li>You don't submit your peer review</li>
+                            <li>Your final video grade becomes 7.0</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>This penalty is strict, non-negotiable, and applied automatically.</strong></p>
+                    </div>
+                </div>
             </div>
-
-            <h3>File Size Limit: 2GB Maximum</h3>
-            
-            <p><strong>Why 2GB Limit:</strong></p>
-            <ul>
-                <li>Avoid excessively long download times for assessors</li>
-                <li>Manageable file transfer</li>
-                <li>WeTransfer free tier limit</li>
-                <li>Files over 2GB require paid WeTransfer accounts</li>
-            </ul>
-
-            <p><strong>How to Achieve Under 2GB:</strong></p>
-            
-            <h4>Video Compression:</h4>
-            <ul>
-                <li>Use video editing software to compress</li>
-                <li>Maintain quality while reducing file size</li>
-                <li>Balance between quality and size</li>
-            </ul>
-
-            <h4>Export Settings:</h4>
-            <ul>
-                <li>1080p resolution usually achievable under 2GB for 5-7 minutes</li>
-                <li>Use H.264 codec (most efficient)</li>
-                <li>Bitrate: 5-10 Mbps typically sufficient</li>
-                <li>Audio: 128-192 kbps adequate</li>
-            </ul>
-
-            <h4>If Still Too Large:</h4>
-            <ul>
-                <li>Reduce resolution (720p instead of 1080p)</li>
-                <li>Further reduce bitrate (carefully - don't sacrifice too much quality)</li>
-                <li>Ensure no unnecessary long sections</li>
-                <li>Consider editing to trim any excess</li>
-            </ul>
         </section>
 
-        <!-- Section 11: Video Consent Form -->
-        <section id="consent" class="content-section">
-            <h2>Video Consent Form</h2>
-            
-            <h3>What is the Consent Form?</h3>
-            <p>The consent form tells us whether we are allowed to use your video for promotional purposes after grading.</p>
-
-            <h3>Your Rights</h3>
-            
-            <p><strong>You have the right to say "NO"</strong> to video being shared outside of necessary graders/handlers.</p>
-
-            <h4>Voting "NO" means:</h4>
-            <ul>
-                <li>Video used ONLY for grading by Internal Advisor and peer reviewer</li>
-                <li>Video NOT shared with anyone outside BTR assessment process</li>
-                <li>Video NOT used for promotional materials</li>
-                <li>Video NOT shown at events or on MSP/UM websites</li>
-            </ul>
-
-            <h4>Voting "YES" means:</h4>
-            <ul>
-                <li>Video may be used for promotional purposes</li>
-                <li>Could be shown at MSP events</li>
-                <li>Might be featured on MSP/UM website or social media</li>
-                <li>Could be used to promote the BTR program to future students</li>
-                <li>May be shared with external partners or at conferences</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>Your Choice - No Pressure:</strong>
-                <ul>
-                    <li>Either choice is completely acceptable</li>
-                    <li>Your grade is NOT affected by your consent decision</li>
-                    <li>Many students say yes, many say no - both are fine</li>
-                </ul>
+        <!-- Section 10: Checklist -->
+        <section id="checklist" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>✅ Final Submission Checklist</h2>
+                <span class="toggle-icon">▼</span>
             </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Technical Quality</h3>
+                    
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Landscape mode (16:9 aspect ratio)</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>High definition (1080p or higher)</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Duration: 5-7 minutes</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>File format: MP4</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>File size: Under 2GB</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Video fills entire frame (no black bars)</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>No shaking (used tripod or secure position)</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Clear audio with no background noise</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Audio and video perfectly synchronized</div>
+                    </div>
 
-            <h3>How to Submit Consent Form</h3>
-            
-            <p><strong>Integrated into Collent Submission:</strong></p>
-            <p>When you upload your WeTransfer link in Collent, you will be prompted to fill in the consent section directly.</p>
+                    <h3>Required Content</h3>
+                    
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Clear opening statement</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Scientific importance explained in detail</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Societal importance explained in detail</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Ethical considerations discussed</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Conclusion summarizes key points</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>No jargon or technical terms without explanation</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Uses examples and analogies</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Accessible to non-scientists</div>
+                    </div>
 
-            <div class="warning-box">
-                <strong>⚠️ MANDATORY:</strong> You MUST fill in the consent form, even if you vote "NO"
+                    <h3>Presentation</h3>
+                    
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>You appear in video at some point</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Professional appearance and good posture</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Maintain high energy levels</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Look into camera (not away)</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Avoided checkered patterns in clothing</div>
+                    </div>
+
+                    <h3>Copyright & Legal</h3>
+                    
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>All images are either your own or open source/licensed</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>All video clips are copyright-free</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>No copyrighted music used</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Attribution provided where required</div>
+                    </div>
+
+                    <h3>Submission</h3>
+                    
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Watched entire video to check for issues</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>File named correctly: StudentID_Lastname_Firstname_BTR_Video.mp4</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Uploaded to SURFdrive backup folder</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Uploaded to WeTransfer with consent form</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Submitted WeTransfer link via Collent</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Completed consent form in Collent</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Received confirmation of submission</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div>Set reminder for peer review (same day recommended!)</div>
+                    </div>
+                </div>
             </div>
-
-            <p><strong>Process:</strong></p>
-            <ol>
-                <li>Submit WeTransfer link in Collent</li>
-                <li>Consent form section appears</li>
-                <li>Select your choice: YES or NO to promotional use</li>
-                <li>Complete required fields</li>
-                <li>Confirm submission</li>
-            </ol>
-
-            <p>This step is required to complete your video submission.</p>
         </section>
 
-        <!-- Section 12: Grading & Peer Review -->
-        <section id="grading" class="content-section">
-            <h2>Grading & Peer Review</h2>
-            
-            <h3>Who Grades Your Video?</h3>
-            
-            <p><strong>Two Assessors:</strong></p>
-
-            <h4>1. Your Internal Advisor</h4>
-            <ul>
-                <li>MSP faculty member assigned to your BTR</li>
-                <li>Assesses content and presentation quality</li>
-                <li>Provides detailed feedback using grading rubric</li>
-            </ul>
-
-            <h4>2. A Peer from Your BTR Cohort</h4>
-            <ul>
-                <li>Another student from same BTR period</li>
-                <li>Offers fresh perspective</li>
-                <li>Evaluates accessibility to non-scientists</li>
-                <li>Uses same grading rubric</li>
-            </ul>
-
-            <p><strong>Final Grade:</strong> Average of both assessors' scores</p>
-            <p><strong>Weight in Overall BTR:</strong> Video = 10% of total BTR grade</p>
-
-            <h3>Grading Criteria</h3>
-            
-            <p><strong>Your video is assessed on:</strong></p>
-
-            <h4>Content (What You Say):</h4>
-            <ul>
-                <li>Scientific importance clearly explained</li>
-                <li>Societal importance well articulated</li>
-                <li>Ethical considerations thoroughly discussed</li>
-                <li>Accuracy of information presented</li>
-                <li>Appropriate depth for non-scientist audience</li>
-            </ul>
-
-            <h4>Communication (How You Say It):</h4>
-            <ul>
-                <li>Clear and accessible language (no jargon)</li>
-                <li>Logical structure with opening and conclusion</li>
-                <li>Engaging delivery and appropriate tone</li>
-                <li>Effective use of examples and analogies</li>
-                <li>Staying on point without rambling</li>
-            </ul>
-
-            <h4>Technical Quality (Production):</h4>
-            <ul>
-                <li>Video quality (resolution, lighting, stability)</li>
-                <li>Audio quality (clear voice, no background noise)</li>
-                <li>Professional appearance and presentation</li>
-                <li>Effective use of visual elements</li>
-                <li>Appropriate editing and pacing</li>
-            </ul>
-
-            <h4>Duration Compliance:</h4>
-            <ul>
-                <li>Stays within 5-7 minute requirement</li>
-            </ul>
-        </section>
-
-        <!-- Section 13: Peer Review Requirements -->
-        <section id="peer" class="content-section">
-            <h2>Peer Review Requirements</h2>
-            
-            <h3>You Must Review Another Student's Video</h3>
-            
-            <div class="warning-box">
-                <strong>This is Mandatory - Not Optional</strong>
-                <p>In addition to having your video evaluated, you are <strong>required</strong> to conduct a peer review of another student's video.</p>
+        <!-- Section 11: FAQ -->
+        <section id="faq" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>❓ Common Questions & Troubleshooting</h2>
+                <span class="toggle-icon">▼</span>
             </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Technical Issues</h3>
+                    
+                    <h4>Q: My video file is over 2GB. What do I do?</h4>
+                    <div class="info-box">
+                        <strong>Solution:</strong>
+                        <ul>
+                            <li>Export at lower bitrate (5-8 Mbps often sufficient)</li>
+                            <li>Reduce resolution if necessary (720p instead of 1080p)</li>
+                            <li>Use H.264 codec for efficient compression</li>
+                            <li>Check for "web" or "online" export presets in editing software</li>
+                        </ul>
+                    </div>
 
-            <h3>Why Peer Review?</h3>
-            
-            <p><strong>Educational Value:</strong></p>
-            <ul>
-                <li>Learn from seeing others' approaches</li>
-                <li>Develop critical evaluation skills</li>
-                <li>Understand what makes effective science communication</li>
-                <li>Practice providing constructive feedback</li>
-            </ul>
+                    <h4>Q: How do I convert PowerPoint to MP4?</h4>
+                    <div class="info-box">
+                        <strong>In PowerPoint:</strong>
+                        <ol>
+                            <li>File → Export → Create a Video</li>
+                            <li>Choose quality (1080p or 720p)</li>
+                            <li>Set timings or record narration</li>
+                            <li>Save as MPEG-4 video</li>
+                        </ol>
+                    </div>
 
-            <p><strong>Reciprocal Process:</strong></p>
-            <ul>
-                <li>Someone reviews your video</li>
-                <li>You review someone else's video</li>
-                <li>Fair system ensuring all students get peer feedback</li>
-            </ul>
+                    <h4>Q: WeTransfer link expired before grading. What now?</h4>
+                    <div class="success-box">
+                        <strong>This is why SURFdrive backup is mandatory:</strong>
+                        <p>Assessors can access your video from SURFdrive. Make sure your SURFdrive upload succeeded.</p>
+                    </div>
 
-            <h3>How Peer Review Works</h3>
-            
-            <p><strong>Assignment:</strong></p>
-            <ul>
-                <li>After submission deadline passes, you will be assigned a peer's video to review</li>
-                <li>Assignments made by BTR Office</li>
-                <li>You'll receive information about which video to review via Collent/email</li>
-            </ul>
+                    <h3>Content Questions</h3>
+                    
+                    <h4>Q: What if my research doesn't have obvious societal importance?</h4>
+                    <div class="info-box">
+                        <strong>All research has value to society:</strong>
+                        <ul>
+                            <li>Explain how fundamental knowledge advances human understanding</li>
+                            <li>Discuss potential long-term applications (even if speculative)</li>
+                            <li>Give examples of "useless" research that became transformative</li>
+                            <li>Explain why society benefits from funding curiosity-driven research</li>
+                        </ul>
+                    </div>
 
-            <p><strong>Timing:</strong></p>
-            
-            <div class="warning-box">
-                <strong>⚠️ STRONGLY RECOMMENDED:</strong> Complete peer review on the <strong>same afternoon</strong> as submission deadline
+                    <h4>Q: My research doesn't involve animals or people. What ethical considerations apply?</h4>
+                    <div class="warning-box">
+                        <strong>Remember: There is no research free from ethical considerations</strong>
+                        <p>Consider: Data handling, environmental impact, resource allocation, potential misuse, who benefits/who might be harmed, social justice implications</p>
+                    </div>
+
+                    <h4>Q: Can I use humor in my video?</h4>
+                    <div class="success-box">
+                        <strong>Yes, but use judgment:</strong>
+                        <ul>
+                            <li>Appropriate for most topics if tasteful</li>
+                            <li>Avoid for serious topics (terminal illness, human suffering)</li>
+                            <li>Keep it light and relevant</li>
+                            <li>Don't let humor undermine seriousness of your work</li>
+                        </ul>
+                    </div>
+
+                    <h3>Need More Help?</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>📧 BTR Administrator</h4>
+                            <p><a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
+                            <p>For questions about requirements, submission issues, deadlines</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>💻 UM IT Services</h4>
+                            <p>For technical support with software, file conversions, troubleshooting</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <p><strong>Why Same Day?</strong></p>
-            <ul>
-                <li>WeTransfer links are fresh and definitely active</li>
-                <li>Get it done while assessment criteria are fresh in mind</li>
-                <li>Completes your BTR obligations immediately</li>
-                <li>Avoids forgetting about this requirement</li>
-            </ul>
-
-            <p><strong>If You Wait:</strong></p>
-            <ul>
-                <li>WeTransfer links may expire (typically 7 days)</li>
-                <li>You may forget about the requirement</li>
-                <li>Risk missing deadline and incurring penalty</li>
-            </ul>
-
-            <h3>How to Complete Peer Review</h3>
-            
-            <p><strong>Process:</strong></p>
-            <ol>
-                <li>Check Collent/email for peer assignment after deadline</li>
-                <li>Access assigned video via provided WeTransfer link</li>
-                <li>Watch video carefully, taking notes</li>
-                <li>Use grading rubric provided</li>
-                <li>Complete peer review form in Collent</li>
-                <li>Submit feedback by specified deadline</li>
-            </ol>
-
-            <p><strong>What to Assess:</strong></p>
-            <ul>
-                <li>Use the same grading criteria as the formal assessors</li>
-                <li>Be constructive and specific</li>
-                <li>Identify strengths and areas for improvement</li>
-                <li>Consider: would a non-scientist understand this?</li>
-                <li>Evaluate technical quality as well as content</li>
-            </ul>
-
-            <h3>Providing Good Feedback</h3>
-            
-            <p><strong>✓ Do:</strong></p>
-            <ul>
-                <li><strong>Be specific:</strong> "Your explanation of X was clear because you used the analogy of Y"</li>
-                <li><strong>Be constructive:</strong> "The section on ethics could be expanded by discussing..."</li>
-                <li><strong>Be fair:</strong> Apply same standards you'd want applied to your work</li>
-                <li><strong>Be respectful:</strong> Your peer worked hard on this</li>
-            </ul>
-
-            <p><strong>❌ Don't:</strong></p>
-            <ul>
-                <li>Be overly harsh or personal</li>
-                <li>Give only vague comments ("good job" or "needs work")</li>
-                <li>Skip sections of the rubric</li>
-                <li>Rush through without watching carefully</li>
-            </ul>
-
-            <h3>Consequences of Not Completing Peer Review</h3>
-            
-            <div class="warning-box">
-                <strong>⚠️ SERIOUS PENALTY:</strong>
-                <p><strong>Failing to submit peer review = 1.0 point deduction from YOUR video grade</strong></p>
-            </div>
-
-            <p><strong>This penalty is:</strong></p>
-            <ul>
-                <li><strong>Strict</strong></li>
-                <li><strong>Non-negotiable</strong></li>
-                <li><strong>Applied automatically</strong></li>
-            </ul>
-
-            <p><strong>Example:</strong></p>
-            <ul>
-                <li>Your video receives 8.0 average from Internal Advisor and peer</li>
-                <li>You don't submit your peer review</li>
-                <li>Your final video grade becomes 7.0</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>We Mean It:</strong>
-                <p>The peer review process is integral to BTR learning experience. Failing to participate undermines the system and is taken seriously.</p>
-            </div>
-
-            <h3>Don't Forget!</h3>
-            <ul>
-                <li>✅ Set reminder for peer review immediately after video submission</li>
-                <li>✅ Do it same day if possible</li>
-                <li>✅ Don't wait - links expire and you may forget</li>
-                <li>✅ Completing this marks official completion of your BTR obligations</li>
-            </ul>
-        </section>
-
-        <!-- Section 14: Video Production Checklist -->
-        <section id="checklist" class="content-section">
-            <h2>Video Production Checklist</h2>
-            
-            <p>Use this checklist before final submission to ensure your video meets all requirements.</p>
-
-            <h3>Technical Quality Checklist</h3>
-            
-            <h4>Video Specifications:</h4>
-            <ul>
-                <li>☐ Landscape mode (16:9 aspect ratio)</li>
-                <li>☐ High definition (1080p or higher)</li>
-                <li>☐ Video fills entire frame (no black bars)</li>
-                <li>☐ Video is not shaky (used tripod or secure position)</li>
-                <li>☐ Image is clear, not cloudy or blurred (cleaned lens)</li>
-                <li>☐ Duration: 5-7 minutes</li>
-                <li>☐ File format: MP4</li>
-                <li>☐ File size: Under 2GB</li>
-            </ul>
-
-            <h4>Visual Quality:</h4>
-            <ul>
-                <li>☐ Background is appropriate and not distracting</li>
-                <li>☐ Face is in focus when appearing</li>
-                <li>☐ Adequate lighting throughout</li>
-                <li>☐ Colors accurate (not too dark or washed out)</li>
-                <li>☐ All visual elements visible and clear</li>
-            </ul>
-
-            <h4>Audio Quality:</h4>
-            <ul>
-                <li>☐ No background noises (phones, traffic, people chatting)</li>
-                <li>☐ Voice is clear and understandable</li>
-                <li>☐ Audio and video are synchronized</li>
-                <li>☐ Volume levels consistent (no sudden loud/quiet sections)</li>
-                <li>☐ No echo or reverb</li>
-            </ul>
-
-            <h3>Content Checklist</h3>
-            
-            <h4>Required Elements:</h4>
-            <ul>
-                <li>☐ Clear opening statement</li>
-                <li>☐ Scientific importance explained in detail</li>
-                <li>☐ Societal importance explained in detail</li>
-                <li>☐ Ethical considerations discussed</li>
-                <li>☐ Conclusion summarizes key points</li>
-                <li>☐ Structured logically with clear transitions</li>
-            </ul>
-
-            <h4>Communication Quality:</h4>
-            <ul>
-                <li>☐ No jargon or technical terms without explanation</li>
-                <li>☐ Uses examples and analogies for complex concepts</li>
-                <li>☐ Accessible to non-scientists</li>
-                <li>☐ Appropriate tone for subject matter</li>
-            </ul>
-
-            <h3>Presentation Checklist</h3>
-            
-            <h4>Your Delivery:</h4>
-            <ul>
-                <li>☐ You appear in video at some point (minimum requirement)</li>
-                <li>☐ Look presentable with good posture</li>
-                <li>☐ Appear relaxed but maintain high energy</li>
-                <li>☐ Dressed suitably (avoided checkered patterns)</li>
-                <li>☐ Look into camera (not away from it)</li>
-                <li>☐ Stick to the point (no rambling)</li>
-            </ul>
-
-            <h4>Design & Editing:</h4>
-            <ul>
-                <li>☐ If using talking head, positioned clearly in corner</li>
-                <li>☐ Photos are high resolution, not pixelated</li>
-                <li>☐ Visual flow is interesting (don't stay on same thing too long)</li>
-                <li>☐ If using PowerPoint, converted to video format (not submitted as .pptx)</li>
-                <li>☐ At least some parts show you (not entirely PowerPoint)</li>
-            </ul>
-
-            <h3>Copyright & Legal Checklist</h3>
-            <ul>
-                <li>☐ All images are either your own or open source/licensed</li>
-                <li>☐ All video clips are copyright-free or properly licensed</li>
-                <li>☐ No copyrighted music used (or properly licensed)</li>
-                <li>☐ Attribution provided for any materials requiring it</li>
-                <li>☐ Documented sources for all external materials</li>
-            </ul>
-
-            <h3>Submission Checklist</h3>
-            
-            <h4>Before Submitting:</h4>
-            <ul>
-                <li>☐ Watched entire video through to check for issues</li>
-                <li>☐ Verified duration is 5-7 minutes</li>
-                <li>☐ Confirmed file size is under 2GB</li>
-                <li>☐ File named correctly: StudentID_Lastname_Firstname_BTR_Video.mp4</li>
-            </ul>
-
-            <h4>Submission Steps:</h4>
-            <ul>
-                <li>☐ Uploaded video to SURFdrive backup folder</li>
-                <li>☐ Verified SURFdrive upload completed successfully</li>
-                <li>☐ Uploaded video to WeTransfer</li>
-                <li>☐ Uploaded consent form to WeTransfer</li>
-                <li>☐ Obtained WeTransfer sharing link</li>
-                <li>☐ Submitted WeTransfer link via Collent</li>
-                <li>☐ Completed consent form in Collent</li>
-                <li>☐ Received confirmation of submission</li>
-            </ul>
-
-            <h4>After Submission:</h4>
-            <ul>
-                <li>☐ Set reminder for peer review (same day if possible!)</li>
-                <li>☐ Noted peer review deadline</li>
-                <li>☐ Prepared to complete peer review when assigned</li>
-            </ul>
-        </section>
-
-        <!-- Section 15: Common Questions & Troubleshooting -->
-        <section id="faq" class="content-section">
-            <h2>Common Questions & Troubleshooting</h2>
-            
-            <h3>Technical Issues</h3>
-            
-            <h4>Q: My video file is over 2GB. What do I do?</h4>
-            <p>A: Compress your video using these methods:</p>
-            <ul>
-                <li>Export at lower bitrate (5-8 Mbps often sufficient)</li>
-                <li>Reduce resolution if necessary (720p instead of 1080p)</li>
-                <li>Use H.264 codec for efficient compression</li>
-                <li>Check if video editing software has "web" or "online" presets</li>
-                <li>Remove any unnecessary intro/outro credits that add length</li>
-            </ul>
-
-            <h4>Q: How do I convert PowerPoint to MP4?</h4>
-            <p>A: In PowerPoint:</p>
-            <ol>
-                <li>File → Export → Create a Video</li>
-                <li>Choose quality (1080p or 720p)</li>
-                <li>Set timings or record narration</li>
-                <li>Save as MPEG-4 video</li>
-            </ol>
-
-            <h4>Q: WeTransfer link expired before grading. What now?</h4>
-            <p>A: This is why SURFdrive backup is mandatory:</p>
-            <ul>
-                <li>Assessors can access video from SURFdrive</li>
-                <li>Make sure your SURFdrive upload succeeded</li>
-                <li>Contact BTR Office if concerned about access</li>
-            </ul>
-
-            <h4>Q: I can't access Collent. What should I do?</h4>
-            <p>A:</p>
-            <ul>
-                <li>Try different browser (Chrome recommended)</li>
-                <li>Clear browser cache and cookies</li>
-                <li>Ensure pop-ups are allowed</li>
-                <li>Contact IT support for Collent technical issues</li>
-                <li>Email BTR Office: msp-btr@maastrichtuniversity.nl</li>
-            </ul>
-
-            <h3>Content Questions</h3>
-            
-            <h4>Q: Can I show faces of lab members in my video?</h4>
-            <p>A: Yes, if you have their permission:</p>
-            <ul>
-                <li>Ask lab members beforehand</li>
-                <li>Better to show yourself primarily</li>
-                <li>Consider using photos of people rather than video if consent unclear</li>
-            </ul>
-
-            <h4>Q: How technical can I be in explaining my methods?</h4>
-            <p>A: Keep it accessible:</p>
-            <ul>
-                <li>Explain basic principles rather than detailed procedures</li>
-                <li>Use analogies to make technical processes understandable</li>
-                <li>Focus on <em>what</em> you did and <em>why</em> rather than every specific detail</li>
-                <li>Remember: non-scientist audience</li>
-            </ul>
-
-            <h4>Q: What if my research doesn't have obvious societal importance?</h4>
-            <p>A: All research has value to society:</p>
-            <ul>
-                <li>Explain how fundamental knowledge advances human understanding</li>
-                <li>Discuss potential long-term applications (even if speculative)</li>
-                <li>Explain why society benefits from funding curiosity-driven research</li>
-                <li>Give examples of "useless" research that became transformative</li>
-            </ul>
-
-            <h4>Q: My research doesn't involve animals or people. What ethical considerations apply?</h4>
-            <p>A: Consider:</p>
-            <ul>
-                <li>Data handling and privacy (even for non-human subjects)</li>
-                <li>Environmental impact of your research</li>
-                <li>Resource allocation - why this research over other priorities?</li>
-                <li>Potential misuse of findings</li>
-                <li>Who benefits and who might be harmed?</li>
-            </ul>
-            <p><strong>Remember:</strong> There is no research free from ethical considerations</p>
-
-            <h4>Q: Can I use humor in my video?</h4>
-            <p>A: Yes, but use judgment:</p>
-            <ul>
-                <li>Appropriate for most topics if tasteful</li>
-                <li>Avoid for serious topics (terminal illness, human suffering, etc.)</li>
-                <li>Keep it light and relevant</li>
-                <li>Don't let humor undermine the seriousness of your work</li>
-            </ul>
-
-            <h3>Peer Review Questions</h3>
-            
-            <h4>Q: When will I know which video to review?</h4>
-            <p>A:</p>
-            <ul>
-                <li>Assignments made after submission deadline passes</li>
-                <li>Check Collent and email for notification</li>
-                <li>Usually same day as submission deadline</li>
-            </ul>
-
-            <h4>Q: What if the peer video I'm assigned is terrible?</h4>
-            <p>A:</p>
-            <ul>
-                <li>Still provide constructive feedback</li>
-                <li>Use grading rubric honestly but fairly</li>
-                <li>Identify specific areas for improvement</li>
-                <li>Remember this is a learning experience for your peer</li>
-                <li>Focus on helping them understand how to improve</li>
-            </ul>
-
-            <h4>Q: Can I request extension for peer review?</h4>
-            <p>A:</p>
-            <ul>
-                <li>Generally no - this is why we recommend same-day completion</li>
-                <li>Strict 1.0 point penalty for non-submission</li>
-                <li>Complete it promptly after assignment</li>
-                <li>Contact BTR Office only in exceptional circumstances</li>
-            </ul>
-
-            <h3>Need More Help?</h3>
-            <ul>
-                <li>📧 <strong>BTR Administrator:</strong> msp-btr@maastrichtuniversity.nl</li>
-                <li>🎬 <strong>Technical Support:</strong> UM IT Services</li>
-            </ul>
         </section>
 
         <!-- Resources Section -->
-        <section class="content-section">
-            <h2>Resources & Templates</h2>
+        <section class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🛠️ Resources & Tools</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Recommended Software</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>Video Editing</h4>
+                            <ul>
+                                <li>iMovie (Mac - free)</li>
+                                <li>DaVinci Resolve (free)</li>
+                                <li>OpenShot (free)</li>
+                                <li>Shotcut (free)</li>
+                                <li>Adobe Premiere Pro (paid)</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Video Compression</h4>
+                            <ul>
+                                <li>HandBrake (free)</li>
+                                <li>VLC Media Player</li>
+                                <li>Online compression tools</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Subtitle Creation</h4>
+                            <ul>
+                                <li>YouTube Auto-Captions</li>
+                                <li>Subtitle Edit (free)</li>
+                                <li>Amara (online)</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>UM Library Facilities</h4>
+                            <ul>
+                                <li>Professional recording equipment</li>
+                                <li>Lighting setups</li>
+                                <li>Green screen</li>
+                                <li>Book in advance!</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <h3>Need Help?</h3>
-            
-            <h4>📧 BTR Administrator</h4>
-            <p>Email: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
-            <p>Contact for:</p>
-            <ul>
-                <li>Questions about video requirements</li>
-                <li>Submission issues or technical problems</li>
-                <li>Deadline clarifications</li>
-                <li>Peer review questions</li>
-                <li>General BTR support</li>
-            </ul>
+                    <h3>Tips for Success</h3>
+                    
+                    <div class="success-box">
+                        <ul>
+                            <li>✅ <strong>Start planning early</strong> – good videos take time</li>
+                            <li>✅ <strong>Script your content</strong> – know what you'll say</li>
+                            <li>✅ <strong>Practice delivery</strong> – record practice versions</li>
+                            <li>✅ <strong>Get feedback</strong> – show draft to non-scientists</li>
+                            <li>✅ <strong>Test equipment</strong> – check audio/video quality first</li>
+                            <li>✅ <strong>Allow time for editing</strong> – rarely perfect on first take</li>
+                            <li>✅ <strong>Submit early</strong> – don't wait until deadline</li>
+                            <li>✅ <strong>Do peer review same day</strong> – avoid penalty</li>
+                        </ul>
+                    </div>
 
-            <h4>💻 Technical Support</h4>
-            <p><strong>UM IT Services:</strong></p>
-            <ul>
-                <li>Software issues</li>
-                <li>File format conversions</li>
-                <li>Technical troubleshooting</li>
-            </ul>
-
-            <h3>Additional Resources</h3>
-            
-            <p><strong>Recommended Tools:</strong></p>
-            
-            <h4>Video Editing Software:</h4>
-            <ul>
-                <li>iMovie (Mac - free)</li>
-                <li>DaVinci Resolve (free, cross-platform)</li>
-                <li>OpenShot (free, cross-platform)</li>
-                <li>Shotcut (free, cross-platform)</li>
-                <li>Adobe Premiere Pro (paid)</li>
-            </ul>
-
-            <h4>Video Compression:</h4>
-            <ul>
-                <li>HandBrake (free video compressor)</li>
-                <li>VLC Media Player (can compress)</li>
-                <li>Online compression tools (various)</li>
-            </ul>
-
-            <h4>Subtitle Creation:</h4>
-            <ul>
-                <li>YouTube Auto-Captions</li>
-                <li>Subtitle Edit (free software)</li>
-                <li>Amara (online editor)</li>
-            </ul>
-
-            <h4>Open Source Material Sources:</h4>
-            <ul>
-                <li>Unsplash (images)</li>
-                <li>Pixabay (images & videos)</li>
-                <li>Pexels (images & videos)</li>
-                <li>Creative Commons Search</li>
-            </ul>
-
-            <h3>Tips for Success</h3>
-            <ul>
-                <li>✅ <strong>Start planning early</strong> – good videos take time</li>
-                <li>✅ <strong>Script your content</strong> – know what you'll say</li>
-                <li>✅ <strong>Practice delivery</strong> – record practice versions</li>
-                <li>✅ <strong>Get feedback</strong> – show draft to friends/family (non-scientists!)</li>
-                <li>✅ <strong>Test equipment</strong> – audio and video quality before final recording</li>
-                <li>✅ <strong>Allow time for editing</strong> – rarely perfect on first take</li>
-                <li>✅ <strong>Check file size</strong> – compress if needed</li>
-                <li>✅ <strong>Submit early</strong> – don't wait until deadline</li>
-                <li>✅ <strong>Do peer review same day</strong> – avoid forgetting and penalty</li>
-                <li>✅ <strong>Remember your audience</strong> – non-scientists!</li>
-            </ul>
-
-            <h3>Examples of Good Science Communication</h3>
-            <p><strong>YouTube Channels for Inspiration:</strong></p>
-            <p>(Note: Don't copy style, just learn from their approach to accessibility)</p>
-            <ul>
-                <li>Kurzgesagt – In a Nutshell</li>
-                <li>Veritasium</li>
-                <li>SciShow</li>
-                <li>TED-Ed</li>
-                <li>Crash Course</li>
-            </ul>
-
-            <p><strong>What to learn from these:</strong></p>
-            <ul>
-                <li>How they explain complex topics simply</li>
-                <li>Use of analogies and visual aids</li>
-                <li>Engaging presentation style</li>
-                <li>Appropriate pacing</li>
-                <li>Making science exciting without dumbing it down</li>
-            </ul>
+                    <h3>Science Communication Inspiration</h3>
+                    <p><strong>YouTube Channels:</strong> (Don't copy style, learn from their approach)</p>
+                    <ul>
+                        <li>Kurzgesagt – In a Nutshell</li>
+                        <li>Veritasium</li>
+                        <li>SciShow</li>
+                        <li>TED-Ed</li>
+                        <li>Crash Course</li>
+                    </ul>
+                    
+                    <p style="margin-top: 15px;"><strong>Learn how they:</strong></p>
+                    <ul>
+                        <li>Explain complex topics simply</li>
+                        <li>Use analogies and visual aids</li>
+                        <li>Maintain engaging presentation style</li>
+                        <li>Pace content appropriately</li>
+                        <li>Make science exciting without dumbing it down</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p><strong>Questions about your video?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+        <p><strong>Questions about your video?</strong> Contact the BTR Office: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
         <p style="margin-top: 20px;">
             <a href="index.html">← Back to BTR Dashboard</a> | 
             <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
-            <a href="writing-the-thesis.html">Thesis Guidelines</a> | 
-            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+            <a href="writing-the-thesis.html">Thesis Guidelines</a>
         </p>
         <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
             © Maastricht University - Faculty of Science and Engineering
         </p>
     </footer>
+
+    <script>
+        // Toggle section accordion
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-card');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Open the section if it's not already open
+                    if (!target.classList.contains('active')) {
+                        target.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
