@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writing the Proposal - BTR Dashboard</title>
+    <title>BTR Written Thesis Guidelines - BTR Dashboard</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
+    
     <style>
         * {
             margin: 0;
@@ -99,7 +99,7 @@
         }
 
         .page-hero::before {
-            content: '📝';
+            content: '📚';
             position: absolute;
             font-size: 200px;
             opacity: 0.05;
@@ -128,7 +128,7 @@
             margin-bottom: 30px;
         }
 
-        .proposal-stats {
+        .thesis-stats {
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -278,7 +278,7 @@
         }
 
         .section-card.active .section-content {
-            max-height: 10000px;
+            max-height: 15000px;
             transition: max-height 0.6s ease-in;
         }
 
@@ -302,6 +302,15 @@
             color: #002D5A;
             margin-top: 25px;
             margin-bottom: 12px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-inner h5 {
+            font-size: 18px;
+            color: #00324d;
+            margin-top: 20px;
+            margin-bottom: 10px;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
@@ -376,6 +385,24 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        /* Danger Boxes */
+        .danger-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 4px solid #F44336;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(244,67,54,0.1);
+        }
+
+        .danger-box strong {
+            color: #C62828;
+            font-size: 20px;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
         /* Table Styles */
         .spec-table {
             width: 100%;
@@ -407,32 +434,6 @@
 
         .spec-table tr:hover {
             background: #f5f7fa;
-        }
-
-        /* Checklist Items */
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .checklist-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-
-        .checklist-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #00A2DB;
-            border-radius: 4px;
-            flex-shrink: 0;
-            margin-top: 2px;
         }
 
         /* Process Steps */
@@ -508,66 +509,41 @@
             font-size: 14px;
         }
 
-        /* Structure Cards */
-        .structure-card {
-            background: white;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #00A2DB;
-        }
-
-        .structure-card h4 {
-            color: #001C3D;
-            font-size: 20px;
-            margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .structure-card .word-count {
-            display: inline-block;
-            background: #00A2DB;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        /* Assessment Criteria Cards */
-        .criteria-grid {
+        /* Comparison Grid */
+        .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin: 25px 0;
         }
 
-        .criteria-card {
-            background: white;
+        .comparison-card {
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-top: 4px solid #00A2DB;
         }
 
-        .criteria-card h4 {
-            color: #002D5A;
+        .comparison-card.included {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .comparison-card.excluded {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 4px solid #FF9800;
+        }
+
+        .comparison-card h4 {
             margin-bottom: 15px;
             font-family: 'Montserrat', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .criteria-percentage {
-            background: #00A2DB;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
+        .comparison-card.included h4 {
+            color: #2E7D32;
+        }
+
+        .comparison-card.excluded h4 {
+            color: #E65100;
         }
 
         /* Footer */
@@ -598,7 +574,7 @@
                 font-size: 36px;
             }
 
-            .proposal-stats {
+            .thesis-stats {
                 gap: 20px;
             }
 
@@ -618,7 +594,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .criteria-grid {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -663,32 +639,32 @@
         <div class="breadcrumb-content">
             <a href="index.html">BTR Dashboard</a>
             <span>›</span>
-            <span>Writing the Proposal</span>
+            <span>Writing the Thesis</span>
         </div>
     </div>
 
     <!-- Page Hero -->
     <section class="page-hero">
         <div class="page-hero-content">
-            <h1>Writing the BTR Proposal</h1>
-            <p>Your proposal is the foundation of your BTR—demonstrating your ability to design independent research</p>
+            <h1>BTR Written Thesis Guidelines</h1>
+            <p>Your comprehensive guide to writing your final thesis</p>
             
-            <div class="proposal-stats">
+            <div class="thesis-stats">
                 <div class="stat-item">
-                    <div class="stat-number">2000</div>
-                    <div class="stat-label">Max Words</div>
+                    <div class="stat-number">8K-15K</div>
+                    <div class="stat-label">Word Count</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">15%</div>
+                    <div class="stat-number">25%</div>
                     <div class="stat-label">of BTR Grade</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Required Sections</div>
+                    <div class="stat-number">25MB</div>
+                    <div class="stat-label">Max File Size</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">10-15</div>
-                    <div class="stat-label">References</div>
+                    <div class="stat-number">200</div>
+                    <div class="stat-label">Word Abstract</div>
                 </div>
             </div>
         </div>
@@ -699,568 +675,770 @@
 
         <!-- Quick Navigation -->
         <div class="quick-nav">
-            <a href="#overview" class="quick-nav-card">
-                <h3>📖 Overview & Purpose</h3>
-                <p>What the proposal is and why it matters</p>
+            <a href="#timeline" class="quick-nav-card">
+                <h3>⏰ Timeline & Deadline</h3>
+                <p>When to start and when to submit</p>
             </a>
-            <a href="#requirements" class="quick-nav-card">
-                <h3>📋 Requirements</h3>
-                <p>Format, length, and technical specifications</p>
+            <a href="#submission" class="quick-nav-card">
+                <h3>📤 Submission Requirements</h3>
+                <p>Collent submission and file specifications</p>
+            </a>
+            <a href="#wordcount" class="quick-nav-card">
+                <h3>📊 Word Count Rules</h3>
+                <p>Length requirements and extensions</p>
             </a>
             <a href="#structure" class="quick-nav-card">
-                <h3>🏗️ Structure Guide</h3>
-                <p>Six required sections with word counts</p>
-            </a>
-            <a href="#deadline" class="quick-nav-card">
-                <h3>⏰ Deadline & Submission</h3>
-                <p>Important dates and how to submit</p>
+                <h3>🏗️ Thesis Structure</h3>
+                <p>All required sections from abstract to reflection</p>
             </a>
             <a href="#grading" class="quick-nav-card">
-                <h3>📊 Grading Criteria</h3>
-                <p>How your proposal will be assessed</p>
+                <h3>📈 Grading & Feedback</h3>
+                <p>Assessment criteria and feedback process</p>
             </a>
-            <a href="#resources" class="quick-nav-card">
-                <h3>🛠️ Resources & Help</h3>
-                <p>Tools, templates, and support services</p>
+            <a href="#integrity" class="quick-nav-card">
+                <h3>⚖️ Academic Integrity</h3>
+                <p>Critical plagiarism rules and consequences</p>
             </a>
         </div>
 
-        <!-- Section 1: Overview & Purpose -->
-        <section id="overview" class="section-card active">
+        <!-- Section 1: Timeline & Deadline -->
+        <section id="timeline" class="section-card active">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📖 Overview & Purpose</h2>
+                <h2>⏰ Timeline & Submission Deadline</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
-                    <h3>What is the BTR Proposal?</h3>
-                    <p>The BTR proposal is a research plan that outlines what you intend to investigate during your Bachelor Thesis Research. It demonstrates your ability to:</p>
+                    <h3>When Can I Start Writing?</h3>
+                    <p>You can begin writing your thesis directly after receiving feedback on your proposal. Many parts can be written as your work progresses:</p>
                     
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>🎯 Identify</h4>
-                            <p>A relevant research question in your field</p>
+                            <h4>📝 Introduction</h4>
+                            <p>Based on your proposal (revised according to feedback)</p>
                         </div>
                         <div class="resource-card">
-                            <h4>📚 Review</h4>
-                            <p>Existing literature and knowledge gaps</p>
+                            <h4>🔬 Methods</h4>
+                            <p>Write as you conduct your research</p>
                         </div>
                         <div class="resource-card">
-                            <h4>🔬 Design</h4>
-                            <p>Appropriate research methods</p>
+                            <h4>📊 Results</h4>
+                            <p>Document as data is collected</p>
                         </div>
                         <div class="resource-card">
-                            <h4>💭 Think Critically</h4>
-                            <p>About your research approach</p>
+                            <h4>💭 Discussion</h4>
+                            <p>Typically completed in final weeks</p>
                         </div>
                         <div class="resource-card">
-                            <h4>✍️ Communicate</h4>
-                            <p>Ideas clearly in academic writing</p>
+                            <h4>🔍 Critical Reflection</h4>
+                            <p>Write during final weeks</p>
                         </div>
                     </div>
 
+                    <h3>Deadline</h3>
                     <div class="info-box">
-                        <strong>Important Note:</strong>
-                        <p>Your proposal is a plan, not a promise. It's normal for your research to evolve as you progress. The proposal demonstrates your preparation and thinking at the start of your BTR.</p>
+                        <strong>When Due:</strong>
+                        <p>The written thesis is due <strong>five weeks before graduation</strong>.</p>
+                        <p>Your exact deadline is provided in the personalized calendar you received at the start of your BTR.</p>
                     </div>
-
-                    <h3>Why is it Important?</h3>
-                    
-                    <div class="criteria-grid">
-                        <div class="criteria-card">
-                            <h4>🗺️ Planning Tool</h4>
-                            <p>Helps you organize your thoughts and approach before diving into research</p>
-                        </div>
-                        <div class="criteria-card">
-                            <h4>💬 Communication</h4>
-                            <p>Ensures you and your supervisor are aligned on the research direction</p>
-                        </div>
-                        <div class="criteria-card">
-                            <h4>📊 Assessment</h4>
-                            <p>Worth 15% of your final BTR grade</p>
-                        </div>
-                        <div class="criteria-card">
-                            <h4>📖 Reference Document</h4>
-                            <p>Guides your work throughout the BTR period</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Requirements & Format -->
-        <section id="requirements" class="section-card">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📋 Requirements & Format</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="section-inner">
-                    <h3>Basic Requirements</h3>
-                    
-                    <table class="spec-table">
-                        <tr>
-                            <th>Requirement</th>
-                            <th>Details</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Length</strong></td>
-                            <td>Maximum 2000 words (excluding references)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Format</strong></td>
-                            <td>Academic paper format with clear sections</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Citation Style</strong></td>
-                            <td>APA 7th edition (or field-specific style approved by supervisor)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Language</strong></td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td><strong>File Format</strong></td>
-                            <td>PDF (submitted via Collent)</td>
-                        </tr>
-                    </table>
 
                     <div class="warning-box">
-                        <strong>⚠️ Word Limit is Strict:</strong>
-                        <p>Proposals exceeding 2000 words will be penalized. Use concise, clear academic writing. Quality over quantity!</p>
-                    </div>
-
-                    <h3>Formatting Guidelines</h3>
-                    
-                    <div class="resource-grid">
-                        <div class="resource-card">
-                            <h4>📝 Font</h4>
-                            <p>11-12 pt, readable font (Times New Roman, Arial, Calibri)</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>📏 Line Spacing</h4>
-                            <p>1.5 or double-spaced</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>📐 Margins</h4>
-                            <p>2.5 cm (1 inch) on all sides</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>🔢 Page Numbers</h4>
-                            <p>Include page numbers</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>🏷️ Headings</h4>
-                            <p>Use clear section headings</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3: Proposal Structure -->
-        <section id="structure" class="section-card">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🏗️ Proposal Structure</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="section-inner">
-                    <p>Your proposal should include the following sections. The exact structure may vary slightly depending on your field, so discuss with your supervisor.</p>
-
-                    <div class="structure-card">
-                        <h4>1. Title Page</h4>
-                        <p><strong>Include:</strong></p>
+                        <strong>⚠️ Plan Accordingly:</strong>
+                        <p>Set aside several weeks at the end of your research for:</p>
                         <ul>
-                            <li>Proposed thesis title</li>
-                            <li>Your name and student number</li>
-                            <li>Research Supervisor name and affiliation</li>
-                            <li>Internal Advisor name (if known at submission)</li>
-                            <li>Date of submission</li>
-                            <li>Word count (excluding references)</li>
-                        </ul>
-                    </div>
-
-                    <div class="structure-card">
-                        <h4>2. Introduction & Background</h4>
-                        <span class="word-count">~400-500 words</span>
-                        
-                        <p style="margin-top: 15px;"><strong>Content:</strong></p>
-                        <ul>
-                            <li>Introduce your research topic and its relevance</li>
-                            <li>Provide context: Why is this topic important?</li>
-                            <li>What is the current state of knowledge in this area?</li>
-                            <li>What gap in knowledge does your research address?</li>
-                            <li>Clearly state your research question(s) and/or hypothesis</li>
-                        </ul>
-
-                        <div class="success-box">
-                            <strong>Writing Tip:</strong>
-                            <p>Start broad (general context) and narrow down to your specific research question. Think of it as a funnel: background → gap → your research.</p>
-                        </div>
-                    </div>
-
-                    <div class="structure-card">
-                        <h4>3. Literature Review</h4>
-                        <span class="word-count">~600-700 words</span>
-                        
-                        <p style="margin-top: 15px;"><strong>Content:</strong></p>
-                        <ul>
-                            <li>Review relevant scientific literature in your research area</li>
-                            <li>Demonstrate your understanding of the field</li>
-                            <li>Identify what is known and what remains unclear</li>
-                            <li>Show how previous studies relate to your research question</li>
-                            <li>Explain theoretical frameworks or concepts you'll use</li>
-                        </ul>
-
-                        <p><strong>Tips:</strong></p>
-                        <ul>
-                            <li>✓ Use recent peer-reviewed sources (ideally within last 5-10 years)</li>
-                            <li>✓ Synthesize information rather than just listing studies</li>
-                            <li>✓ Be critical: discuss strengths and limitations of previous work</li>
-                            <li>✓ Minimum 10-15 quality references expected</li>
-                        </ul>
-                    </div>
-
-                    <div class="structure-card">
-                        <h4>4. Research Methods</h4>
-                        <span class="word-count">~600-700 words</span>
-                        
-                        <p style="margin-top: 15px;"><strong>Content:</strong></p>
-                        <ul>
-                            <li><strong>Research Design:</strong> What type of research will you conduct? (experimental, observational, computational, etc.)</li>
-                            <li><strong>Materials:</strong> What equipment, samples, or data will you use?</li>
-                            <li><strong>Procedures:</strong> Step-by-step description of your research approach</li>
-                            <li><strong>Analysis:</strong> How will you analyze your results? (statistical methods, software, techniques)</li>
-                            <li><strong>Timeline:</strong> Brief overview of your research schedule</li>
-                        </ul>
-
-                        <div class="info-box">
-                            <strong>Be Specific:</strong>
-                            <ul>
-                                <li>Include actual techniques, protocols, or models you'll use</li>
-                                <li>Mention specific software or equipment</li>
-                                <li>Explain why these methods are appropriate for your research question</li>
-                            </ul>
-                        </div>
-
-                        <div class="warning-box">
-                            <strong>Common Mistake:</strong>
-                            <p>Being too vague in methods. Don't just say "I will analyze the data." Specify HOW you'll analyze it and WITH WHAT tools.</p>
-                        </div>
-                    </div>
-
-                    <div class="structure-card">
-                        <h4>5. Expected Outcomes & Significance</h4>
-                        <span class="word-count">~200-300 words</span>
-                        
-                        <p style="margin-top: 15px;"><strong>Content:</strong></p>
-                        <ul>
-                            <li>What results do you anticipate? (Be realistic and cautious)</li>
-                            <li>How might your findings contribute to the field?</li>
-                            <li>What are the potential applications or implications?</li>
-                            <li>Acknowledge limitations or challenges you may face</li>
-                        </ul>
-                    </div>
-
-                    <div class="structure-card">
-                        <h4>6. References</h4>
-                        <span class="word-count">Not counted in word limit</span>
-                        
-                        <p style="margin-top: 15px;"><strong>Content:</strong></p>
-                        <ul>
-                            <li>Complete list of all sources cited in APA format (or approved alternative)</li>
-                            <li>Use a reference manager (Mendeley, Zotero, EndNote) to ensure consistency</li>
-                            <li>Double-check formatting before submission</li>
+                            <li>Analysis of results</li>
+                            <li>Writing your discussion and conclusions</li>
+                            <li>Completing your critical reflection</li>
+                            <li>Proofreading and formatting</li>
+                            <li>Final submission preparations</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Deadline & Submission -->
-        <section id="deadline" class="section-card">
+        <!-- Section 2: Submission Requirements -->
+        <section id="submission" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>⏰ Deadline & Submission</h2>
+                <h2>📤 Submission Requirements</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
-                    <h3>Important Dates</h3>
-                    
-                    <table class="spec-table">
-                        <tr>
-                            <th>Cohort</th>
-                            <th>Proposal Deadline</th>
-                            <th>Expected Grades</th>
-                        </tr>
-                        <tr>
-                            <td><strong>September 2025</strong></td>
-                            <td>September 29, 2025 at 13:00</td>
-                            <td>October 20, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><strong>February 2026</strong></td>
-                            <td>March 1, 2026 at 13:00</td>
-                            <td>March 22, 2026</td>
-                        </tr>
-                    </table>
-
-                    <div class="warning-box">
-                        <strong>⚠️ Deadline is Strict:</strong>
-                        <p>Late submissions will receive a penalty or may not be accepted. Plan ahead and don't wait until the last minute!</p>
+                    <h3>Where to Submit</h3>
+                    <div class="danger-box">
+                        <strong>⚠️ ONLY via Collent</strong>
+                        <p>No other submission method is accepted:</p>
+                        <ul>
+                            <li>Canvas or email submissions will NOT be counted</li>
+                            <li>Your thesis will be considered missing if not submitted via Collent</li>
+                            <li>Make sure you understand the Collent platform before deadline day</li>
+                        </ul>
+                        <p style="margin-top: 15px;">🔗 <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank" style="color: #00A2DB;">Collent Platform</a></p>
                     </div>
 
-                    <h3>How to Submit</h3>
+                    <h3>File Size Limit: 25 MB Maximum</h3>
                     
+                    <h4>How to Achieve This:</h4>
+                    <ul>
+                        <li>Compress all images to maximum 300 dpi resolution</li>
+                        <li>Use appropriate image formats (JPEG for photos, PNG for diagrams)</li>
+                        <li>Check file size before final submission</li>
+                    </ul>
+
+                    <h3>Special Circumstances</h3>
+
                     <div class="process-steps">
                         <div class="process-step">
-                            <h4>Prepare Your Proposal</h4>
-                            <p>Save as PDF with filename: <strong>LastName_FirstName_Proposal.pdf</strong></p>
+                            <h4>Option 1: Heavy Images Throughout Thesis</h4>
+                            <ul>
+                                <li>Save a compressed version (under 25 MB) for Collent upload</li>
+                                <li>Include an external download link (SURFdrive, Google Drive, etc.) on your title page</li>
+                                <li>Clearly indicate: "Full resolution version available at: [link]"</li>
+                                <li><strong>CRITICAL:</strong> Explicitly inform both your Research Supervisor and Internal Advisor about the external link</li>
+                            </ul>
                         </div>
+
                         <div class="process-step">
-                            <h4>Log in to Collent</h4>
-                            <p>Access: <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent Platform</a></p>
-                        </div>
-                        <div class="process-step">
-                            <h4>Navigate to Submission</h4>
-                            <p>Bachelor Thesis Research > Proposal Submission</p>
-                        </div>
-                        <div class="process-step">
-                            <h4>Upload Your PDF</h4>
-                            <p>Drag and drop or browse to select your file</p>
-                        </div>
-                        <div class="process-step">
-                            <h4>Confirm Submission</h4>
-                            <p>You should receive a confirmation email</p>
+                            <h4>Option 2: Heavy Images Only in Appendix</h4>
+                            <ul>
+                                <li>Create an electronic appendix hosted externally</li>
+                                <li>Provide link at the beginning of your appendix section</li>
+                                <li>Note: "High-resolution appendix available at: [link]"</li>
+                                <li>This can be consulted separately by assessors</li>
+                            </ul>
                         </div>
                     </div>
 
+                    <h3>File Naming Convention</h3>
                     <div class="success-box">
-                        <strong>Pro Tip:</strong>
-                        <p>Submit at least a few hours before the deadline to avoid last-minute technical issues. The system may be slow if many students submit at once!</p>
-                    </div>
-
-                    <h3>Before You Submit Checklist</h3>
-                    
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>Proposal is within 2000 word limit</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>All required sections included</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>References formatted correctly in APA style</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>Proofread for spelling and grammar errors</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>Discussed draft with Research Supervisor</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>Saved as PDF with correct filename</div>
-                    </div>
-                    <div class="checklist-item">
-                        <div class="checklist-checkbox"></div>
-                        <div>Checked that all figures/tables are clear and numbered</div>
+                        <strong>Format:</strong>
+                        <p><strong>LastName_StudentID_Thesis.pdf</strong></p>
+                        <p>Example: <code>Jeurissen_i6123456_Thesis.pdf</code></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: Grading & Assessment -->
-        <section id="grading" class="section-card">
+        <!-- Section 3: Word Count Rules -->
+        <section id="wordcount" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📊 Grading & Assessment</h2>
+                <h2>📊 Word Count Rules</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
-                    <h3>Who Grades Your Proposal?</h3>
-                    
+                    <h3>Standard Word Count: 8,000 - 15,000 words</h3>
+
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>Research Supervisor</h4>
-                            <p style="margin-top: 10px;"><strong>Weight: 50%</strong></p>
-                            <p>Your assigned research supervisor assesses your proposal</p>
+                            <h4>📉 Shorter Theses</h4>
+                            <ul>
+                                <li>✓ Allowed without special dispensation</li>
+                                <li>⚠️ Will be marked down if they don't contain all relevant information</li>
+                                <li>Must still include all required sections</li>
+                            </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>Internal Advisor</h4>
-                            <p style="margin-top: 10px;"><strong>Weight: 50%</strong></p>
-                            <p>Second assessor for balanced evaluation</p>
+                            <h4>📈 Longer Theses</h4>
+                            <ul>
+                                <li>Require approval from Research Supervisor</li>
+                                <li>Must specify exact number of words</li>
+                                <li>⚠️ MANDATORY: Inform BTR Administrator</li>
+                                <li>Must be submitted minimum 48 hours before deadline</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="danger-box">
+                        <strong>⚠️ CRITICAL WARNING - Penalty for Exceeding Limit:</strong>
+                        <p>Theses will be graded harshly if any word extension is not well used.</p>
+                        <p style="margin-top: 10px;"><strong>If BTR Office was NOT informed (regardless of supervisor approval):</strong></p>
+                        <ul>
+                            <li><strong>Penalty:</strong> 0.5 points deducted per 500 words (or part thereof) over 15,000</li>
+                            <li>Penalty applies to the overall averaged grade from Research Supervisor and Internal Advisor</li>
+                        </ul>
+                        <p style="margin-top: 10px;">Contact: <a href="mailto:msp-btr@maastrichtuniversity.nl" style="color: #00A2DB;">msp-btr@maastrichtuniversity.nl</a></p>
+                    </div>
+
+                    <h3>What Counts?</h3>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card included">
+                            <h4>✓ INCLUDED in Word Count</h4>
+                            <ul>
+                                <li>All main body text</li>
+                                <li>Introduction</li>
+                                <li>Methods</li>
+                                <li>Results</li>
+                                <li>Discussion</li>
+                                <li>Critical reflection</li>
+                                <li>Figure/table captions</li>
+                                <li>Section headings</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card excluded">
+                            <h4>✗ EXCLUDED from Word Count</h4>
+                            <ul>
+                                <li>Title page</li>
+                                <li>Abstract (must be under 200 words separately)</li>
+                                <li>References</li>
+                                <li>Appendices</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="info-box">
-                        <strong>Final Grade:</strong>
-                        <p>The final grade is the average of both assessors' grades and accounts for <strong>15% of your total BTR grade (30 ECTS)</strong>.</p>
+                        <strong>Your Responsibility:</strong>
+                        <ul>
+                            <li>Calculate your word count accurately using multiple tools</li>
+                            <li>Declare your word count on the title page</li>
+                            <li>If approaching 15,000 words and need extension: Contact BTR Office 48h+ before deadline</li>
+                        </ul>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <h3>Assessment Criteria</h3>
-                    
-                    <div class="criteria-grid">
-                        <div class="criteria-card">
-                            <h4>
-                                Research Question & Objectives
-                                <span class="criteria-percentage">20%</span>
-                            </h4>
+        <!-- Section 4: Thesis Structure -->
+        <section id="structure" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🏗️ Complete Thesis Structure</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <p>Your thesis should include all of the following sections in order:</p>
+
+                    <h3>1. Title Page</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>✓ Required Elements</h4>
                             <ul>
-                                <li>Is the research question clear and focused?</li>
-                                <li>Is it scientifically relevant and feasible?</li>
-                                <li>Are objectives specific and achievable?</li>
+                                <li>Thesis Title</li>
+                                <li>Student Name</li>
+                                <li>Student ID (i6XXXXXX)</li>
+                                <li>Research Supervisor Name</li>
+                                <li>Word Count Declaration</li>
                             </ul>
                         </div>
-                        
-                        <div class="criteria-card">
-                            <h4>
-                                Literature Review
-                                <span class="criteria-percentage">25%</span>
-                            </h4>
+                        <div class="resource-card">
+                            <h4>Optional Elements</h4>
                             <ul>
-                                <li>Demonstrates understanding of relevant literature</li>
-                                <li>Critical analysis of previous work</li>
-                                <li>Identifies knowledge gap effectively</li>
-                                <li>Uses appropriate and recent sources</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="criteria-card">
-                            <h4>
-                                Research Methods
-                                <span class="criteria-percentage">30%</span>
-                            </h4>
-                            <ul>
-                                <li>Methods are appropriate for the research question</li>
-                                <li>Sufficient detail and justification provided</li>
-                                <li>Shows understanding of techniques and analysis</li>
-                                <li>Realistic timeline and feasibility</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="criteria-card">
-                            <h4>
-                                Academic Writing & Structure
-                                <span class="criteria-percentage">25%</span>
-                            </h4>
-                            <ul>
-                                <li>Clear, concise, and logical organization</li>
-                                <li>Proper use of academic language</li>
-                                <li>Correct grammar, spelling, and punctuation</li>
-                                <li>Proper citations and reference formatting</li>
-                                <li>Adherence to word limit and format requirements</li>
+                                <li>Internal Advisor name</li>
+                                <li>Submission date</li>
+                                <li>Institution/department</li>
+                                <li>University logos</li>
+                                <li>External link (if applicable)</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="success-box">
-                        <strong>Feedback:</strong>
-                        <p>You'll receive detailed feedback from both assessors along with your grade. Use this feedback to improve your final thesis!</p>
+                    <h3>2. Abstract (Maximum 200 words)</h3>
+                    <div class="info-box">
+                        <strong>Must Include:</strong>
+                        <ul>
+                            <li>Brief background/context</li>
+                            <li>Your research question or aim</li>
+                            <li>Methods used (very briefly)</li>
+                            <li>Key results</li>
+                            <li>Main conclusions</li>
+                            <li>Significance/implications</li>
+                        </ul>
                     </div>
 
-                    <h3>What if My Proposal Grade is Low?</h3>
-                    
-                    <p>If you receive a failing grade (below 5.5) or are unsatisfied with your proposal grade:</p>
+                    <h4>Writing Tips</h4>
                     <ul>
-                        <li>Review the feedback carefully</li>
-                        <li>Discuss concerns with your Research Supervisor</li>
-                        <li>Contact your Internal Advisor for clarification</li>
-                        <li>Use the feedback to improve your final thesis</li>
+                        <li>✓ Write your abstract last (after completing all other sections)</li>
+                        <li>✓ Be concise but comprehensive</li>
+                        <li>✓ Use clear, direct language</li>
+                        <li>✓ Avoid jargon where possible</li>
+                        <li>✓ Make every word count – you only have 200!</li>
+                        <li>❌ Do NOT include citations/references</li>
+                        <li>❌ Do NOT include tables or figures</li>
+                    </ul>
+
+                    <h3>3. Introduction</h3>
+                    
+                    <div class="success-box">
+                        <strong>Good News:</strong>
+                        <p>Your introduction will likely be based on your research proposal.</p>
+                        <ul>
+                            <li>✓ This is NOT plagiarism – you are allowed to copy parts of your proposal</li>
+                            <li>✓ Revise and improve based on feedback received</li>
+                            <li>✓ Expand sections that were too brief in the proposal</li>
+                            <li>✓ Update with relevant literature published since your proposal</li>
+                        </ul>
+                    </div>
+
+                    <h4>Required Elements:</h4>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h5>Broader Context ("The Story So Far")</h5>
+                            <ul>
+                                <li>What has been done in this research area?</li>
+                                <li>What is the current state of knowledge?</li>
+                                <li>Why is this topic important?</li>
+                            </ul>
+                        </div>
+                        <div class="process-step">
+                            <h5>Knowledge Gaps</h5>
+                            <ul>
+                                <li>Where are the gaps in our current understanding?</li>
+                                <li>What questions remain unanswered?</li>
+                                <li>Why does this gap matter?</li>
+                            </ul>
+                        </div>
+                        <div class="process-step">
+                            <h5>Your Research Focus</h5>
+                            <ul>
+                                <li>How does your study address these gaps?</li>
+                                <li>What is your specific contribution?</li>
+                                <li>Your hypotheses or research questions</li>
+                            </ul>
+                        </div>
+                        <div class="process-step">
+                            <h5>Wider Significance</h5>
+                            <ul>
+                                <li>Potential impact of your work</li>
+                                <li>How it enhances knowledge in the field</li>
+                                <li>Broader implications (if applicable)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Critical Rule:</strong>
+                        <p>Do NOT simply cite references you've only read about in other papers</p>
+                        <ul>
+                            <li>You must have read the original sources yourself</li>
+                            <li>Citing papers you haven't read will result in downgrading</li>
+                            <li>If you found a reference in another paper, go read the original before citing it</li>
+                        </ul>
+                    </div>
+
+                    <h3>4. Methods/Experimental Section</h3>
+                    <p>Another scientist should be able to precisely replicate your work based on your description.</p>
+
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>Materials</h4>
+                            <ul>
+                                <li>All equipment used</li>
+                                <li>Chemicals/reagents</li>
+                                <li>Software and versions</li>
+                                <li>Special preparations</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Procedures</h4>
+                            <ul>
+                                <li>Step-by-step description</li>
+                                <li>Order of operations</li>
+                                <li>Timing and conditions</li>
+                                <li>Sample sizes</li>
+                                <li>Controls used</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Statistical Analysis</h4>
+                            <ul>
+                                <li>Software used</li>
+                                <li>Statistical tests performed</li>
+                                <li>Significance levels</li>
+                                <li>Data processing methods</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Golden Rule:</strong>
+                        <p>When in doubt, include more detail rather than less. Your assessors should never have to guess what you did.</p>
+                    </div>
+
+                    <h3>5. Results</h3>
+                    <p>Present what you found without interpretation. Show your data objectively.</p>
+
+                    <h4>Types of Results Presentation:</h4>
+                    <ul>
+                        <li><strong>Figures:</strong> Graphs showing trends, patterns, or relationships</li>
+                        <li><strong>Tables:</strong> Organized data in rows and columns</li>
+                        <li><strong>Text Descriptions:</strong> Guide readers through your results</li>
+                        <li><strong>Statistical Analysis:</strong> Report relevant statistics and p-values</li>
                     </ul>
 
                     <div class="warning-box">
-                        <strong>Important:</strong>
-                        <p>There is no resit for the proposal. The grade stands, but strong performance in other BTR components can compensate.</p>
+                        <strong>What NOT to Include:</strong>
+                        <ul>
+                            <li>❌ Interpretation of results (save for Discussion)</li>
+                            <li>❌ Raw data (unless specifically requested – use appendix)</li>
+                            <li>❌ Failed experiments (unless relevant to understanding your final approach)</li>
+                        </ul>
+                    </div>
+
+                    <h3>6. Discussion</h3>
+                    <p>Interpret your results, connect them to existing knowledge, and explain their broader significance.</p>
+
+                    <h4>Required Elements:</h4>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h5>Interpretation of Results</h5>
+                            <p>What do your results mean? How do they correspond to theoretical expectations?</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Comparison with Literature</h5>
+                            <p>How do your results compare with previous studies? Do they confirm or contradict?</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Problems and Limitations</h5>
+                            <p>Mention significant limitations, but don't overstate or make excuses.</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Broader Implications</h5>
+                            <p>How does this advance knowledge? What are the practical applications?</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Future Directions</h5>
+                            <p>What would be the logical next experiments? What questions remain?</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Conclusion Paragraph (Required):</strong>
+                        <p>End your discussion with one paragraph that:</p>
+                        <ul>
+                            <li>Summarizes the most important aspects of your work</li>
+                            <li>Reinforces your key findings</li>
+                            <li>States your main contribution</li>
+                            <li>Leaves the reader with clear understanding of significance</li>
+                        </ul>
+                    </div>
+
+                    <h3>7. Critical Reflection</h3>
+                    
+                    <div class="warning-box">
+                        <strong>What Makes This Section Unique:</strong>
+                        <p>This is what differentiates your bachelor thesis from a standard scientific paper. This section is about YOU and your personal growth during the BTR.</p>
+                    </div>
+
+                    <h4>It Must Be CRITICAL</h4>
+                    <p>This is not a place to only celebrate successes. You should critically analyze aspects you could have improved.</p>
+
+                    <h4>Possible Topics for Reflection:</h4>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>⏰ Time Management</h4>
+                            <p>How effectively did you manage your time? Did you procrastinate?</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>📋 Planning</h4>
+                            <p>Were your timelines realistic? Did you anticipate challenges?</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🔬 Skills Development</h4>
+                            <p>What technical skills did you develop? How steep was the learning curve?</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>💬 Communication</h4>
+                            <p>How effectively did you communicate with your supervisor?</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🧩 Problem-Solving</h4>
+                            <p>How did you handle challenges? Were you resourceful?</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🎯 Independence</h4>
+                            <p>How well did you work independently? Were you proactive?</p>
+                        </div>
+                    </div>
+
+                    <div class="success-box">
+                        <strong>Remember:</strong>
+                        <p>This reflection demonstrates your ability to think critically about yourself – an essential skill for any researcher or professional. Your assessors want to see that you've learned and grown from this experience, including learning from mistakes.</p>
+                    </div>
+
+                    <h3>8. References</h3>
+                    
+                    <div class="info-box">
+                        <strong>Citation Style:</strong>
+                        <p>Unlike the proposal, the thesis allows flexibility:</p>
+                        <ul>
+                            <li><strong>MSP Standard:</strong> APA format</li>
+                            <li><strong>Also acceptable:</strong> Vancouver (numbered), Harvard, or discipline-specific format</li>
+                            <li><strong>CRITICAL:</strong> Consult your Research Supervisor for their preference</li>
+                            <li>Whatever style you choose must be consistent throughout</li>
+                        </ul>
+                    </div>
+
+                    <div class="danger-box">
+                        <strong>⚠️ Critical Rule:</strong>
+                        <p>It is NOT acceptable to cite references you have not read</p>
+                        <ul>
+                            <li>If you learned about a paper from a review, read the original before citing it</li>
+                            <li>"Cited in..." or "as described by..." indicates you didn't read the original – avoid this</li>
+                            <li>Reading the abstract alone is not sufficient</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 6: Resources & Templates -->
-        <section id="resources" class="section-card">
+        <!-- Section 5: Assessment & Grading -->
+        <section id="grading" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🛠️ Resources & Help</h2>
+                <h2>📈 Assessment & Grading</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
-                    <h3>Essential Resources</h3>
-                    
+                    <h3>Weight in Overall BTR Grade</h3>
+                    <div class="info-box">
+                        <strong>Written Thesis = 25% of your total BTR grade</strong>
+                        <p style="margin-top: 10px;"><strong>Complete BTR Breakdown:</strong></p>
+                        <ul>
+                            <li>Proposal: 15%</li>
+                            <li>Written Thesis: 25%</li>
+                            <li>Midterm Practical Work: 20%</li>
+                            <li>Final Practical Work: 30%</li>
+                            <li>Video Presentation: 10%</li>
+                        </ul>
+                    </div>
+
+                    <h3>Who Assesses Your Thesis?</h3>
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>📋 Proposal Guidelines</h4>
-                            <p>Available on Canvas > BTR Module > Proposal Guidelines</p>
+                            <h4>1. Research Supervisor</h4>
+                            <p>The person who supervised your research</p>
+                            <p style="margin-top: 10px;"><strong>Weight: 50%</strong></p>
                         </div>
                         <div class="resource-card">
-                            <h4>📊 Proposal Rubric</h4>
-                            <p>See exact grading criteria on Canvas</p>
+                            <h4>2. Internal Thesis Advisor</h4>
+                            <p>MSP faculty member assigned to your thesis</p>
+                            <p style="margin-top: 10px;"><strong>Weight: 50%</strong></p>
                         </div>
-                        <div class="resource-card">
-                            <h4>📄 Example Proposals</h4>
-                            <p>Ask your supervisor for examples from previous successful BTR proposals</p>
+                    </div>
+                    <p><strong>Final Grade:</strong> Average of both assessors' grades</p>
+
+                    <h3>Draft Review Opportunity</h3>
+                    <p>You are allowed <strong>ONE draft review</strong> from your Research Supervisor.</p>
+
+                    <h4>Options:</h4>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <h5>Option 1: One Complete Draft</h5>
+                            <p>Submit full thesis draft before final version, receive comprehensive feedback, revise and submit final version</p>
                         </div>
-                        <div class="resource-card">
-                            <h4>📚 APA Style Guide</h4>
-                            <p><a href="https://apastyle.apa.org/" target="_blank">Official APA Website</a></p>
+                        <div class="process-step">
+                            <h5>Option 2: Section-by-Section Feedback</h5>
+                            <p>Submit each section as completed, receive feedback individually, build final thesis from reviewed sections</p>
                         </div>
-                        <div class="resource-card">
-                            <h4>✍️ Writing Support</h4>
-                            <p>Maastricht University Language Centre offers writing workshops</p>
+                        <div class="process-step">
+                            <h5>Option 3: Supervisor-Specific Process</h5>
+                            <p>Some supervisors may have their own preferred approach. Clarify expectations early!</p>
                         </div>
                     </div>
 
-                    <h3>Reference Managers</h3>
-                    <p>Use these tools to manage your citations:</p>
-                    
-                    <div class="resource-grid">
-                        <div class="resource-card">
-                            <h4>📖 Zotero</h4>
-                            <p>Free, open-source (recommended)</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>📖 Mendeley</h4>
-                            <p>Free with cloud storage</p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>📖 EndNote</h4>
-                            <p>Available through UM library</p>
-                        </div>
+                    <div class="warning-box">
+                        <strong>⚠️ Your Responsibility:</strong>
+                        <ul>
+                            <li>Initiate the draft review process with your supervisor</li>
+                            <li>Plan timing carefully (allow time for feedback and revision)</li>
+                            <li>Don't wait until the last minute to request feedback</li>
+                            <li>Be proactive in communicating with your supervisor</li>
+                        </ul>
                     </div>
 
-                    <h3>Where to Get Help</h3>
-                    
-                    <div class="criteria-grid">
-                        <div class="criteria-card">
-                            <h4>👨‍🔬 Research Supervisor</h4>
-                            <p>Discuss drafts and get feedback on your research plan and methods</p>
+                    <h3>Receiving Final Grades & Feedback</h3>
+                    <ul>
+                        <li><strong>Access:</strong> Grades and feedback forms available via Canvas</li>
+                        <li><strong>Timeline:</strong> Typically released 3-4 weeks after submission</li>
+                        <li><strong>Communication:</strong> May also be sent directly via email</li>
+                        <li><strong>Value:</strong> Even though it can't enhance your BTR grade, feedback is worthwhile for future development</li>
+                    </ul>
+
+                    <h4>If Feedback Is Delayed</h4>
+                    <ol>
+                        <li>Check Canvas carefully</li>
+                        <li>Check your email (including spam/junk folders)</li>
+                        <li>Contact your Research Supervisor directly</li>
+                        <li>Contact your Internal Advisor</li>
+                        <li>If still no response, email BTR Administrator: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Academic Integrity -->
+        <section id="integrity" class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>⚖️ Academic Integrity & Plagiarism</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="danger-box">
+                        <strong>⚠️ CRITICAL: Zero Tolerance for Plagiarism</strong>
+                        <p style="font-size: 18px; margin-top: 10px;"><strong>Result: AUTOMATIC FAILING GRADE</strong></p>
+                        <ul>
+                            <li>Failing grade for the entire written thesis component</li>
+                            <li>Handled according to MSP Rules and Regulations</li>
+                            <li>May affect your entire BTR outcome and academic record</li>
+                            <li>Could delay graduation</li>
+                            <li>Academic integrity violation on your permanent record</li>
+                        </ul>
+                    </div>
+
+                    <h3>What Constitutes Plagiarism?</h3>
+
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>❌ Copying Theses</h4>
+                            <p>Copying all or part of another student's thesis, even with slight modifications</p>
                         </div>
-                        <div class="criteria-card">
-                            <h4>👨‍🏫 Internal Advisor</h4>
-                            <p>Available for questions about structure and academic writing</p>
+                        <div class="resource-card">
+                            <h4>❌ Failure to Cite</h4>
+                            <p>Not including references for borrowed ideas or paraphrasing without citation</p>
                         </div>
-                        <div class="criteria-card">
-                            <h4>📧 BTR Office</h4>
-                            <p><a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a> for administrative questions</p>
+                        <div class="resource-card">
+                            <h4>❌ Internet Plagiarism</h4>
+                            <p>Copying text from websites without attribution or proper acknowledgment</p>
                         </div>
-                        <div class="criteria-card">
-                            <h4>✍️ Writing Centre</h4>
-                            <p>Book appointments for writing support</p>
+                        <div class="resource-card">
+                            <h4>❌ AI & Text Generators</h4>
+                            <p>Using ChatGPT, AI writing tools, or any technology that negates your intellectual contribution</p>
                         </div>
-                        <div class="criteria-card">
-                            <h4>📚 Library Services</h4>
-                            <p>Help with literature searches and reference management</p>
+                        <div class="resource-card">
+                            <h4>❌ Ghostwriting</h4>
+                            <p>Having someone else write any part of your thesis or using "editing" services that rewrite</p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>❌ Citation Fraud</h4>
+                            <p>Citing sources you haven't read, fabricating citations, or listing irrelevant references</p>
                         </div>
                     </div>
 
                     <div class="success-box">
-                        <strong>Start Early:</strong>
-                        <p>Give yourself at least 2-3 weeks to write your proposal. This allows time for literature review, drafting, feedback from your supervisor, and revisions.</p>
+                        <strong>The One Exception: Using Your Proposal</strong>
+                        <p>You ARE allowed to copy parts of your own research proposal for your thesis introduction.</p>
+                        <ul>
+                            <li>✓ This is the only situation where you can reuse previous written work without citation</li>
+                            <li>✓ You should revise and improve based on feedback received</li>
+                            <li>✓ Expand sections that were too brief in the proposal</li>
+                            <li>✓ This applies only to your introduction section</li>
+                        </ul>
+                    </div>
+
+                    <h3>How to Avoid Plagiarism</h3>
+                    <ul>
+                        <li>✓ Read all sources yourself – never cite papers you haven't read</li>
+                        <li>✓ Take careful notes while reading, keeping track of what's your thought vs. the source</li>
+                        <li>✓ Use proper citations for every borrowed idea, even if paraphrased</li>
+                        <li>✓ Paraphrase in your own words – don't just change a few words</li>
+                        <li>✓ Use quotation marks for any direct quotes (use sparingly in scientific writing)</li>
+                        <li>✓ Include complete reference list with all cited sources</li>
+                        <li>✓ Keep original research notes to prove your work process if needed</li>
+                        <li>✓ Use plagiarism detection tools to check your own work before submission</li>
+                        <li>✓ When in doubt, cite! – over-citation is better than under-citation</li>
+                    </ul>
+
+                    <h3>Detection Methods</h3>
+                    <div class="warning-box">
+                        <strong>Be Aware:</strong>
+                        <ul>
+                            <li>All theses are checked for plagiarism using detection software</li>
+                            <li>Supervisors and Internal Advisors are trained to identify plagiarism</li>
+                            <li>Comparison with previous years' theses</li>
+                            <li>Internet source matching</li>
+                            <li>AI-generated text detection tools</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-size: 18px;"><strong>Don't risk your degree – do your own work and cite properly!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="section-card">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🛠️ Resources & Support</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <h3>Need Help?</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>📧 BTR Administrator</h4>
+                            <p><a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
+                            <ul>
+                                <li>Requirements questions</li>
+                                <li>Word count extensions</li>
+                                <li>Submission issues</li>
+                                <li>General BTR support</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>🔬 Research Supervisor</h4>
+                            <ul>
+                                <li>Thesis content questions</li>
+                                <li>Draft review scheduling</li>
+                                <li>Methods and results</li>
+                                <li>Discussion interpretation</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>📚 Internal Advisor</h4>
+                            <ul>
+                                <li>Academic writing questions</li>
+                                <li>Thesis structure concerns</li>
+                                <li>Academic standards</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Useful Tools</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>Citation Management</h4>
+                            <ul>
+                                <li>EndNote (free with UM license)</li>
+                                <li>Zotero (free)</li>
+                                <li>Mendeley (free)</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>File Management</h4>
+                            <ul>
+                                <li>Image compression tools</li>
+                                <li>PDF compression tools</li>
+                                <li>Word count checkers</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Writing Support</h4>
+                            <ul>
+                                <li>UM Library Writing Support</li>
+                                <li>Academic Writing Consultations</li>
+                                <li>Study Skills Workshops</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Tips for Success</h3>
+                    <div class="success-box">
+                        <ul>
+                            <li>✅ Start writing early – don't wait until research is complete</li>
+                            <li>✅ Schedule draft review with supervisor well in advance</li>
+                            <li>✅ Proofread multiple times – typos lose marks</li>
+                            <li>✅ Check references meticulously – many points lost here</li>
+                            <li>✅ Verify file size before deadline day</li>
+                            <li>✅ Back up your work regularly (cloud storage)</li>
+                            <li>✅ Test Collent submission before the deadline</li>
+                            <li>✅ Submit with time to spare – don't risk technical issues</li>
+                            <li>✅ Read feedback carefully – valuable for future work</li>
+                            <li>✅ Take the critical reflection seriously</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1270,11 +1448,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p><strong>Questions about your proposal?</strong> Contact your Research Supervisor or the BTR Office: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
+        <p><strong>Questions about your thesis?</strong> Contact your Research Supervisor or the BTR Office: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
         <p style="margin-top: 20px;">
             <a href="index.html">← Back to BTR Dashboard</a> | 
-            <a href="before-you-start.html">Before You Start</a> | 
-            <a href="writing-the-thesis.html">Thesis Guidelines</a>
+            <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
+            <a href="btr-video.html">Video Guidelines</a>
         </p>
         <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
             © Maastricht University - Faculty of Science and Engineering
