@@ -567,7 +567,7 @@
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h2>October 2026</h2>
-                    <p>Proposal Assessment Month</p>
+                    <p>Grade Publication Month</p>
                 </div>
                 <div class="calendar-grid">
                     <!-- Day Headers -->
@@ -600,7 +600,7 @@
                     <div class="day-cell">13</div>
                     <div class="day-cell">14</div>
                     <div class="day-cell">15</div>
-                    <div class="day-cell deadline" onclick="showDeadline('proposal-assessment')">16</div>
+                    <div class="day-cell">16</div>
                     <div class="day-cell">17</div>
                     <div class="day-cell">18</div>
                     <div class="day-cell grade-day" onclick="showDeadline('proposal-grades')">19</div>
@@ -623,7 +623,7 @@
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h2>November 2026</h2>
-                    <p>Midterm Assessment Month</p>
+                    <p>Grade Publication Month</p>
                 </div>
                 <div class="calendar-grid">
                     <!-- Day Headers -->
@@ -649,7 +649,7 @@
                     <div class="day-cell">3</div>
                     <div class="day-cell">4</div>
                     <div class="day-cell">5</div>
-                    <div class="day-cell deadline" onclick="showDeadline('midterm')">6</div>
+                    <div class="day-cell">6</div>
                     <div class="day-cell">7</div>
                     <div class="day-cell">8</div>
                     <div class="day-cell grade-day" onclick="showDeadline('midterm-grades')">9</div>
@@ -735,7 +735,7 @@
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h2>January 2027</h2>
-                    <p>Final Assessment & Graduation</p>
+                    <p>Final Grades & Graduation</p>
                 </div>
                 <div class="calendar-grid">
                     <!-- Day Headers -->
@@ -768,7 +768,7 @@
                     <div class="day-cell">12</div>
                     <div class="day-cell">13</div>
                     <div class="day-cell">14</div>
-                    <div class="day-cell deadline" onclick="showDeadline('final-assessment')">15</div>
+                    <div class="day-cell">15</div>
                     <div class="day-cell">16</div>
                     <div class="day-cell">17</div>
                     <div class="day-cell grade-day" onclick="showDeadline('final-grades')">18</div>
@@ -837,26 +837,12 @@
                 time: '13:00 (1:00 PM)',
                 type: 'deadline'
             },
-            'proposal-assessment': {
-                title: 'Proposal Assessment Deadline',
-                date: 'Friday, October 16, 2026',
-                description: 'Research Supervisor and Internal Advisor complete proposal grading.',
-                time: 'End of Day',
-                type: 'deadline'
-            },
             'proposal-grades': {
                 title: 'Proposal Grades Published',
                 date: 'Monday, October 19, 2026',
                 description: 'Students receive their proposal grades and feedback in Canvas.',
                 time: 'All Day',
                 type: 'grade'
-            },
-            'midterm': {
-                title: 'Midterm Practical Assessment',
-                date: 'Friday, November 6, 2026',
-                description: 'Research Supervisor assesses midterm practical performance (15% of BTR grade).',
-                time: 'End of Day',
-                type: 'deadline'
             },
             'midterm-grades': {
                 title: 'Midterm Grades Published',
@@ -877,13 +863,6 @@
                 date: 'Friday, December 11, 2026',
                 description: 'Submit your BTR video (5-7 minutes) via WeTransfer link in Collent by 13:00. Complete peer review by 23:59.',
                 time: '13:00 Video / 23:59 Peer Review',
-                type: 'deadline'
-            },
-            'final-assessment': {
-                title: 'Final Assessment Deadline',
-                date: 'Friday, January 15, 2027',
-                description: 'Research Supervisor and Internal Advisor complete all final grading and assessments.',
-                time: 'End of Day',
                 type: 'deadline'
             },
             'final-grades': {
