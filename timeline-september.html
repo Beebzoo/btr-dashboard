@@ -1,1 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTR Timeline - September 2026 Cohort</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #001C3D;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001C3D;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #001C3D;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00A2DB;
+        }
+
+        .my-um-btn {
+            background: #001C3D;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .page-hero p {
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: #00A2DB;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 8px;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* Legend */
+        .legend {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .legend-color.red {
+            background: #dc3545;
+        }
+
+        .legend-color.green {
+            background: #28a745;
+        }
+
+        .calendars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Center bottom two cards */
+        .calendar-container:nth-child(4) {
+            grid-column: 1 / 2;
+            margin-left: auto;
+            margin-right: 15px;
+        }
+
+        .calendar-container:nth-child(5) {
+            grid-column: 2 / 3;
+            margin-left: 15px;
+            margin-right: auto;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+        }
+
+        .calendar-header {
+            background: linear-gradient(135deg, #001C3D 0%, #002D5A 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .calendar-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .calendar-header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 20px;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 10px;
+            color: #002D5A;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            cursor: default;
+            font-size: 14px;
+        }
+
+        .day-cell.empty {
+            background: #f8f9fa;
+        }
+
+        .day-cell.deadline {
+            background: #dc3545;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-cell.deadline:hover {
+            background: #c82333;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .day-cell.grade-day {
+            background: #28a745;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-cell.grade-day:hover {
+            background: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Deadline Modal */
+        .deadline-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .modal-header.grade {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        }
+
+        .modal-header h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .modal-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .deadline-info {
+            margin-bottom: 20px;
+        }
+
+        .deadline-info h4 {
+            color: #002D5A;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .deadline-info p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: #00A2DB;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            background: #001C3D;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #002D5A;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #002D5A;
+            color: white;
+            padding: 40px 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #00A2DB;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .calendars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .calendar-container:nth-child(4),
+            .calendar-container:nth-child(5) {
+                grid-column: auto;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .calendars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+            }
+
+            .legend {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.jpg" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
+                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
+                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
+                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">BTR Dashboard</a>
+            <span>›</span>
+            <a href="september-cohort-2026.html">September 2026 Cohort</a>
+            <span>›</span>
+            <span>Timeline</span>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>BTR Timeline - September 2026</h1>
+            <p>Important submission dates and grade publication days for the September 2026 cohort</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color red"></div>
+                <span><strong>Red:</strong> Submission Deadlines</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color green"></div>
+                <span><strong>Green:</strong> Grade Publication Days</span>
+            </div>
+        </div>
+
+        <div class="calendars-grid">
+            
+            <!-- September 2026 Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2>September 2026</h2>
+                    <p>BTR Start & Proposal Month</p>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Day Headers -->
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                    
+                    <!-- Empty cells (September 2026 starts on Tuesday) -->
+                    <div class="day-cell empty"></div>
+                    
+                    <!-- Days -->
+                    <div class="day-cell deadline" onclick="showDeadline('start')">1</div>
+                    <div class="day-cell">2</div>
+                    <div class="day-cell">3</div>
+                    <div class="day-cell">4</div>
+                    <div class="day-cell">5</div>
+                    <div class="day-cell">6</div>
+                    <div class="day-cell">7</div>
+                    <div class="day-cell">8</div>
+                    <div class="day-cell">9</div>
+                    <div class="day-cell">10</div>
+                    <div class="day-cell">11</div>
+                    <div class="day-cell">12</div>
+                    <div class="day-cell">13</div>
+                    <div class="day-cell">14</div>
+                    <div class="day-cell">15</div>
+                    <div class="day-cell">16</div>
+                    <div class="day-cell">17</div>
+                    <div class="day-cell">18</div>
+                    <div class="day-cell">19</div>
+                    <div class="day-cell">20</div>
+                    <div class="day-cell">21</div>
+                    <div class="day-cell">22</div>
+                    <div class="day-cell">23</div>
+                    <div class="day-cell">24</div>
+                    <div class="day-cell">25</div>
+                    <div class="day-cell">26</div>
+                    <div class="day-cell">27</div>
+                    <div class="day-cell deadline" onclick="showDeadline('proposal')">28</div>
+                    <div class="day-cell">29</div>
+                    <div class="day-cell">30</div>
+                </div>
+            </div>
+
+            <!-- October 2026 Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2>October 2026</h2>
+                    <p>Proposal Assessment Month</p>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Day Headers -->
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                    
+                    <!-- Empty cells (October 2026 starts on Thursday) -->
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    
+                    <!-- Days -->
+                    <div class="day-cell">1</div>
+                    <div class="day-cell">2</div>
+                    <div class="day-cell">3</div>
+                    <div class="day-cell">4</div>
+                    <div class="day-cell">5</div>
+                    <div class="day-cell">6</div>
+                    <div class="day-cell">7</div>
+                    <div class="day-cell">8</div>
+                    <div class="day-cell">9</div>
+                    <div class="day-cell">10</div>
+                    <div class="day-cell">11</div>
+                    <div class="day-cell">12</div>
+                    <div class="day-cell">13</div>
+                    <div class="day-cell">14</div>
+                    <div class="day-cell">15</div>
+                    <div class="day-cell deadline" onclick="showDeadline('proposal-assessment')">16</div>
+                    <div class="day-cell">17</div>
+                    <div class="day-cell">18</div>
+                    <div class="day-cell grade-day" onclick="showDeadline('proposal-grades')">19</div>
+                    <div class="day-cell">20</div>
+                    <div class="day-cell">21</div>
+                    <div class="day-cell">22</div>
+                    <div class="day-cell">23</div>
+                    <div class="day-cell">24</div>
+                    <div class="day-cell">25</div>
+                    <div class="day-cell">26</div>
+                    <div class="day-cell">27</div>
+                    <div class="day-cell">28</div>
+                    <div class="day-cell">29</div>
+                    <div class="day-cell">30</div>
+                    <div class="day-cell">31</div>
+                </div>
+            </div>
+
+            <!-- November 2026 Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2>November 2026</h2>
+                    <p>Midterm Assessment Month</p>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Day Headers -->
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                    
+                    <!-- Empty cells (November 2026 starts on Sunday) -->
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    
+                    <!-- Days -->
+                    <div class="day-cell">1</div>
+                    <div class="day-cell">2</div>
+                    <div class="day-cell">3</div>
+                    <div class="day-cell">4</div>
+                    <div class="day-cell">5</div>
+                    <div class="day-cell deadline" onclick="showDeadline('midterm')">6</div>
+                    <div class="day-cell">7</div>
+                    <div class="day-cell">8</div>
+                    <div class="day-cell grade-day" onclick="showDeadline('midterm-grades')">9</div>
+                    <div class="day-cell">10</div>
+                    <div class="day-cell">11</div>
+                    <div class="day-cell">12</div>
+                    <div class="day-cell">13</div>
+                    <div class="day-cell">14</div>
+                    <div class="day-cell">15</div>
+                    <div class="day-cell">16</div>
+                    <div class="day-cell">17</div>
+                    <div class="day-cell">18</div>
+                    <div class="day-cell">19</div>
+                    <div class="day-cell">20</div>
+                    <div class="day-cell">21</div>
+                    <div class="day-cell">22</div>
+                    <div class="day-cell">23</div>
+                    <div class="day-cell">24</div>
+                    <div class="day-cell">25</div>
+                    <div class="day-cell">26</div>
+                    <div class="day-cell">27</div>
+                    <div class="day-cell">28</div>
+                    <div class="day-cell">29</div>
+                    <div class="day-cell">30</div>
+                </div>
+            </div>
+
+            <!-- December 2026 Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2>December 2026</h2>
+                    <p>Thesis & Video Deadline Month</p>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Day Headers -->
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                    
+                    <!-- Empty cells (December 2026 starts on Tuesday) -->
+                    <div class="day-cell empty"></div>
+                    
+                    <!-- Days -->
+                    <div class="day-cell">1</div>
+                    <div class="day-cell">2</div>
+                    <div class="day-cell">3</div>
+                    <div class="day-cell">4</div>
+                    <div class="day-cell">5</div>
+                    <div class="day-cell">6</div>
+                    <div class="day-cell deadline" onclick="showDeadline('thesis')">7</div>
+                    <div class="day-cell">8</div>
+                    <div class="day-cell">9</div>
+                    <div class="day-cell">10</div>
+                    <div class="day-cell deadline" onclick="showDeadline('video')">11</div>
+                    <div class="day-cell">12</div>
+                    <div class="day-cell">13</div>
+                    <div class="day-cell">14</div>
+                    <div class="day-cell">15</div>
+                    <div class="day-cell">16</div>
+                    <div class="day-cell">17</div>
+                    <div class="day-cell">18</div>
+                    <div class="day-cell">19</div>
+                    <div class="day-cell">20</div>
+                    <div class="day-cell">21</div>
+                    <div class="day-cell">22</div>
+                    <div class="day-cell">23</div>
+                    <div class="day-cell">24</div>
+                    <div class="day-cell">25</div>
+                    <div class="day-cell">26</div>
+                    <div class="day-cell">27</div>
+                    <div class="day-cell">28</div>
+                    <div class="day-cell">29</div>
+                    <div class="day-cell">30</div>
+                    <div class="day-cell">31</div>
+                </div>
+            </div>
+
+            <!-- January 2027 Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2>January 2027</h2>
+                    <p>Final Assessment & Graduation</p>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Day Headers -->
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                    <div class="day-header">Sun</div>
+                    
+                    <!-- Empty cells (January 2027 starts on Friday) -->
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    
+                    <!-- Days -->
+                    <div class="day-cell">1</div>
+                    <div class="day-cell">2</div>
+                    <div class="day-cell">3</div>
+                    <div class="day-cell">4</div>
+                    <div class="day-cell">5</div>
+                    <div class="day-cell">6</div>
+                    <div class="day-cell">7</div>
+                    <div class="day-cell">8</div>
+                    <div class="day-cell">9</div>
+                    <div class="day-cell">10</div>
+                    <div class="day-cell">11</div>
+                    <div class="day-cell">12</div>
+                    <div class="day-cell">13</div>
+                    <div class="day-cell">14</div>
+                    <div class="day-cell deadline" onclick="showDeadline('final-assessment')">15</div>
+                    <div class="day-cell">16</div>
+                    <div class="day-cell">17</div>
+                    <div class="day-cell grade-day" onclick="showDeadline('final-grades')">18</div>
+                    <div class="day-cell">19</div>
+                    <div class="day-cell">20</div>
+                    <div class="day-cell">21</div>
+                    <div class="day-cell">22</div>
+                    <div class="day-cell">23</div>
+                    <div class="day-cell">24</div>
+                    <div class="day-cell">25</div>
+                    <div class="day-cell">26</div>
+                    <div class="day-cell">27</div>
+                    <div class="day-cell">28</div>
+                    <div class="day-cell">29</div>
+                    <div class="day-cell">30</div>
+                    <div class="day-cell deadline" onclick="showDeadline('graduation')">31</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Deadline Modal -->
+    <div id="deadlineModal" class="deadline-modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header" id="modalHeader">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDate"></p>
+            </div>
+            <div class="modal-body">
+                <div class="deadline-info">
+                    <h4>What's Happening:</h4>
+                    <p id="modalDescription"></p>
+                    <span class="time-badge" id="modalTime"></span>
+                </div>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Questions about deadlines?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
+        <p style="margin-top: 20px;">
+            <a href="september-cohort-2026.html">← Back to September Cohort Dashboard</a> | 
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            © Maastricht University - Faculty of Science and Engineering
+        </p>
+    </footer>
+
+    <script>
+        const deadlines = {
+            'start': {
+                title: 'BTR Start Date',
+                date: 'Tuesday, September 1, 2026',
+                description: 'Official start of the Bachelor Thesis Research period for the September 2026 cohort.',
+                time: 'All Day',
+                type: 'deadline'
+            },
+            'proposal': {
+                title: 'Proposal Deadline',
+                date: 'Monday, September 28, 2026',
+                description: 'Submit your research proposal via Collent. Maximum 2000 words excluding references.',
+                time: '13:00 (1:00 PM)',
+                type: 'deadline'
+            },
+            'proposal-assessment': {
+                title: 'Proposal Assessment Deadline',
+                date: 'Friday, October 16, 2026',
+                description: 'Research Supervisor and Internal Advisor complete proposal grading.',
+                time: 'End of Day',
+                type: 'deadline'
+            },
+            'proposal-grades': {
+                title: 'Proposal Grades Published',
+                date: 'Monday, October 19, 2026',
+                description: 'Students receive their proposal grades and feedback in Canvas.',
+                time: 'All Day',
+                type: 'grade'
+            },
+            'midterm': {
+                title: 'Midterm Practical Assessment',
+                date: 'Friday, November 6, 2026',
+                description: 'Research Supervisor assesses midterm practical performance (15% of BTR grade).',
+                time: 'End of Day',
+                type: 'deadline'
+            },
+            'midterm-grades': {
+                title: 'Midterm Grades Published',
+                date: 'Monday, November 9, 2026',
+                description: 'Students receive their midterm practical grades in Canvas.',
+                time: 'All Day',
+                type: 'grade'
+            },
+            'thesis': {
+                title: 'Final Thesis Deadline',
+                date: 'Monday, December 7, 2026',
+                description: 'Submit your final written thesis via Collent. Word count: 8,000-15,000 words. Maximum 25MB.',
+                time: '13:00 (1:00 PM)',
+                type: 'deadline'
+            },
+            'video': {
+                title: 'Video & Peer Review Deadline',
+                date: 'Friday, December 11, 2026',
+                description: 'Submit your BTR video (5-7 minutes) via WeTransfer link in Collent by 13:00. Complete peer review by 23:59.',
+                time: '13:00 Video / 23:59 Peer Review',
+                type: 'deadline'
+            },
+            'final-assessment': {
+                title: 'Final Assessment Deadline',
+                date: 'Friday, January 15, 2027',
+                description: 'Research Supervisor and Internal Advisor complete all final grading and assessments.',
+                time: 'End of Day',
+                type: 'deadline'
+            },
+            'final-grades': {
+                title: 'Final Grades Published',
+                date: 'Monday, January 18, 2027',
+                description: 'Students receive their complete BTR grades including thesis, final practical, and video.',
+                time: 'All Day',
+                type: 'grade'
+            },
+            'graduation': {
+                title: 'Graduation Day',
+                date: 'Sunday, January 31, 2027',
+                description: 'Official graduation ceremony for the September 2026 BTR cohort. Congratulations!',
+                time: 'TBA',
+                type: 'deadline'
+            }
+        };
+
+        function showDeadline(type) {
+            const deadline = deadlines[type];
+            const modalHeader = document.getElementById('modalHeader');
+            
+            // Change modal header color based on type
+            if (deadline.type === 'grade') {
+                modalHeader.classList.add('grade');
+            } else {
+                modalHeader.classList.remove('grade');
+            }
+            
+            document.getElementById('modalTitle').textContent = deadline.title;
+            document.getElementById('modalDate').textContent = deadline.date;
+            document.getElementById('modalDescription').textContent = deadline.description;
+            document.getElementById('modalTime').textContent = '⏰ ' + deadline.time;
+            document.getElementById('deadlineModal').style.display = 'block';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'deadlineModal') {
+                document.getElementById('deadlineModal').style.display = 'none';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
