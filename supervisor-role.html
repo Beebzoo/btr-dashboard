@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Supervisor Role - BTR Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #001C3D;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #001C3D;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #E84E10;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #d44509;
+            transform: translateX(-3px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #E84E10 0%, #AE0B12 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .info-card h2 {
+            font-size: 28px;
+            color: #001C3D;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-bottom: 3px solid #E84E10;
+            padding-bottom: 10px;
+        }
+
+        .info-card h3 {
+            font-size: 22px;
+            color: #E84E10;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .info-card h4 {
+            font-size: 18px;
+            color: #002D5A;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .info-card ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .info-card strong {
+            color: #001C3D;
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #FFF3E0;
+            border-left: 4px solid #E84E10;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .highlight-box h4 {
+            color: #E84E10;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* Grading Scale Box */
+        .grading-box {
+            background: #E6F7FF;
+            border-left: 4px solid #00BCD4;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .grading-box h4 {
+            color: #00BCD4;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .grade-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .grade-number {
+            font-weight: 700;
+            color: #001C3D;
+            min-width: 40px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .grade-description {
+            color: #666;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-box h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .contact-box a {
+            color: #00BCD4;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Timeline Note */
+        .timeline-note {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .timeline-note strong {
+            color: #2E7D32;
+        }
+
+        /* Footer */
+        .footer {
+            background: #002D5A;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #E84E10;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .info-card {
+                padding: 25px;
+            }
+
+            .info-card h2 {
+                font-size: 24px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.jpg" alt="Maastricht Science Programme">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <a href="supervisors.html" class="back-button">
+                <span>←</span>
+                <span>Back to Supervisor Hub</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Research Supervisor Role & Responsibilities</h1>
+        <p>Your comprehensive guide to supervising BTR students through their thesis research journey</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        
+        <!-- Overview -->
+        <div class="info-card">
+            <h2>Overview: The Bachelor Thesis Research</h2>
+            <p>The Bachelor Thesis Research (BTR) is a one-semester, <strong>30 ECTS</strong> research project that marks the completion of the Maastricht Science Programme degree. Students specialize in a scientific area of their choosing and experience the entire scientific cycle: formulating research questions, designing experiments, analyzing results, and communicating findings.</p>
+            
+            <p>Students may conduct their BTR with MSP staff, at other Maastricht University locations, or at another institution within or outside the Netherlands.</p>
+
+            <div class="timeline-note">
+                <strong>⏰ Important:</strong> Specific deadlines and timeline details vary by cohort (September or February start). Please refer to the cohort-specific timeline or contact the BTR Office for your student's exact deadlines.
+            </div>
+        </div>
+
+        <!-- Your Role as Research Supervisor -->
+        <div class="info-card">
+            <h2>Your Role as Research Supervisor</h2>
+            
+            <p>As the Research Supervisor, you provide support, feedback, and assessment throughout the BTR. You are the primary point of contact for the student's research journey.</p>
+
+            <h3>Key Responsibilities</h3>
+
+            <h4>1. Support & Guidance</h4>
+            <ul>
+                <li>Introduce the student to the specifics of your research area</li>
+                <li>Discuss and guide experimental design</li>
+                <li>Provide instruction on equipment, approaches, and methodologies</li>
+                <li>Teach good working practices and result analysis</li>
+                <li>Foster student independence while ensuring scientific quality</li>
+            </ul>
+
+            <h4>2. Regular Contact & Monitoring</h4>
+            <ul>
+                <li><strong>Essential:</strong> Maintain regular contact to monitor student progress</li>
+                <li>Provide semi-structured feedback at key assessment points</li>
+                <li>Hold face-to-face meetings for proposal and progress discussions</li>
+                <li>Be available for questions and guidance throughout the semester</li>
+            </ul>
+
+            <h4>3. Feedback on Written Work</h4>
+            <div class="highlight-box">
+                <h4>⚠️ Important Feedback Limitation</h4>
+                <p>To ensure a "level playing field" for all students:</p>
+                <ul>
+                    <li><strong>Proposal:</strong> Provide feedback on ONE draft only (not more)</li>
+                    <li><strong>Final Thesis:</strong> Provide feedback on ONE draft only (not more)</li>
+                    <li>Feedback may be given on parts as the student writes, or on the entire document at once</li>
+                    <li>This ensures the work reflects the student's own capabilities</li>
+                </ul>
+            </div>
+
+            <h4>4. Supervisor Qualifications</h4>
+            <ul>
+                <li>Research supervisors should have several years of research experience</li>
+                <li><strong>PhD required:</strong> Supervisors are generally expected to have a PhD</li>
+                <li>PhD students may act as day-to-day supervisors but <strong>cannot be official supervisors</strong> with final BTR responsibility</li>
+            </ul>
+        </div>
+
+        <!-- Assessment Responsibilities -->
+        <div class="info-card">
+            <h2>Assessment & Grading Responsibilities</h2>
+            
+            <p>As Research Supervisor, you are responsible for grading <strong>four of the five BTR components</strong>:</p>
+
+            <h3>Components You Grade</h3>
+
+            <h4>1. Research Proposal (15% of total grade)</h4>
+            <ul>
+                <li><strong>Graded with:</strong> Internal Advisor</li>
+                <li><strong>Deadline:</strong> ~3 weeks after proposal submission</li>
+                <li><strong>What to assess:</strong> Literature review, aims/hypotheses, methodology, anticipated outcomes, research importance, ethical considerations</li>
+                <li><strong>Word limit:</strong> Max 2000 words (strictly enforced - BTR office applies penalties)</li>
+                <li><strong>Required citations:</strong> Minimum 15 peer-reviewed journal articles</li>
+            </ul>
+
+            <h4>2. Midpoint Practical Grade (15% of total grade)</h4>
+            <ul>
+                <li><strong>Graded by:</strong> You alone</li>
+                <li><strong>When:</strong> Approximately halfway through BTR</li>
+                <li><strong>What to assess:</strong> Practical skills, independence, problem-solving abilities, research competence</li>
+                <li><strong>Important:</strong> Hold a meeting with the student to discuss this grade and allow them to improve</li>
+            </ul>
+
+            <h4>3. Written Thesis (25% of total grade)</h4>
+            <ul>
+                <li><strong>Graded with:</strong> Internal Advisor</li>
+                <li><strong>Deadline:</strong> ~5 weeks after thesis submission</li>
+                <li><strong>What to assess:</strong> Scientific quality, writing, analysis, conclusions, literature integration</li>
+                <li><strong>Word limit:</strong> Max 15,000 words (excluding references and appendices)</li>
+                <li><strong>Extensions:</strong> Only granted with written approval from you, communicated to Internal Advisor and BTR Office <strong>48 hours before submission</strong></li>
+            </ul>
+
+            <h4>4. Final Practical Grade (35% of total grade)</h4>
+            <ul>
+                <li><strong>Graded by:</strong> You alone</li>
+                <li><strong>Includes:</strong> Overall research execution + Research Group Presentation</li>
+                <li><strong>Presentation timing:</strong> Approximately one week before or after thesis submission (flexible if needed, but must be completed before final grading deadline)</li>
+                <li><strong>Your discretion:</strong> Determine presentation expectations (length, content, format)</li>
+            </ul>
+
+            <h3>Component You Do NOT Grade</h3>
+            <h4>5. BTR Video (10% of total grade)</h4>
+            <ul>
+                <li><strong>Graded by:</strong> Internal Advisor and a peer student</li>
+                <li><strong>Length:</strong> 5-7 minutes (content after 7 minutes is not graded)</li>
+                <li><strong>Purpose:</strong> Communicate research to non-scientists</li>
+                <li><strong>Your involvement:</strong> Optional - your input is welcome but not required</li>
+            </ul>
+
+            <div class="grading-box">
+                <h4>🎓 Understanding the Dutch Grading System</h4>
+                <p>Grades range from 1.0 (lowest) to 10.0 (highest), reported to one decimal place:</p>
+                
+                <div class="grade-item">
+                    <span class="grade-number">5.5</span>
+                    <span class="grade-description">= Minimum passing grade</span>
+                </div>
+                <div class="grade-item">
+                    <span class="grade-number">7.5</span>
+                    <span class="grade-description">= Average / satisfactory</span>
+                </div>
+                <div class="grade-item">
+                    <span class="grade-number">8.0+</span>
+                    <span class="grade-description">= Very good</span>
+                </div>
+                <div class="grade-item">
+                    <span class="grade-number">9.0+</span>
+                    <span class="grade-description">= Excellent</span>
+                </div>
+                <div class="grade-item">
+                    <span class="grade-number">9.5+</span>
+                    <span class="grade-description">= Exceptional</span>
+                </div>
+                <div class="grade-item">
+                    <span class="grade-number">10.0</span>
+                    <span class="grade-description">= Perfect (very rare!)</span>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Note:</strong> Students must achieve a weighted average of 5.5 or higher across all components to pass the BTR and earn 30 ECTS credits. Individual components may be below 5.5 if compensated by other grades.</p>
+            </div>
+        </div>
+
+        <!-- Grading Procedures -->
+        <div class="info-card">
+            <h2>Grading Procedures & Platform</h2>
+
+            <h3>Using Collent for Grading</h3>
+            <p>All BTR submissions and grading are managed through <strong>Collent</strong>, the university's submission platform.</p>
+
+            <h4>How It Works:</h4>
+            <ul>
+                <li>You'll receive <strong>automatic email notifications</strong> when your student submits work</li>
+                <li>Access grading rubrics directly in Collent</li>
+                <li>Submit grades through Collent by the specified deadlines</li>
+                <li>Plagiarism and word count checks are performed by the BTR Office</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>⚠️ Important: When Multiple Supervisors Are Involved</h4>
+                <p>If a student is supervised by multiple individuals or guided by a PhD student assistant:</p>
+                <ul>
+                    <li>The <strong>main Research Supervisor</strong> must process final grades in Collent</li>
+                    <li>Consult with co-supervisors/assistants but submit grades under your name</li>
+                    <li>You retain final responsibility for all assessments</li>
+                </ul>
+            </div>
+
+            <h3>Handling Grading Discrepancies</h3>
+            <p>When you and the Internal Advisor grade jointly (Proposal and Thesis):</p>
+            
+            <ul>
+                <li>If your grades differ by <strong>more than 1.5 points</strong>, the BTR Office will ask you to discuss and reach consensus</li>
+                <li>Grades don't necessarily need to change, but discussion ensures understanding of different perspectives</li>
+                <li><strong>Do not communicate grades to students</strong> until the BTR Office confirms there are no discrepancy issues</li>
+                <li>If consensus cannot be reached quickly, the BTR Coordinator reserves the right to make a final decision</li>
+            </ul>
+
+            <h3>Providing Feedback to Students</h3>
+            <p><strong>After grades are released</strong> (students can see them in Collent):</p>
+            <ul>
+                <li>You <strong>must provide feedback</strong> to help the student improve</li>
+                <li>Face-to-face meetings are strongly urged</li>
+                <li>Discuss strengths, weaknesses, and areas for improvement</li>
+                <li>For proposal feedback: help guide improvements for the final thesis</li>
+            </ul>
+
+            <h3>Deadline Importance</h3>
+            <div class="highlight-box">
+                <h4>⏰ Critical: Submit Grades On Time</h4>
+                <p>Grade deadlines are strict due to graduation requirements:</p>
+                <ul>
+                    <li>Late grades can <strong>delay student graduation</strong></li>
+                    <li>Financial implications for students (tuition, housing, job starts)</li>
+                    <li>Master's program admissions may be affected</li>
+                    <li>Contact BTR Office immediately if you foresee any delays</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Important Information -->
+        <div class="info-card">
+            <h2>Additional Important Information</h2>
+
+            <h3>The Internal Advisor's Role</h3>
+            <p>Each student is assigned an Internal Advisor (usually MSP or allied staff) who:</p>
+            <ul>
+                <li>Verifies scientific quality of proposed experiments and outcomes</li>
+                <li>Is NOT necessarily an expert in the research area</li>
+                <li>Does NOT typically contribute to thesis development (except in general terms)</li>
+                <li>Grades the Proposal and Final Thesis alongside you</li>
+                <li>Meets with student to discuss progress, work ethic, and integration</li>
+                <li>May contact you to discuss student progress if needed</li>
+            </ul>
+
+            <h3>Additional Modules During BTR</h3>
+            <p>Students may request to take <strong>one additional module</strong> (max 5 ECTS) during their BTR:</p>
+            <ul>
+                <li><strong>Your approval required</strong> along with Board of Examiners approval</li>
+                <li><strong>You are NOT obligated</strong> to support such requests</li>
+                <li>Student must discuss workload management with you <strong>before BTR begins</strong></li>
+                <li>Only allowed for BTRs in/near Maastricht (not abroad)</li>
+                <li>If you don't approve, or if requested after BTR starts, module must be completed after BTR ends</li>
+            </ul>
+
+            <h3>External BTRs: Legal Agreements</h3>
+            <p>For students conducting BTRs <strong>outside Maastricht University</strong>:</p>
+            <ul>
+                <li><strong>Internship agreement required</strong> between UM, host institution, and student</li>
+                <li><strong>Student CANNOT start</strong> until agreement is fully signed</li>
+                <li>You should receive this document from the student</li>
+                <li>Please review and complete as early as possible</li>
+                <li>Non-Disclosure Agreements (NDAs) also require legal review</li>
+                <li><strong>Documents submitted less than 1 month before BTR start</strong> may cause delays</li>
+                <li>Contact BTR Office with any questions or concerns</li>
+            </ul>
+
+            <h3>Student Compensation</h3>
+            <p><strong>Students generally cannot receive financial compensation</strong> for their BTR work, except:</p>
+            <ul>
+                <li>Reimbursement of expenses</li>
+                <li>Certain special grants (e.g., Erasmus grants)</li>
+                <li>Any other compensation must be discussed with BTR Coordinator well in advance</li>
+            </ul>
+
+            <h3>Supervisor Compensation</h3>
+            <p>For external (non-UM) research groups:</p>
+            <ul>
+                <li>No financial compensation provided</li>
+                <li>Research costs are not covered by UM</li>
+                <li>Students provide valuable research contributions at no cost</li>
+            </ul>
+            <p>For internal (UM) supervisors:</p>
+            <ul>
+                <li>Minimal teaching hours credited for educational efforts</li>
+                <li>Hours do not fully cover supervision time required</li>
+            </ul>
+
+            <h3>When Problems Arise</h3>
+            <p>If issues occur during the BTR (personal problems, research issues, attendance problems):</p>
+            <ul>
+                <li>Student or Research Supervisor should contact the Internal Advisor or BTR Coordinator</li>
+                <li>Severity determines who handles the situation</li>
+                <li><strong>Extensions/special accommodations:</strong> BTR Coordinator decides after consulting you</li>
+                <li><strong>Student's responsibility</strong> to request extensions (not yours), but your input is essential</li>
+            </ul>
+
+            <h3>If a Student Fails</h3>
+            <p>If a student receives a final grade below 5.5:</p>
+            <ul>
+                <li>MSP may offer a resit or require them to start again</li>
+                <li>MSP handles the process</li>
+                <li><strong>You are NOT obligated</strong> to take the student back if they fail</li>
+            </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-box">
+            <h3>Questions or Concerns?</h3>
+            <p><strong>BTR Office:</strong> <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
+            <p style="margin-top: 15px;">For questions about deadlines, submission procedures, administrative requirements, Collent technical issues, or special circumstances.</p>
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.9;">
+                <strong>BTR Coordinator:</strong> Panos Christakoglu (oversees quality, handles special circumstances)<br>
+                <strong>BTR Administrator:</strong> Martijn Jeurissen (day-to-day administration, primary contact)
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Bachelor Thesis Research - Maastricht Science Programme</strong></p>
+        <p style="margin-top: 10px;">
+            <a href="supervisors.html">Back to Supervisor Hub</a> | 
+            <a href="supervisor-btr-overview.html">What is the BTR?</a> | 
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact BTR Office</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            © Maastricht University - Faculty of Science and Engineering
+        </p>
+    </footer>
+</body>
+</html>
