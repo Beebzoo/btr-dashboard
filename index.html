@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,6 +194,19 @@
             transform: translateX(10px);
         }
 
+        /* Before you start button - special styling */
+        .before-start-button {
+            background: rgba(0, 188, 212, 0.2);
+            border-color: rgba(0, 188, 212, 0.5);
+            border-width: 3px;
+        }
+
+        .before-start-button:hover {
+            background: rgba(0, 188, 212, 0.3);
+            border-color: #00BCD4;
+            box-shadow: 0 12px 48px rgba(0, 188, 212, 0.4);
+        }
+
         /* Supervisor button - different style */
         .supervisor-button {
             background: rgba(232, 78, 16, 0.15);
@@ -300,13 +312,19 @@
 
         <!-- Button container -->
         <div class="button-container">
+            <a href="before-you-start.html" class="cohort-button before-start-button">
+                <span class="button-icon">🚀</span>
+                <span class="button-text">Before You Start</span>
+                <span class="button-arrow">→</span>
+            </a>
+
             <a href="february-cohort-2026.html" class="cohort-button">
                 <span class="button-icon">❄️</span>
                 <span class="button-text">February 2026 Cohort</span>
                 <span class="button-arrow">→</span>
             </a>
 
- <a href="september-cohort-2026.html" class="cohort-button">
+            <a href="september-cohort-2026.html" class="cohort-button">
                 <span class="button-icon">🍂</span>
                 <span class="button-text">September 2026 Cohort</span>
                 <span class="button-arrow">→</span>
