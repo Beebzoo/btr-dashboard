@@ -536,8 +536,8 @@
                     
                     <!-- Days -->
                     <div class="day-cell">1</div>
-                    <div class="day-cell">2</div>
-                    <div class="day-cell deadline" onclick="showDeadline('start')">3</div>
+                    <div class="day-cell deadline" onclick="showDeadline('start')">2</div>
+                    <div class="day-cell">3</div>
                     <div class="day-cell">4</div>
                     <div class="day-cell">5</div>
                     <div class="day-cell">6</div>
@@ -629,7 +629,7 @@
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h2>April 2026</h2>
-                    <p>Assessment Month</p>
+                    <p>Grade Publication Month</p>
                 </div>
                 <div class="calendar-grid">
                     <!-- Day Headers -->
@@ -648,14 +648,14 @@
                     <!-- Days -->
                     <div class="day-cell">1</div>
                     <div class="day-cell">2</div>
-                    <div class="day-cell deadline" onclick="showDeadline('proposal-assessment')">3</div>
+                    <div class="day-cell">3</div>
                     <div class="day-cell">4</div>
                     <div class="day-cell">5</div>
                     <div class="day-cell grade-day" onclick="showDeadline('proposal-grades')">6</div>
                     <div class="day-cell">7</div>
                     <div class="day-cell">8</div>
                     <div class="day-cell">9</div>
-                    <div class="day-cell deadline" onclick="showDeadline('midterm')">10</div>
+                    <div class="day-cell">10</div>
                     <div class="day-cell">11</div>
                     <div class="day-cell">12</div>
                     <div class="day-cell grade-day" onclick="showDeadline('midterm-grades')">13</div>
@@ -740,7 +740,7 @@
             <div class="calendar-container">
                 <div class="calendar-header">
                     <h2>June 2026</h2>
-                    <p>Final Assessment & Graduation</p>
+                    <p>Final Grades & Graduation</p>
                 </div>
                 <div class="calendar-grid">
                     <!-- Day Headers -->
@@ -765,10 +765,10 @@
                     <div class="day-cell">10</div>
                     <div class="day-cell">11</div>
                     <div class="day-cell">12</div>
-                    <div class="day-cell deadline" onclick="showDeadline('final-assessment')">13</div>
+                    <div class="day-cell">13</div>
                     <div class="day-cell">14</div>
-                    <div class="day-cell">15</div>
-                    <div class="day-cell grade-day" onclick="showDeadline('final-grades')">16</div>
+                    <div class="day-cell grade-day" onclick="showDeadline('final-grades')">15</div>
+                    <div class="day-cell">16</div>
                     <div class="day-cell">17</div>
                     <div class="day-cell">18</div>
                     <div class="day-cell">19</div>
@@ -823,7 +823,7 @@
         const deadlines = {
             'start': {
                 title: 'BTR Start Date',
-                date: 'Monday, February 3, 2026',
+                date: 'Monday, February 2, 2026',
                 description: 'Official start of the Bachelor Thesis Research period for the February 2026 cohort.',
                 time: 'All Day',
                 type: 'deadline'
@@ -835,26 +835,12 @@
                 time: '13:00 (1:00 PM)',
                 type: 'deadline'
             },
-            'proposal-assessment': {
-                title: 'Proposal Assessment Deadline',
-                date: 'Friday, April 3, 2026',
-                description: 'Research Supervisor and Internal Advisor complete proposal grading.',
-                time: 'End of Day',
-                type: 'deadline'
-            },
             'proposal-grades': {
                 title: 'Proposal Grades Published',
                 date: 'Monday, April 6, 2026',
                 description: 'Students receive their proposal grades and feedback in Canvas.',
                 time: 'All Day',
                 type: 'grade'
-            },
-            'midterm': {
-                title: 'Midterm Practical Assessment',
-                date: 'Friday, April 10, 2026',
-                description: 'Research Supervisor assesses midterm practical performance (15% of BTR grade).',
-                time: 'End of Day',
-                type: 'deadline'
             },
             'midterm-grades': {
                 title: 'Midterm Grades Published',
@@ -877,23 +863,16 @@
                 time: '13:00 (1:00 PM)',
                 type: 'deadline'
             },
-            'final-assessment': {
-                title: 'Final Assessment Deadline',
-                date: 'Friday, June 13, 2026',
-                description: 'Research Supervisor and Internal Advisor complete all final grading and assessments.',
-                time: 'End of Day',
-                type: 'deadline'
-            },
             'final-grades': {
                 title: 'Final Grades Published',
-                date: 'Monday, June 16, 2026',
+                date: 'Monday, June 15, 2026',
                 description: 'Students receive their complete BTR grades including thesis, final practical, and video.',
                 time: 'All Day',
                 type: 'grade'
             },
             'graduation': {
                 title: 'Graduation Day',
-                date: 'Monday, June 30, 2026',
+                date: 'Tuesday, June 30, 2026',
                 description: 'Official graduation ceremony for the February 2026 BTR cohort. Congratulations!',
                 time: 'TBA',
                 type: 'deadline'
