@@ -130,69 +130,44 @@
             padding: 40px 20px;
         }
 
-        /* Breadcrumb Navigation */
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            font-size: 14px;
+        .intro-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #001C3D;
+            margin-bottom: 10px;
+        }
+
+        .intro-section p {
             color: #666;
-        }
-
-        .breadcrumb a {
-            color: #00BCD4;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .breadcrumb a:hover {
-            color: #E84E10;
-        }
-
-        .breadcrumb span {
-            color: #999;
-        }
-
-        /* View States */
-        .view {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .view.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            font-size: 16px;
         }
 
         /* Field Cards Grid */
         .field-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             margin-top: 30px;
         }
 
         .field-card {
             background: white;
             border-radius: 15px;
-            padding: 35px 25px;
+            padding: 40px 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 3px solid transparent;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .field-card::before {
@@ -217,7 +192,7 @@
         }
 
         .field-icon {
-            font-size: 64px;
+            font-size: 72px;
             margin-bottom: 20px;
             display: block;
             animation: float 3s ease-in-out infinite;
@@ -230,290 +205,38 @@
 
         .field-card h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             color: #001C3D;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .field-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         .field-card .project-count {
             color: #00BCD4;
             font-weight: 600;
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: 15px;
+            display: inline-block;
+            padding: 8px 16px;
+            background: #E3F2FD;
+            border-radius: 20px;
         }
 
-        .field-card p {
-            color: #666;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        /* Project Cards */
-        .projects-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .projects-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            color: #001C3D;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .projects-header .field-icon-small {
-            font-size: 40px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '→';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+        .arrow-icon {
+            margin-top: 15px;
             font-size: 24px;
             color: #00BCD4;
             transition: transform 0.3s;
         }
 
-        .project-card:hover::after {
+        .field-card:hover .arrow-icon {
             transform: translateX(5px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border-color: #00BCD4;
-        }
-
-        .project-card h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            color: #001C3D;
-            margin-bottom: 12px;
-            padding-right: 40px;
-        }
-
-        .project-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .project-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            background: #E3F2FD;
-            color: #01579B;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .project-tag.supervisor {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .project-tag.location {
-            background: #E8F5E9;
-            color: #1B5E20;
-        }
-
-        .project-description {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* Project Detail Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 28, 61, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .modal-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 1000;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-modal.active {
-            display: block;
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
-            color: white;
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .modal-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 26px;
-            color: white;
-            margin: 0;
-            flex: 1;
-        }
-
-        .modal-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 32px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .modal-close:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 30px;
-            overflow-y: auto;
-            max-height: calc(85vh - 140px);
-        }
-
-        .modal-section {
-            margin-bottom: 25px;
-        }
-
-        .modal-section h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            color: #001C3D;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #E84E10;
-        }
-
-        .modal-section p,
-        .modal-section ul {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .modal-section ul {
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .modal-section ul li {
-            margin-bottom: 8px;
-        }
-
-        .contact-box {
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-            border: 2px solid #00BCD4;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 25px;
-        }
-
-        .contact-box h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: #001C3D;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .contact-info {
-            display: grid;
-            gap: 12px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #333;
-        }
-
-        .contact-item strong {
-            min-width: 100px;
-            color: #001C3D;
-        }
-
-        .contact-item a {
-            color: #00BCD4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: #E84E10;
         }
 
         /* Responsive */
@@ -526,44 +249,15 @@
                 grid-template-columns: 1fr;
             }
 
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-modal {
-                width: 95%;
-                max-height: 90vh;
-            }
-
-            .modal-body {
-                padding: 20px;
-            }
-
-            .projects-header {
+            .header-content {
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 15px;
             }
-        }
 
-        /* Loading Animation */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #00BCD4;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            .back-button {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         /* Back to Top Button */
@@ -623,44 +317,84 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb" id="breadcrumb">
-            <a href="#" onclick="showFieldsView(); return false;">All Fields</a>
+        <div class="intro-section">
+            <h2>Select Your Field of Interest</h2>
+            <p>Click on a field below to explore available BTR projects in that area</p>
         </div>
 
-        <!-- Fields View -->
-        <div id="fields-view" class="view active">
-            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 28px; color: #001C3D; margin-bottom: 10px;">Select Your Field of Interest</h2>
-            <p style="color: #666; margin-bottom: 30px;">Click on a field to explore available BTR projects</p>
-            
-            <div class="field-grid" id="field-grid">
-                <!-- Fields will be dynamically generated -->
-            </div>
-        </div>
+        <!-- Field Cards Grid -->
+        <div class="field-grid">
+            <!-- Neuroscience & Psychology -->
+            <a href="neuroscience-projects.html" class="field-card">
+                <span class="field-icon">🧠</span>
+                <h3>Neuroscience & Psychology</h3>
+                <p>Brain function, cognition, behavior, and neural processing</p>
+                <span class="project-count">3 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
 
-        <!-- Projects View -->
-        <div id="projects-view" class="view">
-            <div class="projects-header">
-                <h2>
-                    <span class="field-icon-small" id="current-field-icon"></span>
-                    <span id="current-field-name"></span>
-                </h2>
-            </div>
-            <div class="project-grid" id="project-grid">
-                <!-- Projects will be dynamically generated -->
-            </div>
-        </div>
-    </div>
+            <!-- Materials Science & Chemistry -->
+            <a href="materials-chemistry-projects.html" class="field-card">
+                <span class="field-icon">🔬</span>
+                <h3>Materials Science & Chemistry</h3>
+                <p>Polymers, sustainable materials, organic synthesis, and drug design</p>
+                <span class="project-count">12 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
 
-    <!-- Project Detail Modal -->
-    <div id="modal-overlay" class="modal-overlay" onclick="closeProjectModal()"></div>
-    <div id="project-modal" class="project-modal">
-        <div class="modal-header">
-            <h3 id="modal-title"></h3>
-            <button class="modal-close" onclick="closeProjectModal()">×</button>
-        </div>
-        <div class="modal-body" id="modal-content">
-            <!-- Content will be dynamically generated -->
+            <!-- Biotechnology & Molecular Biology -->
+            <a href="biotechnology-projects.html" class="field-card">
+                <span class="field-icon">🧬</span>
+                <h3>Biotechnology & Molecular Biology</h3>
+                <p>Protein engineering, genetic modification, and bioproduction</p>
+                <span class="project-count">4 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
+
+            <!-- Bioinformatics & Systems Biology -->
+            <a href="bioinformatics-projects.html" class="field-card">
+                <span class="field-icon">💻</span>
+                <h3>Bioinformatics & Systems Biology</h3>
+                <p>Computational biology, pathway modeling, and data analysis</p>
+                <span class="project-count">8 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
+
+            <!-- Physics & Astronomy -->
+            <a href="physics-projects.html" class="field-card">
+                <span class="field-icon">🔭</span>
+                <h3>Physics & Astronomy</h3>
+                <p>Particle physics, gravitational waves, and quantum physics</p>
+                <span class="project-count">2 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
+
+            <!-- Ecology & Field Research -->
+            <a href="ecology-fieldwork-projects.html" class="field-card">
+                <span class="field-icon">🌿</span>
+                <h3>Ecology & Field Research</h3>
+                <p>Evolution, biodiversity, environmental interactions, and field studies</p>
+                <span class="project-count">6 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
+
+            <!-- Biomedical Sciences & Physiology -->
+            <a href="biomedical-projects.html" class="field-card">
+                <span class="field-icon">🫘</span>
+                <h3>Biomedical Sciences & Physiology</h3>
+                <p>Microbiome, kidney physiology, host-microbe interactions, and health</p>
+                <span class="project-count">5 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
+
+            <!-- Sustainability & LCA -->
+            <a href="sustainability-projects.html" class="field-card">
+                <span class="field-icon">♻️</span>
+                <h3>Sustainability & Life Cycle Assessment</h3>
+                <p>Environmental impact, circular economy, and carbon footprint analysis</p>
+                <span class="project-count">7 projects available</span>
+                <div class="arrow-icon">→</div>
+            </a>
         </div>
     </div>
 
@@ -668,1284 +402,13 @@
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
     <script>
-        // Project Data Structure
-        const projectData = {
-            neuroscience: {
-                name: "Neuroscience & Psychology",
-                icon: "🧠",
-                description: "Brain function, cognition, and behavior",
-                projects: [
-                    {
-                        title: "Biopsychology, Cognitive & Affective Neuroscience",
-                        supervisor: "Dr. Miguel A. Serrano",
-                        institution: "Universitat de València, Spain",
-                        location: "Valencia, Spain",
-                        type: "Computational/Data Analysis",
-                        description: "Research focuses on the psychobiology of stress, emotions and decision making in humans. Projects include decision making and heart rate variability, decision making and interoception and alexithymia, and stress and decision making.",
-                        details: {
-                            background: "The research focuses on understanding how stress, emotions, and decision-making processes interact in humans. Several large datasets are available that could form the foundation for various BTR projects.",
-                            requirements: "Students with an interest in neuroscience and experience with computational methods, psychophysiology, and statistics are especially encouraged to apply.",
-                            projects: [
-                                "Decision making and heart rate variability",
-                                "Decision making and interoception and alexithymia",
-                                "Stress and decision making"
-                            ],
-                            methods: "Computational methods, psychophysiology, statistics, data analysis"
-                        },
-                        contact: {
-                            name: "Dr. Miguel A. Serrano",
-                            email: "m.angel.serrano@uv.es",
-                            website: "https://www.uv.es/uvweb/research-service/en/health-sciences/grup1285949713561.html?p2=GIUV2020-478",
-                            researchgate: "https://www.researchgate.net/profile/Miguel-Serrano-12"
-                        }
-                    },
-                    {
-                        title: "Brain State Decoding using Machine Learning",
-                        supervisor: "Dr. Christian Herff",
-                        institution: "School for Mental Health and Neuroscience, FHML",
-                        location: "Maastricht",
-                        type: "Computational Neuroscience",
-                        description: "Decode cognitive processes such as memory, speech, or decision making from invasive brain recordings using machine learning algorithms.",
-                        details: {
-                            background: "The goal of this project is to decode cognitive processes from invasive brain recordings. These measurement techniques directly in the brain give access to very high quality neural data.",
-                            requirements: "Python programming skills required. General interest in the topic with some supporting courses will be advantageous.",
-                            methods: "Machine learning, Python programming, neural data analysis"
-                        },
-                        contact: {
-                            name: "Dr. Christian Herff",
-                            email: "c.herff@maastrichtuniversity.nl",
-                            website: "https://www.maastrichtuniversity.nl/c.herff"
-                        }
-                    },
-                    {
-                        title: "Auditory Processing and Speech-in-Noise",
-                        supervisor: "Dr. Lars Hausfeld",
-                        institution: "Faculty of Psychology and Neuroscience",
-                        location: "Maastricht",
-                        type: "Psychoacoustics/Cognitive Neuroscience",
-                        description: "Study how the brain processes speech in noisy environments, investigating the 'cocktail party problem' through psychoacoustics and neuroimaging.",
-                        details: {
-                            background: "Talking to friends often happens in busy environments with complex acoustical background. Despite the noise, we are most of the time able to follow what is being said. Multiple projects available investigating different aspects of auditory processing.",
-                            projects: [
-                                "Effects of room acoustics ('echos project')",
-                                "Working memory and speech-in-noise ('working memory project')",
-                                "Brain response to audiobooks using EEG and fMRI",
-                                "TMS coil click database creation"
-                            ],
-                            requirements: "Interest in neuroscience, basic programming skills helpful",
-                            methods: "Psychoacoustics, EEG, fMRI, computational modeling"
-                        },
-                        contact: {
-                            name: "Dr. Lars Hausfeld",
-                            email: "lars.hausfeld@maastrichtuniversity.nl",
-                            location: "Oxfordlaan 55"
-                        }
-                    }
-                ]
-            },
-            materials: {
-                name: "Materials Science & Engineering",
-                icon: "🔬",
-                description: "Polymers, biomaterials, and sustainable materials",
-                projects: [
-                    {
-                        title: "Bio-based Biodegradable Fibers (Glaukos Project)",
-                        supervisor: "Dr. Cristina Palacios-Mateo",
-                        institution: "AMIBM",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Polymer Engineering",
-                        description: "Develop bio-based, biodegradable textile fibers as an alternative to PET. Participate in a Horizon 2020 EU project focused on sustainable materials.",
-                        details: {
-                            background: "Glaukos is a European project aiming to develop bio-based, biodegradable textile fibers for clothing and fishing gear as an alternative to PET. Two thirds of all fibers produced globally are made of synthetic materials, posing environmental challenges.",
-                            tasks: [
-                                "Participate in Glaukos meetings",
-                                "Characterize granulates (DSC, GPC, Rheology)",
-                                "Spin fibers through FET semi-industrial spinning line",
-                                "Characterize fibers (tensile strength, microscopy, crystallinity)"
-                            ],
-                            takeaway: "Gain practical experience in polymer engineering and basic analytical techniques, participate in a Horizon 2020 EU project.",
-                            methods: "DSC, GPC, rheology, fiber spinning, microscopy"
-                        },
-                        contact: {
-                            name: "Dr. Cristina Palacios-Mateo",
-                            email: "c.palaciosmateo@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Engineered Cutinase for PET De-polymerization",
-                        supervisor: "Dr. Cristina Palacios-Mateo",
-                        institution: "AMIBM",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Biotechnology",
-                        description: "Optimize production of an engineered enzyme (LCC variant) capable of degrading PET plastic, addressing the plastic recycling challenge.",
-                        details: {
-                            background: "Recent research has identified highly effective 'PETases' capable of de-polymerizing PET in only 10 hours. This project focuses on optimizing production and preservation of the LCC variant enzyme.",
-                            tasks: [
-                                "Transform E.coli with appropriate plasmid",
-                                "Express LCC variant at different conditions",
-                                "Purify LCC variant through IMAC",
-                                "Confirm through SDS-Page and sequencing",
-                                "Calculate activity through pNPB assay",
-                                "Test storage conditions and re-constitution"
-                            ],
-                            takeaway: "Gain practical experience in genetic engineering, data analysis, and enzymology.",
-                            methods: "Protein expression, IMAC purification, SDS-PAGE, enzyme assays"
-                        },
-                        contact: {
-                            name: "Dr. Cristina Palacios-Mateo",
-                            email: "c.palaciosmateo@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Silica Aerogel from Waste Materials",
-                        supervisor: "Marina Borzova (PhD candidate), Dr. Katrin Schollbach",
-                        institution: "Eindhoven University of Technology",
-                        location: "Eindhoven",
-                        type: "Materials Science",
-                        description: "Develop sustainable production methods for silica aerogel using waste materials like mineral wool and glass, creating circular insulation materials.",
-                        details: {
-                            background: "3.7 million poorly insulated homes in the Netherlands need renovation. Silica aerogel is highly effective but expensive. This project aims to produce aerogel from waste materials using sustainable methods.",
-                            focus: "Extract silica from mineral wool/waste glass, optimize aerogel production with ambient pressure drying, or work on aerogel modifications (e.g., cellulose reinforcement).",
-                            methods: "XRD, XRF, BET, DSC, thermal conductivity, ambient pressure drying",
-                            flexibility: "Project direction can be decided together with student based on interests"
-                        },
-                        contact: {
-                            name: "Marina Borzova",
-                            email: "m.borzova@tue.nl",
-                            institution: "TU Eindhoven"
-                        }
-                    },
-                    {
-                        title: "3D Printing: Polyamide Crystallization Control",
-                        supervisor: "Dr. Jules Harings",
-                        institution: "AMIBM - Macromolecular Physics & Technology",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Materials Science/3D Printing",
-                        description: "Develop bio-inspired polyamide formulations for 3D printing (FDM/SLS) that delay crystallization to improve interfacial bonding and mechanical properties.",
-                        details: {
-                            background: "3D printed thermoplastic parts have inferior mechanical properties due to insufficient molecular mixing at weld interfaces. This project uses water and ions to control crystallization dynamics, inspired by biological systems.",
-                            research: "Investigate the role of water and ions on melting, crystallization, and interfacial bonding in polyamides for selective laser sintering (SLS).",
-                            methods: "Polarized Optical Microscopy (POM), DSC, FTIR spectroscopy, rheology, dynamic mechanical testing"
-                        },
-                        contact: {
-                            name: "Dr. Jules Harings",
-                            email: "jules.harings@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Non-Crystallizing Deep Eutectic Solvents",
-                        supervisor: "Dr. Laura Kollau",
-                        institution: "Circular Chemical Engineering, Maastricht University",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Physical Chemistry",
-                        description: "Investigate fundamental properties and molecular interactions of non-crystallizing deep eutectic solvents (DESs).",
-                        details: {
-                            background: "Deep eutectic solvents are promising sustainable alternatives to traditional solvents. This project investigates why some DES combinations resist crystallization.",
-                            tasks: [
-                                "Evaluate known non-crystallizing DESs",
-                                "Predict and test new DES combinations",
-                                "Analyze theoretical parameters describing crystallization",
-                                "Determine driving factors for crystallization kinetics"
-                            ],
-                            methods: "DSC, 1D and 2D NMR, physicochemical property analysis, organic synthesis"
-                        },
-                        contact: {
-                            name: "Dr. Laura Kollau",
-                            email: "laura.kollau@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "MEMS-based Microfluidic Droplet Analysis",
-                        supervisor: "Lukas Bartsch (PhD candidate), Dr. Laura Kollau",
-                        institution: "Circular Chemical Engineering, Maastricht University",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Microfluidics/Analytical Chemistry",
-                        description: "Develop alternative methodology using thermophysical property sensors (ρ, μ) to measure microdroplet volumes in microfluidic systems.",
-                        details: {
-                            background: "Current optical methods for measuring microdroplet formation require expensive, intricate setups. This project proposes using MEMS-based multisensory systems as an inline alternative.",
-                            focus: [
-                                "Develop workflow for microdroplet volume measurement",
-                                "Investigate droplet shape determination",
-                                "Study interfacial area composition",
-                                "Compare with optical methodologies"
-                            ],
-                            methods: "MEMS sensors, microfluidic reactor operation, data analysis"
-                        },
-                        contact: {
-                            name: "Lukas Bartsch",
-                            supervisor: "Dr. Laura Kollau",
-                            email: "laura.kollau@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    }
-                ]
-            },
-            biotechnology: {
-                name: "Biotechnology & Molecular Biology",
-                icon: "🧬",
-                description: "Protein engineering, genetic modification, and bioproduction",
-                projects: [
-                    {
-                        title: "Production of Mussel Adhesive Proteins in Plants",
-                        supervisor: "Dr. Julia Jansing, Assoc. Prof. Luisa Bortesi",
-                        institution: "AMIBM - Molecular & Applied Biotechnology",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Molecular Biology/Biotechnology",
-                        description: "Produce mussel foot proteins (Mfps) in plants and E. coli. These proteins have unique water-resistant adhesive properties valuable for medical and industrial applications.",
-                        details: {
-                            background: "Mussel foot proteins enable mussels to attach to surfaces in wet environments. These adhesive proteins contain L-DOPA and have interesting properties for medical and industrial applications, but cannot currently be produced at industrial scale.",
-                            tasks: [
-                                "Plasmid cloning (Golden Gate cloning, DNA digestion, sequencing)",
-                                "Bacterial transformation and cultivation",
-                                "Transient protein expression in plants and E. coli",
-                                "Protein extraction and purification",
-                                "Protein gel electrophoresis (SDS-PAGE)",
-                                "Western blotting",
-                                "Testing of material properties"
-                            ],
-                            strategies: "Test different production strategies and metabolic engineering approaches to improve amino acid availability.",
-                            methods: "Golden Gate cloning, agroinfiltration, protein purification, SDS-PAGE, Western blot"
-                        },
-                        contact: {
-                            name: "Dr. Julia Jansing",
-                            email: "julia.jansing@maastrichtuniversity.nl",
-                            cosupervisor: "Assoc. Prof. Luisa Bortesi (luisa.bortesi@maastrichtuniversity.nl)",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Squid Ring Teeth Proteins (Suckerins) in Plants and Bacteria",
-                        supervisor: "Dr. Julia Jansing, Assoc. Prof. Luisa Bortesi",
-                        institution: "AMIBM - Molecular & Applied Biotechnology",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Molecular Biology/Biotechnology",
-                        description: "Improve production of suckerin proteins with unusual material properties including wet adhesion and thermoplastic behavior.",
-                        details: {
-                            background: "Suckerins from squid ring teeth have unique material properties. Suckerin-12 has wet adhesion properties useful for surgical glue, while suckerin-18 shows thermoplastic behavior. Currently cannot be sourced in sufficient quantities.",
-                            approach: [
-                                "Optimize suckerin production in plants through metabolic engineering",
-                                "Test different cultivation strategies in E. coli",
-                                "Investigate purification methods from plant tissue",
-                                "Test material properties if sufficient protein is produced"
-                            ],
-                            methods: "Golden Gate cloning, bacterial transformation, agroinfiltration, protein purification, material testing"
-                        },
-                        contact: {
-                            name: "Dr. Julia Jansing",
-                            email: "julia.jansing@maastrichtuniversity.nl",
-                            cosupervisor: "Assoc. Prof. Luisa Bortesi (luisa.bortesi@maastrichtuniversity.nl)",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Silk Protein Production in Tobacco Plants",
-                        supervisor: "Lara Bitar, Dr. Julia Jansing, Assoc. Prof. Luisa Bortesi",
-                        institution: "AMIBM - Molecular & Applied Biotechnology",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Molecular Biology/Biotechnology",
-                        description: "Use plants as natural factories for producing silk proteins with exceptional mechanical properties for biomedical applications.",
-                        details: {
-                            background: "Silk is a biocompatible and biodegradable material with exceptional mechanical properties. Medical industries use silk for biomedical products, but current processes are not sustainable. Main challenge is the complexity of silk protein structure.",
-                            strategy: "Use DNA and protein assembly strategies to build up silk proteins starting from small building blocks. Test expression in different compartments of tobacco cells.",
-                            methods: "Plasmid cloning, DNA assembly, bacterial transformation, transient plant transformation, protein extraction, SDS-PAGE, Western blotting"
-                        },
-                        contact: {
-                            name: "Lara Bitar",
-                            email: "l.bitar@maastrichtuniversity.nl",
-                            supervisors: "Dr. Julia Jansing (julia.jansing@maastrichtuniversity.nl), Assoc. Prof. Luisa Bortesi (luisa.bortesi@maastrichtuniversity.nl)",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Mycobacterium tuberculosis Secretion System Structure",
-                        supervisor: "Dr. Ye Gao",
-                        institution: "M4I Institute - Nanoscopy Department",
-                        location: "Maastricht",
-                        type: "Structural Biology/Protein Science",
-                        description: "Study the ESX-1 secretion system and substrates of Mycobacterium tuberculosis to understand pathogenicity and virulence mechanisms.",
-                        details: {
-                            background: "Tuberculosis is still the most prominent infectious disease worldwide. Mtb escapes destruction in the phagolysosome through the ESX-1 type VII secretion system. Understanding this mechanism is crucial for developing new treatments.",
-                            activities: [
-                                "Design relevant targets using bioinformatics and molecular modeling",
-                                "Purify recombinant ESX-1 components and secretion substrates from E. coli",
-                                "Characterize samples by MS, cryo-EM, NMR, X-ray, SAXS"
-                            ],
-                            skills: "Bioinformatics, molecular modeling, cloning, recombinant expression, protein purification (IMAC, Ion Exchange, Gel Filtration), electrophoresis, mass spectrometry, electron microscopy",
-                            note: "All work performed in ML-I safety conditions"
-                        },
-                        contact: {
-                            name: "Dr. Ye Gao",
-                            email: "y.gao@maastrichtuniversity.nl",
-                            location: "M4I Institute, Maastricht"
-                        }
-                    }
-                ]
-            },
-            bioinformatics: {
-                name: "Bioinformatics & Systems Biology",
-                icon: "💻",
-                description: "Computational biology, pathway modeling, and data analysis",
-                projects: [
-                    {
-                        title: "Interactive Biological Pathways for Rare Diseases",
-                        supervisor: "Dr. Friederike Ehrhart",
-                        institution: "Department of Bioinformatics",
-                        location: "Maastricht",
-                        type: "Bioinformatics/Pathway Modeling",
-                        description: "Create and analyze biological pathway models for rare diseases using WikiPathways and computational tools.",
-                        details: {
-                            background: "Rare diseases affect less than 1:2,000 in a population. Many biological pathways of rare diseases are not well known or published. Pathway models are powerful tools for communicating knowledge and analyzing large datasets.",
-                            tasks: [
-                                "Analyze literature and databases to identify responsible genes",
-                                "Model molecular pathways using PathVisio",
-                                "Publish pathways in WikiPathways database",
-                                "Visualize expression data in pathways",
-                                "Explore rare disease networks using Cytoscape"
-                            ],
-                            methods: "Pathway modeling, network analysis, omics data analysis, data integration",
-                            requirements: "Computer skills (ability to install PathVisio), laptop with >100MB free space"
-                        },
-                        contact: {
-                            name: "Dr. Friederike Ehrhart",
-                            email: "friederike.ehrhart@maastrichtuniversity.nl",
-                            location: "Universiteitssingel 60, Room M1.06"
-                        }
-                    },
-                    {
-                        title: "Metabolic Modeling of Cellular Aging and Senescence",
-                        supervisor: "Dr. Marian Breuer",
-                        institution: "Maastricht Centre for Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Biology/Systems Biology",
-                        description: "Construct and analyze computational models of metabolic networks in senescent cells to understand aging processes.",
-                        details: {
-                            background: "Senescent cells accumulate with age and are associated with age-related diseases. Understanding their metabolism could help identify interventions to extend healthy lifespan.",
-                            approach: [
-                                "Construct genome-scale metabolic network models of senescent and control cells",
-                                "Analyze differences in metabolic functionalities and behavior",
-                                "Identify active metabolic tasks and senescence-specific biomarkers",
-                                "Explore network features and potential interventions"
-                            ],
-                            requirements: "Basic knowledge of biochemistry and cellular metabolism, computational/scripting skills (preferably in Matlab)",
-                            methods: "Metabolic modeling, COBRA Toolbox, MATLAB, network analysis"
-                        },
-                        contact: {
-                            name: "Dr. Marian Breuer",
-                            email: "marian.breuer@maastrichtuniversity.nl",
-                            location: "Paul-Henri Spaaklaan 1, North tower - 3rd floor"
-                        }
-                    },
-                    {
-                        title: "DRP1 Knockdown Metabolic Phenotype Modeling",
-                        supervisor: "Dr. Marian Breuer, Dr. Mike Gerards",
-                        institution: "Maastricht Centre for Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Biology/Systems Biology",
-                        description: "Analyze the metabolic impact of DRP1 knockdown (a mitochondrial fission factor) through computational modeling.",
-                        details: {
-                            background: "DRP1 knockdown in human fibroblasts shows striking perturbations in mitochondrial morphology and increased cellular senescence, suggesting widespread impact on cellular metabolism.",
-                            project: [
-                                "Construct genome-scale metabolic models of DRP1 knockdown and wild-type cells",
-                                "Analyze differences in functionalities like pathway usage and metabolic functions",
-                                "Integrate experimental data from literature"
-                            ],
-                            requirements: "Basic knowledge of biochemistry and cellular metabolism, computational/scripting skills (preferably in Matlab)",
-                            methods: "Metabolic modeling, COBRA Toolbox, MATLAB, data integration"
-                        },
-                        contact: {
-                            name: "Dr. Marian Breuer",
-                            email: "marian.breuer@maastrichtuniversity.nl",
-                            cosupervisor: "Dr. Mike Gerards (mike.gerards@maastrichtuniversity.nl)",
-                            location: "Paul-Henri Spaaklaan 1, North tower - 3rd floor"
-                        }
-                    },
-                    {
-                        title: "Modeling Metabolic Diversity of Brain Glial Cells",
-                        supervisor: "Prof. Renaud Jolivet, Dr. Marian Breuer",
-                        institution: "Maastricht Centre for Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Neuroscience/Systems Biology",
-                        description: "Construct and analyze genome-scale metabolic models for different types of glial cells in the brain.",
-                        details: {
-                            background: "Glial cells play pivotal roles in brain function and disorders, but their particular metabolic functions are far from understood. This project aims to address this through computational modeling.",
-                            project: [
-                                "Construct metabolic models for different glial cell types",
-                                "Analyze cell-specific activity of metabolic tasks",
-                                "Compare metabolic features across glial cell types",
-                                "Study metabolic interactions between glial cells"
-                            ],
-                            requirements: "Basic knowledge of biochemistry and cellular metabolism, computational/scripting skills (preferably in Matlab)",
-                            methods: "Metabolic modeling, COBRA Toolbox, MATLAB, network analysis"
-                        },
-                        contact: {
-                            name: "Prof. Renaud Jolivet",
-                            email: "r.jolivet@maastrichtuniversity.nl",
-                            cosupervisor: "Dr. Marian Breuer (marian.breuer@maastrichtuniversity.nl)",
-                            location: "Paul-Henri Spaaklaan 1, North tower - 3rd floor"
-                        }
-                    },
-                    {
-                        title: "Curating Metabolic Pathways for Network Models",
-                        supervisor: "Prof. Renaud Jolivet, Dr. Marian Breuer, Dr. Michiel Adriaens",
-                        institution: "Maastricht Centre for Systems Biology",
-                        location: "Maastricht",
-                        type: "Bioinformatics/Systems Biology",
-                        description: "Curate metabolic pathways for use in computational models of brain cells, heart disease, and cellular aging.",
-                        details: {
-                            background: "Network models can be used to study pathway activity differences between conditions, but pathways must be correctly implemented. This project identifies and prepares relevant pathways for investigation.",
-                            tasks: [
-                                "Identify relevant pathways and metabolic functions from literature",
-                                "Map pathways onto genome-scale network models",
-                                "Prepare pathway maps using PathVisio and WikiPathways",
-                                "Implement missing pathways in models",
-                                "Formulate 'metabolic tasks' for computational modeling"
-                            ],
-                            requirements: "Basic knowledge of biochemistry and cellular metabolism. Computational/programming experience helpful but not required.",
-                            methods: "Pathway curation, PathVisio, WikiPathways, metabolic modeling"
-                        },
-                        contact: {
-                            name: "Prof. Renaud Jolivet",
-                            email: "r.jolivet@maastrichtuniversity.nl",
-                            cosupervisors: "Dr. Marian Breuer (marian.breuer@maastrichtuniversity.nl), Dr. Michiel Adriaens (michiel.adriaens@maastrichtuniversity.nl)",
-                            location: "Paul-Henri Spaaklaan 1, North tower - 3rd floor"
-                        }
-                    },
-                    {
-                        title: "Computational Modeling of Carotenoid Synthesis in Tomato",
-                        supervisor: "Dr. Ruth Grosseholz",
-                        institution: "Department of Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Biology/Plant Biology",
-                        description: "Develop a computational model of the carotenoid biosynthetic pathway in tomato using ordinary differential equations.",
-                        details: {
-                            background: "Carotenoids contribute to tomato color, nutritional value, and quality. Understanding the biosynthetic pathways can enhance agricultural practices and develop biofortified tomatoes.",
-                            tasks: [
-                                "Create conceptual model of carotenoid synthesis",
-                                "Build dynamic ODE model in COPASI",
-                                "Integrate experimental data from literature",
-                                "Simulate carotenoid composition under different environmental conditions"
-                            ],
-                            requirements: "Interest in plant biology and modeling",
-                            methods: "COPASI, ODE modeling, pathway analysis, simulation"
-                        },
-                        contact: {
-                            name: "Dr. Ruth Grosseholz",
-                            email: "Ruth.Grosseholz@maastrichtuniversity.nl"
-                        }
-                    },
-                    {
-                        title: "Signal Propagation Analysis in Plant Tissues",
-                        supervisor: "Dr. Ruth Grosseholz",
-                        institution: "Department of Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Biology/Plant Biology",
-                        description: "Analyze propagation of ROS and calcium signals in plant tissues using computational modeling and VirtualLeaf software.",
-                        details: {
-                            background: "Plants perceive and respond to signals including light, gravity, stress, and chemical cues. Understanding signal propagation can identify potential bottlenecks in plant stress responses.",
-                            tasks: [
-                                "Create plant tissue templates from microscopy images",
-                                "Analyze ROS and Ca²⁺ signal propagation separately",
-                                "Integrate ROS and Ca²⁺ signaling models",
-                                "Evaluate combined model performance"
-                            ],
-                            requirements: "Interest in plant biology and computational modeling",
-                            methods: "VirtualLeaf, reaction-diffusion models, Python, image analysis"
-                        },
-                        contact: {
-                            name: "Dr. Ruth Grosseholz",
-                            email: "Ruth.Grosseholz@maastrichtuniversity.nl"
-                        }
-                    },
-                    {
-                        title: "Cytoskeleton Effects on Membrane Protein Diffusion",
-                        supervisor: "Dr. Ruth Grosseholz",
-                        institution: "Department of Systems Biology",
-                        location: "Maastricht",
-                        type: "Computational Biology/Biophysics",
-                        description: "Model how the cytoskeleton influences diffusion of membrane proteins in plant cells using Smoldyn particle-based simulations.",
-                        details: {
-                            background: "Traditional Fluid Mosaic Model assumes free diffusion, but the Picket Fence Model shows cytoskeleton restricts movement. Experimental work surprisingly shows actin disruption slows diffusion in plants.",
-                            tasks: [
-                                "Construct simplified model of restricted membrane diffusion in Smoldyn",
-                                "Implement steric hindrance for particle collisions",
-                                "Systematically examine parameter effects",
-                                "Relate parameters to experimentally measurable quantities"
-                            ],
-                            requirements: "Interest in biophysics and modeling, willingness to learn programming",
-                            methods: "Smoldyn, particle-based simulation, Python/R for analysis"
-                        },
-                        contact: {
-                            name: "Dr. Ruth Grosseholz",
-                            email: "Ruth.Grosseholz@maastrichtuniversity.nl"
-                        }
-                    }
-                ]
-            },
-            physics: {
-                name: "Physics & Astronomy",
-                icon: "🔭",
-                description: "Particle physics, gravitational waves, and quantum physics",
-                projects: [
-                    {
-                        title: "Gravitational Wave Research",
-                        supervisor: "Dr. Sebastian Steinlechner and GWFP Team",
-                        institution: "Department of Gravitational Waves and Fundamental Physics",
-                        location: "Maastricht (DUB30)",
-                        type: "Experimental/Theoretical Physics",
-                        description: "Work on technologies for next-generation gravitational-wave detectors like the Einstein Telescope. Multiple project areas available.",
-                        details: {
-                            background: "Gravitational waves are ripples of space-time created in astronomical events. Maastricht University is home to one of the leading places for gravitational-wave research, working on the ETpathfinder prototype facility.",
-                            projectAreas: [
-                                "Gravitational-wave theory: describing, modeling and analyzing sources",
-                                "Laser interferometry: simulating and implementing new layouts for better detectors",
-                                "Quantum optics and metrology: techniques to reduce quantum fluctuations on measurements",
-                                "Optical coatings: designing materials for the perfect laser mirror",
-                                "Electronics and data acquisition: collecting detector state information and building sensors"
-                            ],
-                            note: "BTR projects, internships and honours projects available"
-                        },
-                        contact: {
-                            name: "GWFP Secretariat",
-                            email: "secretariat-gwfp@maastrichtuniversity.nl",
-                            website: "Contact for specific supervisor assignment",
-                            location: "DUB30"
-                        }
-                    },
-                    {
-                        title: "Theoretical Particle Physics Projects",
-                        supervisor: "Dr. Keri Vos",
-                        institution: "Gravitational Waves and Fundamental Physics (GWFP)",
-                        location: "Maastricht (Duboisdomein 30, Room 1.050)",
-                        type: "Theoretical/Phenomenological Physics",
-                        description: "Test the Standard Model of particle physics through various theoretical and data-analysis projects.",
-                        details: {
-                            background: "Research focuses on testing knowledge of particle physics and investigating open questions like the matter-antimatter asymmetry in the universe.",
-                            projectOptions: [
-                                "The Matter-Antimatter asymmetry [theoretical]",
-                                "The flavor structure of Dark Matter [theoretical]",
-                                "Solving the B to π K puzzle with New Physics [phenomenological, applied]",
-                                "Charm: too light to be heavy, too heavy to be light [phenomenological, applied]"
-                            ],
-                            recommended: "Particle Physics, Quantum Mechanics, and Theory of Relativity courses",
-                            note: "Projects range from pure theoretical to applied requiring modeling and data fitting"
-                        },
-                        contact: {
-                            name: "Dr. Keri Vos",
-                            email: "k.vos@maastrichtuniversity.nl",
-                            office: "Duboisdomein 30, Room 1.050"
-                        }
-                    }
-                ]
-            },
-            ecology: {
-                name: "Ecology & Environmental Science",
-                icon: "🌿",
-                description: "Evolution, biodiversity, and environmental interactions",
-                projects: [
-                    {
-                        title: "Chemical Ecology and Ecophysiology of Ladybirds",
-                        supervisor: "Dr. John Sloggett",
-                        institution: "Department of Biology",
-                        location: "Maastricht (PHS 2.006)",
-                        type: "Chemical Ecology/Ecophysiology",
-                        description: "Study chemical defenses, ecophysiology, and anthropogenic effects on ladybird beetles and other predatory animals.",
-                        details: {
-                            background: "Research focuses on predatory animals (especially ladybirds) covering chemical ecology, ecophysiology, and effects of climate change, invasive species, and urbanization.",
-                            projectAreas: [
-                                "Chemical Ecology: alkaloid toxicity, chemical defenses variation, sequestration from prey",
-                                "Ecophysiology and Behavior: climate change effects, body size role, mating behavior, pheromones",
-                                "Anthropogenic Effects: invasive species, climate change, urbanization impacts, STD spread"
-                            ],
-                            note: "Projects may include mathematical components. Interdisciplinary work with chemists and mathematicians welcome.",
-                            methods: "Behavioral studies, physiological work, analytical chemistry, mathematical modeling"
-                        },
-                        contact: {
-                            name: "Dr. John Sloggett",
-                            email: "j.sloggett@maastrichtuniversity.nl",
-                            office: "PHS 2.006"
-                        }
-                    },
-                    {
-                        title: "Evolutionary Plant Biology and Biodiversity",
-                        supervisor: "Dr. Roy Erkens",
-                        institution: "Department of Biology",
-                        location: "Maastricht (PHS B2.019)",
-                        type: "Evolutionary Biology/Biodiversity",
-                        description: "Investigate plant diversity origins and biodiversity patterns in Limburg and the Neotropics.",
-                        details: {
-                            background: "Research investigates how and when plant diversity originated and tries to understand patterns in biodiversity in (South) Limburg and the Neotropics.",
-                            limburgProjects: [
-                                "Biodiversity of the Grensmaas region (collaboration with Wageningen)",
-                                "Herbarium of Natural History Museum Maastricht",
-                                "Urban evolution using Taraxacum officinale (Dandelion)",
-                                "Pollen of Tibet (collaboration with University of Amsterdam)"
-                            ],
-                            neotropicsProjects: [
-                                "Redlisting of trees and lianas in Annonaceae for IUCN",
-                                "Biogeographical patterns in Annonaceae using GIS",
-                                "Morphological traits of Guatteria species",
-                                "Chemical constituents or crystals of tropical plants"
-                            ],
-                            methods: "GIS, morphometrics, SEM, phytochemistry, database work"
-                        },
-                        contact: {
-                            name: "Dr. Roy Erkens",
-                            email: "roy.erkens@maastrichtuniversity.nl",
-                            office: "PHS B2.019"
-                        }
-                    },
-                    {
-                        title: "Ancient Engineering and Human-Environment Interaction",
-                        supervisor: "Dr. Kyle Jazwa",
-                        institution: "Department of Archaeology",
-                        location: "Maastricht (PHS B2.018)",
-                        type: "Archaeology/Environmental Science",
-                        description: "Study ancient technology, construction, and settlement in the eastern Mediterranean through data analysis and modeling.",
-                        details: {
-                            background: "Research focuses on ancient technology, construction, science, and settlement in Greece and Cyprus. Multiple datasets available for various BTR projects.",
-                            projectAreas: [
-                                "Architectural Design Networks: analyze construction methods and environmental influences",
-                                "Human Behavioral Ecology: ecological models of past human settlement",
-                                "Architectural Innovation: study invention in antiquity (e.g., ceramic-tiled roofs)",
-                                "Experimental Archaeology: reconstruct ancient brewing methods/recipes"
-                            ],
-                            desiredSkills: "ArcGIS, Microsoft Access database design, photogrammetry, statistics, digital reconstructions",
-                            note: "Projects can be designed using existing datasets and student's individual skillset"
-                        },
-                        contact: {
-                            name: "Dr. Kyle Jazwa",
-                            email: "k.jazwa@maastrichtuniversity.nl",
-                            office: "PHS B2.018"
-                        }
-                    },
-                    {
-                        title: "Ecosystem Acclimation in Mediterranean Forests",
-                        supervisor: "Dr. Salvador Aljazairi",
-                        institution: "Department of Ecology, University of Granada",
-                        location: "Granada, Spain (Sierra Nevada National Park)",
-                        type: "Ecophysiology/Climate Change",
-                        description: "Study carbon and nitrogen cycling in Mediterranean forests and how climate change affects ecosystem processes.",
-                        details: {
-                            background: "Mediterranean forests face predicted temperature increases and water resource decreases. Research uses C and N isotopic natural abundance as proxies to understand canopy effects and climate change impacts.",
-                            focus: "Compare traditional Quercus stands and Pinus plantations to understand differences in soil properties, carbon/nitrogen acquisition, and ecosystem fluxes.",
-                            methods: "Stable isotopes (δ¹³C and δ¹⁵N), soil analysis, plant physiology",
-                            location: "Field work in Sierra Nevada National Park, Spain"
-                        },
-                        contact: {
-                            name: "Dr. Salvador Aljazairi",
-                            email: "sal@ugr.es",
-                            institution: "University of Granada, Spain"
-                        }
-                    }
-                ]
-            },
-            microbiome: {
-                name: "Microbiome & Health",
-                icon: "🦠",
-                description: "Gut microbiome, host-microbe interactions, and health",
-                projects: [
-                    {
-                        title: "Proton-Pump Inhibitor and Alcohol Effects on Gut Microbiome",
-                        supervisor: "Prof. Dr. Christoph Kaleta, Karlis Moors",
-                        institution: "Institute of Experimental Medicine, Christian-Albrechts-University Kiel",
-                        location: "Kiel, Germany",
-                        type: "Microbiome/Data Analysis",
-                        description: "Investigate combined effects of PPI and alcohol use on the human gut microbiome using PopGen cohort data.",
-                        details: {
-                            background: "PPIs are commonly prescribed for heartburn and GERD. Alcohol consumption may lead to increased symptomatic reflux. Previous studies examined PPI and alcohol effects separately, but not their combined impact.",
-                            approach: "Analyze PopGen cohort data including nutrition, phenotypic information, gut microbe abundance, and reaction activity to identify distinguishable combined effects.",
-                            requirements: "Motivation to learn about the human microbiome through data analysis. Scientific computing experience not necessary but advantageous.",
-                            methods: "Bioinformatics, data analysis, statistical analysis, microbiome analysis"
-                        },
-                        contact: {
-                            name: "Karlis Moors",
-                            email: "k.moors@iem.uni-kiel.de",
-                            supervisor: "Prof. Dr. Christoph Kaleta",
-                            location: "UKSH Campus, Kiel, Germany"
-                        }
-                    },
-                    {
-                        title: "Impact of Steroid Hormones on Gut Microbiome",
-                        supervisor: "Lena Best, Prof. Dr. Christoph Kaleta",
-                        institution: "Institute of Experimental Medicine, Christian-Albrechts-University Kiel",
-                        location: "Kiel, Germany",
-                        type: "Microbiome/Computational Biology",
-                        description: "Investigate whether age-related hormonal changes (particularly menopause) impact gut microbiome composition.",
-                        details: {
-                            background: "As humans age, hormone levels and gut microbiome both undergo significant changes. Recent research shows aging weakens host-microbiome interactions and cooperation among microbial species.",
-                            objectives: [
-                                "Analyze gut microbiome in pre- and post-menopausal women from northern German cohort",
-                                "Investigate effects of Hormone Replacement Therapy on microbiome, diet, and blood metabolome",
-                                "Examine whether bacterial metabolism changes are reflected in blood biomarkers"
-                            ],
-                            requirements: "Background in life sciences, informatics or data analysis beneficial",
-                            methods: "Statistical analysis, data visualization, metabolic modeling, MATLAB/Python"
-                        },
-                        contact: {
-                            name: "Lena Best",
-                            email: "L.Best@iem.uni-kiel.de",
-                            supervisor: "Prof. Dr. Christoph Kaleta",
-                            location: "UKSH Campus, Kiel, Germany"
-                        }
-                    },
-                    {
-                        title: "Host-Microbiome Interactions During Aging in Female Mice",
-                        supervisor: "Lena Best, Prof. Dr. Christoph Kaleta",
-                        institution: "Institute of Experimental Medicine, Christian-Albrechts-University Kiel",
-                        location: "Kiel, Germany",
-                        type: "Bioinformatics/Systems Biology",
-                        description: "Investigate sex-specific differences in host-microbiome interactions during chronological aging using female mouse data.",
-                        details: {
-                            background: "Recent findings highlighted age-dependent metabolic interactions along gut-brain and gut-liver axes in male mice. How these patterns translate to female mice remains unexplored.",
-                            objectives: [
-                                "Reconstruct gut bacterial genomes from female mice at different life stages (3, 15, 24 months)",
-                                "Analyze host gene expression in brain and colon for age-related changes",
-                                "Perform integrative analyses to identify metabolic and regulatory interactions"
-                            ],
-                            requirements: "Background in bioinformatics, computational biology, or life sciences. Familiarity with genomics/transcriptomics helpful.",
-                            methods: "Metagenomics, RNA-seq analysis, metabolic modeling, Python/R"
-                        },
-                        contact: {
-                            name: "Lena Best",
-                            email: "L.Best@iem.uni-kiel.de",
-                            supervisor: "Prof. Dr. Christoph Kaleta",
-                            location: "UKSH Campus, Kiel, Germany"
-                        }
-                    }
-                ]
-            },
-            chemistry: {
-                name: "Chemistry & Drug Design",
-                icon: "⚗️",
-                description: "Organic synthesis, drug design, and chemical engineering",
-                projects: [
-                    {
-                        title: "Beta-Turn Mimics via Stereoselective Ugi Reaction",
-                        supervisor: "Dr. Jordy M. Saya",
-                        institution: "AMIBM - Biobased Organic Chemistry",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Organic Chemistry/Peptide Chemistry",
-                        description: "Synthesize β-turn mimics using Ugi multicomponent reaction for protein-protein interaction inhibitors.",
-                        details: {
-                            background: "β-turns are important structural features in proteins. Mimicking this motif is useful for developing structures with drug-like properties. Traditional synthesis (SPPS) of D-Pro-L-Pro is difficult; this project uses Ugi reaction for single-step synthesis.",
-                            approach: "Develop multicomponent approach for D-proline-L-proline β-turns, potentially allowing peptide segment stapling and higher yields than conventional methods.",
-                            methods: "Ugi multicomponent reaction, organic synthesis, peptide chemistry, chromatography"
-                        },
-                        contact: {
-                            name: "Dr. Jordy M. Saya",
-                            email: "j.saya@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Glycerol to Dihydroxyacetone via Photocatalysis",
-                        supervisor: "Dr. Jordy M. Saya",
-                        institution: "AMIBM - Biobased Organic Chemistry",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Photochemistry/Sustainable Chemistry",
-                        description: "Convert glycerol (biodiesel waste) into high-value dihydroxyacetone using cooperative photocatalysis inspired by enzymatic pathways.",
-                        details: {
-                            background: "Biodiesel production generates 10 wt% glycerol as by-product, creating supply-demand imbalance. This project aims to convert waste glycerol into valuable dihydroxyacetone.",
-                            concept: "Nature-inspired triple photoredox/cobalt/boronic acid catalyzed selective oxidation. Boronic acid acts as directing group and boosts photocatalytic activity.",
-                            innovation: "Addresses photobleaching and low quantum yield challenges in flavin-based photocatalysts",
-                            methods: "Photochemistry, catalysis, organic synthesis, spectroscopy"
-                        },
-                        contact: {
-                            name: "Dr. Jordy M. Saya",
-                            email: "j.saya@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Modified Asinger Reaction for Thiazoline Polymers",
-                        supervisor: "Dr. Jordy M. Saya",
-                        institution: "AMIBM - Biobased Organic Chemistry",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Polymer Chemistry",
-                        description: "Develop novel thiazoline-containing polymers using the underexplored Asinger multicomponent reaction.",
-                        details: {
-                            background: "Asinger MCR (elemental sulfur, ammonia, ketones/aldehydes) produces Δ³-thiazolines. This project applies it to polymer synthesis for potential use in optoelectronics and wearable electronics.",
-                            approach: [
-                                "Proof of concept: produce di-benzo-thiazoline products using mono-functionalized α-thiol-ketones",
-                                "Scale up to higher molecular weight polymers with different backbones",
-                                "Characterize materials"
-                            ],
-                            note: "To our knowledge, no reports exist on using Asinger MCR in polymer synthesis",
-                            methods: "Multicomponent reactions, polymer synthesis, material characterization"
-                        },
-                        contact: {
-                            name: "Dr. Jordy M. Saya",
-                            email: "j.saya@maastrichtuniversity.nl",
-                            location: "Brightlands Chemelot Campus"
-                        }
-                    },
-                    {
-                        title: "Structure-Based Virtual Screening for Sepsis Treatment",
-                        supervisor: "Dr. Gerry A.F. Nicolaes",
-                        institution: "Cardiovascular Research Institute Maastricht - Biochemistry",
-                        location: "Maastricht",
-                        type: "Computational Drug Design",
-                        description: "Use structural bioinformatics and virtual screening to identify new drug candidates for severe sepsis treatment.",
-                        details: {
-                            background: "Sepsis is life-threatening with high mortality partly due to lack of proper drugs. Recently a new protein was identified playing a major role in sepsis development and progression.",
-                            approach: [
-                                "Study 3D structures of proteins involved in sepsis",
-                                "Dock >1 million small molecules in silico onto protein target",
-                                "Predict top 1000 compounds most likely to bind",
-                                "Test compounds for interference with cell viability",
-                                "Optimize best compounds, potentially test in mouse sepsis model"
-                            ],
-                            note: "Limited student capacity - interviews required prior to acceptance",
-                            methods: "Structural bioinformatics, molecular docking, virtual screening, cell viability assays"
-                        },
-                        contact: {
-                            name: "Dr. Gerry A.F. Nicolaes",
-                            email: "g.nicolaes@maastrichtuniversity.nl",
-                            phone: "043-3881688"
-                        }
-                    },
-                    {
-                        title: "Cytotoxic Inflammatory Processes in Sepsis (Histone Studies)",
-                        supervisor: "Dr. Gerry A.F. Nicolaes",
-                        institution: "Cardiovascular Research Institute Maastricht - Biochemistry",
-                        location: "Maastricht",
-                        type: "Biochemistry/Protein Science",
-                        description: "Study cytotoxic effects of extracellular histones and develop prototype drugs to interfere with histone toxicity in sepsis.",
-                        details: {
-                            background: "Extracellular histones are major mediators of death in sepsis. Each cell has toxic nuclear content that, during sepsis, can result in death of the cell itself and neighboring cells.",
-                            project: [
-                                "Recombinant expression of human histones H3 and H4 from bacteria",
-                                "Optimize production of histones H2A and H2B",
-                                "Analyze proteins by biochemical, proteomics and Mass Spectrometry methods",
-                                "Test properties in cell-based systems and purified component systems",
-                                "Test newly developed molecules designed to target histones"
-                            ],
-                            note: "No drugs currently exist to treat sepsis patients; mortality rates can be as high as 80%",
-                            methods: "Recombinant protein expression, purification, proteomics, mass spectrometry, cell culture"
-                        },
-                        contact: {
-                            name: "Dr. Gerry A.F. Nicolaes",
-                            email: "g.nicolaes@maastrichtuniversity.nl",
-                            phone: "043-3881688"
-                        }
-                    },
-                    {
-                        title: "Novel Diagnostic Methods for Sepsis at ICU",
-                        supervisor: "Dr. Gerry A.F. Nicolaes",
-                        institution: "Cardiovascular Research Institute Maastricht - Biochemistry",
-                        location: "Maastricht",
-                        type: "Biomedical Science/Diagnostics",
-                        description: "Develop sensitive and fast methods to assess clinical status of ICU sepsis patients using novel biomarkers.",
-                        details: {
-                            background: "Clinical decision-making at ICU is complicated and time-pressured. New methods are needed to rapidly assess patient clinical status, especially for sepsis which can worsen rapidly.",
-                            approach: [
-                                "Test methods to isolate target proteins from plasma/serum of diseased patients",
-                                "Develop rapid quantitation methods using biomedical assays",
-                                "Apply statistical methods to ensure sensitivity, reproducibility and reliability",
-                                "Potentially involved in bedside measurements using novel test currently being developed"
-                            ],
-                            collaboration: "Close collaboration with intensivists at the ICU",
-                            methods: "Protein isolation, bioassays, statistical analysis, clinical diagnostics"
-                        },
-                        contact: {
-                            name: "Dr. Gerry A.F. Nicolaes",
-                            email: "g.nicolaes@maastrichtuniversity.nl",
-                            phone: "043-3881688"
-                        }
-                    }
-                ]
-            },
-            kidney: {
-                name: "Kidney Physiology & Bioengineering",
-                icon: "🫘",
-                description: "Kidney modeling, dialysis, and organ systems",
-                projects: [
-                    {
-                        title: "Computational Modeling of Kidney Physiology and Hemodialysis",
-                        supervisor: "Dr. Aurélie Carlier",
-                        institution: "Department of Biomedical Engineering",
-                        location: "Maastricht",
-                        type: "Computational Biology/Bioengineering",
-                        description: "Develop computational models (ODEs, PDEs, agent-based) to study kidney physiology, pathology, and treatment devices.",
-                        details: {
-                            background: "Research uses computational models to explore design principles of biological systems and optimize treatments. Current focus on kidney physiology/pathology and treatment devices.",
-                            kidneyProjects: [
-                                "Modeling hemodialysis (collaboration with UMC Utrecht) to design new treatments or reduce water usage",
-                                "Model/map of proximal tubule (mitochondria) metabolism",
-                                "PBPK model (healthy, chronic kidney disease, acute kidney injury)",
-                                "PBPK model (sex differences)",
-                                "Model linking proximal tubule metabolism and transport",
-                                "Model/map of PT transport (physiology and CKD)"
-                            ],
-                            methods: "VCell, Python, Matlab, ODEs, PDEs, agent-based modeling"
-                        },
-                        contact: {
-                            name: "Dr. Aurélie Carlier",
-                            email: "a.carlier@maastrichtuniversity.nl"
-                        }
-                    },
-                    {
-                        title: "Cell-Biomaterial Interactions and Tissue Engineering",
-                        supervisor: "Dr. Aurélie Carlier",
-                        institution: "Department of Biomedical Engineering",
-                        location: "Maastricht",
-                        type: "Computational Biology/Tissue Engineering",
-                        description: "Model biological systems related to fibrosis, lung disease risk assessment, and bone regeneration.",
-                        details: {
-                            background: "Use computational models to optimize treatments and understand cell-biomaterial interactions.",
-                            projects: [
-                                "Developing a disease map of fibrosis: create extensive visual representation of signaling pathways and model subset dynamically",
-                                "Lung model for risk assessment: assess effect of inhaled substances on lung disease (with RIVM)",
-                                "Bone regeneration: model how bone regeneration is affected by co-morbidities"
-                            ],
-                            methods: "VCell, Python, Matlab, pathway modeling, dynamic modeling"
-                        },
-                        contact: {
-                            name: "Dr. Aurélie Carlier",
-                            email: "a.carlier@maastrichtuniversity.nl"
-                        }
-                    }
-                ]
-            },
-            fieldwork: {
-                name: "Field Research & Internships",
-                icon: "🌎",
-                description: "International field research opportunities",
-                projects: [
-                    {
-                        title: "Wildlife Research & Rehabilitation in Peruvian Amazon",
-                        supervisor: "Hoja Nueva Team",
-                        institution: "Hoja Nueva (Wildlife Conservation Organization)",
-                        location: "Las Piedras region, Peruvian Amazon",
-                        type: "Field Research/Conservation",
-                        description: "Hands-on wildlife conservation experience including rehabilitation, ecological research, and environmental education in the Amazon.",
-                        details: {
-                            background: "Hoja Nueva is a wildlife conservation organization founded in 2015, specializing in wildlife rehabilitation (especially carnivores), ecological research, and environmental education in the Las Piedras region of the Peruvian Amazon.",
-                            researchProjects: [
-                                "Wildlife Monitoring: learn camera trap usage to study mammals",
-                                "Herpetology Studies: investigate anuran reproductive ecology",
-                                "Ecosystem Analysis: habitat classification research using GIS",
-                                "Research Development: engage in study design, data collection, sample processing, analysis, and report writing"
-                            ],
-                            facilities: "State-of-the-art shared dorms, common areas, communal meals, electricity, running water, high-speed internet",
-                            activities: "Swimming in Las Piedras River, jungle volleyball, trail exploration",
-                            note: "Full-time wildlife rehabilitation & pre-vet internships available with specific qualifications"
-                        },
-                        contact: {
-                            email: "info@hojanueva.org",
-                            website: "hojanueva.org",
-                            instagram: "@hojanueva"
-                        }
-                    },
-                    {
-                        title: "Biodesalination Technology Development",
-                        supervisor: "Neha Silva",
-                        institution: "Aestuarium (Biotech Startup)",
-                        location: "Brightlands Chemelot Campus",
-                        type: "Biotechnology/Sustainability",
-                        description: "Conduct Life Cycle Assessments (LCAs) on innovative bio-desalination process using bio-engineered bacteria.",
-                        details: {
-                            background: "Aestuarium is a dynamic biotech startup addressing water scarcity with bio-engineered bacteria to desalinate seawater, producing freshwater for agriculture.",
-                            projectFocus: [
-                                "Conducting LCAs on the bio-desalination process",
-                                "Creating models to simulate potential carbon footprint",
-                                "Analyzing sustainability and environmental impact"
-                            ],
-                            background_preferred: "Bio-based materials course, previous LCA experience on other projects",
-                            duration: "5-6 months thesis project (Bachelor/Master)",
-                            whyJoin: "Be part of innovative solution to global water scarcity, collaborate with youthful passionate team, gain hands-on biotech experience"
-                        },
-                        contact: {
-                            name: "Neha Silva",
-                            email: "neha.silva@aestuarium.nl",
-                            website: "www.aestuarium.nl",
-                            instagram: "@aestuarium.biodesalination"
-                        }
-                    }
-                ]
-            }
-        };
-
-        // Current view state
-        let currentField = null;
-
-        // Initialize page
-        function initializePage() {
-            renderFieldCards();
-            
-            // Show back to top button on scroll
-            window.addEventListener('scroll', function() {
-                const backToTop = document.getElementById('backToTop');
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-        }
-
-        // Render field cards
-        function renderFieldCards() {
-            const fieldGrid = document.getElementById('field-grid');
-            fieldGrid.innerHTML = '';
-
-            for (const [key, field] of Object.entries(projectData)) {
-                const card = document.createElement('div');
-                card.className = 'field-card';
-                card.onclick = () => showFieldProjects(key);
-                
-                card.innerHTML = `
-                    <span class="field-icon">${field.icon}</span>
-                    <h3>${field.name}</h3>
-                    <p>${field.description}</p>
-                    <div class="project-count">${field.projects.length} project${field.projects.length !== 1 ? 's' : ''} available</div>
-                `;
-                
-                fieldGrid.appendChild(card);
-            }
-        }
-
-        // Show projects for a specific field
-        function showFieldProjects(fieldKey) {
-            currentField = fieldKey;
-            const field = projectData[fieldKey];
-            
-            // Update breadcrumb
-            const breadcrumb = document.getElementById('breadcrumb');
-            breadcrumb.innerHTML = `
-                <a href="#" onclick="showFieldsView(); return false;">All Fields</a>
-                <span>›</span>
-                <span>${field.name}</span>
-            `;
-            
-            // Update header
-            document.getElementById('current-field-icon').textContent = field.icon;
-            document.getElementById('current-field-name').textContent = field.name;
-            
-            // Render project cards
-            const projectGrid = document.getElementById('project-grid');
-            projectGrid.innerHTML = '';
-            
-            field.projects.forEach((project, index) => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.onclick = () => showProjectDetails(fieldKey, index);
-                
-                card.innerHTML = `
-                    <div class="project-meta">
-                        <span class="project-tag supervisor">📋 ${project.supervisor.split(',')[0]}</span>
-                        <span class="project-tag location">📍 ${project.location}</span>
-                        <span class="project-tag">${project.type}</span>
-                    </div>
-                    <h4>${project.title}</h4>
-                    <p class="project-description">${project.description}</p>
-                `;
-                
-                projectGrid.appendChild(card);
-            });
-            
-            // Switch views
-            document.getElementById('fields-view').classList.remove('active');
-            document.getElementById('projects-view').classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show fields view
-        function showFieldsView() {
-            currentField = null;
-            
-            // Update breadcrumb
-            const breadcrumb = document.getElementById('breadcrumb');
-            breadcrumb.innerHTML = `
-                <a href="#" onclick="showFieldsView(); return false;">All Fields</a>
-            `;
-            
-            // Switch views
-            document.getElementById('projects-view').classList.remove('active');
-            document.getElementById('fields-view').classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show project details in modal
-        function showProjectDetails(fieldKey, projectIndex) {
-            const project = projectData[fieldKey].projects[projectIndex];
-            
-            // Set title
-            document.getElementById('modal-title').textContent = project.title;
-            
-            // Build content
-            let contentHTML = `
-                <div class="modal-section">
-                    <div class="project-meta">
-                        <span class="project-tag supervisor">👨‍🏫 ${project.supervisor}</span>
-                        <span class="project-tag location">📍 ${project.location}</span>
-                        <span class="project-tag">${project.type}</span>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>📋 Project Overview</h4>
-                    <p>${project.description}</p>
-                </div>
-            `;
-            
-            // Add details sections
-            if (project.details) {
-                if (project.details.background) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>🔬 Background</h4>
-                            <p>${project.details.background}</p>
-                        </div>
-                    `;
-                }
-                
-                if (project.details.projects) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>🎯 Research Projects</h4>
-                            <ul>
-                                ${project.details.projects.map(p => `<li>${p}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-                }
-                
-                if (project.details.projectAreas) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>🎯 Project Areas</h4>
-                            <ul>
-                                ${project.details.projectAreas.map(p => `<li>${p}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-                }
-                
-                if (project.details.tasks) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>✅ Tasks & Activities</h4>
-                            <ul>
-                                ${project.details.tasks.map(t => `<li>${t}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-                }
-                
-                if (project.details.requirements) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>📚 Requirements</h4>
-                            <p>${project.details.requirements}</p>
-                        </div>
-                    `;
-                }
-                
-                if (project.details.methods) {
-                    contentHTML += `
-                        <div class="modal-section">
-                            <h4>🔧 Methods & Techniques</h4>
-                            <p>${project.details.methods}</p>
-                        </div>
-                    `;
-                }
-            }
-            
-            // Add contact box
-            contentHTML += `
-                <div class="contact-box">
-                    <h4>📧 Contact Information</h4>
-                    <div class="contact-info">
-            `;
-            
-            if (project.contact.name) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Supervisor:</strong>
-                        <span>${project.contact.name}</span>
-                    </div>
-                `;
-            }
-            
-            if (project.contact.email) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Email:</strong>
-                        <a href="mailto:${project.contact.email}">${project.contact.email}</a>
-                    </div>
-                `;
-            }
-            
-            if (project.contact.cosupervisor) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Co-supervisor:</strong>
-                        <span>${project.contact.cosupervisor}</span>
-                    </div>
-                `;
-            }
-            
-            if (project.contact.location) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Location:</strong>
-                        <span>${project.contact.location}</span>
-                    </div>
-                `;
-            }
-            
-            if (project.contact.website) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Website:</strong>
-                        <a href="${project.contact.website}" target="_blank">${project.contact.website}</a>
-                    </div>
-                `;
-            }
-            
-            if (project.contact.phone) {
-                contentHTML += `
-                    <div class="contact-item">
-                        <strong>Phone:</strong>
-                        <span>${project.contact.phone}</span>
-                    </div>
-                `;
-            }
-            
-            contentHTML += `
-                    </div>
-                </div>
-            `;
-            
-            // Set content
-            document.getElementById('modal-content').innerHTML = contentHTML;
-            
-            // Show modal
-            document.getElementById('modal-overlay').classList.add('active');
-            document.getElementById('project-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close project modal
-        function closeProjectModal() {
-            document.getElementById('modal-overlay').classList.remove('active');
-            document.getElementById('project-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeProjectModal();
+        // Show back to top button on scroll
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
             }
         });
 
@@ -1953,9 +416,6 @@
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
