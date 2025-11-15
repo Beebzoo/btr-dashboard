@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroscience & Psychology Projects - BTR</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            color: #001C3D;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001C3D;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #E84E10;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #d63d0a;
+            transform: translateX(-5px);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #001C3D 0%, #00152B 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .page-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .field-icon-large {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #00BCD4;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #E84E10;
+        }
+
+        .breadcrumb span {
+            color: #999;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #00BCD4;
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .project-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            font-size: 28px;
+            color: #00BCD4;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover::after {
+            transform: translateX(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border-color: #00BCD4;
+        }
+
+        .project-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #001C3D;
+            margin-bottom: 15px;
+            padding-right: 50px;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #E3F2FD;
+            color: #01579B;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .project-tag.supervisor {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .project-tag.location {
+            background: #E8F5E9;
+            color: #1B5E20;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        /* Project Detail Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 28, 61, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .project-modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
+            color: white;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: white;
+            margin: 0;
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 32px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 35px;
+            overflow-y: auto;
+            max-height: calc(85vh - 140px);
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: #001C3D;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #E84E10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-section p,
+        .modal-section ul {
+            color: #555;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .modal-section ul {
+            padding-left: 25px;
+            margin-top: 12px;
+        }
+
+        .modal-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border: 2px solid #00BCD4;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #001C3D;
+            margin-bottom: 20px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #333;
+        }
+
+        .contact-item strong {
+            min-width: 120px;
+            color: #001C3D;
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: #00BCD4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #E84E10;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .modal-body {
+                padding: 25px;
+            }
+
+            .modal-header {
+                padding: 25px;
+            }
+
+            .modal-header h3 {
+                font-size: 22px;
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #E84E10;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: #d63d0a;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="msp-logo.png" alt="MSP Logo">
+                <span class="logo-text">Maastricht Science Programme</span>
+            </a>
+            <a href="browse-projects.html" class="back-button">
+                ← Back to All Fields
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <span class="field-icon-large">🧠</span>
+            <h1>Neuroscience & Psychology</h1>
+            <p>Explore research opportunities in brain function, cognition, behavior, and neural processing</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="browse-projects.html">Browse Projects</a>
+        <span>›</span>
+        <span>Neuroscience & Psychology</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Grid -->
+        <div class="project-grid">
+            <!-- Project 1: Biopsychology -->
+            <div class="project-card" onclick="showProject(0)">
+                <div class="project-meta">
+                    <span class="project-tag supervisor">📋 Dr. Miguel A. Serrano</span>
+                    <span class="project-tag location">📍 Valencia, Spain</span>
+                    <span class="project-tag">Computational/Data Analysis</span>
+                </div>
+                <h3>Biopsychology, Cognitive & Affective Neuroscience</h3>
+                <p class="project-description">Research focuses on the psychobiology of stress, emotions and decision making in humans. Projects include decision making and heart rate variability, decision making and interoception and alexithymia, and stress and decision making.</p>
+            </div>
+
+            <!-- Project 2: Brain State Decoding -->
+            <div class="project-card" onclick="showProject(1)">
+                <div class="project-meta">
+                    <span class="project-tag supervisor">📋 Dr. Christian Herff</span>
+                    <span class="project-tag location">📍 Maastricht</span>
+                    <span class="project-tag">Computational Neuroscience</span>
+                </div>
+                <h3>Brain State Decoding using Machine Learning</h3>
+                <p class="project-description">Decode cognitive processes such as memory, speech, or decision making from invasive brain recordings using machine learning algorithms. Work with high-quality neural data from direct brain measurements.</p>
+            </div>
+
+            <!-- Project 3: Auditory Processing -->
+            <div class="project-card" onclick="showProject(2)">
+                <div class="project-meta">
+                    <span class="project-tag supervisor">📋 Dr. Lars Hausfeld</span>
+                    <span class="project-tag location">📍 Maastricht</span>
+                    <span class="project-tag">Psychoacoustics/Cognitive Neuroscience</span>
+                </div>
+                <h3>Auditory Processing and Speech-in-Noise</h3>
+                <p class="project-description">Study how the brain processes speech in noisy environments, investigating the 'cocktail party problem' through psychoacoustics and neuroimaging techniques including EEG and fMRI.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="project-modal" class="project-modal">
+        <div class="modal-header">
+            <h3 id="modal-title"></h3>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-body" id="modal-content">
+            <!-- Content will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Project Data
+        const projects = [
+            {
+                title: "Biopsychology, Cognitive & Affective Neuroscience",
+                supervisor: "Dr. Miguel A. Serrano",
+                institution: "Universitat de València, Spain",
+                location: "Valencia, Spain",
+                type: "Computational/Data Analysis",
+                description: "Research focuses on the psychobiology of stress, emotions and decision making in humans. Projects include decision making and heart rate variability, decision making and interoception and alexithymia, and stress and decision making.",
+                background: "The research focuses on understanding how stress, emotions, and decision-making processes interact in humans. Several large datasets are available that could form the foundation for various BTR projects.",
+                requirements: "Students with an interest in neuroscience and experience with computational methods, psychophysiology, and statistics are especially encouraged to apply.",
+                projects: [
+                    "Decision making and heart rate variability",
+                    "Decision making and interoception and alexithymia",
+                    "Stress and decision making"
+                ],
+                methods: "Computational methods, psychophysiology, statistics, data analysis",
+                contact: {
+                    name: "Dr. Miguel A. Serrano",
+                    email: "m.angel.serrano@uv.es",
+                    website: "https://www.uv.es/uvweb/research-service/en/health-sciences/grup1285949713561.html?p2=GIUV2020-478",
+                    researchgate: "https://www.researchgate.net/profile/Miguel-Serrano-12"
+                }
+            },
+            {
+                title: "Brain State Decoding using Machine Learning",
+                supervisor: "Dr. Christian Herff",
+                institution: "School for Mental Health and Neuroscience, FHML",
+                location: "Maastricht",
+                type: "Computational Neuroscience",
+                description: "Decode cognitive processes such as memory, speech, or decision making from invasive brain recordings using machine learning algorithms.",
+                background: "The goal of this project is to decode cognitive processes from invasive brain recordings. These measurement techniques directly in the brain give access to very high quality neural data.",
+                requirements: "Python programming skills required. General interest in the topic with some supporting courses will be advantageous.",
+                methods: "Machine learning, Python programming, neural data analysis",
+                contact: {
+                    name: "Dr. Christian Herff",
+                    email: "c.herff@maastrichtuniversity.nl",
+                    website: "https://www.maastrichtuniversity.nl/c.herff"
+                }
+            },
+            {
+                title: "Auditory Processing and Speech-in-Noise",
+                supervisor: "Dr. Lars Hausfeld",
+                institution: "Faculty of Psychology and Neuroscience",
+                location: "Maastricht",
+                type: "Psychoacoustics/Cognitive Neuroscience",
+                description: "Study how the brain processes speech in noisy environments, investigating the 'cocktail party problem' through psychoacoustics and neuroimaging.",
+                background: "Talking to friends often happens in busy environments with complex acoustical background. Despite the noise, we are most of the time able to follow what is being said. Multiple projects available investigating different aspects of auditory processing.",
+                projects: [
+                    "Effects of room acoustics ('echos project')",
+                    "Working memory and speech-in-noise ('working memory project')",
+                    "Brain response to audiobooks using EEG and fMRI",
+                    "TMS coil click database creation"
+                ],
+                requirements: "Interest in neuroscience, basic programming skills helpful",
+                methods: "Psychoacoustics, EEG, fMRI, computational modeling",
+                contact: {
+                    name: "Dr. Lars Hausfeld",
+                    email: "lars.hausfeld@maastrichtuniversity.nl",
+                    location: "Oxfordlaan 55"
+                }
+            }
+        ];
+
+        // Show project details in modal
+        function showProject(index) {
+            const project = projects[index];
+            
+            // Set title
+            document.getElementById('modal-title').textContent = project.title;
+            
+            // Build content
+            let contentHTML = `
+                <div class="modal-section">
+                    <div class="project-meta">
+                        <span class="project-tag supervisor">👨‍🏫 ${project.supervisor}</span>
+                        <span class="project-tag location">📍 ${project.location}</span>
+                        <span class="project-tag">${project.type}</span>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>📋 Project Overview</h4>
+                    <p>${project.description}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>🔬 Background</h4>
+                    <p>${project.background}</p>
+                </div>
+            `;
+            
+            // Add research projects if available
+            if (project.projects) {
+                contentHTML += `
+                    <div class="modal-section">
+                        <h4>🎯 Research Projects</h4>
+                        <ul>
+                            ${project.projects.map(p => `<li>${p}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Add requirements
+            contentHTML += `
+                <div class="modal-section">
+                    <h4>📚 Requirements</h4>
+                    <p>${project.requirements}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>🔧 Methods & Techniques</h4>
+                    <p>${project.methods}</p>
+                </div>
+            `;
+            
+            // Add contact box
+            contentHTML += `
+                <div class="contact-box">
+                    <h4>📧 Contact Information</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Supervisor:</strong>
+                            <span>${project.contact.name}</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:${project.contact.email}">${project.contact.email}</a>
+                        </div>
+            `;
+            
+            if (project.contact.location) {
+                contentHTML += `
+                    <div class="contact-item">
+                        <strong>Location:</strong>
+                        <span>${project.contact.location}</span>
+                    </div>
+                `;
+            }
+            
+            if (project.contact.website) {
+                contentHTML += `
+                    <div class="contact-item">
+                        <strong>Website:</strong>
+                        <a href="${project.contact.website}" target="_blank">${project.contact.website}</a>
+                    </div>
+                `;
+            }
+            
+            if (project.contact.researchgate) {
+                contentHTML += `
+                    <div class="contact-item">
+                        <strong>ResearchGate:</strong>
+                        <a href="${project.contact.researchgate}" target="_blank">${project.contact.researchgate}</a>
+                    </div>
+                `;
+            }
+            
+            contentHTML += `
+                    </div>
+                </div>
+            `;
+            
+            // Set content
+            document.getElementById('modal-content').innerHTML = contentHTML;
+            
+            // Show modal
+            document.getElementById('modal-overlay').classList.add('active');
+            document.getElementById('project-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+            document.getElementById('project-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Show back to top button on scroll
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
