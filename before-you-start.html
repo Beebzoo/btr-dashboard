@@ -129,6 +129,402 @@
             margin: 25px 0 15px 0;
         }
 
+        /* General Info Cards Grid */
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px 25px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
+            border-color: #00BCD4;
+        }
+
+        .info-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .info-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #001C3D;
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #00BCD4;
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover .card-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 28, 61, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .info-modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            color: white;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 32px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            max-height: calc(85vh - 100px);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 5px solid #F39425;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #00BCD4;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .feature-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #001C3D;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            color: #333;
+        }
+
+        /* Location Cards */
+        .location-options {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .location-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .location-header {
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .location-icon {
+            font-size: 32px;
+        }
+
+        .location-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .location-body {
+            background: white;
+            padding: 20px;
+        }
+
+        /* Contact Person Grid */
+        .contact-person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .contact-person {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-person:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #00BCD4;
+        }
+
+        .person-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-person h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #001C3D;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .person-role {
+            color: #00BCD4;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .person-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .office-card {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border: 2px solid #00BCD4;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .office-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #001C3D;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .office-card p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Supervisor Comparison */
+        .supervisor-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .supervisor-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .supervisor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .supervisor-detail {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .supervisor-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .supervisor-detail strong {
+            display: block;
+            color: #001C3D;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .supervisor-detail p {
+            color: #666;
+            line-height: 1.6;
+        }
+
         /* Alert Boxes */
         .alert {
             padding: 20px;
@@ -504,6 +900,19 @@
             .nav-menu {
                 display: none;
             }
+
+            .info-modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .supervisor-comparison {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Progress Indicator */
@@ -598,6 +1007,247 @@
 
     <!-- Main Content -->
     <div class="container">
+        
+        <!-- General BTR Information Section -->
+        <div class="section" id="general-info">
+            <h2>General BTR Information</h2>
+            <p style="margin-bottom: 25px; color: #666;">Learn about the Bachelor Thesis Research program before you start</p>
+            
+            <div class="info-cards-grid">
+                <div class="info-card" onclick="openInfoModal('what-is-btr')">
+                    <div class="info-icon">🎓</div>
+                    <h3>What is the Bachelor Thesis?</h3>
+                    <p>Learn about the structure and purpose of the BTR</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="info-card" onclick="openInfoModal('where-btr')">
+                    <div class="info-icon">🌍</div>
+                    <h3>Where Can I Do My BTR?</h3>
+                    <p>Explore your options: MSP, UM faculties, or abroad</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="info-card" onclick="openInfoModal('whos-who')">
+                    <div class="info-icon">👥</div>
+                    <h3>Who's Who</h3>
+                    <p>Meet the BTR team and key contacts</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="info-card" onclick="openInfoModal('supervisors')">
+                    <div class="info-icon">👨‍🏫</div>
+                    <h3>Research Supervisors & Internal Advisors</h3>
+                    <p>Understand the roles and responsibilities</p>
+                    <div class="card-arrow">→</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Modals -->
+        <div id="info-modal-overlay" class="modal-overlay" onclick="closeInfoModal()"></div>
+
+        <!-- What is BTR Modal -->
+        <div id="what-is-btr-modal" class="info-modal">
+            <div class="modal-header">
+                <h2>🎓 What is the Bachelor Thesis?</h2>
+                <button class="modal-close" onclick="closeInfoModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="highlight-box">
+                    <p style="font-size: 18px; font-weight: 600; color: #001C3D; margin-bottom: 10px;">The thesis is a mirror of the 'real world'.</p>
+                    <p style="color: #666;">Deadlines are strict, the responsibility is yours and it mimics the next stages for you after MSP, such as writing research or grant proposals!</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">📅</div>
+                        <h4>One Semester Long</h4>
+                        <p><strong>September Cohort (Fall Semester):</strong><br>Period 1, September 2nd → January 31st</p>
+                        <p style="margin-top: 10px;"><strong>February Cohort (Spring Semester):</strong><br>Period 4, February 3rd → June 30th</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">🎯</div>
+                        <h4>30 ECTS Overall</h4>
+                        <p>Completing all BTR assessments successfully will result in obtaining 30 ECTS</p>
+                    </div>
+
+                    <div class="feature-box" style="grid-column: 1 / -1;">
+                        <div class="feature-icon">🔬</div>
+                        <h4>A Piece of Individual Research</h4>
+                        <ul class="feature-list">
+                            <li>📋 Planning your research approach</li>
+                            <li>⚗️ Execution of experiments/analysis</li>
+                            <li>📊 Analysis of results and data</li>
+                            <li>✍️ Writing up and presenting findings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Where BTR Modal -->
+        <div id="where-btr-modal" class="info-modal">
+            <div class="modal-header">
+                <h2>🌍 Where Can the Bachelor Thesis Be Done?</h2>
+                <button class="modal-close" onclick="closeInfoModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 18px; color: #001C3D; margin-bottom: 25px; font-weight: 600;">You can do your BTR at MSP, in a different faculty within UM, or externally in the Netherlands or abroad!</p>
+
+                <div class="location-options">
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #E84E10 0%, #d63d0a 100%);">
+                            <div class="location-icon">🏛️</div>
+                            <h3>At MSP</h3>
+                        </div>
+                        <div class="location-body">
+                            <p>You can always get in contact with supervisors internally and do the BTR at MSP</p>
+                            <ul class="checklist" style="margin-top: 15px;">
+                                <li>Easy coordination with faculty</li>
+                                <li>Familiar environment</li>
+                                <li>Direct access to MSP resources</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);">
+                            <div class="location-icon">🎓</div>
+                            <h3>Within UM</h3>
+                        </div>
+                        <div class="location-body">
+                            <p>If there are research opportunities outside of MSP at other UM faculties, feel free to reach out to potential supervisors</p>
+                            <ul class="checklist" style="margin-top: 15px;">
+                                <li>Access to specialized research groups</li>
+                                <li>Interdisciplinary opportunities</li>
+                                <li>FHML, FASoS, SBE, FPN, Law faculties</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);">
+                            <div class="location-icon">✈️</div>
+                            <h3>Abroad or Another NL Institution</h3>
+                        </div>
+                        <div class="location-body">
+                            <p><strong>Important:</strong> An internship agreement must be signed between UM, host university, and student</p>
+                            <ul class="checklist" style="margin-top: 15px;">
+                                <li>International research experience</li>
+                                <li>Potential Erasmus+ funding</li>
+                                <li>Requires external agreement process</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Who's Who Modal -->
+        <div id="whos-who-modal" class="info-modal">
+            <div class="modal-header">
+                <h2>👥 Who's Who</h2>
+                <button class="modal-close" onclick="closeInfoModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="contact-person-grid">
+                    <div class="contact-person">
+                        <div class="person-icon" style="background: #E84E10;">PC</div>
+                        <h4>Dr. Panos Christakoglou</h4>
+                        <p class="person-role">BTR Coordinator</p>
+                        <p class="person-description">Oversees the BTR program and approves all thesis applications</p>
+                    </div>
+
+                    <div class="contact-person">
+                        <div class="person-icon" style="background: #00BCD4;">MJ</div>
+                        <h4>Martijn Jeurissen</h4>
+                        <p class="person-role">BTR Administrator</p>
+                        <p class="person-description">Handles day-to-day BTR administration and student support</p>
+                    </div>
+
+                    <div class="contact-person">
+                        <div class="person-icon" style="background: #00BCD4;">JE</div>
+                        <h4>Joanne Entzinger</h4>
+                        <p class="person-role">BTR Administrator</p>
+                        <p class="person-description">Handles day-to-day BTR administration and student support</p>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin: 25px 0;">
+                    <strong>📧 All BTR-related emails should be sent to:</strong><br>
+                    <a href="mailto:msp-btr@maastrichtuniversity.nl" style="font-size: 18px; font-weight: 600;">msp-btr@maastrichtuniversity.nl</a>
+                </div>
+
+                <div class="office-grid">
+                    <div class="office-card">
+                        <h4>🌍 International Relations Office (IRO)</h4>
+                        <p><strong>Contact when:</strong> Doing BTR abroad with a partner university or non-educational research institute</p>
+                        <p style="margin-top: 10px;"><strong>Specifically for:</strong> Grants, Erasmus+ applications, going abroad logistics</p>
+                        <a href="mailto:fse-iro@maastrichtuniversity.nl" class="btn btn-outline" style="margin-top: 10px;">Contact IRO</a>
+                    </div>
+
+                    <div class="office-card">
+                        <h4>⚖️ Board of Examiners (BoE)</h4>
+                        <p><strong>Contact when:</strong> You need special circumstances approval or have questions about additional modules</p>
+                        <p style="margin-top: 10px;"><strong>Handles:</strong> Exceptions, special permissions, additional module requests</p>
+                        <a href="mailto:msp-boe@maastrichtuniversity.nl" class="btn btn-outline" style="margin-top: 10px;">Contact BoE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supervisors Modal -->
+        <div id="supervisors-modal" class="info-modal">
+            <div class="modal-header">
+                <h2>👨‍🏫 Research Supervisors & Internal Advisors</h2>
+                <button class="modal-close" onclick="closeInfoModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 18px; color: #001C3D; margin-bottom: 25px;">During your BTR, you will have an <strong>Academic Advisor</strong>, <strong>Research Supervisor</strong>, <strong>Internal Advisor</strong>, and <strong>Second Assessor</strong> (solely for the video submission)</p>
+
+                <div class="supervisor-comparison">
+                    <div class="supervisor-card" style="border-left: 5px solid #E84E10;">
+                        <h3 style="color: #E84E10; margin-bottom: 15px;">Research Supervisor</h3>
+                        
+                        <div class="supervisor-detail">
+                            <strong>📋 Direct Supervision of Research</strong>
+                            <p>Provides support, feedback, and assessment for students</p>
+                        </div>
+
+                        <div class="supervisor-detail">
+                            <strong>✍️ Grading</strong>
+                            <p>The Research Supervisor takes part in the grading of the Research Proposal, Practicals, and the final Written Thesis</p>
+                        </div>
+
+                        <div class="supervisor-detail">
+                            <strong>🎓 Must Have a PhD</strong>
+                            <p>Research supervisors typically have a number of years of research experience and are generally expected to have a PhD. The RS always has the final responsibility for the BTR assessments</p>
+                        </div>
+                    </div>
+
+                    <div class="supervisor-card" style="border-left: 5px solid #00BCD4;">
+                        <h3 style="color: #00BCD4; margin-bottom: 15px;">Internal Advisor</h3>
+                        
+                        <div class="supervisor-detail">
+                            <strong>🏫 MSP Staff</strong>
+                            <p>The Internal Advisor is assigned by the BTR Office. You cannot choose your IA.</p>
+                        </div>
+
+                        <div class="supervisor-detail">
+                            <strong>⚙️ Quality Maintenance</strong>
+                            <p>The Internal Advisor is responsible for maintaining quality and smooth running of your BTR</p>
+                        </div>
+
+                        <div class="supervisor-detail">
+                            <strong>✍️ Grading</strong>
+                            <p>The Internal Advisor grades the Proposal and the Written Thesis with your Research Supervisor, and the Video with your Second Assessor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!-- Progress Overview -->
         <div class="section">
@@ -1270,7 +1920,52 @@
 
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Info Modal Functions
+        function openInfoModal(modalId) {
+            // Close any open modals first
+            closeInfoModal();
+            
+            // Show overlay
+            const overlay = document.getElementById('info-modal-overlay');
+            overlay.classList.add('active');
+            
+            // Show specific modal
+            const modal = document.getElementById(modalId + '-modal');
+            modal.classList.add('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInfoModal() {
+            // Hide overlay
+            const overlay = document.getElementById('info-modal-overlay');
+            overlay.classList.remove('active');
+            
+            // Hide all modals
+            document.querySelectorAll('.info-modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking overlay
+        document.getElementById('info-modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInfoModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeInfoModal();
+            }
+        });
+
         // Eligibility Selection
         function showEligibility(type) {
             // Hide all
@@ -1291,7 +1986,7 @@
         // Location Selection
         function showLocation(type) {
             // Hide all
-     document.querySelectorAll('[id^="loc-"]').forEach(el => {
+            document.querySelectorAll('[id^="loc-"]').forEach(el => {
                 el.classList.remove('open');
             });
             
