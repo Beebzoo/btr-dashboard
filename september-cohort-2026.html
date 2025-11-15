@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTR Dashboard - Maastricht Science Programme</title>
+    <title>BTR Dashboard - September 2026 - Maastricht Science Programme</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +24,36 @@
             line-height: 1.6;
         }
 
-        /* Header Styles */
+        /* Header Styles - More UM-like */
+        .top-bar {
+            background: #001C3D;
+            padding: 8px 0;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            transition: opacity 0.3s;
+        }
+
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
         .header {
             background: white;
             color: #001C3D;
-            padding: 15px 0;
+            padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -44,80 +69,141 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
             text-decoration: none;
             color: #001C3D;
         }
 
         .logo img {
-            height: 60px;
+            height: 70px;
         }
 
         .logo-text {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 600;
             color: #001C3D;
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+            margin-top: 2px;
         }
 
         .nav-menu {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             align-items: center;
         }
 
         .nav-menu a {
             color: #001C3D;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 600;
             transition: color 0.3s;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-menu a:hover {
-            color: #00A2DB;
+            color: #E84E10;
         }
 
-        .my-um-btn {
-            background: #001C3D;
+        /* Hero Section - UM Style */
+        .hero {
+            background: linear-gradient(rgba(0, 28, 61, 0.7), rgba(0, 28, 61, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600"><rect fill="%23002D5A" width="1600" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
+            padding: 80px 30px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.1;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        .hero-info-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 8px;
+            color: #333;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: #E84E10;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .info-details h3 {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .info-details p {
+            font-size: 18px;
+            color: #001C3D;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
-            color: white;
-            padding: 80px 30px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .cohort-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cohort-btn {
-            background: #00BCD4;
+        .cta-button {
+            display: inline-block;
+            background: #E84E10;
             color: white;
             padding: 15px 40px;
             border-radius: 6px;
@@ -125,374 +211,316 @@
             font-size: 16px;
             font-weight: 600;
             transition: all 0.3s;
-            border: 2px solid #00BCD4;
             font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 12px rgba(232, 78, 16, 0.3);
         }
 
-        .cohort-btn:hover {
-            background: #00ACC1;
+        .cta-button:hover {
+            background: #C43D0D;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 78, 16, 0.4);
         }
 
-        .cohort-btn.secondary {
-            background: transparent;
-            border: 2px solid white;
-        }
-
-        .cohort-btn.secondary:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Main Content */
-        .content-wrapper {
+        /* Content Section - UM Style */
+        .content-section {
             max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 30px;
-            display: flex;
-            gap: 40px;
+            margin: 80px auto;
+            padding: 0 30px;
         }
 
-        .sidebar {
-            width: 280px;
-            flex-shrink: 0;
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .sidebar h3 {
-            font-size: 14px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .section-header h2 {
+            font-size: 42px;
+            color: #001C3D;
             margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .sidebar-nav {
-            background: transparent;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: none;
-        }
-
-        .sidebar-nav a {
-            display: block;
-            padding: 15px 20px;
-            color: #333;
-            text-decoration: none;
-            border-left: 3px solid transparent;
-            transition: all 0.3s;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-        }
-
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
-            background: #E6F7FF;
-            border-left-color: #00BCD4;
-            color: #001C3D;
-        }
-
-        .main-content {
-            flex: 1;
-        }
-
-        .info-section {
-            background: transparent;
-            padding: 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: none;
-        }
-
-        .info-section h2 {
-            font-size: 32px;
-            color: #001C3D;
-            margin-bottom: 20px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
 
-        .info-section h3 {
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Three Column Grid */
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-color: #E84E10;
+        }
+
+        .info-card h3 {
             font-size: 24px;
-            color: #002D5A;
-            margin-top: 30px;
+            color: #001C3D;
             margin-bottom: 15px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
         }
 
-        .info-section p {
-            margin-bottom: 15px;
+        .info-card p {
             font-size: 16px;
-            line-height: 1.8;
-            font-family: 'Open Sans', sans-serif;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
-        /* Platform Boxes */
-        .platform-boxes {
-            display: flex;
-            flex-direction: column;
+        .info-card ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .card-link {
+            color: #E84E10;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s;
+        }
+
+        .card-link:hover {
+            gap: 12px;
+        }
+
+        /* Platform Boxes - Updated Design */
+        .platform-section {
+            background: #f8f9fa;
+            padding: 80px 30px;
+        }
+
+        .platform-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin: 40px 0;
         }
 
-        .platform-box {
+        .platform-card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .platform-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
         }
 
-        .platform-link {
-            display: block;
-            padding: 30px;
-            text-decoration: none;
+        .platform-header {
+            padding: 40px 30px;
             color: white;
-            font-size: 28px;
-            font-weight: 700;
             text-align: center;
-            transition: opacity 0.3s;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        .platform-link:hover {
-            opacity: 0.9;
-        }
-
-        .platform-box.collent .platform-link {
+        .platform-card.collent .platform-header {
             background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);
         }
 
-        .platform-box.canvas .platform-link {
+        .platform-card.canvas .platform-header {
             background: linear-gradient(135deg, #FF6200 0%, #E55A00 100%);
         }
 
-        .platform-box.intranet .platform-link {
+        .platform-card.intranet .platform-header {
             background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
         }
 
-        .platform-info {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
-
-        .platform-info.active {
-            max-height: 2000px;
-            padding: 30px;
-            transition: max-height 0.5s ease-in, padding 0.5s ease-in;
-        }
-
-        .info-toggle {
-            background: #f8f9fa;
-            padding: 15px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #002D5A;
-            transition: background 0.3s;
-            border-top: 1px solid #e0e0e0;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .info-toggle:hover {
-            background: #e9ecef;
-        }
-
-        .info-toggle .arrow {
-            font-size: 20px;
-            transition: transform 0.3s;
-        }
-
-        .info-toggle.active .arrow {
-            transform: rotate(180deg);
-        }
-
-        .platform-info h4 {
-            color: #002D5A;
-            font-size: 18px;
-            margin-top: 20px;
+        .platform-header h3 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 10px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
         }
 
-        .platform-info h4:first-child {
-            margin-top: 0;
+        .platform-header p {
+            font-size: 14px;
+            opacity: 0.9;
         }
 
-        .platform-info ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
+        .platform-body {
+            padding: 30px;
         }
 
-        .platform-info li {
-            margin-bottom: 8px;
-            font-size: 15px;
-            line-height: 1.6;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .platform-info strong {
+        .platform-body h4 {
             color: #001C3D;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-        }
-
-        .platform-info p {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        /* Subsection Toggle */
-        .subsection-toggle {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            margin: 10px 0;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #002D5A;
-            transition: background 0.3s;
-            border-left: 3px solid #00BCD4;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .subsection-toggle:hover {
-            background: #e9ecef;
-        }
-
-        .subsection-toggle .sub-arrow {
             font-size: 16px;
-            transition: transform 0.3s;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
-        .subsection-toggle.active .sub-arrow {
-            transform: rotate(180deg);
+        .platform-body ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
 
-        .subsection-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            margin-left: 15px;
+        .platform-body li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
         }
 
-        .subsection-content.active {
-            max-height: 1000px;
-            transition: max-height 0.4s ease-in;
+        .platform-link-btn {
+            display: block;
+            text-align: center;
+            background: #001C3D;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 20px;
         }
 
-        .warning-text {
+        .platform-link-btn:hover {
+            background: #002D5A;
+        }
+
+        .warning-box {
             background: #FFF3E0;
             border-left: 4px solid #FF6200;
             padding: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
             border-radius: 4px;
+            font-size: 14px;
             font-weight: 600;
             color: #FF6200;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Timeline Section */
-        .timeline-section {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        /* Quick Links Section */
+        .quick-links-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 30px;
         }
 
-        .timeline-section h2 {
-            font-size: 32px;
-            color: #001C3D;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #00BCD4;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        .timeline-grid {
+        .quick-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
-        .timeline-item {
-            background: #f8f9fa;
-            padding: 25px;
+        .quick-link-card {
+            background: white;
+            border: 2px solid #e0e0e0;
             border-radius: 8px;
-            border-left: 4px solid #00BCD4;
-        }
-
-        .timeline-date {
-            font-size: 18px;
-            color: #00BCD4;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .timeline-title {
-            font-size: 20px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
             color: #001C3D;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
         }
 
-        .timeline-desc {
-            font-size: 15px;
-            color: #666;
-            font-family: 'Open Sans', sans-serif;
+        .quick-link-card:hover {
+            border-color: #E84E10;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .quick-link-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .quick-link-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Footer */
         .footer {
-            background: #002D5A;
+            background: #001C3D;
             color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-            text-align: center;
-            width: 100%;
+            padding: 60px 0 30px;
+            margin-top: 80px;
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-bottom: 40px;
         }
 
-        .footer p {
-            margin: 10px 0;
-            font-family: 'Open Sans', sans-serif;
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
-        .footer a {
-            color: #00BCD4;
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            transition: color 0.3s;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .footer-section a:hover {
+            color: white;
         }
 
-        /* Easter Egg Circle */
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* Easter Egg */
         .easter-egg {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             right: 30px;
             width: 20px;
@@ -502,6 +530,7 @@
             cursor: pointer;
             transition: all 0.3s;
             opacity: 0.6;
+            z-index: 100;
         }
 
         .easter-egg:hover {
@@ -554,10 +583,6 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        .game-info p {
-            font-family: 'Open Sans', sans-serif;
-        }
-
         .game-score {
             font-size: 18px;
             color: #00BCD4;
@@ -571,307 +596,322 @@
             margin-top: 15px;
             font-size: 14px;
             opacity: 0.8;
-            font-family: 'Open Sans', sans-serif;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .content-wrapper {
-                flex-direction: column;
+            .hero-content {
+                grid-template-columns: 1fr;
             }
 
-            .sidebar {
-                width: 100%;
+            .three-col-grid,
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
             .nav-menu {
                 display: none;
             }
 
-            .game-canvas {
-                width: 95%;
-                max-width: 400px;
-                height: auto;
+            .hero-text h1 {
+                font-size: 36px;
             }
 
-            .game-info h2 {
-                font-size: 20px;
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="https://my.maastrichtuniversity.nl" target="_blank">My UM</a>
+            <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
-                <span class="logo-text">Maastricht Science Programme</span>
+                <div>
+                    <div class="logo-text">Maastricht Science Programme</div>
+                    <div class="logo-subtitle">Bachelor Thesis Research</div>
+                </div>
             </a>
             <nav class="nav-menu">
-                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
-                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
-                <a href="https://intranet.maastrichtuniversity.nl/en/msp-students" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+                <a href="#about">About BTR</a>
+                <a href="#platforms">Platforms</a>
+                <a href="#resources">Resources</a>
+                <a href="timeline-september.html">Timeline</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Bachelor Thesis Research</h1>
-        <p>Welcome to the September 2026 BTR Dashboard</p>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Bachelor Thesis Research</h1>
+                <p>The BTR is a one-semester, 30 ECTS research project that marks the completion of your Maastricht Science Programme degree. This is where you demonstrate your growth as an independent researcher.</p>
+                <a href="timeline-september.html" class="cta-button">View Timeline & Deadlines →</a>
+            </div>
+            <div class="hero-info-box">
+                <div class="info-item">
+                    <div class="info-icon">📅</div>
+                    <div class="info-details">
+                        <h3>Cohort</h3>
+                        <p>September 2026</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🗓️</div>
+                    <div class="info-details">
+                        <h3>Timeline</h3>
+                        <p>Sep 1, 2026 - Jan 29, 2027</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">30</div>
+                    <div class="info-details">
+                        <h3>ECTS Credits</h3>
+                        <p>Full semester project</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h3>Bachelor Thesis Research</h3>
-            <nav class="sidebar-nav">
-                <a href="timeline-september.html">Timelines</a>
-                <a href="writing-the-proposal.html">Writing the Proposal</a>
-                <a href="writing-the-thesis.html">Writing the Thesis</a>
-                <a href="btr-video.html">Making the BTR Video</a>
-                <a href="faq.html">Frequently Asked Questions</a>
-                <a href="rubrics.html">Rubrics</a>
-            </nav>
-        </aside>
+    <!-- About Section -->
+    <section class="content-section" id="about">
+        <div class="section-header">
+            <h2>Your Final Academic Challenge</h2>
+            <p>The BTR prepares you for real-world scientific research with strict deadlines, full project responsibility, and the independence needed for a research master's programme or science career.</p>
+        </div>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Info Section -->
-            <div class="info-section">
-                <h2>The Final Step of Your MSP Journey</h2>
-                <p>The Bachelor Thesis Research (BTR) is a one-semester, 30 ECTS research project that marks the completion of your Maastricht Science Programme degree. This is where you bring together everything you've learned and demonstrate your growth as an independent researcher.</p>
-
+        <div class="three-col-grid">
+            <div class="info-card">
                 <h3>What is the BTR?</h3>
-                <p>During your BTR, you'll conduct high-level academic research in a scientific area of your choosing. You'll experience the complete scientific cycle: formulating research questions, designing experiments, analyzing results, and communicating your findings. You can work with MSP faculty in Maastricht, at other institutions in the Netherlands, or abroad.</p>
-
-                <h3>Why the BTR matters</h3>
-                <p>The BTR prepares you for the real world of scientific research. You'll work with strict deadlines, take full responsibility for your project, and develop the independence needed for a research master's programme or a career in science. This is your opportunity to specialize, contribute to ongoing research, and show what you're capable of.</p>
-
-                <h3>Everything you need is here</h3>
-                <p>This website guides you through the entire BTR process. Find information about requirements and deadlines, prepare your application, access important forms, and get answers to your questions. Whether you're exploring options or ready to apply, we're here to support you.</p>
+                <p>Conduct high-level academic research in a scientific area of your choosing. Experience the complete scientific cycle from formulating research questions to communicating findings.</p>
+                <a href="writing-the-proposal.html" class="card-link">Learn more →</a>
             </div>
 
-            <!-- Platform Boxes -->
-            <div class="platform-boxes">
-                <!-- Collent Box -->
-                <div class="platform-box collent">
-                    <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank" class="platform-link">
-                        Collent
-                    </a>
-                    <div class="info-toggle" onclick="toggleInfo(this)">
-                        <span>What can I find here?</span>
-                        <span class="arrow">▼</span>
+            <div class="info-card">
+                <h3>Assessment Components</h3>
+                <ul>
+                    <li>Research Proposal (10%)</li>
+                    <li>Practical Work (40%)</li>
+                    <li>Written Thesis (40%)</li>
+                    <li>Video Presentation (10%)</li>
+                </ul>
+                <a href="rubrics.html" class="card-link">View rubrics →</a>
+            </div>
+
+            <div class="info-card">
+                <h3>Where Can I Do It?</h3>
+                <p>Work with MSP faculty in Maastricht, at other institutions in the Netherlands, or abroad. Choose a research environment that matches your interests and career goals.</p>
+                <a href="faq.html" class="card-link">Read FAQ →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform-section" id="platforms">
+        <div class="platform-content">
+            <div class="section-header">
+                <h2>Essential Platforms</h2>
+                <p>Three key systems you'll use throughout your BTR journey</p>
+            </div>
+
+            <div class="platform-grid">
+                <!-- Collent -->
+                <div class="platform-card collent">
+                    <div class="platform-header">
+                        <h3>Collent</h3>
+                        <p>Submission Portal</p>
                     </div>
-                    <div class="platform-info">
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>1. Submit Request to Start (RTS)</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Upload proof of correspondence with supervisor</li>
-                                <li>Upload brief thesis description (½ page)</li>
-                                <li>Note if taking additional module</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>2. Submit All BTR Components</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Proposal (max 10MB)</li>
-                                <li>Midterm Practical Work form</li>
-                                <li>Final Thesis (max 25MB)</li>
-                                <li>Final Practical Work form</li>
-                                <li>Video submission (WeTransfer link + consent form)</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>3. View Internal Advisor Assignment</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Can see who their IA is once assigned</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>4. Peer Review Video</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Access assigned peer's video</li>
-                                <li>Submit peer review assessment</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>5. Track Submission Status</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>See which assignments are outstanding</li>
-                                <li>Automatic deadline reminders</li>
-                            </ul>
-                        </div>
-
-                        <p style="margin-top: 20px;"><strong>File Naming:</strong> Name_IDNumber_DocumentType (e.g., AbedNadir_i612345_Proposal)</p>
+                    <div class="platform-body">
+                        <h4>Submit All Work Here:</h4>
+                        <ul>
+                            <li>Request to Start form</li>
+                            <li>Research Proposal</li>
+                            <li>Practical Work forms</li>
+                            <li>Final Thesis</li>
+                            <li>Video submission</li>
+                        </ul>
+                        <h4>Also Use For:</h4>
+                        <ul>
+                            <li>View Internal Advisor assignment</li>
+                            <li>Track submission status</li>
+                            <li>Peer review videos</li>
+                        </ul>
+                        <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank" class="platform-link-btn">Open Collent →</a>
                     </div>
                 </div>
 
-                <!-- Canvas Box -->
-                <div class="platform-box canvas">
-                    <a href="https://canvas.maastrichtuniversity.nl/" target="_blank" class="platform-link">
-                        Canvas
-                    </a>
-                    <div class="info-toggle" onclick="toggleInfo(this)">
-                        <span>What can I find here?</span>
-                        <span class="arrow">▼</span>
+                <!-- Canvas -->
+                <div class="platform-card canvas">
+                    <div class="platform-header">
+                        <h3>Canvas</h3>
+                        <p>Information & Grades</p>
                     </div>
-                    <div class="platform-info">
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>1. View All Grades & Feedback</span>
-                            <span class="sub-arrow">▼</span>
+                    <div class="platform-body">
+                        <h4>View Your Grades:</h4>
+                        <ul>
+                            <li>Proposal grades + feedback</li>
+                            <li>Practical work grades</li>
+                            <li>Thesis grades + rubrics</li>
+                            <li>Video grades</li>
+                        </ul>
+                        <h4>Access Resources:</h4>
+                        <ul>
+                            <li>BTR handbooks</li>
+                            <li>Writing guidelines</li>
+                            <li>Research opportunities</li>
+                            <li>Important announcements</li>
+                        </ul>
+                        <div class="warning-box">
+                            Canvas is ONLY for viewing - NO submissions!
                         </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Proposal grades + rubrics</li>
-                                <li>Midterm practical grades</li>
-                                <li>Final thesis grades + rubrics</li>
-                                <li>Final practical grades</li>
-                                <li>Video grades + rubrics</li>
-                                <li>Detailed feedback from RS and IA</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>2. Access BTR Documents</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li><strong>General Information folder:</strong>
-                                    <ul>
-                                        <li>Checklist to start BTR</li>
-                                        <li>BTR Information Presentation</li>
-                                        <li>BTR information booklet</li>
-                                    </ul>
-                                </li>
-                                <li><strong>IRO Information folder:</strong>
-                                    <ul>
-                                        <li>Emergency contact form</li>
-                                        <li>Erasmus grant application form</li>
-                                        <li>Useful IRO links</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Possible Research Opportunities folder:</strong>
-                                    <ul>
-                                        <li>Research areas of MSP staff</li>
-                                        <li>External thesis opportunities</li>
-                                        <li>Potential supervisor information</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>3. Guidelines & Resources</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Proposal guidelines</li>
-                                <li>Written thesis guidelines</li>
-                                <li>Video guidelines</li>
-                                <li>Grading rubrics for all components</li>
-                                <li>BTR handbook</li>
-                                <li>FAQ document</li>
-                            </ul>
-                        </div>
-
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>4. Announcements</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Important BTR updates</li>
-                                <li>Deadline reminders</li>
-                                <li>Policy changes</li>
-                            </ul>
-                        </div>
-
-                        <div class="warning-text">
-                            Canvas is ONLY for viewing/downloading - NO submissions!
-                        </div>
+                        <a href="https://canvas.maastrichtuniversity.nl/" target="_blank" class="platform-link-btn">Open Canvas →</a>
                     </div>
                 </div>
 
-                <!-- Intranet Box -->
-                <div class="platform-box intranet">
-                    <a href="https://intranet.maastrichtuniversity.nl/en/msp-students" target="_blank" class="platform-link">
-                        Intranet
-                    </a>
-                    <div class="info-toggle" onclick="toggleInfo(this)">
-                        <span>What can I find here?</span>
-                        <span class="arrow">▼</span>
+                <!-- Intranet -->
+                <div class="platform-card intranet">
+                    <div class="platform-header">
+                        <h3>Intranet</h3>
+                        <p>Additional Modules</p>
                     </div>
-                    <div class="platform-info">
-                        <div class="subsection-toggle" onclick="toggleSubsection(this)">
-                            <span>Additional Module Request Form</span>
-                            <span class="sub-arrow">▼</span>
-                        </div>
-                        <div class="subsection-content">
-                            <ul>
-                                <li>Must be submitted <strong>BEFORE</strong> Course Registration deadline</li>
-                                <li>Required if taking module alongside BTR</li>
-                                <li>Needs BoE approval before registering</li>
-                                <li>Only allowed for BTR in/near Maastricht (not abroad)</li>
-                                <li>Maximum <strong>ONE</strong> additional module during entire BTR</li>
-                                <li>Must also note on RTS form in Collent</li>
-                            </ul>
-                        </div>
+                    <div class="platform-body">
+                        <h4>Use For:</h4>
+                        <ul>
+                            <li>Additional module request form</li>
+                            <li>MSP student information</li>
+                            <li>University policies</li>
+                            <li>Contact information</li>
+                        </ul>
+                        <h4>Important Notes:</h4>
+                        <ul>
+                            <li>Submit BEFORE course registration</li>
+                            <li>Requires BoE approval</li>
+                            <li>Only for BTR in/near Maastricht</li>
+                            <li>Maximum ONE module during BTR</li>
+                        </ul>
+                        <a href="https://intranet.maastrichtuniversity.nl/en/msp-students" target="_blank" class="platform-link-btn">Open Intranet →</a>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links-section" id="resources">
+        <div class="section-header">
+            <h2>Quick Access Resources</h2>
+            <p>Everything you need to successfully complete your BTR</p>
+        </div>
+
+        <div class="quick-links-grid">
+            <a href="timeline-september.html" class="quick-link-card">
+                <div class="quick-link-icon">📅</div>
+                <h4>Timeline & Deadlines</h4>
+            </a>
+
+            <a href="writing-the-proposal.html" class="quick-link-card">
+                <div class="quick-link-icon">📝</div>
+                <h4>Proposal Guidelines</h4>
+            </a>
+
+            <a href="writing-the-thesis.html" class="quick-link-card">
+                <div class="quick-link-icon">📄</div>
+                <h4>Thesis Guidelines</h4>
+            </a>
+
+            <a href="btr-video.html" class="quick-link-card">
+                <div class="quick-link-icon">🎥</div>
+                <h4>Video Guidelines</h4>
+            </a>
+
+            <a href="rubrics.html" class="quick-link-card">
+                <div class="quick-link-icon">📊</div>
+                <h4>Grading Rubrics</h4>
+            </a>
+
+            <a href="faq.html" class="quick-link-card">
+                <div class="quick-link-icon">❓</div>
+                <h4>FAQ</h4>
+            </a>
+
+            <a href="timeline-february.html" class="quick-link-card">
+                <div class="quick-link-icon">🗓️</div>
+                <h4>February Cohort</h4>
+            </a>
+
+            <a href="mailto:msp-btr@maastrichtuniversity.nl" class="quick-link-card">
+                <div class="quick-link-icon">✉️</div>
+                <h4>Contact BTR Office</h4>
+            </a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
-            <p style="margin-top: 20px;">
-                <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
-                <a href="writing-the-thesis.html">Thesis Guidelines</a> | 
-                <a href="btr-video.html">Video Guidelines</a> | 
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-            </p>
-            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-                © Maastricht University - Faculty of Science and Engineering
-            </p>
+            <div class="footer-section">
+                <h3>Bachelor Thesis Research</h3>
+                <ul>
+                    <li><a href="timeline-september.html">September Cohort Timeline</a></li>
+                    <li><a href="timeline-february.html">February Cohort Timeline</a></li>
+                    <li><a href="faq.html">Frequently Asked Questions</a></li>
+                    <li><a href="rubrics.html">Assessment Rubrics</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Guidelines</h3>
+                <ul>
+                    <li><a href="writing-the-proposal.html">Writing the Proposal</a></li>
+                    <li><a href="writing-the-thesis.html">Writing the Thesis</a></li>
+                    <li><a href="btr-video.html">Making the BTR Video</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact & Support</h3>
+                <ul>
+                    <li><a href="mailto:msp-btr@maastrichtuniversity.nl">BTR Office Email</a></li>
+                    <li><a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent Portal</a></li>
+                    <li><a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a></li>
+                    <li><a href="https://intranet.maastrichtuniversity.nl/en/msp-students" target="_blank">MSP Intranet</a></li>
+                </ul>
+            </div>
         </div>
-        <!-- Easter Egg Circle -->
-        <div class="easter-egg" id="easterEgg" onclick="easterEggClick()"></div>
+
+        <div class="footer-bottom">
+            <p>© Maastricht University - Faculty of Science and Engineering | Maastricht Science Programme</p>
+        </div>
     </footer>
+
+    <!-- Easter Egg -->
+    <div class="easter-egg" id="easterEgg" onclick="easterEggClick()"></div>
 
     <!-- Game Overlay -->
     <div class="game-overlay" id="gameOverlay">
@@ -886,704 +926,6 @@
         <p class="close-game">Press ESC to return to dashboard</p>
     </div>
 
-    <script>
-        function toggleInfo(element) {
-            const infoDiv = element.nextElementSibling;
-            const isActive = infoDiv.classList.contains('active');
-            
-            element.classList.toggle('active');
-            infoDiv.classList.toggle('active');
-        }
-
-        function toggleSubsection(element) {
-            const contentDiv = element.nextElementSibling;
-            
-            element.classList.toggle('active');
-            contentDiv.classList.toggle('active');
-        }
-
-        // Easter Egg Activation
-        let clickCount = 0;
-        let clickTimer = null;
-
-        function easterEggClick() {
-            clickCount++;
-            
-            if (clickTimer) clearTimeout(clickTimer);
-            
-            if (clickCount === 3) {
-                startGame();
-                clickCount = 0;
-            } else {
-                clickTimer = setTimeout(() => {
-                    clickCount = 0;
-                }, 1000);
-            }
-        }
-
-        // Game Variables
-        let canvas, ctx;
-        let gameRunning = false;
-        let score = 0;
-        let highScore = localStorage.getItem('btrHighScore') || 0;
-        let player, bottomObstacles, flyingBooks, gameSpeed, gravity;
-        let animationFrame = 0;
-        let clouds = [];
-        let raindrops = [];
-        let lastMilestone = 0;
-        let canDoubleJump = false;
-        let hasDoubleJumped = false;
-
-        function startGame() {
-            document.getElementById('gameOverlay').classList.add('active');
-            canvas = document.getElementById('gameCanvas');
-            ctx = canvas.getContext('2d');
-            
-            // Initialize game
-            score = 0;
-            gameSpeed = 10;
-            gravity = 1.0;
-            bottomObstacles = [];
-            flyingBooks = [];
-            animationFrame = 0;
-            raindrops = [];
-            lastMilestone = 0;
-            canDoubleJump = false;
-            hasDoubleJumped = false;
-            
-            // Initialize clouds
-            clouds = [
-                { x: 200, y: 50, size: 60, speed: 0.3 },
-                { x: 500, y: 80, size: 80, speed: 0.2 },
-                { x: 900, y: 40, size: 70, speed: 0.25 },
-                { x: 1300, y: 70, size: 65, speed: 0.28 }
-            ];
-            
-            player = {
-                x: 100,
-                y: 330,
-                width: 40,
-                height: 25,
-                normalHeight: 25,
-                duckHeight: 18,
-                velocityY: 0,
-                jumping: false,
-                ducking: false,
-                legPhase: 0
-            };
-            
-            document.getElementById('gameScore').textContent = score;
-            document.getElementById('highScore').textContent = highScore;
-            
-            gameRunning = true;
-            gameLoop();
-            
-            // Add keyboard controls
-            document.addEventListener('keydown', handleKeyPress);
-            document.addEventListener('keyup', handleKeyUp);
-        }
-
-        function handleKeyPress(e) {
-            // Jump with Space or ArrowUp - DOUBLE JUMP ENABLED
-            if ((e.code === 'Space' || e.code === 'ArrowUp') && gameRunning) {
-                e.preventDefault();
-                
-                // First jump - from ground (LOWER jump)
-                if (!player.jumping) {
-                    player.velocityY = -14;
-                    player.jumping = true;
-                    player.ducking = false;
-                    player.height = player.normalHeight;
-                    canDoubleJump = true;
-                    hasDoubleJumped = false;
-                } 
-                // Double jump - in air
-                else if (canDoubleJump && !hasDoubleJumped) {
-                    player.velocityY = -14;
-                    hasDoubleJumped = true;
-                    canDoubleJump = false;
-                }
-            }
-            
-            // Duck with ArrowDown
-            if (e.code === 'ArrowDown' && !player.jumping && gameRunning) {
-                e.preventDefault();
-                player.ducking = true;
-                player.height = player.duckHeight;
-            }
-            
-            if (e.code === 'Escape') {
-                closeGame();
-            }
-        }
-
-        function handleKeyUp(e) {
-            // Stop ducking when down arrow is released
-            if (e.code === 'ArrowDown' && player.ducking && gameRunning) {
-                player.ducking = false;
-                if (!player.jumping) {
-                    player.height = player.normalHeight;
-                }
-            }
-        }
-
-        function closeGame() {
-            document.getElementById('gameOverlay').classList.remove('active');
-            gameRunning = false;
-            bottomObstacles = [];
-            flyingBooks = [];
-            document.removeEventListener('keydown', handleKeyPress);
-            document.removeEventListener('keyup', handleKeyUp);
-        }
-
-        function drawSun() {
-            // Sun
-            ctx.fillStyle = '#FFD700';
-            ctx.beginPath();
-            ctx.arc(1450, 80, 40, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Sun rays
-            ctx.strokeStyle = '#FFD700';
-            ctx.lineWidth = 3;
-            for (let i = 0; i < 8; i++) {
-                let angle = (Math.PI * 2 / 8) * i;
-                ctx.beginPath();
-                ctx.moveTo(1450 + Math.cos(angle) * 50, 80 + Math.sin(angle) * 50);
-                ctx.lineTo(1450 + Math.cos(angle) * 65, 80 + Math.sin(angle) * 65);
-                ctx.stroke();
-            }
-        }
-
-        function drawCloud(x, y, size) {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            
-            // Cloud circles
-            ctx.beginPath();
-            ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
-            ctx.arc(x + size * 0.4, y - size * 0.1, size * 0.4, 0, Math.PI * 2);
-            ctx.arc(x + size * 0.8, y, size * 0.5, 0, Math.PI * 2);
-            ctx.arc(x + size * 0.4, y + size * 0.2, size * 0.45, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
-        function drawDNA(x, y, width, height, isTop = false) {
-            let centerX = x + width / 2;
-            let dnaWidth = 25;
-            let segments = 8;
-            let segmentHeight = height / segments;
-
-            // Draw double helix strands
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#00BCD4';
-            ctx.beginPath();
-            for (let j = 0; j <= segments; j++) {
-                let yPos = isTop ? y + height - (j * segmentHeight) : y + (j * segmentHeight);
-                let offsetX = Math.sin(j * 0.8) * (dnaWidth / 2);
-                if (j === 0) {
-                    ctx.moveTo(centerX + offsetX, yPos);
-                } else {
-                    ctx.lineTo(centerX + offsetX, yPos);
-                }
-            }
-            ctx.stroke();
-
-            ctx.strokeStyle = '#E84E10';
-            ctx.beginPath();
-            for (let j = 0; j <= segments; j++) {
-                let yPos = isTop ? y + height - (j * segmentHeight) : y + (j * segmentHeight);
-                let offsetX = Math.sin(j * 0.8 + Math.PI) * (dnaWidth / 2);
-                if (j === 0) {
-                    ctx.moveTo(centerX + offsetX, yPos);
-                } else {
-                    ctx.lineTo(centerX + offsetX, yPos);
-                }
-            }
-            ctx.stroke();
-
-            // Draw connecting lines
-            ctx.strokeStyle = '#666';
-            ctx.lineWidth = 2;
-            for (let j = 0; j < segments; j++) {
-                let yPos = isTop ? y + height - (j * segmentHeight) - (segmentHeight / 2) : y + (j * segmentHeight) + (segmentHeight / 2);
-                let x1 = centerX + Math.sin(j * 0.8 + (segmentHeight / (2 * segmentHeight))) * (dnaWidth / 2);
-                let x2 = centerX + Math.sin(j * 0.8 + Math.PI + (segmentHeight / (2 * segmentHeight))) * (dnaWidth / 2);
-                
-                ctx.beginPath();
-                ctx.moveTo(x1, yPos);
-                ctx.lineTo(x2, yPos);
-                ctx.stroke();
-                
-                ctx.fillStyle = '#00BCD4';
-                ctx.beginPath();
-                ctx.arc(x1, yPos, 3, 0, Math.PI * 2);
-                ctx.fill();
-                
-                ctx.fillStyle = '#E84E10';
-                ctx.beginPath();
-                ctx.arc(x2, yPos, 3, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function drawPlayer() {
-            // Body (stick figure with ROUNDED limbs) - SHINY BLACK with gradient
-            let gradient = ctx.createLinearGradient(player.x, player.y, player.x + player.width, player.y + player.height);
-            gradient.addColorStop(0, '#333333');
-            gradient.addColorStop(0.5, '#000000');
-            gradient.addColorStop(1, '#1a1a1a');
-            
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            
-            // Head with shine - LEANING FORWARD TO RIGHT
-            ctx.fillStyle = gradient;
-            ctx.beginPath();
-            ctx.arc(player.x + player.width/2 + 2, player.y + 7, 7, 0, Math.PI * 2); // More forward
-            ctx.fill();
-            
-            // Head shine/highlight
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-            ctx.beginPath();
-            ctx.arc(player.x + player.width/2 + 1, player.y + 5, 2, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Reset to gradient
-            ctx.fillStyle = gradient;
-            ctx.strokeStyle = gradient;
-            
-            // Torso (rounded line, LEANING FORWARD TO RIGHT MORE)
-            ctx.lineWidth = 6;
-            ctx.beginPath();
-            let torsoStartX = player.x + player.width/2 + 2;
-            let torsoStartY = player.y + 14;
-            let torsoEndX = player.ducking ? player.x + player.width/2 + 8 : player.x + player.width/2 + 5;
-            let torsoEndY = player.ducking ? player.y + 21 : player.y + 28;
-            ctx.moveTo(torsoStartX, torsoStartY);
-            ctx.lineTo(torsoEndX, torsoEndY);
-            ctx.stroke();
-            
-            // Running arms (ROUNDED, SAME LENGTH, pumping UP and DOWN like a runner)
-            let armSwing = Math.sin(animationFrame * 0.3);
-            ctx.lineWidth = 3;
-            let armLength = 12; // SAME LENGTH for both arms
-            
-            // Front arm (swinging UP and DOWN)
-            ctx.beginPath();
-            let frontArmStartX = torsoStartX;
-            let frontArmStartY = torsoStartY + 2;
-            let frontArmAngle = -0.8 + armSwing * 0.8; // Up and down motion
-            let frontArmEndX = frontArmStartX + Math.cos(frontArmAngle) * armLength;
-            let frontArmEndY = frontArmStartY + Math.sin(frontArmAngle) * armLength;
-            ctx.moveTo(frontArmStartX, frontArmStartY);
-            ctx.lineTo(frontArmEndX, frontArmEndY);
-            ctx.stroke();
-            
-            // Back arm (opposite swing UP and DOWN)
-            ctx.beginPath();
-            let backArmStartX = torsoStartX;
-            let backArmStartY = torsoStartY + 2;
-            let backArmAngle = -0.8 - armSwing * 0.8; // Opposite direction
-            let backArmEndX = backArmStartX + Math.cos(backArmAngle) * armLength;
-            let backArmEndY = backArmStartY + Math.sin(backArmAngle) * armLength;
-            ctx.moveTo(backArmStartX, backArmStartY);
-            ctx.lineTo(backArmEndX, backArmEndY);
-            ctx.stroke();
-            
-            // Hand circles (rounded ends)
-            ctx.fillStyle = gradient;
-            ctx.beginPath();
-            ctx.arc(frontArmEndX, frontArmEndY, 2, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(backArmEndX, backArmEndY, 2, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Running legs (ROUNDED, SAME LENGTH, proper running motion)
-            ctx.lineWidth = 4;
-            let legLength = 16; // SAME LENGTH for both legs
-            
-            if (!player.jumping && !player.ducking) {
-                let legCycle = Math.floor(animationFrame / 3) % 8;
-                
-                // Calculate leg angles for proper running motion
-                let frontLegSwing = (legCycle < 4) ? 
-                    (legCycle / 4) - 0.5 : 
-                    ((8 - legCycle) / 4) - 0.5;
-                let backLegSwing = -frontLegSwing;
-                
-                // Front leg
-                ctx.beginPath();
-                let frontLegStartX = torsoEndX;
-                let frontLegStartY = torsoEndY;
-                let frontLegAngle = Math.PI * 0.5 + frontLegSwing * 0.6; // Forward/back swing
-                let frontLegEndX = frontLegStartX + Math.cos(frontLegAngle) * legLength;
-                let frontLegEndY = frontLegStartY + Math.sin(frontLegAngle) * legLength;
-                
-                ctx.moveTo(frontLegStartX, frontLegStartY);
-                ctx.lineTo(frontLegEndX, frontLegEndY);
-                ctx.stroke();
-                
-                // Back leg
-                ctx.beginPath();
-                let backLegStartX = torsoEndX;
-                let backLegStartY = torsoEndY;
-                let backLegAngle = Math.PI * 0.5 + backLegSwing * 0.6; // Opposite swing
-                let backLegEndX = backLegStartX + Math.cos(backLegAngle) * legLength;
-                let backLegEndY = backLegStartY + Math.sin(backLegAngle) * legLength;
-                
-                ctx.moveTo(backLegStartX, backLegStartY);
-                ctx.lineTo(backLegEndX, backLegEndY);
-                ctx.stroke();
-                
-                // Feet (rounded ends)
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(frontLegEndX, frontLegEndY, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(backLegEndX, backLegEndY, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-                
-            } else if (player.ducking) {
-                // Ducking pose - legs extended forward, same length
-                ctx.beginPath();
-                ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX + 12, torsoEndY + 10);
-                ctx.stroke();
-                
-                ctx.beginPath();
-                ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX + 10, torsoEndY + 12);
-                ctx.stroke();
-                
-                // Feet
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(torsoEndX + 12, torsoEndY + 10, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(torsoEndX + 10, torsoEndY + 12, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-                
-            } else {
-                // Jumping - legs together, same length
-                ctx.beginPath();
-                ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX + 2, torsoEndY + legLength);
-                ctx.stroke();
-                
-                ctx.beginPath();
-                ctx.moveTo(torsoEndX, torsoEndY);
-                ctx.lineTo(torsoEndX - 2, torsoEndY + legLength);
-                ctx.stroke();
-                
-                // Feet
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(torsoEndX + 2, torsoEndY + legLength, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(torsoEndX - 2, torsoEndY + legLength, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            // Graduation cap - positioned on leaning head
-            let capX = player.x + player.width/2 + 2;
-            let capY = player.y;
-
-            // Cap base (the part that sits on head)
-            ctx.fillStyle = '#001C3D';
-            ctx.beginPath();
-            ctx.arc(capX, capY + 4, 8, Math.PI, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillRect(capX - 8, capY + 4, 16, 2);
-
-            // Mortarboard (flat square top)
-            ctx.fillStyle = '#001C3D';
-            ctx.beginPath();
-            ctx.moveTo(capX - 12, capY + 2);
-            ctx.lineTo(capX + 12, capY + 2);
-            ctx.lineTo(capX + 13, capY - 1);
-            ctx.lineTo(capX - 13, capY - 1);
-            ctx.closePath();
-            ctx.fill();
-
-            // Cap shine
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-            ctx.fillRect(capX - 10, capY, 6, 1);
-
-            // Button on top of cap
-            ctx.fillStyle = '#001C3D';
-            ctx.beginPath();
-            ctx.arc(capX, capY - 1, 1.5, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Tassel (hanging from button) - slightly animated
-            let tasselSwing = Math.sin(animationFrame * 0.1) * 2;
-            ctx.strokeStyle = '#E84E10';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(capX, capY - 1);
-            ctx.lineTo(capX + 9 + tasselSwing, capY + 6);
-            ctx.stroke();
-
-            // Tassel tip (multiple strands hanging DOWN)
-            ctx.fillStyle = '#E84E10';
-            for (let i = 0; i < 4; i++) {
-                ctx.beginPath();
-                ctx.arc(capX + 9 + tasselSwing + (i - 1.5) * 1.2, capY + 6 + i * 0.4, 1, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function gameLoop() {
-            if (!gameRunning) return;
-            
-            animationFrame++;
-            
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw blue sky gradient (DARKER after score 20)
-            let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            if (score >= 20) {
-                // Dark stormy sky
-                gradient.addColorStop(0, '#4A5568');
-                gradient.addColorStop(0.7, '#718096');
-                gradient.addColorStop(1, '#A0AEC0');
-            } else {
-                // Bright sky
-                gradient.addColorStop(0, '#87CEEB');
-                gradient.addColorStop(0.7, '#B0E0E6');
-                gradient.addColorStop(1, '#fff');
-            }
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw sun (DARKER after score 20)
-            if (score >= 20) {
-                // Dim sun during storm
-                ctx.fillStyle = '#B8860B';
-                ctx.beginPath();
-                ctx.arc(1450, 80, 40, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Dim sun rays
-                ctx.strokeStyle = '#B8860B';
-                ctx.lineWidth = 2;
-                for (let i = 0; i < 8; i++) {
-                    let angle = (Math.PI * 2 / 8) * i;
-                    ctx.beginPath();
-                    ctx.moveTo(1450 + Math.cos(angle) * 50, 80 + Math.sin(angle) * 50);
-                    ctx.lineTo(1450 + Math.cos(angle) * 60, 80 + Math.sin(angle) * 60);
-                    ctx.stroke();
-                }
-            } else {
-                drawSun();
-            }
-            
-            // Update and draw clouds
-            for (let cloud of clouds) {
-                cloud.x -= cloud.speed;
-                if (cloud.x + cloud.size < 0) {
-                    cloud.x = canvas.width + cloud.size;
-                }
-                drawCloud(cloud.x, cloud.y, cloud.size);
-            }
-            
-            // Rain effect after score 20 - INTENSE STORM
-            if (score >= 20) {
-                // Create MANY more raindrops for intense storm
-                if (Math.random() < 0.9) { // 90% chance each frame (was 30%)
-                    for (let r = 0; r < 3; r++) { // 3 drops at once
-                        raindrops.push({
-                            x: Math.random() * canvas.width,
-                            y: 0,
-                            speed: 8 + Math.random() * 5, // Faster rain (was 5-8)
-                            length: 15 + Math.random() * 20 // Longer drops (was 10-20)
-                        });
-                    }
-                }
-                
-                // Update and draw raindrops - HEAVIER RAIN
-                ctx.strokeStyle = 'rgba(173, 216, 230, 0.8)'; // More visible (was 0.6)
-                ctx.lineWidth = 3; // Thicker drops (was 2)
-                for (let i = raindrops.length - 1; i >= 0; i--) {
-                    let drop = raindrops[i];
-                    drop.y += drop.speed;
-                    
-                    // Draw raindrop
-                    ctx.beginPath();
-                    ctx.moveTo(drop.x, drop.y);
-                    ctx.lineTo(drop.x, drop.y + drop.length);
-                    ctx.stroke();
-                    
-                    // Remove if off screen
-                    if (drop.y > canvas.height) {
-                        raindrops.splice(i, 1);
-                    }
-                }
-            }
-            
-            // Check for milestone achievements (every 50 points)
-            if (score > 0 && score % 50 === 0 && score !== lastMilestone) {
-                lastMilestone = score;
-            }
-            
-            // Display milestone message
-            if (lastMilestone > 0 && score === lastMilestone && animationFrame % 120 < 60) {
-                ctx.fillStyle = '#E84E10';
-                ctx.font = 'bold 48px Montserrat, Arial';
-                ctx.textAlign = 'center';
-                ctx.strokeStyle = '#fff';
-                ctx.lineWidth = 3;
-                ctx.strokeText(lastMilestone + ' POINTS!', canvas.width / 2, 200);
-                ctx.fillText(lastMilestone + ' POINTS!', canvas.width / 2, 200);
-            }
-            
-            // Draw score at top
-            ctx.fillStyle = '#001C3D';
-            ctx.font = 'bold 28px Montserrat, Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('Score: ' + score, 30, 50);
-            ctx.font = '18px Open Sans, Arial';
-            ctx.fillText('Speed: ' + gameSpeed.toFixed(1) + 'x', 30, 80);
-            
-            // Draw ground
-            ctx.fillStyle = '#4CAF50';
-            ctx.fillRect(0, 380, canvas.width, 20);
-            
-            // Update player physics
-            player.velocityY += gravity;
-            player.y += player.velocityY;
-            
-            // Ground collision
-            let groundY = 355;
-            if (player.y > groundY - player.height) {
-                player.y = groundY - player.height;
-                player.velocityY = 0;
-                player.jumping = false;
-                canDoubleJump = false;
-                hasDoubleJumped = false;
-            } else if (player.y > 310 && player.velocityY > 0) {
-                player.velocityY *= 1.1;
-            }
-            
-            // Draw player
-            drawPlayer();
-            
-            // Spawn BOTTOM DNA strand obstacles - TWO SIZES, MORE VARIATION
-            let baseMinSpacing = 280; // Reduced from 350
-            let baseMaxSpacing = 450; // Reduced from 550
-            let speedScaling = gameSpeed * 20; // Reduced scaling
-            
-            let minSpacing = baseMinSpacing + speedScaling;
-            let maxSpacing = baseMaxSpacing + speedScaling;
-            
-            // More random spacing variation
-            let randomRange = Math.random() * (maxSpacing - minSpacing);
-            let targetSpacing = minSpacing + randomRange;
-            
-            if (bottomObstacles.length === 0 || bottomObstacles[bottomObstacles.length - 1].x < canvas.width - targetSpacing) {
-                // Randomly choose size: 60% small, 40% big
-                let isSmall = Math.random() < 0.6;
-                let dnaHeight = isSmall ? (30 + Math.floor(Math.random() * 20)) : (85 + Math.floor(Math.random() * 25));
-                
-                bottomObstacles.push({
-                    x: canvas.width,
-                    y: 380 - dnaHeight,
-                    width: 35,
-                    height: dnaHeight,
-                    size: isSmall ? 'small' : 'big'
-                });
-            }
-            
-            
-            // Update and draw BOTTOM DNA obstacles
-            for (let i = bottomObstacles.length - 1; i >= 0; i--) {
-                let dna = bottomObstacles[i];
-                dna.x -= gameSpeed;
-                
-                drawDNA(dna.x, dna.y, dna.width, dna.height, false);
-                
-                // Collision detection
-                if (player.x < dna.x + dna.width &&
-                    player.x + player.width > dna.x &&
-                    player.y < dna.y + dna.height &&
-                    player.y + player.height > dna.y) {
-                    gameOver();
-                    return;
-                }
-                
-                // Remove off-screen obstacles and increment score
-                if (dna.x + dna.width < 0) {
-                    bottomObstacles.splice(i, 1);
-                    score++;
-                    document.getElementById('gameScore').textContent = score;
-                    
-                    if (score % 3 === 0) {
-                        gameSpeed += 0.5;
-                    }
-                }
-            }
-            
-            
-            requestAnimationFrame(gameLoop);
-        }
-
-        function gameOver() {
-            gameRunning = false;
-            
-            // Update high score
-            if (score > highScore) {
-                highScore = score;
-                localStorage.setItem('btrHighScore', highScore);
-                document.getElementById('highScore').textContent = highScore;
-            }
-            
-            // Show game over message
-            ctx.fillStyle = 'rgba(0, 28, 61, 0.85)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#fff';
-            ctx.font = 'bold 48px Montserrat, Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Thesis Submitted!', canvas.width / 2, canvas.height / 2 - 50);
-            ctx.font = 'bold 28px Montserrat, Arial';
-            ctx.fillStyle = '#00BCD4';
-            ctx.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2 + 10);
-            
-            if (score > highScore - 1) {
-                ctx.fillStyle = '#E84E10';
-                ctx.font = 'bold 24px Montserrat, Arial';
-                ctx.fillText('🎉 NEW HIGH SCORE! 🎉', canvas.width / 2, canvas.height / 2 + 55);
-            }
-            
-            ctx.fillStyle = '#fff';
-            ctx.font = '20px Open Sans, Arial';
-            ctx.fillText('Press SPACE to play again', canvas.width / 2, canvas.height / 2 + 100);
-            
-            // Allow restart
-            setTimeout(() => {
-                const restartHandler = (e) => {
-                    if (e.code === 'Space') {
-                        document.removeEventListener('keydown', restartHandler);
-                        startGame();
-                    }
-                };
-                document.addEventListener('keydown', restartHandler);
-            }, 500);
-        }
-    </script>
+    <script src="game.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
