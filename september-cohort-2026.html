@@ -256,6 +256,14 @@
             margin-bottom: 80px;
         }
 
+        /* Two Column Grid */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
         .info-card {
             background: white;
             border: 1px solid #e0e0e0;
@@ -605,12 +613,9 @@
             }
 
             .three-col-grid,
+            .two-col-grid,
             .platform-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .quick-links-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-content {
@@ -629,10 +634,6 @@
 
             .section-header h2 {
                 font-size: 32px;
-            }
-
-            .quick-links-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -708,26 +709,21 @@
 
         <div class="three-col-grid">
             <div class="info-card">
-                <h3>What is the BTR?</h3>
-                <p>Conduct high-level academic research in a scientific area of your choosing. Experience the complete scientific cycle from formulating research questions to communicating findings.</p>
-                <a href="writing-the-proposal.html" class="card-link">Learn more →</a>
+                <h3>Proposal Guidelines</h3>
+                <p>Learn how to write a strong research proposal. Understand formatting requirements, structure, content expectations, and submission procedures.</p>
+                <a href="writing-the-proposal.html" class="card-link">View guidelines →</a>
             </div>
 
             <div class="info-card">
-                <h3>Assessment Components</h3>
-                <ul>
-                    <li>Research Proposal (10%)</li>
-                    <li>Practical Work (40%)</li>
-                    <li>Written Thesis (40%)</li>
-                    <li>Video Presentation (10%)</li>
-                </ul>
-                <a href="rubrics.html" class="card-link">View rubrics →</a>
+                <h3>Thesis Guidelines</h3>
+                <p>Comprehensive guide to writing your final thesis. Covers structure, formatting, citation styles, and how to present your research findings effectively.</p>
+                <a href="writing-the-thesis.html" class="card-link">View guidelines →</a>
             </div>
 
             <div class="info-card">
-                <h3>Where Can I Do It?</h3>
-                <p>Work with MSP faculty in Maastricht, at other institutions in the Netherlands, or abroad. Choose a research environment that matches your interests and career goals.</p>
-                <a href="faq.html" class="card-link">Read FAQ →</a>
+                <h3>Video Guidelines</h3>
+                <p>Create a professional video presentation of your research. Learn about technical requirements, content structure, and best practices for your BTR video.</p>
+                <a href="btr-video.html" class="card-link">View guidelines →</a>
             </div>
         </div>
     </section>
@@ -822,53 +818,31 @@
         </div>
     </section>
 
-    <!-- Quick Links -->
-    <section class="quick-links-section" id="resources">
+    <!-- Additional Resources -->
+    <section class="content-section" id="resources">
         <div class="section-header">
-            <h2>Quick Access Resources</h2>
-            <p>Everything you need to successfully complete your BTR</p>
+            <h2>Additional Resources</h2>
+            <p>Essential tools and information for your BTR journey</p>
         </div>
 
-        <div class="quick-links-grid">
-            <a href="timeline-september.html" class="quick-link-card">
-                <div class="quick-link-icon">📅</div>
-                <h4>Timeline & Deadlines</h4>
-            </a>
+        <div class="two-col-grid">
+            <div class="info-card">
+                <h3>Rubrics</h3>
+                <p>Detailed grading criteria for all BTR components. Understand how your work will be assessed and what's expected for each submission.</p>
+                <ul>
+                    <li>Research Proposal (10%)</li>
+                    <li>Practical Work (40%)</li>
+                    <li>Written Thesis (40%)</li>
+                    <li>Video Presentation (10%)</li>
+                </ul>
+                <a href="rubrics.html" class="card-link">View all rubrics →</a>
+            </div>
 
-            <a href="writing-the-proposal.html" class="quick-link-card">
-                <div class="quick-link-icon">📝</div>
-                <h4>Proposal Guidelines</h4>
-            </a>
-
-            <a href="writing-the-thesis.html" class="quick-link-card">
-                <div class="quick-link-icon">📄</div>
-                <h4>Thesis Guidelines</h4>
-            </a>
-
-            <a href="btr-video.html" class="quick-link-card">
-                <div class="quick-link-icon">🎥</div>
-                <h4>Video Guidelines</h4>
-            </a>
-
-            <a href="rubrics.html" class="quick-link-card">
-                <div class="quick-link-icon">📊</div>
-                <h4>Grading Rubrics</h4>
-            </a>
-
-            <a href="faq.html" class="quick-link-card">
-                <div class="quick-link-icon">❓</div>
-                <h4>FAQ</h4>
-            </a>
-
-            <a href="timeline-february.html" class="quick-link-card">
-                <div class="quick-link-icon">🗓️</div>
-                <h4>February Cohort</h4>
-            </a>
-
-            <a href="mailto:msp-btr@maastrichtuniversity.nl" class="quick-link-card">
-                <div class="quick-link-icon">✉️</div>
-                <h4>Contact BTR Office</h4>
-            </a>
+            <div class="info-card">
+                <h3>Frequently Asked Questions</h3>
+                <p>Find answers to common questions about the BTR process, requirements, deadlines, and policies. Get clarity on eligibility, location options, and more.</p>
+                <a href="faq.html" class="card-link">Read FAQ →</a>
+            </div>
         </div>
     </section>
 
