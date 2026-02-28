@@ -13,98 +13,32 @@
   gtag('js', new Date());
   gtag('config', 'G-KJ51G48F42');
 </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="styles.css">
 
+    <style>
         body {
-            font-family: 'Open Sans', Arial, sans-serif;
             background: linear-gradient(to bottom, #fafbfc 0%, #f5f7fa 100%);
             color: #2c3e50;
-            line-height: 1.6;
-            zoom: 0.7;
             min-height: 100vh;
         }
 
-        /* Header Styles */
+        /* Header override - sticky */
         .header {
-            background: white;
-            color: #001C3D;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #001C3D;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: #001C3D;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .nav-menu a:hover {
-            color: #00A2DB;
-        }
-
-        .my-um-btn {
-            background: #001C3D;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
         /* Hero Section */
         .page-hero {
-            background: linear-gradient(135deg, #001C3D 0%, #002D5A 50%, #003D6B 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 50%, #003D6B 100%);
+            color: var(--white);
             padding: 80px 30px 100px;
             text-align: center;
             position: relative;
@@ -127,7 +61,7 @@
             margin-bottom: 20px;
             font-weight: 300;
             letter-spacing: -0.5px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             position: relative;
         }
 
@@ -135,7 +69,7 @@
             font-size: 19px;
             opacity: 0.92;
             font-weight: 300;
-            font-family: 'Open Sans', sans-serif;
+            font-family: var(--font-body);
             position: relative;
         }
 
@@ -148,7 +82,7 @@
 
         /* Intro Card */
         .intro-card {
-            background: white;
+            background: var(--white);
             border-radius: 16px;
             padding: 35px 40px;
             margin-bottom: 60px;
@@ -173,7 +107,7 @@
         }
 
         .rubric-card {
-            background: white;
+            background: var(--white);
             border-radius: 16px;
             padding: 0;
             cursor: pointer;
@@ -238,10 +172,10 @@
 
         .card-header h3 {
             font-size: 24px;
-            color: white;
+            color: var(--white);
             font-weight: 600;
             margin-bottom: 8px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             position: relative;
             z-index: 1;
         }
@@ -250,7 +184,7 @@
             font-size: 14px;
             color: rgba(255,255,255,0.9);
             font-weight: 300;
-            font-family: 'Open Sans', sans-serif;
+            font-family: var(--font-body);
             position: relative;
             z-index: 1;
         }
@@ -275,7 +209,7 @@
         .card-stat-value {
             color: #2d3748;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .card-divider {
@@ -292,7 +226,7 @@
             font-weight: 600;
             font-size: 14px;
             margin-top: 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             transition: gap 0.3s ease;
         }
 
@@ -301,7 +235,7 @@
         }
 
         .view-details::after {
-            content: '→';
+            content: '\2192';
             font-size: 18px;
             transition: transform 0.3s ease;
         }
@@ -313,7 +247,7 @@
         }
 
         .rubric-card.midterm {
-            --card-color-start: #FF6200;
+            --card-color-start: var(--orange);
             --card-color-end: #E55A00;
         }
 
@@ -362,7 +296,7 @@
         .modal-content {
             max-width: 950px;
             width: 100%;
-            background: white;
+            background: var(--white);
             border-radius: 20px;
             position: relative;
             box-shadow: 0 25px 60px rgba(0,0,0,0.4);
@@ -402,8 +336,8 @@
 
         .modal-header-section h2 {
             font-size: 36px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            font-family: var(--font-heading);
             font-weight: 600;
             margin-bottom: 12px;
             position: relative;
@@ -424,7 +358,7 @@
             right: 25px;
             font-size: 28px;
             cursor: pointer;
-            color: white;
+            color: var(--white);
             background: rgba(255,255,255,0.2);
             border: none;
             width: 45px;
@@ -475,7 +409,7 @@
             font-size: 24px;
             color: #1a202c;
             margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -495,7 +429,7 @@
             color: #2d3748;
             margin-top: 25px;
             margin-bottom: 12px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             font-weight: 600;
         }
 
@@ -503,7 +437,7 @@
             margin-bottom: 12px;
             line-height: 1.8;
             color: #4a5568;
-            font-family: 'Open Sans', sans-serif;
+            font-family: var(--font-body);
         }
 
         .grade-level {
@@ -522,7 +456,7 @@
 
         .grade-level strong {
             color: var(--modal-color-start);
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             font-weight: 600;
             font-size: 15px;
         }
@@ -542,30 +476,30 @@
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #001C3D 0%, #002D5A 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
+            color: var(--white);
             padding: 50px 0 30px;
             margin-top: 80px;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: var(--container-wide);
             margin: 0 auto;
             padding: 0 30px;
         }
 
         .footer p {
             margin: 12px 0;
-            font-family: 'Open Sans', sans-serif;
+            font-family: var(--font-body);
             opacity: 0.9;
         }
 
         .footer a {
             color: #00BCD4;
             text-decoration: none;
-            font-family: 'Open Sans', sans-serif;
-            transition: color 0.3s;
+            font-family: var(--font-body);
+            transition: color var(--transition);
         }
 
         .footer a:hover {
@@ -587,30 +521,30 @@
                 padding: 30px 25px;
             }
 
-            .nav-menu {
-                display: none;
-            }
-
             .intro-card {
                 padding: 25px 20px;
             }
         }
     </style>
 </head>
-<body>
+<body class="page-content">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
-                <span class="logo-text">Maastricht Science Programme</span>
+                <div>
+                    <span class="logo-text">Maastricht Science Programme</span>
+                    <span class="logo-subtitle">Bachelor Thesis Research</span>
+                </div>
             </a>
             <nav class="nav-menu">
-                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
-                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
-                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+                <a href="index.html">Home</a>
+                <a href="before-you-start.html">Before You Start</a>
+                <a href="writing-the-proposal.html">Proposal</a>
+                <a href="writing-the-thesis.html">Thesis</a>
+                <a href="btr-video.html">Video</a>
+                <a href="faq.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -633,7 +567,7 @@
             <!-- Proposal Card -->
             <div class="rubric-card proposal" onclick="openModal('proposal')">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+                    <span class="card-icon">&#128221;</span>
                     <h3>Research Proposal</h3>
                     <p class="card-subtitle">Initial research plan</p>
                 </div>
@@ -662,7 +596,7 @@
             <!-- Midterm Card -->
             <div class="rubric-card midterm" onclick="openModal('midterm')">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    <span class="card-icon">&#128300;</span>
                     <h3>Midterm Practical</h3>
                     <p class="card-subtitle">Mid-project assessment</p>
                 </div>
@@ -691,7 +625,7 @@
             <!-- Final Practical Card -->
             <div class="rubric-card final-practical" onclick="openModal('final-practical')">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                    <span class="card-icon">&#127919;</span>
                     <h3>Final Practical Work</h3>
                     <p class="card-subtitle">Complete practical assessment</p>
                 </div>
@@ -720,7 +654,7 @@
             <!-- Final Thesis Card -->
             <div class="rubric-card final-thesis" onclick="openModal('final-thesis')">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+                    <span class="card-icon">&#128218;</span>
                     <h3>Final Thesis</h3>
                     <p class="card-subtitle">Written research document</p>
                 </div>
@@ -749,7 +683,7 @@
             <!-- Video Card -->
             <div class="rubric-card video" onclick="openModal('video')">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <span class="card-icon">&#127909;</span>
                     <h3>BTR Video</h3>
                     <p class="card-subtitle">Science communication</p>
                 </div>
@@ -781,7 +715,7 @@
     <div class="rubric-modal" id="modal-proposal" style="--modal-color-start: #00BCD4; --modal-color-end: #00ACC1;">
         <div class="modal-content">
             <div class="modal-header-section">
-                <button class="close-modal" onclick="closeModal('proposal')">×</button>
+                <button class="close-modal" onclick="closeModal('proposal')">&times;</button>
                 <h2>Research Proposal Rubric</h2>
                 <p class="modal-subtitle">Assessed by Research Supervisor and Internal Advisor</p>
             </div>
@@ -791,7 +725,7 @@
                     <div class="info-box">
                         <p><strong>Total Points:</strong> 27 | <strong>Grade Weight:</strong> 15% | <strong>Max Word Count:</strong> 2,000 words</p>
                     </div>
-                    
+
                     <h4>1. Project Background and Literature Review (5 points)</h4>
                     <div class="grade-level">
                         <strong>Exceeds Expectations (5):</strong> Project background is explained and put in context of the literature proficiently. Understanding is advanced with higher-level connections. Literature is extensive and curated. Work is at Master student level. {10/10}
@@ -901,7 +835,7 @@
     <div class="rubric-modal" id="modal-midterm" style="--modal-color-start: #FF6200; --modal-color-end: #E55A00;">
         <div class="modal-content">
             <div class="modal-header-section">
-                <button class="close-modal" onclick="closeModal('midterm')">×</button>
+                <button class="close-modal" onclick="closeModal('midterm')">&times;</button>
                 <h2>Midterm Practical Work Rubric</h2>
                 <p class="modal-subtitle">Assessed by Research Supervisor only</p>
             </div>
@@ -911,7 +845,7 @@
                     <div class="info-box">
                         <p><strong>Total Points:</strong> 32 | <strong>Grade Weight:</strong> 15% | <strong>Assessment:</strong> Mid-November</p>
                     </div>
-                    
+
                     <h4>1. Practical Skills (5 points)</h4>
                     <div class="grade-level">
                         <strong>Exceeds Expectations (5):</strong> Exceptional practical skills with consistent and proficient application of techniques and methodologies including experimental design. Work demonstrates creativity, precision, and thoroughness with clear understanding. At Master student level. {10/10}
@@ -1021,7 +955,7 @@
     <div class="rubric-modal" id="modal-final-practical" style="--modal-color-start: #F39425; --modal-color-end: #E88720;">
         <div class="modal-content">
             <div class="modal-header-section">
-                <button class="close-modal" onclick="closeModal('final-practical')">×</button>
+                <button class="close-modal" onclick="closeModal('final-practical')">&times;</button>
                 <h2>Final Practical Work Rubric</h2>
                 <p class="modal-subtitle">Assessed by Research Supervisor only</p>
             </div>
@@ -1031,7 +965,7 @@
                     <div class="info-box">
                         <p><strong>Total Points:</strong> 32 | <strong>Grade Weight:</strong> 35% | <strong>Includes:</strong> Defence Presentation</p>
                     </div>
-                    
+
                     <h4>1. Practical Skills (5 points)</h4>
                     <div class="grade-level">
                         <strong>Exceeds Expectations (5):</strong> Exceptional practical skills in research. Techniques and methodologies applied consistently and proficiently including experimental design. At bachelor level, well-profiled that exceeds expectations. {10/10}
@@ -1138,7 +1072,7 @@
     <div class="rubric-modal" id="modal-final-thesis" style="--modal-color-start: #AE0B12; --modal-color-end: #9A0A10;">
         <div class="modal-content">
             <div class="modal-header-section">
-                <button class="close-modal" onclick="closeModal('final-thesis')">×</button>
+                <button class="close-modal" onclick="closeModal('final-thesis')">&times;</button>
                 <h2>Final Thesis Rubric</h2>
                 <p class="modal-subtitle">Assessed by Research Supervisor and Internal Advisor</p>
             </div>
@@ -1148,7 +1082,7 @@
                     <div class="info-box">
                         <p><strong>Total Points:</strong> 26 | <strong>Grade Weight:</strong> 25% | <strong>Max File Size:</strong> 25 MB</p>
                     </div>
-                    
+
                     <h4>1. Overall Scientific Content (5 points)</h4>
                     <div class="grade-level">
                         <strong>Exceeds Expectations (5):</strong> Groundwork proficiently outlined, narrative and scientific content complete and thorough. Above expected level, comparable to master/postgraduate thesis. {10/10}
@@ -1249,7 +1183,7 @@
     <div class="rubric-modal" id="modal-video" style="--modal-color-start: #7C3AED; --modal-color-end: #6D28D9;">
         <div class="modal-content">
             <div class="modal-header-section">
-                <button class="close-modal" onclick="closeModal('video')">×</button>
+                <button class="close-modal" onclick="closeModal('video')">&times;</button>
                 <h2>BTR Video Assessment Rubric</h2>
                 <p class="modal-subtitle">Assessed by Internal Advisor and Second Assessor</p>
             </div>
@@ -1259,7 +1193,7 @@
                     <div class="info-box">
                         <p><strong>Total Points:</strong> 26 | <strong>Grade Weight:</strong> 10% | <strong>Length:</strong> 5-7 minutes</p>
                     </div>
-                    
+
                     <h4>1. Clear Opening and Concluding Statements (2 points)</h4>
                     <div class="grade-level">
                         <strong>Complete (2):</strong> Video includes clear and well-structured opening statement where student introduces themselves, provides engaging introduction to topic, purpose, and main points, and concludes with concise summary or call-to-action, allowing audience to fully grasp video's content and purpose.
@@ -1367,13 +1301,13 @@
         <div class="footer-content">
             <p><strong>Questions about the BTR?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
             <p style="margin-top: 20px;">
-                <a href="index.html">Home</a> | 
-                <a href="timeline.html">Timeline</a> | 
-                <a href="faq.html">FAQ</a> | 
+                <a href="index.html">Home</a> |
+                <a href="timeline.html">Timeline</a> |
+                <a href="faq.html">FAQ</a> |
                 <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
             </p>
             <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-                © Maastricht University - Faculty of Science and Engineering
+                &copy; Maastricht University - Faculty of Science and Engineering
             </p>
         </div>
     </footer>
