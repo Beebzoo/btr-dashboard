@@ -6,324 +6,25 @@
     <title>BTR Supervisors - Maastricht Science Programme</title>
 
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ51G48F42"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KJ51G48F42');
-</script>
-    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ51G48F42"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KJ51G48F42');
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 50%, #00152B 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-            zoom: 0.7;
-        }
-
-        /* Animated background circles */
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(232, 78, 16, 0.15);
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .bg-circle:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .bg-circle:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            bottom: -150px;
-            right: -150px;
-            animation-delay: 3s;
-        }
-
-        .bg-circle:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            top: 50%;
-            right: 10%;
-            animation-delay: 6s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        /* Main container */
-        .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 1000px;
-            padding: 40px;
-        }
-
-        /* Back button */
-        .back-button {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            z-index: 100;
-        }
-
-        .back-button a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .back-button a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #00BCD4;
-            transform: translateX(-5px);
-        }
-
-        /* Logo section */
-        .logo-section {
-            margin-bottom: 50px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-section img {
-            height: 300px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-        }
-
-        .logo-section h1 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        /* Title section */
-        .title-section {
-            margin-bottom: 60px;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .title-section h2 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #fff 0%, #E84E10 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .title-section p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.85);
-            font-family: 'Open Sans', sans-serif;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Button container */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            max-width: 650px;
-            margin: 0 auto;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        /* Button styles */
-        .supervisor-button {
-            display: block;
-            padding: 30px 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(232, 78, 16, 0.4);
-            border-radius: 15px;
-            color: white;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(232, 78, 16, 0.2);
-            text-align: left;
-        }
-
-        .supervisor-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(232, 78, 16, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .supervisor-button:hover::before {
-            left: 100%;
-        }
-
-        .supervisor-button:hover {
-            transform: translateY(-5px);
-            background: rgba(232, 78, 16, 0.15);
-            border-color: #E84E10;
-            box-shadow: 0 12px 48px rgba(232, 78, 16, 0.4);
-        }
-
-        .supervisor-button .button-icon {
-            font-size: 32px;
-            margin-right: 15px;
-            vertical-align: middle;
-        }
-
-        .supervisor-button .button-text {
-            vertical-align: middle;
-        }
-
-        .supervisor-button .button-arrow {
-            float: right;
-            font-size: 28px;
-            transition: transform 0.3s;
-        }
-
-        .supervisor-button:hover .button-arrow {
-            transform: translateX(10px);
-        }
-
-        .supervisor-button .button-subtitle {
-            display: block;
-            font-size: 14px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 8px;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        /* Footer */
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .footer a {
-            color: #E84E10;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            .title-section h2 {
-                font-size: 36px;
-            }
-
-            .title-section p {
-                font-size: 16px;
-            }
-
-            .supervisor-button {
-                padding: 20px 30px;
-                font-size: 18px;
-            }
-
-            .supervisor-button .button-icon {
-                font-size: 24px;
-            }
-
-            .logo-section img {
-                height: 60px;
-            }
-
-            .back-button {
-                top: 15px;
-                left: 15px;
-            }
-        }
-    </style>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="page-landing">
     <!-- Back button -->
-    <div class="back-button">
+    <div class="landing-back">
         <a href="index.html">
             <span>←</span>
             <span>Back to Home</span>
@@ -331,53 +32,53 @@
     </div>
 
     <!-- Animated background circles -->
-    <div class="bg-circle"></div>
-    <div class="bg-circle"></div>
-    <div class="bg-circle"></div>
+    <div class="bg-circle bg-circle--orange"></div>
+    <div class="bg-circle bg-circle--orange"></div>
+    <div class="bg-circle bg-circle--orange"></div>
 
     <!-- Main container -->
-    <div class="container">
+    <div class="landing-container">
         <!-- Logo section -->
-        <div class="logo-section">
+        <div class="landing-logo">
             <img src="msp-logo.png" alt="Maastricht Science Programme">
             <h1>MAASTRICHT SCIENCE PROGRAMME</h1>
         </div>
 
         <!-- Title section -->
-        <div class="title-section">
+        <div class="landing-title landing-title--orange">
             <h2>BTR Supervisors</h2>
             <p>Resources and information for Research Supervisors guiding students through their Bachelor Thesis Research trajectory.</p>
         </div>
 
         <!-- Button container -->
-        <div class="button-container">
-            <a href="supervisor-role.html" class="supervisor-button">
-                <span class="button-icon">👨‍🔬</span>
-                <span class="button-text">What is my role as Research Supervisor?</span>
-                <span class="button-arrow">→</span>
-                <span class="button-subtitle">Responsibilities, expectations, and guidelines for supervising BTR students</span>
+        <div class="landing-buttons">
+            <a href="supervisor-role.html" class="landing-btn landing-btn--orange">
+                <span class="btn-icon">👨‍🔬</span>
+                <span class="btn-text">What is my role as Research Supervisor?</span>
+                <span class="btn-arrow">→</span>
+                <span class="btn-subtitle">Responsibilities, expectations, and guidelines for supervising BTR students</span>
             </a>
 
-            <a href="supervisor-btr-overview.html" class="supervisor-button">
-                <span class="button-icon">📚</span>
-                <span class="button-text">What is the BTR?</span>
-                <span class="button-arrow">→</span>
-                <span class="button-subtitle">Overview of the Bachelor Thesis Research trajectory, timeline, and requirements</span>
+            <a href="supervisor-btr-overview.html" class="landing-btn landing-btn--orange">
+                <span class="btn-icon">📚</span>
+                <span class="btn-text">What is the BTR?</span>
+                <span class="btn-arrow">→</span>
+                <span class="btn-subtitle">Overview of the Bachelor Thesis Research trajectory, timeline, and requirements</span>
             </a>
 
-            <a href="supervisor-project-submission.html" class="supervisor-button">
-                <span class="button-icon">💡</span>
-                <span class="button-text">I have a BTR project I would like to share</span>
-                <span class="button-arrow">→</span>
-                <span class="button-subtitle">Submit research opportunities and projects for potential BTR students</span>
+            <a href="supervisor-project-submission.html" class="landing-btn landing-btn--orange">
+                <span class="btn-icon">💡</span>
+                <span class="btn-text">I have a BTR project I would like to share</span>
+                <span class="btn-arrow">→</span>
+                <span class="btn-subtitle">Submit research opportunities and projects for potential BTR students</span>
             </a>
         </div>
     </div>
 
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer--simple">
         <p>Questions? Contact <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
-        <p style="margin-top: 10px;">© Maastricht University - Faculty of Science and Engineering</p>
+        <p style="margin-top: 8px;">© Maastricht University - Faculty of Science and Engineering</p>
     </div>
 </body>
 </html>
