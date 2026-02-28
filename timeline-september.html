@@ -18,87 +18,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            zoom: 0.7;
-        }
-
-        /* Header Styles */
-        .header {
-            background: white;
-            color: #001C3D;
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #001C3D;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: #001C3D;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #00A2DB;
-        }
-
-        .my-um-btn {
-            background: #001C3D;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
         /* Page Hero */
         .page-hero {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 100%);
+            color: var(--white);
             padding: 60px 30px;
             text-align: center;
         }
@@ -112,7 +38,7 @@
             font-size: 42px;
             margin-bottom: 15px;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .page-hero p {
@@ -122,41 +48,39 @@
 
         /* Breadcrumb */
         .breadcrumb {
-            background: white;
+            background: var(--white);
             padding: 15px 30px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .breadcrumb-content {
-            max-width: 1400px;
+            max-width: var(--container-wide);
             margin: 0 auto;
         }
 
         .breadcrumb a {
-            color: #00A2DB;
+            color: var(--cyan);
             text-decoration: none;
             font-size: 14px;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
+        .breadcrumb a:hover { text-decoration: underline; }
 
         .breadcrumb span {
-            color: #666;
+            color: var(--gray-500);
             margin: 0 8px;
         }
 
         /* Main Content */
         .content-wrapper {
-            max-width: 1400px;
+            max-width: var(--container-wide);
             margin: 40px auto;
             padding: 0 30px;
         }
 
         /* Legend */
         .legend {
-            background: white;
+            background: var(--white);
             padding: 20px 30px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -181,14 +105,10 @@
             border: 1px solid #ddd;
         }
 
-        .legend-color.red {
-            background: #dc3545;
-        }
+        .legend-color.red { background: #dc3545; }
+        .legend-color.green { background: #28a745; }
 
-        .legend-color.green {
-            background: #28a745;
-        }
-
+        /* Calendar Grid */
         .calendars-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -196,7 +116,6 @@
             margin-top: 40px;
         }
 
-        /* Center bottom two cards */
         .calendar-container:nth-child(4) {
             grid-column: 1 / 2;
             margin-left: auto;
@@ -210,16 +129,16 @@
         }
 
         .calendar-container {
-            background: white;
+            background: var(--white);
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
-            border: 2px solid #e0e0e0;
+            border: 2px solid var(--border-color);
         }
 
         .calendar-header {
-            background: linear-gradient(135deg, #001C3D 0%, #002D5A 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
+            color: var(--white);
             padding: 20px;
             text-align: center;
         }
@@ -227,7 +146,7 @@
         .calendar-header h2 {
             font-size: 24px;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .calendar-header p {
@@ -246,9 +165,9 @@
             text-align: center;
             font-weight: 600;
             padding: 10px;
-            color: #002D5A;
+            color: var(--navy-medium);
             font-size: 14px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .day-cell {
@@ -256,22 +175,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
             position: relative;
             cursor: default;
             font-size: 14px;
         }
 
-        .day-cell.empty {
-            background: #f8f9fa;
-        }
+        .day-cell.empty { background: var(--bg-section); }
 
         .day-cell.deadline {
             background: #dc3545;
-            color: white;
+            color: var(--white);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--transition);
         }
 
         .day-cell.deadline:hover {
@@ -282,10 +199,10 @@
 
         .day-cell.grade-day {
             background: #28a745;
-            color: white;
+            color: var(--white);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--transition);
         }
 
         .day-cell.grade-day:hover {
@@ -313,7 +230,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: var(--white);
             margin: 10% auto;
             padding: 0;
             border-radius: 12px;
@@ -324,19 +241,13 @@
         }
 
         @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
             background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            color: white;
+            color: var(--white);
             padding: 25px;
             border-radius: 12px 12px 0 0;
         }
@@ -349,7 +260,7 @@
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 5px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .modal-header p {
@@ -357,32 +268,28 @@
             opacity: 0.9;
         }
 
-        .modal-body {
-            padding: 30px;
-        }
+        .modal-body { padding: 30px; }
 
-        .deadline-info {
-            margin-bottom: 20px;
-        }
+        .deadline-info { margin-bottom: 20px; }
 
         .deadline-info h4 {
-            color: #002D5A;
+            color: var(--navy-medium);
             font-size: 16px;
             margin-bottom: 8px;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .deadline-info p {
-            color: #666;
+            color: var(--gray-500);
             font-size: 15px;
             line-height: 1.6;
         }
 
         .time-badge {
             display: inline-block;
-            background: #00A2DB;
-            color: white;
+            background: var(--cyan);
+            color: var(--white);
             padding: 8px 16px;
             border-radius: 20px;
             font-weight: 600;
@@ -391,8 +298,8 @@
         }
 
         .close-btn {
-            background: #001C3D;
-            color: white;
+            background: var(--navy);
+            color: var(--white);
             border: none;
             padding: 12px 30px;
             border-radius: 6px;
@@ -400,35 +307,31 @@
             font-size: 15px;
             font-weight: 600;
             width: 100%;
-            transition: all 0.3s;
+            transition: all var(--transition);
         }
 
         .close-btn:hover {
-            background: #002D5A;
+            background: var(--navy-medium);
             transform: translateY(-2px);
         }
 
-        /* Footer */
+        /* Footer override */
         .footer {
-            background: #002D5A;
-            color: white;
+            background: var(--navy-medium);
+            color: var(--white);
             padding: 40px 30px;
             margin-top: 60px;
             text-align: center;
         }
 
-        .footer p {
-            margin: 10px 0;
-        }
+        .footer p { margin: 10px 0; }
 
         .footer a {
-            color: #00A2DB;
+            color: var(--cyan);
             text-decoration: none;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+        .footer a:hover { text-decoration: underline; }
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -444,43 +347,31 @@
         }
 
         @media (max-width: 768px) {
-            .calendars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .page-hero h1 {
-                font-size: 32px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 20% auto;
-            }
-
-            .legend {
-                gap: 20px;
-            }
+            .calendars-grid { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 32px; }
+            .modal-content { width: 95%; margin: 20% auto; }
+            .legend { gap: 20px; }
         }
     </style>
 </head>
-<body>
+<body class="page-content">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
-                <span class="logo-text">Maastricht Science Programme</span>
+                <div>
+                    <span class="logo-text">Maastricht Science Programme</span>
+                    <span class="logo-subtitle">Bachelor Thesis Research</span>
+                </div>
             </a>
             <nav class="nav-menu">
-                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
-                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
-                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+                <a href="index.html">Home</a>
+                <a href="before-you-start.html">Before You Start</a>
+                <a href="writing-the-proposal.html">Proposal</a>
+                <a href="writing-the-thesis.html">Thesis</a>
+                <a href="btr-video.html">Video</a>
+                <a href="faq.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -519,7 +410,7 @@
         </div>
 
         <div class="calendars-grid">
-            
+
             <!-- September 2026 Calendar -->
             <div class="calendar-container">
                 <div class="calendar-header">
@@ -535,10 +426,10 @@
                     <div class="day-header">Fri</div>
                     <div class="day-header">Sat</div>
                     <div class="day-header">Sun</div>
-                    
+
                     <!-- Empty cells (September 2026 starts on Tuesday) -->
                     <div class="day-cell empty"></div>
-                    
+
                     <!-- Days -->
                     <div class="day-cell deadline" onclick="showDeadline('start')">1</div>
                     <div class="day-cell">2</div>
@@ -588,12 +479,12 @@
                     <div class="day-header">Fri</div>
                     <div class="day-header">Sat</div>
                     <div class="day-header">Sun</div>
-                    
+
                     <!-- Empty cells (October 2026 starts on Thursday) -->
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
-                    
+
                     <!-- Days -->
                     <div class="day-cell">1</div>
                     <div class="day-cell">2</div>
@@ -644,7 +535,7 @@
                     <div class="day-header">Fri</div>
                     <div class="day-header">Sat</div>
                     <div class="day-header">Sun</div>
-                    
+
                     <!-- Empty cells (November 2026 starts on Sunday) -->
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
@@ -652,7 +543,7 @@
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
-                    
+
                     <!-- Days -->
                     <div class="day-cell">1</div>
                     <div class="day-cell">2</div>
@@ -702,10 +593,10 @@
                     <div class="day-header">Fri</div>
                     <div class="day-header">Sat</div>
                     <div class="day-header">Sun</div>
-                    
+
                     <!-- Empty cells (December 2026 starts on Tuesday) -->
                     <div class="day-cell empty"></div>
-                    
+
                     <!-- Days -->
                     <div class="day-cell">1</div>
                     <div class="day-cell">2</div>
@@ -756,13 +647,13 @@
                     <div class="day-header">Fri</div>
                     <div class="day-header">Sat</div>
                     <div class="day-header">Sun</div>
-                    
+
                     <!-- Empty cells (January 2027 starts on Friday) -->
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
                     <div class="day-cell empty"></div>
-                    
+
                     <!-- Days -->
                     <div class="day-cell">1</div>
                     <div class="day-cell">2</div>
@@ -823,11 +714,11 @@
     <footer class="footer">
         <p><strong>Questions about deadlines?</strong> Contact the BTR Office: msp-btr@maastrichtuniversity.nl</p>
         <p style="margin-top: 20px;">
-            <a href="september-cohort-2026.html">← Back to September Cohort Dashboard</a> | 
+            <a href="september-cohort-2026.html">&larr; Back to September Cohort Dashboard</a> |
             <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
         </p>
         <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-            © Maastricht University - Faculty of Science and Engineering
+            &copy; Maastricht University - Faculty of Science and Engineering
         </p>
     </footer>
 
@@ -894,14 +785,14 @@
         function showDeadline(type) {
             const deadline = deadlines[type];
             const modalHeader = document.getElementById('modalHeader');
-            
+
             // Change modal header color based on type
             if (deadline.type === 'grade') {
                 modalHeader.classList.add('grade');
             } else {
                 modalHeader.classList.remove('grade');
             }
-            
+
             document.getElementById('modalTitle').textContent = deadline.title;
             document.getElementById('modalDate').textContent = deadline.date;
             document.getElementById('modalDescription').textContent = deadline.description;
