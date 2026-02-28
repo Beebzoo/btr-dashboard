@@ -3,6 +3,30 @@
    Maastricht Science Programme
    ============================================ */
 
+/* --- Icon Styling --- */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon svg {
+    width: 1em;
+    height: 1em;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Icon sizes */
+.icon--sm  svg { width: 16px; height: 16px; }
+.icon--md  svg { width: 20px; height: 20px; }
+.icon--lg  svg { width: 24px; height: 24px; }
+.icon--xl  svg { width: 32px; height: 32px; }
+
 /* --- CSS Custom Properties --- */
 :root {
     /* Brand colors */
@@ -270,6 +294,16 @@ ul {
     font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
+}
+
+.info-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
 }
 
 .info-details h3 {
@@ -696,12 +730,12 @@ ul {
     position: relative;
 }
 
-/* Animated background circles */
+/* Subtle background circles */
 .bg-circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(0, 188, 212, 0.1);
-    animation: float 20s infinite ease-in-out;
+    background: rgba(0, 188, 212, 0.05);
+    animation: float 30s infinite ease-in-out;
 }
 
 .bg-circle:nth-child(1) {
@@ -730,12 +764,12 @@ ul {
 
 /* Orange circle variant (supervisor pages) */
 .bg-circle--orange {
-    background: rgba(232, 78, 16, 0.15);
+    background: rgba(232, 78, 16, 0.06);
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.1); }
+    50% { transform: translateY(-12px) scale(1.03); }
 }
 
 /* Landing container */
@@ -776,18 +810,12 @@ ul {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 14px;
-    background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--white);
     line-height: 1.2;
 }
 
 .landing-title--orange h2 {
-    background: linear-gradient(135deg, #fff 0%, var(--orange) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--white);
 }
 
 .landing-title p {
@@ -851,6 +879,18 @@ ul {
     font-size: 22px;
     margin-right: 10px;
     vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+}
+
+.landing-btn .btn-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
 }
 
 .landing-btn .btn-text {
