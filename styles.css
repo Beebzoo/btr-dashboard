@@ -2913,13 +2913,14 @@ ul {
 /* Calendar Grid */
 .calendars-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 30px;
     margin-top: 40px;
 }
 
-.calendar-container:nth-child(4) { grid-column: 1 / 2; margin-left: auto; margin-right: 15px; }
-.calendar-container:nth-child(5) { grid-column: 2 / 3; margin-left: 15px; margin-right: auto; }
+.calendar-container { grid-column: span 2; }
+.calendar-container:nth-child(4) { grid-column: 2 / 4; }
+.calendar-container:nth-child(5) { grid-column: 4 / 6; }
 
 .calendar-container {
     background: var(--white);
@@ -3104,12 +3105,16 @@ ul {
 /* Responsive */
 @media (max-width: 1024px) {
     .calendars-grid { grid-template-columns: repeat(2, 1fr); }
+    .calendar-container,
     .calendar-container:nth-child(4),
-    .calendar-container:nth-child(5) { grid-column: auto; margin: 0; }
+    .calendar-container:nth-child(5) { grid-column: span 1; }
 }
 
 @media (max-width: 768px) {
     .calendars-grid { grid-template-columns: 1fr; }
+    .calendar-container,
+    .calendar-container:nth-child(4),
+    .calendar-container:nth-child(5) { grid-column: span 1; }
     .page-timeline .page-hero h1 { font-size: 32px; }
     .page-timeline .modal-content { width: 95%; margin: 20% auto; }
     .legend { gap: 20px; }
