@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecology & Field Research Projects - BTR</title>
+    <link rel="icon" type="image/png" href="msp-logo.png">
     <meta name="description" content="Ecology and field research BTR projects at Maastricht Science Programme. Browse available fieldwork topics and find your thesis supervisor.">
 
     <!-- Google tag (gtag.js) -->
@@ -329,7 +330,7 @@
                 contentHTML += `
                     <div class="contact-item">
                         <strong>Website:</strong>
-                        <a href="${project.contact.website}" target="_blank">${project.contact.website}</a>
+                        <a href="${project.contact.website}" target="_blank" rel="noopener noreferrer">${project.contact.website}</a>
                     </div>
                 `;
             }
@@ -338,7 +339,7 @@
                 contentHTML += `
                     <div class="contact-item">
                         <strong>Instagram:</strong>
-                        <a href="https://instagram.com/${project.contact.instagram.replace('@', '')}" target="_blank">${project.contact.instagram}</a>
+                        <a href="https://instagram.com/${project.contact.instagram.replace('@', '')}" target="_blank" rel="noopener noreferrer">${project.contact.instagram}</a>
                     </div>
                 `;
             }
