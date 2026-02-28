@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTR FAQ - Frequently Asked Questions</title>
+    <meta name="description" content="Frequently asked questions about the Bachelor Thesis Research at Maastricht Science Programme. Answers about timelines, supervisors, submissions, and more.">
 
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ51G48F42"></script>
@@ -18,371 +19,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        html, body {
-            height: 100%;
-            font-family: 'Open Sans', Arial, sans-serif;
-        }
-
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .header {
-            background-color: #001C3D;
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-menu a:hover {
-            opacity: 0.8;
-        }
-
-        .my-um-btn {
-            background-color: #00A2DB;
-            padding: 8px 20px;
-            border-radius: 4px;
-        }
-
-        .main-content {
-            flex: 1;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            width: 100%;
-        }
-
-        .page-header {
-            margin-bottom: 30px;
-        }
-
-        .page-header h1 {
-            font-size: 32px;
-            color: #001C3D;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .page-header p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .search-box {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f0f8ff;
-            border-radius: 8px;
-            border-left: 4px solid #00A2DB;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #00A2DB;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .control-btn {
-            padding: 10px 20px;
-            background: #00A2DB;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .control-btn:hover {
-            background: #0088bb;
-            transform: translateY(-2px);
-        }
-
-        .control-btn.secondary {
-            background: #666;
-        }
-
-        .control-btn.secondary:hover {
-            background: #555;
-        }
-
-        .faq-category {
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .faq-category:hover {
-            border-color: #00A2DB;
-        }
-
-        .category-header {
-            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
-            color: white;
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .category-header:hover {
-            background: linear-gradient(135deg, #003366 0%, #004488 100%);
-        }
-
-        .category-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .category-icon {
-            font-size: 24px;
-            transition: transform 0.3s;
-        }
-
-        .faq-category.active .category-icon {
-            transform: rotate(180deg);
-        }
-
-        .category-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            background: #f9f9f9;
-        }
-
-        .faq-category.active .category-content {
-            max-height: 5000px;
-            transition: max-height 0.5s ease-in;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            transition: all 0.3s;
-        }
-
-        .faq-question:hover {
-            background: #f0f8ff;
-        }
-
-        .faq-question h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #001C3D;
-            margin: 0;
-            flex: 1;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .question-icon {
-            color: #00A2DB;
-            font-size: 20px;
-            transition: transform 0.3s;
-            margin-left: 15px;
-        }
-
-        .faq-item.active .question-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 2000px;
-            transition: max-height 0.4s ease-in;
-        }
-
-        .faq-answer-content {
-            padding: 20px;
-            background: white;
-            color: #333;
-            line-height: 1.8;
-            border-top: 2px solid #00A2DB;
-        }
-
-        .faq-answer-content p {
-            margin-bottom: 15px;
-        }
-
-        .faq-answer-content ul, .faq-answer-content ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        .faq-answer-content li {
-            margin-bottom: 8px;
-        }
-
-        .faq-answer-content strong {
-            color: #001C3D;
-        }
-
-        .faq-answer-content a {
-            color: #00A2DB;
-            text-decoration: none;
-        }
-
-        .faq-answer-content a:hover {
-            text-decoration: underline;
-        }
-
-        .note-box {
-            background: #fff3cd;
-            border-left: 4px solid #E84E10;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-
-        .note-box strong {
-            color: #E84E10;
-        }
-
-        .footer {
-            background-color: #001C3D;
-            color: white;
-            padding: 40px 0;
-            margin-top: auto;
-            width: 100%;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .footer a {
-            color: #00A2DB;
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .control-btn {
-                width: 100%;
-            }
-
-            .main-content {
-                margin: 20px;
-                padding: 20px;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="page-content page-faq">
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
-                <span class="logo-text">Maastricht Science Programme</span>
+                <div>
+                    <span class="logo-text">Maastricht Science Programme</span>
+                    <span class="logo-subtitle">Bachelor Thesis Research</span>
+                </div>
             </a>
             <nav class="nav-menu">
-                <a href="https://canvas.maastrichtuniversity.nl/courses/3711">Canvas</a>
-                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard">Collent</a>
-                <a href="https://intranet.maastrichtuniversity.nl">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-                <a href="https://my.maastrichtuniversity.nl" class="my-um-btn">My UM</a>
+                <a href="index.html">Home</a>
+                <a href="before-you-start.html">Before You Start</a>
+                <a href="writing-the-proposal.html">Proposal</a>
+                <a href="writing-the-thesis.html">Thesis</a>
+                <a href="btr-video.html">Video</a>
+                <a href="faq.html" style="font-weight: 600;">FAQ</a>
             </nav>
         </div>
     </header>
@@ -405,11 +61,11 @@
         <!-- CATEGORY 1: General Information and Communication -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg> General Information and Communication</h2>
-                <span class="category-icon">▼</span>
+                <h2>General Information and Communication</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>Who should I contact for general enquiries or administrative issues during my BTR?</h3>
@@ -475,11 +131,11 @@
         <!-- CATEGORY 2: Submission and Penalties -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Submission and Penalties</h2>
-                <span class="category-icon">▼</span>
+                <h2>Submission and Penalties</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>How do I submit my Proposal and Thesis?</h3>
@@ -518,11 +174,11 @@
         <!-- CATEGORY 3: Grading and Assessment -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Grading and Assessment</h2>
-                <span class="category-icon">▼</span>
+                <h2>Grading and Assessment</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>How is the final grade for my BTR calculated?</h3>
@@ -574,11 +230,11 @@
         <!-- CATEGORY 4: Problems and Issues -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Problems and Issues</h2>
-                <span class="category-icon">▼</span>
+                <h2>Problems and Issues</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>What should I do if I encounter problems during my BTR?</h3>
@@ -619,11 +275,11 @@
         <!-- CATEGORY 5: BTR Components -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> BTR Components</h2>
-                <span class="category-icon">▼</span>
+                <h2>BTR Components</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>What should be included in my BTR Proposal?</h3>
@@ -682,11 +338,11 @@
         <!-- CATEGORY 6: Going Abroad for BTR -->
         <div class="faq-category">
             <div class="category-header" onclick="toggleCategory(this)">
-                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Going Abroad for BTR</h2>
-                <span class="category-icon">▼</span>
+                <h2>Going Abroad for BTR</h2>
+                <span class="category-icon">&#9660;</span>
             </div>
             <div class="category-content">
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleQuestion(this)">
                         <h3>What is the Bachelor Thesis Research (BTR) Abroad Option?</h3>
@@ -879,9 +535,9 @@
         function toggleQuestion(element) {
             const item = element.parentElement;
             const icon = element.querySelector('.question-icon');
-            
+
             item.classList.toggle('active');
-            icon.textContent = item.classList.contains('active') ? '−' : '+';
+            icon.textContent = item.classList.contains('active') ? '\u2212' : '+';
         }
 
         function expandAll() {
@@ -890,7 +546,7 @@
             });
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.add('active');
-                item.querySelector('.question-icon').textContent = '−';
+                item.querySelector('.question-icon').textContent = '\u2212';
             });
         }
 
@@ -907,7 +563,7 @@
         function searchFAQ() {
             const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
             const categories = document.querySelectorAll('.faq-category');
-            
+
             if (searchTerm === '') {
                 categories.forEach(cat => {
                     cat.style.display = 'block';
@@ -921,25 +577,26 @@
             categories.forEach(category => {
                 let categoryHasMatch = false;
                 const items = category.querySelectorAll('.faq-item');
-                
+
                 items.forEach(item => {
                     const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
                     const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
-                    
+
                     if (question.includes(searchTerm) || answer.includes(searchTerm)) {
                         item.style.display = 'block';
                         categoryHasMatch = true;
                         category.classList.add('active');
                         item.classList.add('active');
-                        item.querySelector('.question-icon').textContent = '−';
+                        item.querySelector('.question-icon').textContent = '\u2212';
                     } else {
                         item.style.display = 'none';
                     }
                 });
-                
+
                 category.style.display = categoryHasMatch ? 'block' : 'none';
             });
         }
     </script>
+<script src="nav.js"></script>
 </body>
 </html>

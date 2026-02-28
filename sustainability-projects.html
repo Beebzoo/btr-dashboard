@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainability & Life Cycle Assessment Projects - BTR</title>
+    <meta name="description" content="Sustainability and life cycle assessment BTR research projects at Maastricht Science Programme. Browse available topics and find your thesis supervisor.">
 
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ51G48F42"></script>
@@ -20,88 +21,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <style>
-        .back-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--orange); color: var(--white); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all var(--transition); }
-        .back-button:hover { background: var(--orange-dark); transform: translateX(-5px); }
-
-        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color: var(--white); padding: 50px 20px; text-align: center; }
-        .page-header-content { max-width: 1200px; margin: 0 auto; }
-        .field-icon-large { font-size: 80px; margin-bottom: 20px; display: block; animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .page-header h1 { font-family: var(--font-heading); font-size: 42px; font-weight: 700; margin-bottom: 15px; }
-        .page-header p { font-size: 18px; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; }
-
-        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 0 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-500); }
-        .breadcrumb a { color: var(--cyan); text-decoration: none; transition: color var(--transition); }
-        .breadcrumb a:hover { color: var(--orange); }
-        .breadcrumb span { color: var(--gray-400); }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 30px; margin-top: 30px; }
-
-        /* Sustainability uses green accent instead of cyan */
-        .project-card { background: var(--white); border-radius: 12px; padding: 30px; cursor: pointer; transition: all var(--transition); border: 2px solid var(--gray-200); position: relative; overflow: hidden; }
-        .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: #4CAF50; transform: scaleY(0); transition: transform var(--transition); }
-        .project-card:hover::before { transform: scaleY(1); }
-        .project-card::after { content: '\2192'; position: absolute; bottom: 25px; right: 25px; font-size: 28px; color: #4CAF50; transition: transform var(--transition); }
-        .project-card:hover::after { transform: translateX(5px); }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); border-color: #4CAF50; }
-        .project-card h3 { font-family: var(--font-heading); font-size: 22px; color: var(--navy); margin-bottom: 15px; padding-right: 50px; }
-
-        .project-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
-        .project-tag { display: inline-block; padding: 6px 14px; background: #E8F5E9; color: #1B5E20; border-radius: 20px; font-size: 13px; font-weight: 600; }
-        .project-tag.supervisor { background: #FFF3E0; color: #E65100; }
-        .project-tag.location { background: #E3F2FD; color: #01579B; }
-        .project-description { color: var(--gray-500); font-size: 15px; line-height: 1.7; margin-bottom: 15px; }
-
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 28, 61, 0.85); backdrop-filter: blur(5px); z-index: 999; opacity: 0; transition: opacity var(--transition); }
-        .modal-overlay.active { display: block; opacity: 1; }
-        .project-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7); width: 90%; max-width: 900px; max-height: 85vh; background: var(--white); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 1000; overflow: hidden; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .project-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
-
-        .modal-header { background: linear-gradient(135deg, var(--navy) 0%, #003366 100%); color: var(--white); padding: 35px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
-        .modal-header h3 { font-family: var(--font-heading); font-size: 28px; color: var(--white); margin: 0; flex: 1; line-height: 1.3; }
-        .modal-close { background: rgba(255,255,255,0.2); border: none; color: var(--white); font-size: 32px; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; line-height: 1; flex-shrink: 0; }
-        .modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
-        .modal-body { padding: 35px; overflow-y: auto; max-height: calc(85vh - 140px); }
-        .modal-section { margin-bottom: 30px; }
-        .modal-section h4 { font-family: var(--font-heading); font-size: 20px; color: var(--navy); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #4CAF50; display: flex; align-items: center; gap: 10px; }
-        .modal-section p, .modal-section ul { color: #555; line-height: 1.8; font-size: 15px; }
-        .modal-section ul { padding-left: 25px; margin-top: 12px; }
-        .modal-section ul li { margin-bottom: 10px; }
-
-        /* Green-themed contact box for sustainability */
-        .contact-box { background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border: 2px solid #4CAF50; border-radius: 15px; padding: 30px; margin-top: 30px; }
-        .contact-box h4 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
-        .contact-info { display: grid; gap: 15px; }
-        .contact-item { display: flex; align-items: flex-start; gap: 12px; color: var(--gray-700); }
-        .contact-item strong { min-width: 120px; color: var(--navy); font-weight: 600; }
-        .contact-item a { color: #2E7D32; text-decoration: none; font-weight: 600; transition: color var(--transition); }
-        .contact-item a:hover { color: var(--orange); }
-
-        @media (max-width: 768px) {
-            .page-header h1 { font-size: 32px; }
-            .project-grid { grid-template-columns: 1fr; }
-            .project-modal { width: 95%; max-height: 90vh; }
-            .modal-body { padding: 25px; }
-            .modal-header { padding: 25px; }
-            .modal-header h3 { font-size: 22px; }
-        }
-
-        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: var(--orange); color: var(--white); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3); transition: all var(--transition); z-index: 100; }
-        .back-to-top.visible { display: flex; }
-        .back-to-top:hover { background: var(--orange-dark); transform: translateY(-5px); }
-    </style>
 </head>
-<body class="page-content">
+<body class="page-content page-projects page-projects--green">
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
                 <span class="logo-text">Maastricht Science Programme</span>
             </a>
-            <a href="browse-projects.html" class="back-button">
+            <a href="potential-projects.html" class="back-button">
                 ← Back to All Fields
             </a>
         </div>
@@ -118,7 +46,7 @@
     <div class="breadcrumb">
         <a href="index.html">Home</a>
         <span>&#8250;</span>
-        <a href="browse-projects.html">Browse Projects</a>
+        <a href="potential-projects.html">Browse Projects</a>
         <span>&#8250;</span>
         <span>Sustainability & LCA</span>
     </div>
@@ -445,5 +373,6 @@
 
         generateProjectCards();
     </script>
+<script src="nav.js"></script>
 </body>
 </html>
