@@ -13,95 +13,18 @@
   gtag('js', new Date());
   gtag('config', 'G-KJ51G48F42');
 </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            line-height: 1.6;
-            zoom: 0.7;
-        }
-
-        /* Header Styles */
-        .header {
-            background: white;
-            color: #001C3D;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #001C3D;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: #001C3D;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #00A2DB;
-        }
-
-        .my-um-btn {
-            background: #001C3D;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
         /* Page Hero */
         .page-hero {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 100%);
+            color: var(--white);
             padding: 80px 30px 60px;
             text-align: center;
             position: relative;
@@ -109,7 +32,7 @@
         }
 
         .page-hero::before {
-            content: '🎬';
+            content: '';
             position: absolute;
             font-size: 200px;
             opacity: 0.05;
@@ -129,7 +52,7 @@
             font-size: 48px;
             margin-bottom: 15px;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .page-hero p {
@@ -146,15 +69,13 @@
             flex-wrap: wrap;
         }
 
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
 
         .stat-number {
             font-size: 36px;
             font-weight: 700;
-            color: #00A2DB;
-            font-family: 'Montserrat', sans-serif;
+            color: var(--cyan);
+            font-family: var(--font-heading);
         }
 
         .stat-label {
@@ -165,34 +86,32 @@
 
         /* Breadcrumb */
         .breadcrumb {
-            background: white;
+            background: var(--white);
             padding: 15px 30px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .breadcrumb-content {
-            max-width: 1400px;
+            max-width: var(--container-wide);
             margin: 0 auto;
         }
 
         .breadcrumb a {
-            color: #00A2DB;
+            color: var(--cyan);
             text-decoration: none;
             font-size: 14px;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
+        .breadcrumb a:hover { text-decoration: underline; }
 
         .breadcrumb span {
-            color: #666;
+            color: var(--gray-500);
             margin: 0 8px;
         }
 
         /* Main Content */
         .content-wrapper {
-            max-width: 1400px;
+            max-width: var(--container-wide);
             margin: 40px auto;
             padding: 0 30px;
         }
@@ -206,15 +125,15 @@
         }
 
         .quick-nav-card {
-            background: white;
+            background: var(--white);
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--transition);
             text-decoration: none;
-            color: #333;
-            border-left: 4px solid #00A2DB;
+            color: var(--text-primary);
+            border-left: 4px solid var(--cyan);
         }
 
         .quick-nav-card:hover {
@@ -224,62 +143,61 @@
 
         .quick-nav-card h3 {
             font-size: 18px;
-            color: #001C3D;
+            color: var(--navy);
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: var(--font-heading);
         }
 
         .quick-nav-card p {
             font-size: 14px;
-            color: #666;
+            color: var(--gray-500);
             line-height: 1.5;
         }
 
-        /* Section Cards */
+        /* Section Cards (Accordion) */
         .section-card {
-            background: white;
+            background: var(--white);
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all var(--transition);
         }
 
-        .section-header {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
-            color: white;
+        .section-card .section-header {
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 100%);
+            color: var(--white);
             padding: 25px 30px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s;
+            transition: all var(--transition);
+            text-align: left;
+            margin-bottom: 0;
         }
 
-        .section-header:hover {
+        .section-card .section-header:hover {
             background: linear-gradient(135deg, #003d6e 0%, #002849 100%);
         }
 
-        .section-header h2 {
+        .section-card .section-header h2 {
             font-size: 26px;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--white);
+            margin-bottom: 0;
         }
 
         .toggle-icon {
             font-size: 24px;
-            transition: transform 0.3s;
+            transition: transform var(--transition);
         }
 
-        .section-card.active .toggle-icon {
-            transform: rotate(180deg);
-        }
+        .section-card.active .toggle-icon { transform: rotate(180deg); }
 
         .section-content {
             max-height: 0;
@@ -292,28 +210,35 @@
             transition: max-height 0.6s ease-in;
         }
 
-        .section-inner {
-            padding: 40px;
-        }
+        .section-inner { padding: 40px; }
 
         .section-inner h3 {
             font-size: 24px;
-            color: #002D5A;
+            color: var(--navy-medium);
             margin-top: 30px;
             margin-bottom: 15px;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            border-bottom: 3px solid #00A2DB;
+            font-family: var(--font-heading);
+            border-bottom: 3px solid var(--cyan);
             padding-bottom: 10px;
         }
 
         .section-inner h4 {
             font-size: 20px;
-            color: #002D5A;
+            color: var(--navy-medium);
             margin-top: 25px;
             margin-bottom: 12px;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
+        }
+
+        .section-inner h5 {
+            font-size: 17px;
+            color: var(--navy-medium);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-family: var(--font-heading);
         }
 
         .section-inner p {
@@ -324,6 +249,7 @@
 
         .section-inner ul, .section-inner ol {
             margin: 15px 0 15px 30px;
+            list-style: revert;
         }
 
         .section-inner li {
@@ -335,7 +261,7 @@
         /* Info Boxes */
         .info-box {
             background: linear-gradient(135deg, #E6F7FF 0%, #B3E5FC 100%);
-            border-left: 4px solid #00A2DB;
+            border-left: 4px solid var(--cyan);
             padding: 25px;
             margin: 25px 0;
             border-radius: 8px;
@@ -343,29 +269,32 @@
         }
 
         .info-box strong {
-            color: #002D5A;
+            color: var(--navy-medium);
             font-size: 18px;
             display: block;
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         /* Warning Boxes */
         .warning-box {
             background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-            border-left: 4px solid #FF6200;
+            border-left: 4px solid var(--orange);
             padding: 25px;
             margin: 25px 0;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(255,98,0,0.1);
+            font-size: inherit;
+            font-weight: normal;
+            color: inherit;
         }
 
         .warning-box strong {
-            color: #FF6200;
+            color: var(--orange);
             font-size: 18px;
             display: block;
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         /* Success Boxes */
@@ -383,8 +312,36 @@
             font-size: 18px;
             display: block;
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
+
+        /* Table Styles */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .spec-table th {
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 100%);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+
+        .spec-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-table tr:hover { background: var(--bg-section); }
 
         /* Comparison Table */
         .comparison-table {
@@ -413,75 +370,11 @@
         .comparison-card h4 {
             font-size: 20px;
             margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
-        .comparison-card.do h4 {
-            color: #2E7D32;
-        }
-
-        .comparison-card.dont h4 {
-            color: #C62828;
-        }
-
-        /* Table Styles */
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .spec-table th {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .spec-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .spec-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .spec-table tr:hover {
-            background: #f5f7fa;
-        }
-
-        /* Checklist Items */
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .checklist-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-
-        .checklist-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #00A2DB;
-            border-radius: 4px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
+        .comparison-card.do h4 { color: #2E7D32; }
+        .comparison-card.dont h4 { color: #C62828; }
 
         /* Process Steps */
         .process-steps {
@@ -502,20 +395,18 @@
             top: 0;
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #00A2DB 0%, #0088bb 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-dark) 100%);
+            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 18px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
-        .process-step h4 {
-            margin-top: 0;
-        }
+        .process-step h4 { margin-top: 0; }
 
         /* Resource Cards */
         .resource-grid {
@@ -526,12 +417,12 @@
         }
 
         .resource-card {
-            background: white;
+            background: var(--white);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-top: 4px solid #00A2DB;
-            transition: all 0.3s;
+            border-top: 4px solid var(--cyan);
+            transition: all var(--transition);
         }
 
         .resource-card:hover {
@@ -540,9 +431,9 @@
         }
 
         .resource-card h4 {
-            color: #002D5A;
+            color: var(--navy-medium);
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .resource-card ul {
@@ -556,90 +447,89 @@
             font-size: 14px;
         }
 
-        /* Footer */
+        /* Checklist Items */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all var(--transition);
+        }
+
+        .checklist-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--cyan);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Footer override */
         .footer {
-            background: #002D5A;
-            color: white;
+            background: var(--navy-medium);
+            color: var(--white);
             padding: 40px 30px;
             margin-top: 60px;
             text-align: center;
         }
 
-        .footer p {
-            margin: 10px 0;
-        }
+        .footer p { margin: 10px 0; }
 
         .footer a {
-            color: #00A2DB;
+            color: var(--cyan);
             text-decoration: none;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+        .footer a:hover { text-decoration: underline; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 36px;
-            }
-
-            .video-stats {
-                gap: 20px;
-            }
-
-            .stat-number {
-                font-size: 28px;
-            }
-
-            .comparison-table {
-                grid-template-columns: 1fr;
-            }
-
-            .section-inner {
-                padding: 25px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .quick-nav {
-                grid-template-columns: 1fr;
-            }
+            .page-hero h1 { font-size: 36px; }
+            .video-stats { gap: 20px; }
+            .stat-number { font-size: 28px; }
+            .section-inner { padding: 25px; }
+            .quick-nav { grid-template-columns: 1fr; }
+            .comparison-table { grid-template-columns: 1fr; }
         }
 
         /* Animation for section opening */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .section-card.active .section-inner {
             animation: fadeIn 0.4s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body>
+<body class="page-content">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
                 <img src="msp-logo.png" alt="MSP Logo">
-                <span class="logo-text">Maastricht Science Programme</span>
+                <div>
+                    <span class="logo-text">Maastricht Science Programme</span>
+                    <span class="logo-subtitle">Bachelor Thesis Research</span>
+                </div>
             </a>
             <nav class="nav-menu">
-                <a href="https://collent-fsemsp.maastrichtuniversity.nl/FSE_MSP/Home/Dashboard" target="_blank">Collent</a>
-                <a href="https://canvas.maastrichtuniversity.nl/" target="_blank">Canvas</a>
-                <a href="https://intranet.maastrichtuniversity.nl/msp" target="_blank">Intranet</a>
-                <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
-                <a href="https://my.maastrichtuniversity.nl" target="_blank" class="my-um-btn">My UM</a>
+                <a href="index.html">Home</a>
+                <a href="before-you-start.html">Before You Start</a>
+                <a href="writing-the-proposal.html">Proposal</a>
+                <a href="writing-the-thesis.html">Thesis</a>
+                <a href="btr-video.html" class="active">Video</a>
+                <a href="faq.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -658,7 +548,7 @@
         <div class="page-hero-content">
             <h1>BTR Video Guidelines</h1>
             <p>Communicating Your Research to Non-Scientists</p>
-            
+
             <div class="video-stats">
                 <div class="stat-item">
                     <div class="stat-number">5-7</div>
@@ -686,35 +576,35 @@
         <!-- Quick Navigation -->
         <div class="quick-nav">
             <a href="#different" class="quick-nav-card">
-                <h3>🎯 What Makes It Different</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> What Makes It Different</h3>
                 <p>This is NOT a research presentation - learn the key differences</p>
             </a>
             <a href="#content" class="quick-nav-card">
-                <h3>📝 Required Content</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Required Content</h3>
                 <p>Four essential elements your video must address</p>
             </a>
             <a href="#technical" class="quick-nav-card">
-                <h3>⚙️ Technical Specs</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical Specs</h3>
                 <p>Format requirements and file specifications</p>
             </a>
             <a href="#presentation" class="quick-nav-card">
-                <h3>🎭 Presentation Tips</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Presentation Tips</h3>
                 <p>How to deliver your message effectively on camera</p>
             </a>
             <a href="#copyright" class="quick-nav-card">
-                <h3>⚖️ Copyright Rules</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Copyright Rules</h3>
                 <p>Critical information about using images, videos, and music</p>
             </a>
             <a href="#submission" class="quick-nav-card">
-                <h3>📤 Submission Process</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Submission Process</h3>
                 <p>Two-step submission via SURFdrive and Collent</p>
             </a>
             <a href="#peer" class="quick-nav-card">
-                <h3>👥 Peer Review</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Peer Review</h3>
                 <p>Mandatory review requirement - 1.0 penalty if skipped</p>
             </a>
             <a href="#checklist" class="quick-nav-card">
-                <h3>✅ Final Checklist</h3>
+                <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Final Checklist</h3>
                 <p>Everything to verify before submission</p>
             </a>
         </div>
@@ -722,8 +612,8 @@
         <!-- Section 1: What Makes Your Video Different -->
         <section id="different" class="section-card active">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🎯 What Makes Your Video Different</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> What Makes Your Video Different</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
@@ -734,7 +624,7 @@
 
                     <div class="comparison-table">
                         <div class="comparison-card dont">
-                            <h4>❌ Don't Do This</h4>
+                            <h4>Don't Do This</h4>
                             <ul>
                                 <li>Use complex, difficult-to-explain scientific terms</li>
                                 <li>Assume audience has specialized knowledge</li>
@@ -743,7 +633,7 @@
                             </ul>
                         </div>
                         <div class="comparison-card do">
-                            <h4>✓ Do This Instead</h4>
+                            <h4>Do This Instead</h4>
                             <ul>
                                 <li>Explain concepts in simple, accessible language</li>
                                 <li>Use analogies and examples anyone can understand</li>
@@ -755,22 +645,22 @@
 
                     <h3>Your Target Audience</h3>
                     <p><strong>Think of your video as being watched by:</strong></p>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>👨‍👩‍👧 Family Members</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Family Members</h4>
                             <p>Your parents or grandparents (unless they're scientists!)</p>
                         </div>
                         <div class="resource-card">
-                            <h4>🎓 High School Students</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> High School Students</h4>
                             <p>Someone interested in science but without specialist training</p>
                         </div>
                         <div class="resource-card">
-                            <h4>🏛️ Policy Makers</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg> Policy Makers</h4>
                             <p>People deciding on research funding priorities</p>
                         </div>
                         <div class="resource-card">
-                            <h4>📰 Journalists</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Journalists</h4>
                             <p>Writers covering scientific advances for the public</p>
                         </div>
                     </div>
@@ -786,14 +676,14 @@
         <!-- Section 2: Required Content Elements -->
         <section id="content" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📝 Required Content Elements</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Required Content Elements</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <p>Your video must address <strong>four key elements</strong>. Each is essential and will be assessed.</p>
 
-                    <h3>1. Scientific Importance ⚗️</h3>
+                    <h3>1. Scientific Importance</h3>
                     <div class="info-box">
                         <strong>Key Question:</strong>
                         <p>How does this work increase our knowledge of the world/universe?</p>
@@ -811,7 +701,7 @@
                         <p>"Scientists have known X for years, but we didn't understand Y. My research helps us understand Y by..."</p>
                     </div>
 
-                    <h3>2. Societal Importance 🌍</h3>
+                    <h3>2. Societal Importance</h3>
                     <div class="info-box">
                         <strong>Key Question:</strong>
                         <p>What contribution does your work make to a better world?</p>
@@ -838,7 +728,7 @@
                         </div>
                     </div>
 
-                    <h3>3. Ethical Considerations ⚖️</h3>
+                    <h3>3. Ethical Considerations</h3>
                     <div class="warning-box">
                         <strong>CRITICAL:</strong>
                         <p>There is no piece of science free from ethical considerations. You MUST address this.</p>
@@ -856,16 +746,16 @@
 
                     <div class="comparison-table">
                         <div class="comparison-card dont">
-                            <h4>❌ Never Say</h4>
+                            <h4>Never Say</h4>
                             <p>"My research has no ethical considerations"</p>
                         </div>
                         <div class="comparison-card do">
-                            <h4>✓ Always Say</h4>
+                            <h4>Always Say</h4>
                             <p>"The key ethical considerations in my work are..."</p>
                         </div>
                     </div>
 
-                    <h3>4. Clear Structure & Storytelling 📖</h3>
+                    <h3>4. Clear Structure & Storytelling</h3>
                     <div class="process-steps">
                         <div class="process-step">
                             <h4>Opening Statement</h4>
@@ -900,13 +790,13 @@
         <!-- Section 3: Technical Specifications -->
         <section id="technical" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>⚙️ Technical Specifications</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical Specifications</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Video Requirements</h3>
-                    
+
                     <table class="spec-table">
                         <tr>
                             <th>Specification</th>
@@ -936,10 +826,10 @@
                     </div>
 
                     <h3>Quality Checklist</h3>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>🎥 Video Quality</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Video Quality</h4>
                             <ul>
                                 <li>Video fills entire frame (no black bars)</li>
                                 <li>Face in focus</li>
@@ -949,7 +839,7 @@
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>🔊 Audio Quality</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Audio Quality</h4>
                             <ul>
                                 <li>Clear voice</li>
                                 <li>No background noise</li>
@@ -978,16 +868,16 @@
         <!-- Section 4: Presentation & Delivery -->
         <section id="presentation" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🎭 Presentation & Delivery</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Presentation & Delivery</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Your On-Camera Presence Matters</h3>
-                    
+
                     <div class="comparison-table">
                         <div class="comparison-card do">
-                            <h4>✓ Professional Appearance</h4>
+                            <h4>Professional Appearance</h4>
                             <ul>
                                 <li>Dress appropriately but comfortably</li>
                                 <li>Use solid colors (avoid checkered patterns)</li>
@@ -997,7 +887,7 @@
                             </ul>
                         </div>
                         <div class="comparison-card do">
-                            <h4>✓ Engaging Delivery</h4>
+                            <h4>Engaging Delivery</h4>
                             <ul>
                                 <li>Maintain high energy levels</li>
                                 <li>Show enthusiasm for your work</li>
@@ -1009,7 +899,7 @@
                     </div>
 
                     <h3>Communication Style</h3>
-                    
+
                     <div class="info-box">
                         <strong>The Golden Rules:</strong>
                         <ul>
@@ -1022,17 +912,17 @@
                     </div>
 
                     <h3>Visual Elements</h3>
-                    
+
                     <div class="warning-box">
-                        <strong>⚠️ Important:</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Important:</strong>
                         <p>We want a <strong>video</strong>, not a PowerPoint presentation. At least at some point in the video we want to see you.</p>
                     </div>
 
                     <h4>Using PowerPoint:</h4>
                     <ul>
-                        <li>✓ <strong>Acceptable:</strong> Using PowerPoint slides as part of your video</li>
-                        <li>✗ <strong>Not Acceptable:</strong> Entire video being only PowerPoint slides</li>
-                        <li>✗ <strong>Not Acceptable:</strong> Submitting PowerPoint file directly (must convert to video format)</li>
+                        <li><strong>Acceptable:</strong> Using PowerPoint slides as part of your video</li>
+                        <li><strong>Not Acceptable:</strong> Entire video being only PowerPoint slides</li>
+                        <li><strong>Not Acceptable:</strong> Submitting PowerPoint file directly (must convert to video format)</li>
                     </ul>
 
                     <div class="success-box">
@@ -1049,20 +939,20 @@
         <!-- Section 5: Copyright -->
         <section id="copyright" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>⚖️ Copyright & Legal Compliance</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Copyright & Legal Compliance</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <div class="warning-box">
-                        <strong>⚠️ CRITICAL: Copyright Compliance</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> CRITICAL: Copyright Compliance</strong>
                         <p>You should NOT use copyrighted material in your video, like other people's videos or pictures. You should only use open source material. This is important. Sometimes other people see these videos and if they see something that you have "stolen", there might be trouble!</p>
                     </div>
 
                     <h3>What You Cannot Use</h3>
                     <div class="comparison-table">
                         <div class="comparison-card dont">
-                            <h4>❌ Prohibited</h4>
+                            <h4>Prohibited</h4>
                             <ul>
                                 <li>Other people's videos (YouTube clips, films, TV)</li>
                                 <li>Copyrighted images without license</li>
@@ -1072,7 +962,7 @@
                             </ul>
                         </div>
                         <div class="comparison-card do">
-                            <h4>✓ Allowed</h4>
+                            <h4>Allowed</h4>
                             <ul>
                                 <li>Your own original photos and videos</li>
                                 <li>Graphics/diagrams you've created</li>
@@ -1084,10 +974,10 @@
                     </div>
 
                     <h3>Finding Open Source Materials</h3>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>📸 Images</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Images</h4>
                             <ul>
                                 <li>Unsplash</li>
                                 <li>Pixabay</li>
@@ -1097,7 +987,7 @@
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>🎬 Videos</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> Videos</h4>
                             <ul>
                                 <li>Pexels Videos</li>
                                 <li>Pixabay Videos</li>
@@ -1105,7 +995,7 @@
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>🎵 Music</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Music</h4>
                             <ul>
                                 <li>YouTube Audio Library</li>
                                 <li>Free Music Archive</li>
@@ -1113,7 +1003,7 @@
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>⚠️ Remember</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Remember</h4>
                             <ul>
                                 <li>Check license terms</li>
                                 <li>Provide attribution if required</li>
@@ -1129,13 +1019,13 @@
         <!-- Section 6: Submission Process -->
         <section id="submission" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📤 Submission Process</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Submission Process</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <div class="warning-box">
-                        <strong>⚠️ Important Deadline</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Important Deadline</strong>
                         <p>The deadline for submitting your video is a few days after the thesis deadline at <strong>13:00</strong>. Late submissions may not be accepted!</p>
                     </div>
 
@@ -1146,7 +1036,7 @@
                         <div class="process-step">
                             <h4>Upload to SURFdrive (Backup/Archive)</h4>
                             <p><strong>Link:</strong> <a href="https://surfdrive.surf.nl/files/index.php/s/WBdfOTCn6awXuWk" target="_blank">https://surfdrive.surf.nl/files/index.php/s/WBdfOTCn6awXuWk</a></p>
-                            
+
                             <div class="info-box">
                                 <strong>File Naming REQUIRED:</strong>
                                 <p><strong>Format:</strong> StudentID_Lastname_BTR_Video.mp4</p>
@@ -1163,7 +1053,7 @@
 
                         <div class="process-step">
                             <h4>Submit WeTransfer Link via Collent</h4>
-                            
+
                             <ol>
                                 <li>Upload your video to <strong>WeTransfer</strong> (www.wetransfer.com)</li>
                                 <li>Also upload your <strong>Video Consent Form</strong> to WeTransfer</li>
@@ -1173,7 +1063,7 @@
                             </ol>
 
                             <div class="warning-box">
-                                <strong>⚠️ Remember:</strong>
+                                <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Remember:</strong>
                                 <p>WeTransfer links expire. This is why SURFdrive backup is essential. Submit well before deadline!</p>
                             </div>
                         </div>
@@ -1185,13 +1075,13 @@
         <!-- Section 7: Video Consent Form -->
         <section id="consent" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📋 Video Consent Form</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg> Video Consent Form</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Your Rights & Choices</h3>
-                    
+
                     <div class="info-box">
                         <strong>You Have the Right to Say "NO"</strong>
                         <p>When you upload the video in Collent you will be asked to directly fill in the consent section. In this section you have the right to say "No" to the video being shared with anyone outside of necessary graders/handlers of the BTR.</p>
@@ -1228,7 +1118,7 @@
                     </div>
 
                     <div class="warning-box">
-                        <strong>⚠️ MANDATORY:</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> MANDATORY:</strong>
                         <p>You MUST fill in the consent form (even if you vote "NO") to complete your submission. Please fill it in either case: you must fill it in, even if you do not want us to use the video afterwards.</p>
                     </div>
                 </div>
@@ -1238,13 +1128,13 @@
         <!-- Section 8: Grading & Peer Review -->
         <section id="grading" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>📊 Grading & Assessment</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Grading & Assessment</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Who Grades Your Video?</h3>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
                             <h4>1. Your Internal Advisor</h4>
@@ -1282,21 +1172,21 @@
         <!-- Section 9: Peer Review Requirements -->
         <section id="peer" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>👥 Peer Review Requirements</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Peer Review Requirements</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <div class="warning-box">
-                        <strong>⚠️ MANDATORY - NOT OPTIONAL</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> MANDATORY - NOT OPTIONAL</strong>
                         <p>In addition to having your video evaluated, each student is also <strong>required</strong> to conduct a peer review of another student's video. This reciprocal process is a key component of the learning experience.</p>
                     </div>
 
                     <h3>Why Peer Review Matters</h3>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
-                            <h4>📚 Educational Value</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Educational Value</h4>
                             <ul>
                                 <li>Learn from others' approaches</li>
                                 <li>Develop evaluation skills</li>
@@ -1305,7 +1195,7 @@
                             </ul>
                         </div>
                         <div class="resource-card">
-                            <h4>🤝 Reciprocal Process</h4>
+                            <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Reciprocal Process</h4>
                             <ul>
                                 <li>Someone reviews your video</li>
                                 <li>You review someone else's</li>
@@ -1316,9 +1206,9 @@
                     </div>
 
                     <h3>Timing & Process</h3>
-                    
+
                     <div class="warning-box">
-                        <strong>⚠️ STRONGLY RECOMMENDED:</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> STRONGLY RECOMMENDED:</strong>
                         <p>We strongly recommend conducting the peer review on the <strong>same afternoon</strong> as the video submission deadline</p>
                     </div>
 
@@ -1345,10 +1235,10 @@
                     </div>
 
                     <h3>Providing Good Feedback</h3>
-                    
+
                     <div class="comparison-table">
                         <div class="comparison-card do">
-                            <h4>✓ Do This</h4>
+                            <h4>Do This</h4>
                             <ul>
                                 <li>Be specific with examples</li>
                                 <li>Be constructive and helpful</li>
@@ -1357,7 +1247,7 @@
                             </ul>
                         </div>
                         <div class="comparison-card dont">
-                            <h4>❌ Don't Do This</h4>
+                            <h4>Don't Do This</h4>
                             <ul>
                                 <li>Be overly harsh or personal</li>
                                 <li>Give only vague comments</li>
@@ -1368,9 +1258,9 @@
                     </div>
 
                     <h3>Consequences of Non-Completion</h3>
-                    
+
                     <div class="warning-box">
-                        <strong>⚠️ SERIOUS PENALTY:</strong>
+                        <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> SERIOUS PENALTY:</strong>
                         <p style="font-size: 20px; margin-top: 15px;"><strong>Failing to submit a peer review = 1.0 point deduction from YOUR video grade</strong></p>
                     </div>
 
@@ -1390,8 +1280,8 @@
         <!-- Section 10: Additional Considerations -->
         <section id="considerations" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>💡 Additional Considerations</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Additional Considerations</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
@@ -1414,13 +1304,13 @@
         <!-- Section 11: Final Checklist -->
         <section id="checklist" class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>✅ Final Submission Checklist</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Final Submission Checklist</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Technical Quality</h3>
-                    
+
                     <div class="checklist-item">
                         <div class="checklist-checkbox"></div>
                         <div>Landscape mode recommended</div>
@@ -1455,7 +1345,7 @@
                     </div>
 
                     <h3>Required Content</h3>
-                    
+
                     <div class="checklist-item">
                         <div class="checklist-checkbox"></div>
                         <div>Clear opening statement</div>
@@ -1490,7 +1380,7 @@
                     </div>
 
                     <h3>Presentation</h3>
-                    
+
                     <div class="checklist-item">
                         <div class="checklist-checkbox"></div>
                         <div>You appear in video at some point</div>
@@ -1513,7 +1403,7 @@
                     </div>
 
                     <h3>Copyright & Legal</h3>
-                    
+
                     <div class="checklist-item">
                         <div class="checklist-checkbox"></div>
                         <div>All images are either your own or open source/licensed</div>
@@ -1532,7 +1422,7 @@
                     </div>
 
                     <h3>Submission</h3>
-                    
+
                     <div class="checklist-item">
                         <div class="checklist-checkbox"></div>
                         <div>Watched entire video to check for issues</div>
@@ -1572,13 +1462,13 @@
         <!-- Resources Section -->
         <section class="section-card">
             <div class="section-header" onclick="toggleSection(this)">
-                <h2>🛠️ Resources & Tools</h2>
-                <span class="toggle-icon">▼</span>
+                <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Resources & Tools</h2>
+                <span class="toggle-icon">&#9660;</span>
             </div>
             <div class="section-content">
                 <div class="section-inner">
                     <h3>Recommended Software</h3>
-                    
+
                     <div class="resource-grid">
                         <div class="resource-card">
                             <h4>Video Editing</h4>
@@ -1618,17 +1508,17 @@
                     </div>
 
                     <h3>Tips for Success</h3>
-                    
+
                     <div class="success-box">
                         <ul>
-                            <li>✅ <strong>Start planning early</strong> – good videos take time</li>
-                            <li>✅ <strong>Script your content</strong> – know what you'll say</li>
-                            <li>✅ <strong>Practice delivery</strong> – record practice versions</li>
-                            <li>✅ <strong>Get feedback</strong> – show draft to non-scientists</li>
-                            <li>✅ <strong>Test equipment</strong> – check audio/video quality first</li>
-                            <li>✅ <strong>Allow time for editing</strong> – rarely perfect on first take</li>
-                            <li>✅ <strong>Submit early</strong> – don't wait until deadline</li>
-                            <li>✅ <strong>Do peer review same day</strong> – avoid penalty</li>
+                            <li><strong>Start planning early</strong> – good videos take time</li>
+                            <li><strong>Script your content</strong> – know what you'll say</li>
+                            <li><strong>Practice delivery</strong> – record practice versions</li>
+                            <li><strong>Get feedback</strong> – show draft to non-scientists</li>
+                            <li><strong>Test equipment</strong> – check audio/video quality first</li>
+                            <li><strong>Allow time for editing</strong> – rarely perfect on first take</li>
+                            <li><strong>Submit early</strong> – don't wait until deadline</li>
+                            <li><strong>Do peer review same day</strong> – avoid penalty</li>
                         </ul>
                     </div>
 
@@ -1641,7 +1531,7 @@
                         <li>TED-Ed</li>
                         <li>Crash Course</li>
                     </ul>
-                    
+
                     <p style="margin-top: 15px;"><strong>Learn how they:</strong></p>
                     <ul>
                         <li>Explain complex topics simply</li>
@@ -1660,12 +1550,12 @@
     <footer class="footer">
         <p><strong>Questions about your video?</strong> Contact the BTR Office: <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
         <p style="margin-top: 20px;">
-            <a href="index.html">← Back to BTR Dashboard</a> | 
-            <a href="writing-the-proposal.html">Proposal Guidelines</a> | 
+            <a href="index.html">← Back to BTR Dashboard</a> |
+            <a href="writing-the-proposal.html">Proposal Guidelines</a> |
             <a href="writing-the-thesis.html">Thesis Guidelines</a>
         </p>
         <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-            © Maastricht University - Faculty of Science and Engineering
+            &copy; Maastricht University - Faculty of Science and Engineering
         </p>
     </footer>
 

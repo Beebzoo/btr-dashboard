@@ -13,469 +13,85 @@
   gtag('js', new Date());
   gtag('config', 'G-KJ51G48F42');
 </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        .back-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--orange); color: var(--white); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all var(--transition); }
+        .back-button:hover { background: var(--orange-dark); transform: translateX(-5px); }
 
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            zoom: 0.7;
-        }
+        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color: var(--white); padding: 50px 20px; text-align: center; }
+        .page-header-content { max-width: 1200px; margin: 0 auto; }
+        .field-icon-large { font-size: 80px; margin-bottom: 20px; display: block; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .page-header h1 { font-family: var(--font-heading); font-size: 42px; font-weight: 700; margin-bottom: 15px; }
+        .page-header p { font-size: 18px; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; }
 
-        .header {
-            background: white;
-            color: #001C3D;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 0 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-500); }
+        .breadcrumb a { color: var(--cyan); text-decoration: none; transition: color var(--transition); }
+        .breadcrumb a:hover { color: var(--orange); }
+        .breadcrumb span { color: var(--gray-400); }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; margin-top: 30px; }
+        .project-card { background: var(--white); border-radius: 12px; padding: 35px; cursor: pointer; transition: all var(--transition); border: 2px solid var(--gray-200); position: relative; overflow: hidden; }
+        .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--cyan); transform: scaleY(0); transition: transform var(--transition); }
+        .project-card:hover::before { transform: scaleY(1); }
+        .project-card::after { content: '\2192'; position: absolute; bottom: 25px; right: 25px; font-size: 28px; color: var(--cyan); transition: transform var(--transition); }
+        .project-card:hover::after { transform: translateX(5px); }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); border-color: var(--cyan); }
+        .project-card h3 { font-family: var(--font-heading); font-size: 24px; color: var(--navy); margin-bottom: 15px; padding-right: 50px; }
 
-        .logo img {
-            height: 50px;
-        }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .project-tag { display: inline-block; padding: 6px 14px; background: #E3F2FD; color: #01579B; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .project-tag.supervisor { background: #FFF3E0; color: #E65100; }
+        .project-tag.location { background: #E8F5E9; color: #1B5E20; }
+        .project-description { color: var(--gray-500); font-size: 15px; line-height: 1.7; margin-bottom: 15px; }
 
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 28, 61, 0.85); backdrop-filter: blur(5px); z-index: 999; opacity: 0; transition: opacity var(--transition); }
+        .modal-overlay.active { display: block; opacity: 1; }
+        .project-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7); width: 90%; max-width: 900px; max-height: 85vh; background: var(--white); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 1000; overflow: hidden; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .project-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #E84E10;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
+        .modal-header { background: linear-gradient(135deg, var(--navy) 0%, #003366 100%); color: var(--white); padding: 35px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .modal-header h3 { font-family: var(--font-heading); font-size: 28px; color: var(--white); margin: 0; flex: 1; line-height: 1.3; }
+        .modal-close { background: rgba(255,255,255,0.2); border: none; color: var(--white); font-size: 32px; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; line-height: 1; flex-shrink: 0; }
+        .modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
+        .modal-body { padding: 35px; overflow-y: auto; max-height: calc(85vh - 140px); }
+        .modal-section { margin-bottom: 30px; }
+        .modal-section h4 { font-family: var(--font-heading); font-size: 20px; color: var(--navy); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid var(--orange); display: flex; align-items: center; gap: 10px; }
+        .modal-section p, .modal-section ul { color: #555; line-height: 1.8; font-size: 15px; }
+        .modal-section ul { padding-left: 25px; margin-top: 12px; }
+        .modal-section ul li { margin-bottom: 10px; }
 
-        .back-button:hover {
-            background: #d63d0a;
-            transform: translateX(-5px);
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #001C3D 0%, #00152B 100%);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .page-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .field-icon-large {
-            font-size: 80px;
-            margin-bottom: 20px;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .page-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .page-header p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.9);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 20px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .breadcrumb a {
-            color: #00BCD4;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .breadcrumb a:hover {
-            color: #E84E10;
-        }
-
-        .breadcrumb span {
-            color: #999;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 35px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: #00BCD4;
-            transform: scaleY(0);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .project-card::after {
-            content: '→';
-            position: absolute;
-            bottom: 25px;
-            right: 25px;
-            font-size: 28px;
-            color: #00BCD4;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::after {
-            transform: translateX(5px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border-color: #00BCD4;
-        }
-
-        .project-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            color: #001C3D;
-            margin-bottom: 15px;
-            padding-right: 50px;
-        }
-
-        .project-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .project-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: #E3F2FD;
-            color: #01579B;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .project-tag.supervisor {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .project-tag.location {
-            background: #E8F5E9;
-            color: #1B5E20;
-        }
-
-        .project-description {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 28, 61, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .modal-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 1000;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-modal.active {
-            display: block;
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
-            color: white;
-            padding: 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .modal-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            color: white;
-            margin: 0;
-            flex: 1;
-            line-height: 1.3;
-        }
-
-        .modal-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 32px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .modal-close:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 35px;
-            overflow-y: auto;
-            max-height: calc(85vh - 140px);
-        }
-
-        .modal-section {
-            margin-bottom: 30px;
-        }
-
-        .modal-section h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            color: #001C3D;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #E84E10;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal-section p,
-        .modal-section ul {
-            color: #555;
-            line-height: 1.8;
-            font-size: 15px;
-        }
-
-        .modal-section ul {
-            padding-left: 25px;
-            margin-top: 12px;
-        }
-
-        .modal-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .contact-box {
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-            border: 2px solid #00BCD4;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-        .contact-box h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: #001C3D;
-            margin-bottom: 20px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info {
-            display: grid;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: #333;
-        }
-
-        .contact-item strong {
-            min-width: 120px;
-            color: #001C3D;
-            font-weight: 600;
-        }
-
-        .contact-item a {
-            color: #00BCD4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: #E84E10;
-        }
+        .contact-box { background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); border: 2px solid var(--cyan); border-radius: 15px; padding: 30px; margin-top: 30px; }
+        .contact-box h4 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .contact-info { display: grid; gap: 15px; }
+        .contact-item { display: flex; align-items: flex-start; gap: 12px; color: var(--gray-700); }
+        .contact-item strong { min-width: 120px; color: var(--navy); font-weight: 600; }
+        .contact-item a { color: var(--cyan); text-decoration: none; font-weight: 600; transition: color var(--transition); }
+        .contact-item a:hover { color: var(--orange); }
 
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 32px;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .project-modal {
-                width: 95%;
-                max-height: 90vh;
-            }
-            .modal-body {
-                padding: 25px;
-            }
-            .modal-header {
-                padding: 25px;
-            }
-            .modal-header h3 {
-                font-size: 22px;
-            }
+            .page-header h1 { font-size: 32px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-modal { width: 95%; max-height: 90vh; }
+            .modal-body { padding: 25px; }
+            .modal-header { padding: 25px; }
+            .modal-header h3 { font-size: 22px; }
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #E84E10;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3);
-            transition: all 0.3s;
-            z-index: 100;
-        }
-
-        .back-to-top.visible {
-            display: flex;
-        }
-
-        .back-to-top:hover {
-            background: #d63d0a;
-            transform: translateY(-5px);
-        }
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: var(--orange); color: var(--white); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3); transition: all var(--transition); z-index: 100; }
+        .back-to-top.visible { display: flex; }
+        .back-to-top:hover { background: var(--orange-dark); transform: translateY(-5px); }
     </style>
 </head>
-<body>
+<body class="page-content">
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
@@ -490,7 +106,7 @@
 
     <section class="page-header">
         <div class="page-header-content">
-            <span class="field-icon-large">🔭</span>
+            <span class="field-icon-large"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="m16 21-3.105-6.21"/><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/><path d="m6.158 8.633 1.114 4.456"/><path d="m8 21 3.105-6.21"/></svg></span>
             <h1>Physics & Astronomy</h1>
             <p>Explore research in particle physics, gravitational waves, and quantum physics</p>
         </div>
@@ -555,7 +171,7 @@
                 projectOptions: [
                     "The Matter-Antimatter asymmetry [theoretical]",
                     "The flavor structure of Dark Matter [theoretical]",
-                    "Solving the B to π K puzzle with New Physics [phenomenological, applied]",
+                    "Solving the B to \u03C0 K puzzle with New Physics [phenomenological, applied]",
                     "Charm: too light to be heavy, too heavy to be light [phenomenological, applied]"
                 ],
                 recommended: "Particle Physics, Quantum Mechanics, and Theory of Relativity courses",
@@ -574,17 +190,17 @@
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 card.onclick = () => showProject(index);
-                
+
                 card.innerHTML = `
                     <div class="project-meta">
-                        <span class="project-tag supervisor">📋 ${project.supervisor.split(',')[0]}</span>
-                        <span class="project-tag location">📍 ${project.location.split('(')[0].trim()}</span>
+                        <span class="project-tag supervisor"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> ${project.supervisor.split(',')[0]}</span>
+                        <span class="project-tag location"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${project.location.split('(')[0].trim()}</span>
                         <span class="project-tag">${project.type}</span>
                     </div>
                     <h3>${project.title}</h3>
                     <p class="project-description">${project.description}</p>
                 `;
-                
+
                 grid.appendChild(card);
             });
         }
@@ -592,64 +208,64 @@
         function showProject(index) {
             const project = projects[index];
             document.getElementById('modal-title').textContent = project.title;
-            
+
             let contentHTML = `
                 <div class="modal-section">
                     <div class="project-meta">
-                        <span class="project-tag supervisor">👨‍🏫 ${project.supervisor}</span>
-                        <span class="project-tag location">📍 ${project.location}</span>
+                        <span class="project-tag supervisor"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${project.supervisor}</span>
+                        <span class="project-tag location"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${project.location}</span>
                         <span class="project-tag">${project.type}</span>
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h4>📋 Project Overview</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> Project Overview</h4>
                     <p>${project.description}</p>
                 </div>
                 <div class="modal-section">
-                    <h4>🔬 Background</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg> Background</h4>
                     <p>${project.background}</p>
                 </div>
             `;
-            
+
             if (project.projectAreas) {
                 contentHTML += `
                     <div class="modal-section">
-                        <h4>🎯 Project Areas</h4>
+                        <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Project Areas</h4>
                         <ul>${project.projectAreas.map(area => `<li>${area}</li>`).join('')}</ul>
                     </div>
                 `;
             }
-            
+
             if (project.projectOptions) {
                 contentHTML += `
                     <div class="modal-section">
-                        <h4>🎯 Project Options</h4>
+                        <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Project Options</h4>
                         <ul>${project.projectOptions.map(option => `<li>${option}</li>`).join('')}</ul>
                     </div>
                 `;
             }
-            
+
             if (project.recommended) {
                 contentHTML += `
                     <div class="modal-section">
-                        <h4>📚 Recommended Courses</h4>
+                        <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Recommended Courses</h4>
                         <p>${project.recommended}</p>
                     </div>
                 `;
             }
-            
+
             if (project.note) {
                 contentHTML += `
                     <div class="modal-section">
-                        <h4>📝 Note</h4>
+                        <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg> Note</h4>
                         <p>${project.note}</p>
                     </div>
                 `;
             }
-            
+
             contentHTML += `
                 <div class="contact-box">
-                    <h4>📧 Contact Information</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Contact Information</h4>
                     <div class="contact-info">
                         <div class="contact-item">
                             <strong>Contact:</strong>
@@ -660,7 +276,7 @@
                             <a href="mailto:${project.contact.email}">${project.contact.email}</a>
                         </div>
             `;
-            
+
             if (project.contact.office) {
                 contentHTML += `
                     <div class="contact-item">
@@ -669,7 +285,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.location) {
                 contentHTML += `
                     <div class="contact-item">
@@ -678,7 +294,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.website) {
                 contentHTML += `
                     <div class="contact-item">
@@ -687,9 +303,9 @@
                     </div>
                 `;
             }
-            
+
             contentHTML += `</div></div>`;
-            
+
             document.getElementById('modal-content').innerHTML = contentHTML;
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('project-modal').classList.add('active');

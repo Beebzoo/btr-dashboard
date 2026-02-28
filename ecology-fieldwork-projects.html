@@ -13,469 +13,85 @@
   gtag('js', new Date());
   gtag('config', 'G-KJ51G48F42');
 </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        .back-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--orange); color: var(--white); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all var(--transition); }
+        .back-button:hover { background: var(--orange-dark); transform: translateX(-5px); }
 
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            zoom: 0.7;
-        }
+        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color: var(--white); padding: 50px 20px; text-align: center; }
+        .page-header-content { max-width: 1200px; margin: 0 auto; }
+        .field-icon-large { font-size: 80px; margin-bottom: 20px; display: block; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .page-header h1 { font-family: var(--font-heading); font-size: 42px; font-weight: 700; margin-bottom: 15px; }
+        .page-header p { font-size: 18px; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; }
 
-        .header {
-            background: white;
-            color: #001C3D;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 0 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-500); }
+        .breadcrumb a { color: var(--cyan); text-decoration: none; transition: color var(--transition); }
+        .breadcrumb a:hover { color: var(--orange); }
+        .breadcrumb span { color: var(--gray-400); }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 30px; margin-top: 30px; }
+        .project-card { background: var(--white); border-radius: 12px; padding: 30px; cursor: pointer; transition: all var(--transition); border: 2px solid var(--gray-200); position: relative; overflow: hidden; }
+        .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--cyan); transform: scaleY(0); transition: transform var(--transition); }
+        .project-card:hover::before { transform: scaleY(1); }
+        .project-card::after { content: '\2192'; position: absolute; bottom: 25px; right: 25px; font-size: 28px; color: var(--cyan); transition: transform var(--transition); }
+        .project-card:hover::after { transform: translateX(5px); }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); border-color: var(--cyan); }
+        .project-card h3 { font-family: var(--font-heading); font-size: 22px; color: var(--navy); margin-bottom: 15px; padding-right: 50px; }
 
-        .logo img {
-            height: 50px;
-        }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .project-tag { display: inline-block; padding: 6px 14px; background: #E3F2FD; color: #01579B; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .project-tag.supervisor { background: #FFF3E0; color: #E65100; }
+        .project-tag.location { background: #E8F5E9; color: #1B5E20; }
+        .project-description { color: var(--gray-500); font-size: 15px; line-height: 1.7; margin-bottom: 15px; }
 
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 28, 61, 0.85); backdrop-filter: blur(5px); z-index: 999; opacity: 0; transition: opacity var(--transition); }
+        .modal-overlay.active { display: block; opacity: 1; }
+        .project-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7); width: 90%; max-width: 900px; max-height: 85vh; background: var(--white); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 1000; overflow: hidden; opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .project-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #E84E10;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
+        .modal-header { background: linear-gradient(135deg, var(--navy) 0%, #003366 100%); color: var(--white); padding: 35px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+        .modal-header h3 { font-family: var(--font-heading); font-size: 28px; color: var(--white); margin: 0; flex: 1; line-height: 1.3; }
+        .modal-close { background: rgba(255,255,255,0.2); border: none; color: var(--white); font-size: 32px; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; line-height: 1; flex-shrink: 0; }
+        .modal-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
+        .modal-body { padding: 35px; overflow-y: auto; max-height: calc(85vh - 140px); }
+        .modal-section { margin-bottom: 30px; }
+        .modal-section h4 { font-family: var(--font-heading); font-size: 20px; color: var(--navy); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid var(--orange); display: flex; align-items: center; gap: 10px; }
+        .modal-section p, .modal-section ul { color: #555; line-height: 1.8; font-size: 15px; }
+        .modal-section ul { padding-left: 25px; margin-top: 12px; }
+        .modal-section ul li { margin-bottom: 10px; }
 
-        .back-button:hover {
-            background: #d63d0a;
-            transform: translateX(-5px);
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, #001C3D 0%, #00152B 100%);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .page-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .field-icon-large {
-            font-size: 80px;
-            margin-bottom: 20px;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .page-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .page-header p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.9);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 20px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .breadcrumb a {
-            color: #00BCD4;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .breadcrumb a:hover {
-            color: #E84E10;
-        }
-
-        .breadcrumb span {
-            color: #999;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: #00BCD4;
-            transform: scaleY(0);
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .project-card::after {
-            content: '→';
-            position: absolute;
-            bottom: 25px;
-            right: 25px;
-            font-size: 28px;
-            color: #00BCD4;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::after {
-            transform: translateX(5px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border-color: #00BCD4;
-        }
-
-        .project-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            color: #001C3D;
-            margin-bottom: 15px;
-            padding-right: 50px;
-        }
-
-        .project-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .project-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: #E3F2FD;
-            color: #01579B;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .project-tag.supervisor {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .project-tag.location {
-            background: #E8F5E9;
-            color: #1B5E20;
-        }
-
-        .project-description {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 28, 61, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .modal-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 1000;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-modal.active {
-            display: block;
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #001C3D 0%, #003366 100%);
-            color: white;
-            padding: 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .modal-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            color: white;
-            margin: 0;
-            flex: 1;
-            line-height: 1.3;
-        }
-
-        .modal-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 32px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .modal-close:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 35px;
-            overflow-y: auto;
-            max-height: calc(85vh - 140px);
-        }
-
-        .modal-section {
-            margin-bottom: 30px;
-        }
-
-        .modal-section h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            color: #001C3D;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #E84E10;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal-section p,
-        .modal-section ul {
-            color: #555;
-            line-height: 1.8;
-            font-size: 15px;
-        }
-
-        .modal-section ul {
-            padding-left: 25px;
-            margin-top: 12px;
-        }
-
-        .modal-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .contact-box {
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-            border: 2px solid #00BCD4;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-        .contact-box h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: #001C3D;
-            margin-bottom: 20px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info {
-            display: grid;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: #333;
-        }
-
-        .contact-item strong {
-            min-width: 120px;
-            color: #001C3D;
-            font-weight: 600;
-        }
-
-        .contact-item a {
-            color: #00BCD4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: #E84E10;
-        }
+        .contact-box { background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); border: 2px solid var(--cyan); border-radius: 15px; padding: 30px; margin-top: 30px; }
+        .contact-box h4 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .contact-info { display: grid; gap: 15px; }
+        .contact-item { display: flex; align-items: flex-start; gap: 12px; color: var(--gray-700); }
+        .contact-item strong { min-width: 120px; color: var(--navy); font-weight: 600; }
+        .contact-item a { color: var(--cyan); text-decoration: none; font-weight: 600; transition: color var(--transition); }
+        .contact-item a:hover { color: var(--orange); }
 
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 32px;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .project-modal {
-                width: 95%;
-                max-height: 90vh;
-            }
-            .modal-body {
-                padding: 25px;
-            }
-            .modal-header {
-                padding: 25px;
-            }
-            .modal-header h3 {
-                font-size: 22px;
-            }
+            .page-header h1 { font-size: 32px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-modal { width: 95%; max-height: 90vh; }
+            .modal-body { padding: 25px; }
+            .modal-header { padding: 25px; }
+            .modal-header h3 { font-size: 22px; }
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #E84E10;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3);
-            transition: all 0.3s;
-            z-index: 100;
-        }
-
-        .back-to-top.visible {
-            display: flex;
-        }
-
-        .back-to-top:hover {
-            background: #d63d0a;
-            transform: translateY(-5px);
-        }
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: var(--orange); color: var(--white); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(232, 78, 16, 0.3); transition: all var(--transition); z-index: 100; }
+        .back-to-top.visible { display: flex; }
+        .back-to-top:hover { background: var(--orange-dark); transform: translateY(-5px); }
     </style>
 </head>
-<body>
+<body class="page-content">
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
@@ -490,7 +106,7 @@
 
     <section class="page-header">
         <div class="page-header-content">
-            <span class="field-icon-large">🌿</span>
+            <span class="field-icon-large"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
             <h1>Ecology & Field Research</h1>
             <p>Explore evolution, biodiversity, environmental interactions, and field studies</p>
         </div>
@@ -600,7 +216,7 @@
                 description: "Study carbon and nitrogen cycling in Mediterranean forests and how climate change affects ecosystem processes.",
                 background: "Mediterranean forests face predicted temperature increases and water resource decreases. Research uses C and N isotopic natural abundance as proxies to understand canopy effects and climate change impacts.",
                 focus: "Compare traditional Quercus stands and Pinus plantations to understand differences in soil properties, carbon/nitrogen acquisition, and ecosystem fluxes.",
-                methods: "Stable isotopes (δ¹³C and δ¹⁵N), soil analysis, plant physiology",
+                methods: "Stable isotopes (\u03B4\u00B9\u00B3C and \u03B4\u00B9\u2075N), soil analysis, plant physiology",
                 location_detail: "Field work in Sierra Nevada National Park, Spain",
                 contact: {
                     name: "Dr. Salvador Aljazairi",
@@ -662,17 +278,17 @@
                 const card = document.createElement('div');
                 card.className = 'project-card';
                 card.onclick = () => showProject(index);
-                
+
                 card.innerHTML = `
                     <div class="project-meta">
-                        <span class="project-tag supervisor">📋 ${project.supervisor}</span>
-                        <span class="project-tag location">📍 ${project.location.split('(')[0].trim()}</span>
+                        <span class="project-tag supervisor"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> ${project.supervisor}</span>
+                        <span class="project-tag location"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${project.location.split('(')[0].trim()}</span>
                         <span class="project-tag">${project.type}</span>
                     </div>
                     <h3>${project.title}</h3>
                     <p class="project-description">${project.description}</p>
                 `;
-                
+
                 grid.appendChild(card);
             });
         }
@@ -680,34 +296,34 @@
         function showProject(index) {
             const project = projects[index];
             document.getElementById('modal-title').textContent = project.title;
-            
+
             let contentHTML = `
                 <div class="modal-section">
                     <div class="project-meta">
-                        <span class="project-tag supervisor">👨‍🏫 ${project.supervisor}</span>
-                        <span class="project-tag location">📍 ${project.location}</span>
+                        <span class="project-tag supervisor"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${project.supervisor}</span>
+                        <span class="project-tag location"><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${project.location}</span>
                         <span class="project-tag">${project.type}</span>
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h4>📋 Project Overview</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> Project Overview</h4>
                     <p>${project.description}</p>
                 </div>
                 <div class="modal-section">
-                    <h4>🔬 Background</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg> Background</h4>
                     <p>${project.background}</p>
                 </div>
             `;
-            
+
             // Array fields
             const arrayFields = [
-                { key: 'projectAreas', title: '🎯 Project Areas' },
-                { key: 'limburgProjects', title: '🌍 Limburg Projects' },
-                { key: 'neotropicsProjects', title: '🌴 Neotropics Projects' },
-                { key: 'researchProjects', title: '🔬 Research Projects' },
-                { key: 'projectFocus', title: '🎯 Project Focus' }
+                { key: 'projectAreas', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Project Areas' },
+                { key: 'limburgProjects', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Limburg Projects' },
+                { key: 'neotropicsProjects', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg> Neotropics Projects' },
+                { key: 'researchProjects', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg> Research Projects' },
+                { key: 'projectFocus', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Project Focus' }
             ];
-            
+
             arrayFields.forEach(({ key, title }) => {
                 if (project[key]) {
                     contentHTML += `
@@ -718,21 +334,21 @@
                     `;
                 }
             });
-            
+
             // Text fields
             const textFields = [
-                { key: 'focus', title: '🎯 Focus' },
-                { key: 'facilities', title: '🏠 Facilities' },
-                { key: 'activities', title: '🎨 Activities' },
-                { key: 'desiredSkills', title: '💡 Desired Skills' },
-                { key: 'background_preferred', title: '📚 Preferred Background' },
-                { key: 'duration', title: '⏱️ Duration' },
-                { key: 'whyJoin', title: '✨ Why Join' },
-                { key: 'note', title: '📝 Note' },
-                { key: 'methods', title: '🔧 Methods' },
-                { key: 'location_detail', title: '📍 Field Location' }
+                { key: 'focus', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Focus' },
+                { key: 'facilities', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Facilities' },
+                { key: 'activities', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> Activities' },
+                { key: 'desiredSkills', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Desired Skills' },
+                { key: 'background_preferred', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Preferred Background' },
+                { key: 'duration', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Duration' },
+                { key: 'whyJoin', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg> Why Join' },
+                { key: 'note', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg> Note' },
+                { key: 'methods', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Methods' },
+                { key: 'location_detail', title: '<svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Field Location' }
             ];
-            
+
             textFields.forEach(({ key, title }) => {
                 if (project[key]) {
                     contentHTML += `
@@ -743,14 +359,14 @@
                     `;
                 }
             });
-            
+
             // Contact box
             contentHTML += `
                 <div class="contact-box">
-                    <h4>📧 Contact Information</h4>
+                    <h4><svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" style="vertical-align:-0.125em;display:inline-block;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Contact Information</h4>
                     <div class="contact-info">
             `;
-            
+
             if (project.contact.name) {
                 contentHTML += `
                     <div class="contact-item">
@@ -759,7 +375,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.email) {
                 contentHTML += `
                     <div class="contact-item">
@@ -768,7 +384,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.office) {
                 contentHTML += `
                     <div class="contact-item">
@@ -777,7 +393,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.website) {
                 contentHTML += `
                     <div class="contact-item">
@@ -786,7 +402,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.instagram) {
                 contentHTML += `
                     <div class="contact-item">
@@ -795,7 +411,7 @@
                     </div>
                 `;
             }
-            
+
             if (project.contact.institution) {
                 contentHTML += `
                     <div class="contact-item">
@@ -804,9 +420,9 @@
                     </div>
                 `;
             }
-            
+
             contentHTML += `</div></div>`;
-            
+
             document.getElementById('modal-content').innerHTML = contentHTML;
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('project-modal').classList.add('active');

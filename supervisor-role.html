@@ -13,184 +13,118 @@
   gtag('js', new Date());
   gtag('config', 'G-KJ51G48F42');
 </script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            zoom: 0.7;
-        }
-
-        /* Header */
-        .header {
-            background: white;
-            color: #001C3D;
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #001C3D;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .logo-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: #001C3D;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #E84E10;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s;
-        }
-
-        .back-button:hover {
-            background: #d44509;
-            transform: translateX(-3px);
-        }
-
-        /* Hero Section */
-        .hero {
+        /* Orange hero variant for supervisor sub-pages */
+        .hero--orange {
             background: linear-gradient(135deg, #E84E10 0%, #AE0B12 100%);
             color: white;
             padding: 60px 30px;
             text-align: center;
         }
 
-        .hero h1 {
+        .hero--orange h1 {
             font-size: 42px;
             margin-bottom: 15px;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
-        .hero p {
+        .hero--orange p {
             font-size: 18px;
             opacity: 0.95;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Main Content */
+        /* Content wrapper for long-form sub-pages */
         .content-wrapper {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 30px;
         }
 
-        /* Info Card */
-        .info-card {
-            background: white;
-            border-radius: 12px;
+        /* Override shared info-card for long-form content blocks */
+        .content-wrapper .info-card {
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: none;
         }
 
-        .info-card h2 {
+        .content-wrapper .info-card:hover {
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+
+        .content-wrapper .info-card h2 {
             font-size: 28px;
-            color: #001C3D;
+            color: var(--navy);
             margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            border-bottom: 3px solid #E84E10;
+            border-bottom: 3px solid var(--orange);
             padding-bottom: 10px;
         }
 
-        .info-card h3 {
+        .content-wrapper .info-card h3 {
             font-size: 22px;
-            color: #E84E10;
+            color: var(--orange);
             margin-top: 30px;
             margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
         }
 
-        .info-card h4 {
+        .content-wrapper .info-card h4 {
             font-size: 18px;
-            color: #002D5A;
+            color: var(--navy-medium);
             margin-top: 20px;
             margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
         }
 
-        .info-card p {
+        .content-wrapper .info-card p {
             margin-bottom: 15px;
             font-size: 16px;
             line-height: 1.8;
+            color: var(--text-primary);
         }
 
-        .info-card ul {
+        .content-wrapper .info-card ul {
             margin-left: 25px;
             margin-bottom: 20px;
+            list-style: disc;
         }
 
-        .info-card li {
+        .content-wrapper .info-card li {
             margin-bottom: 10px;
             font-size: 16px;
             line-height: 1.7;
+            color: var(--text-primary);
         }
 
-        .info-card strong {
-            color: #001C3D;
+        .content-wrapper .info-card strong {
+            color: var(--navy);
             font-weight: 600;
         }
 
         /* Highlight Box */
         .highlight-box {
             background: #FFF3E0;
-            border-left: 4px solid #E84E10;
+            border-left: 4px solid var(--orange);
             padding: 20px;
             margin: 25px 0;
             border-radius: 6px;
         }
 
         .highlight-box h4 {
-            color: #E84E10;
+            color: var(--orange);
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -207,14 +141,14 @@
         /* Grading Scale Box */
         .grading-box {
             background: #E6F7FF;
-            border-left: 4px solid #00BCD4;
+            border-left: 4px solid var(--cyan);
             padding: 20px;
             margin: 25px 0;
             border-radius: 6px;
         }
 
         .grading-box h4 {
-            color: #00BCD4;
+            color: var(--cyan);
             margin-top: 0;
             margin-bottom: 15px;
         }
@@ -228,18 +162,18 @@
 
         .grade-number {
             font-weight: 700;
-            color: #001C3D;
+            color: var(--navy);
             min-width: 40px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .grade-description {
-            color: #666;
+            color: var(--gray-500);
         }
 
         /* Contact Box */
         .contact-box {
-            background: linear-gradient(135deg, #002D5A 0%, #001C3D 100%);
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 100%);
             color: white;
             padding: 30px;
             border-radius: 12px;
@@ -250,7 +184,7 @@
         .contact-box h3 {
             color: white;
             margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-heading);
         }
 
         .contact-box p {
@@ -259,7 +193,7 @@
         }
 
         .contact-box a {
-            color: #00BCD4;
+            color: var(--cyan);
             text-decoration: none;
             font-weight: 600;
         }
@@ -282,22 +216,14 @@
             color: #2E7D32;
         }
 
-        /* Footer */
-        .footer {
-            background: #002D5A;
-            color: white;
-            padding: 30px 0;
-            margin-top: 60px;
-            text-align: center;
-        }
-
+        /* Simple footer for sub-pages */
         .footer p {
             margin: 8px 0;
             font-size: 14px;
         }
 
         .footer a {
-            color: #E84E10;
+            color: var(--orange);
             text-decoration: none;
         }
 
@@ -307,15 +233,15 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero--orange h1 {
                 font-size: 32px;
             }
 
-            .info-card {
+            .content-wrapper .info-card {
                 padding: 25px;
             }
 
-            .info-card h2 {
+            .content-wrapper .info-card h2 {
                 font-size: 24px;
             }
 
@@ -326,7 +252,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page-content">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -334,7 +260,7 @@
                 <img src="msp-logo.png" alt="Maastricht Science Programme">
                 <span class="logo-text">Maastricht Science Programme</span>
             </a>
-            <a href="supervisors.html" class="back-button">
+            <a href="supervisors.html" class="back-btn">
                 <span>←</span>
                 <span>Back to Supervisor Hub</span>
             </a>
@@ -342,30 +268,30 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero--orange">
         <h1>Research Supervisor Role & Responsibilities</h1>
         <p>Your comprehensive guide to supervising BTR students through their thesis research journey</p>
     </section>
 
     <!-- Main Content -->
     <div class="content-wrapper">
-        
+
         <!-- Overview -->
         <div class="info-card">
             <h2>Overview: The Bachelor Thesis Research</h2>
             <p>The Bachelor Thesis Research (BTR) is a one-semester, <strong>30 ECTS</strong> research project that marks the completion of the Maastricht Science Programme degree. Students specialize in a scientific area of their choosing and experience the entire scientific cycle: formulating research questions, designing experiments, analyzing results, and communicating findings.</p>
-            
+
             <p>Students may conduct their BTR with MSP staff, at other Maastricht University locations, or at another institution within or outside the Netherlands.</p>
 
             <div class="timeline-note">
-                <strong>⏰ Important:</strong> Specific deadlines and timeline details vary by cohort (September or February start). Please refer to the cohort-specific timeline or contact the BTR Office for your student's exact deadlines.
+                <strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Important:</strong> Specific deadlines and timeline details vary by cohort (September or February start). Please refer to the cohort-specific timeline or contact the BTR Office for your student's exact deadlines.
             </div>
         </div>
 
         <!-- Your Role as Research Supervisor -->
         <div class="info-card">
             <h2>Your Role as Research Supervisor</h2>
-            
+
             <p>As the Research Supervisor, you provide support, feedback, and assessment throughout the BTR. You are the primary point of contact for the student's research journey.</p>
 
             <h3>Key Responsibilities</h3>
@@ -389,7 +315,7 @@
 
             <h4>3. Feedback on Written Work</h4>
             <div class="highlight-box">
-                <h4>⚠️ Important Feedback Limitation</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Important Feedback Limitation</h4>
                 <p>To ensure a "level playing field" for all students:</p>
                 <ul>
                     <li><strong>Proposal:</strong> Provide feedback on ONE draft only (not more)</li>
@@ -410,7 +336,7 @@
         <!-- Assessment Responsibilities -->
         <div class="info-card">
             <h2>Assessment & Grading Responsibilities</h2>
-            
+
             <p>As Research Supervisor, you are responsible for grading <strong>four of the five BTR components</strong>:</p>
 
             <h3>Components You Grade</h3>
@@ -460,9 +386,9 @@
             </ul>
 
             <div class="grading-box">
-                <h4>🎓 Understanding the Dutch Grading System</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Understanding the Dutch Grading System</h4>
                 <p>The Dutch grading system uses a scale from 1.0 (lowest) to 10.0 (highest), reported to one decimal place:</p>
-                
+
                 <div class="grade-item">
                     <span class="grade-number">5.5</span>
                     <span class="grade-description">= Minimum passing grade</span>
@@ -509,7 +435,7 @@
             </ul>
 
             <div class="highlight-box">
-                <h4>⚠️ Important: When Multiple Supervisors Are Involved</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Important: When Multiple Supervisors Are Involved</h4>
                 <p>In situations where a student is supervised by multiple individuals or is being guided by a PhD student assistant:</p>
                 <ul>
                     <li>It is imperative that the <strong>main Research Supervisor</strong> processes the final grades in Collent</li>
@@ -520,7 +446,7 @@
 
             <h3>Handling Grading Discrepancies</h3>
             <p>When you and the Internal Advisor grade jointly (Proposal and Thesis):</p>
-            
+
             <ul>
                 <li>If your grades are <strong>more than 1.5 apart</strong>, the BTR Office will ask you to discuss this and reach a consensus</li>
                 <li>This does not necessarily mean either grade will change (although it may), but ensures understanding of different perspectives</li>
@@ -539,7 +465,7 @@
 
             <h3>Deadline Importance</h3>
             <div class="highlight-box">
-                <h4>⏰ Critical: Submit Grades On Time</h4>
+                <h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; display: inline-block;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Critical: Submit Grades On Time</h4>
                 <p>Complete grading forms in Collent before or on the deadline:</p>
                 <ul>
                     <li>Grades are necessarily returned on a short deadline due to graduation requirements</li>
@@ -613,7 +539,7 @@
     <footer class="footer">
         <p><strong>Bachelor Thesis Research - Maastricht Science Programme</strong></p>
         <p style="margin-top: 10px;">
-            <a href="supervisors.html">Back to Supervisor Hub</a> | 
+            <a href="supervisors.html">Back to Supervisor Hub</a> |
             <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact BTR Office</a>
         </p>
         <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
