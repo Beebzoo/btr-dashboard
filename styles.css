@@ -2926,7 +2926,6 @@ ul {
     background: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    overflow: hidden;
     border: 2px solid var(--border-color);
 }
 
@@ -2935,6 +2934,7 @@ ul {
     color: var(--white);
     padding: 20px;
     text-align: center;
+    border-radius: 10px 10px 0 0;
 }
 
 .calendar-header h2 { font-size: 24px; font-weight: 600; font-family: var(--font-heading); }
