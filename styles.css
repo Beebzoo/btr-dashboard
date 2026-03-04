@@ -2913,12 +2913,12 @@ ul {
 /* Calendar Grid */
 .calendars-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
 
-.calendar-container { grid-column: span 2; }
+.calendar-container { grid-column: span 2; min-width: 0; }
 .calendar-container:nth-child(4) { grid-column: 2 / 4; }
 .calendar-container:nth-child(5) { grid-column: 4 / 6; }
 
@@ -2942,16 +2942,16 @@ ul {
 
 .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 20px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding: 10px;
 }
 
 .day-header {
     text-align: center;
     font-weight: 600;
-    padding: 10px;
+    padding: 6px 2px;
     color: var(--navy-medium);
-    font-size: 14px;
+    font-size: 13px;
     font-family: var(--font-heading);
 }
 
