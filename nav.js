@@ -49,18 +49,8 @@
         'timeline-september.html': ['September 2026 Cohort|september-cohort-2026.html', 'Timeline'],
         'faq.html': ['FAQ'],
         'rubrics.html': ['Assessment Rubrics'],
-        'potential-projects.html': ['Browse Projects'],
         'supervisor-role.html': ['Supervisors|supervisors.html', 'Supervisor Role'],
-        'supervisor-btr-overview.html': ['Supervisors|supervisors.html', 'BTR Overview'],
-        'supervisor-project-submission.html': ['Supervisors|supervisors.html', 'Project Submission'],
-        'bioinformatics-projects.html': ['Browse Projects|potential-projects.html', 'Bioinformatics'],
-        'biomedical-projects.html': ['Browse Projects|potential-projects.html', 'Biomedical Sciences'],
-        'biotechnology-projects.html': ['Browse Projects|potential-projects.html', 'Biotechnology'],
-        'ecology-fieldwork-projects.html': ['Browse Projects|potential-projects.html', 'Ecology & Fieldwork'],
-        'materials-chemistry-projects.html': ['Browse Projects|potential-projects.html', 'Materials & Chemistry'],
-        'neuroscience-projects.html': ['Browse Projects|potential-projects.html', 'Neuroscience'],
-        'physics-projects.html': ['Browse Projects|potential-projects.html', 'Physics'],
-        'sustainability-projects.html': ['Browse Projects|potential-projects.html', 'Sustainability']
+        'supervisor-btr-overview.html': ['Supervisors|supervisors.html', 'BTR Overview']
     };
 
     var crumbs = breadcrumbMap[path];
