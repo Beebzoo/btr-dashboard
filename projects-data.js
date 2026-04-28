@@ -589,6 +589,24 @@ window.BTR_PROJECTS = [
     dateAdded: "2025-12"
   },
   {
+    title: "Smarter Semi-batch Method for Better Superplasticizers",
+    supervisor: "Quan Liu & Prof. Alexander van Herk",
+    institution: "Eindhoven University of Technology",
+    location: "Eindhoven",
+    email: "l.q.liu@tue.nl",
+    disciplines: ["Chemistry","Materials Science","Sustainability"],
+    types: ["Lab","Data Analysis"],
+    description: "Synthesise next-generation polycarboxylate ether superplasticizers (PCEs) using a controlled semi-batch approach and test their performance in real cement systems.",
+    background: "Cement products are extensively utilised worldwide. To enhance the flowability and strength of cement, high-range water reducers — superplasticizers (SPs) — were introduced in the 1960s. SPs make cement easier to work with while keeping it strong, even at low water content. Polycarboxylate ether superplasticizers (PCEs) are the third generation of SPs and are especially powerful due to their unique comb-like structure. PCEs are comb-shaped copolymers of carboxylic acid-containing monomers (typically methacrylic acid or acrylic acid) that anchor the polymer to cement particles, and macromonomers with long poly(ethylene oxide) side chains that provide steric stabilisation. However, most PCEs are made using traditional methods that produce polymers with uneven composition. This project uses a controlled semi-batch synthesis (smart monomer feeding into the reactor, supported by advanced software) to create more uniform polymers with potentially better and more reliable performance. Project team: Quan Liu (PhD candidate), Prof. Alexander van Herk, Prof. Hans Heuts, Prof. Jos Brouwers.",
+    objectives: ["Synthesise PCE copolymers with different macromonomers, acid monomers and molar ratios using controlled semi-batch polymerisation","Test the flowability of cement pastes incorporating the synthesised PCEs","Study the hydration behaviour of cement with PCEs","Investigate the adsorption performance of PCEs on cement particles","Establish a direct relationship between PCE structure and properties"],
+    details: ["Copolymer (PCE) synthesis using controlled semi-batch polymerisation with software-supported monomer feeding","Cement paste flowability testing","Hydration behaviour analysis","PCE adsorption performance measurements","Working alongside both polymer chemists and cement researchers"],
+    methods: "Semi-batch copolymerisation, software-supported monomer feeding profiles, cement paste rheology, hydration analysis, adsorption studies",
+    recommended: "Chemistry knowledge is helpful but not required. Necessary training in experimental methods, data analysis and underlying scientific concepts is provided. Open to students interested in combining chemistry with real-world materials applications.",
+    note: "Project scope and objectives are defined together with the student during the first month, with flexibility for independent exploration. Typical duration ~4 months. Potential for joint publication if the project goes well. Co-supervisors: Prof. A.M. van Herk (A.M.v.Herk@tue.nl), Prof. J.P.A. Heuts, Prof. H.J.H. Brouwers.",
+    references: ["Papayianni, I. et al. (2005). Influence of superplasticizer type and mix design parameters on concrete mixtures. Cem. Concr. Compos., 27(2), 217–222.","Lei, L., Hirata, T. & Plank, J. (2022). 40 Years of PCE superplasticizers — history, current state-of-the-art and an outlook. Cem. Concr. Res., 157, 106826.","Plank, J. et al. (2015). Chemical admixtures — chemistry, applications and their impact on concrete microstructure and durability. Cem. Concr. Res., 78, 81–99.","Chen, X. et al. (2022). Synthesis and property of EPEG-based polycarboxylate ether superplasticizers via RAFT polymerization. Polym. Eng. Sci., 62(9), 2769–2778.","van Herk, A.M. & Liu, Q. (2024). The importance of the knowledge of errors in the determination of copolymer reactivity ratios from composition data. Macromol. Theory Simul.","Rusli, W. & van Herk, A.M. (2025). An improved iterative method to obtain optimal monomer addition profiles in copolymerizations."],
+    dateAdded: "2026-04"
+  },
+  {
     title: "Non-Crystallizing Deep Eutectic Solvents",
     supervisor: "Dr. Laura Kollau",
     institution: "Circular Chemical Engineering, UM",
