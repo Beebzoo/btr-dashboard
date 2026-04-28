@@ -117,6 +117,15 @@
   .counter{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}
   .counter.over{color:#c0392b}
 
+  .supervisor-row{position:relative;border:1px dashed var(--line);border-radius:var(--radius);padding:14px 16px 4px;margin-bottom:14px;background:#fcfcfd}
+  .supervisor-row .row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .supervisor-row .row-head .role{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .supervisor-row .remove-btn{background:none;border:0;color:var(--muted);font-size:13px;cursor:pointer;padding:4px 6px;border-radius:4px;font-family:var(--sans)}
+  .supervisor-row .remove-btn:hover{color:#c0392b;background:#fdecea}
+  .add-supervisor{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1px dashed var(--accent);padding:9px 16px;font:600 13px var(--sans);border-radius:6px;cursor:pointer;margin-top:2px;transition:all .15s}
+  .add-supervisor:hover{background:#f0f8fc;border-style:solid}
+  .add-supervisor svg{width:14px;height:14px}
+
   button[type=submit]{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border:0;padding:14px 28px;font:600 14.5px var(--sans);border-radius:6px;cursor:pointer;letter-spacing:.01em;transition:background .15s, transform .15s}
   button[type=submit]:hover{background:var(--accent);transform:translateY(-1px)}
   button[type=submit] svg{width:15px;height:15px}
@@ -230,19 +239,31 @@
       <fieldset id="submit">
         <legend>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Supervisor
+          Supervisor(s)
         </legend>
-        <div class="row">
-          <div class="field">
-            <label for="name">Full name <span class="req">*</span></label>
-            <input id="name" name="name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="email">Email <span class="req">*</span></label>
-            <input id="email" name="email" type="email" required>
+        <div id="supervisors">
+          <div class="supervisor-row" data-index="0">
+            <div class="row-head">
+              <span class="role">Primary supervisor</span>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="name">Full name <span class="req">*</span></label>
+                <input id="name" name="name" type="text" required>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" name="email" type="email" required>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="field">
+        <button type="button" class="add-supervisor" id="add-supervisor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Add another supervisor
+        </button>
+        <div class="hint" style="margin-top:8px">Use this if a project has multiple supervisors or co-supervisors (e.g. PhD candidate plus professor).</div>
+        <div class="field" style="margin-top:22px">
           <label for="department">Faculty / Department <span class="req">*</span></label>
           <input id="department" name="department" type="text" required placeholder="e.g. Faculty of Science and Engineering — Department of Physics">
         </div>
@@ -443,6 +464,52 @@
     counter.classList.toggle('over', words > 500);
   });
 
+  // ----- ADDITIONAL SUPERVISORS -------------------------------------------
+  // The first supervisor row is required and uses fixed input names
+  // (name, email) so existing email forwarding keeps working. Extra rows
+  // are added dynamically and submitted as name_2, email_2, name_3, …
+  const supervisors = document.getElementById('supervisors');
+  const addBtn = document.getElementById('add-supervisor');
+  let supCount = 1;
+  addBtn.addEventListener('click', () => {
+    supCount += 1;
+    const idx = supCount;
+    const row = document.createElement('div');
+    row.className = 'supervisor-row';
+    row.dataset.index = idx - 1;
+    row.innerHTML = `
+      <div class="row-head">
+        <span class="role">Co-supervisor ${idx - 1}</span>
+        <button type="button" class="remove-btn" aria-label="Remove this supervisor">Remove</button>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="name_${idx}">Full name <span class="req">*</span></label>
+          <input id="name_${idx}" name="name_${idx}" type="text" required>
+        </div>
+        <div class="field">
+          <label for="email_${idx}">Email <span class="req">*</span></label>
+          <input id="email_${idx}" name="email_${idx}" type="email" required>
+        </div>
+      </div>
+    `;
+    supervisors.appendChild(row);
+    row.querySelector('.remove-btn').addEventListener('click', () => {
+      row.remove();
+      relabelCoSupervisors();
+    });
+    row.querySelector('input').focus();
+  });
+
+  function relabelCoSupervisors(){
+    const rows = supervisors.querySelectorAll('.supervisor-row');
+    rows.forEach((r, i) => {
+      if (i === 0) return;
+      const role = r.querySelector('.role');
+      if (role) role.textContent = 'Co-supervisor ' + i;
+    });
+  }
+
   const form = document.getElementById('btr-form');
   const ok = document.getElementById('success');
   const err = document.getElementById('error');
@@ -473,6 +540,8 @@
       if (res.ok) {
         form.reset();
         counter.textContent = '0 words · target 200–500';
+        supervisors.querySelectorAll('.supervisor-row:not([data-index="0"])').forEach(r => r.remove());
+        supCount = 1;
         ok.style.display = 'block';
         window.scrollTo({top: form.offsetTop - 40, behavior:'smooth'});
       } else { throw new Error('Submission failed'); }
