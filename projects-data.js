@@ -12,8 +12,8 @@
            background, details[], methods, recommended, note (optional)
 
    ALLOWED DISCIPLINES: Bioinformatics, Biomedical Sciences, Biotechnology,
-     Chemistry, Ecology & Fieldwork, Materials Science, Neuroscience,
-     Physics, Sustainability, Other
+     Chemistry, Computer Science, Ecology & Fieldwork, Materials Science,
+     Neuroscience, Physics, Sustainability, Other
    ALLOWED TYPES: Lab, Data Analysis, Simulation, Modelling
    ============================================================================ */
 
@@ -654,5 +654,77 @@ window.BTR_PROJECTS = [
     description: "Develop sensitive and fast methods to assess clinical status of ICU sepsis patients using novel biomarkers.",
     methods: "Protein isolation, bioassays, statistical analysis",
     dateAdded: "2025-11"
+  },
+  {
+    title: "3D Models of Ancient Architecture",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Other"],
+    types: ["Data Analysis","Simulation","Modelling"],
+    description: "Create 3D reconstructions of ancient architecture and model stress, hydrology and other factors influencing construction, engineering and design.",
+    background: "Part of the Jazwa research programme on ancient technology and construction. Uses 3D digital reconstructions of ancient architecture to investigate engineering and structural questions through computational analysis.",
+    recommended: "Experience in photogrammetry, 3D modelling, programming or GIS is helpful but not required.",
+    dateAdded: "2026-04"
+  },
+  {
+    title: "Solving Puzzles in Beauty Meson Decays",
+    supervisor: "Dr. Keri Vos",
+    institution: "GWFP, Maastricht University — Faculty of Science and Engineering",
+    location: "Maastricht",
+    email: "k.vos@maastrichtuniversity.nl",
+    disciplines: ["Physics"],
+    types: ["Data Analysis","Modelling"],
+    description: "Study beauty mesons (B mesons) using the latest LHC data to investigate puzzles in the Standard Model and possible signs of new physics.",
+    background: "Beauty mesons — particles containing a heavy beauty quark — are among the most fascinating particles observed. The Standard Model of Particle Physics describes their behaviour, but several puzzles remain that may signal a yet undiscovered particle or new force. Several projects are available, tailored to the student's background and interests, ranging from theoretical (applying concepts from Quantum Mechanics) to applied (modelling effects of new particles). All projects use the latest publicly available data.",
+    methods: "Data analysis, theoretical modelling, flavour physics tools",
+    recommended: "Quantum Mechanics and Particle Physics are highly recommended as entry courses. Projects are tailored to student wishes and based on the latest data — please contact the supervisor for details.",
+    dateAdded: "2026-04"
+  },
+  {
+    title: "Hadronisation Studies at the LHC and Future Colliders",
+    supervisor: "Dr. Panos Christakoglou",
+    institution: "Maastricht Science Programme — FSE",
+    location: "Maastricht",
+    email: "Panos.Christakoglou@maastrichtuniversity.nl",
+    disciplines: ["Physics","Computer Science"],
+    types: ["Data Analysis","Modelling"],
+    description: "Study hadronisation mechanisms in proton–proton collisions at the LHC using simulated and experimental data, with an outlook toward future colliders.",
+    background: "Hadronisation — the process by which quarks and gluons transform into observable hadrons — is a fundamental yet not fully understood aspect of Quantum Chromodynamics (QCD). It plays a central role in interpreting data from high-energy particle collisions and represents one of the key non-perturbative elements in modern particle physics. The project is embedded in the broader particle physics research programme at MSP, with strong connections to Nikhef and the group of Keri Vos at GWFP.",
+    details: ["Investigate hadronisation models implemented in modern Monte Carlo event generators","Compare different fragmentation and string/cluster models to experimental data","Study flavour-dependent hadron production and jet fragmentation properties","Evaluate model performance under current LHC conditions and extrapolate to higher-energy or higher-luminosity colliders"],
+    methods: "Python, ROOT, modern analysis frameworks, statistical comparison techniques, Monte Carlo event generators",
+    note: "A couple of open positions per semester — contact the supervisor for details. Embedded in collaborations with Nikhef and the GWFP group.",
+    dateAdded: "2026-04"
+  },
+  {
+    title: "Particle Tracking with Machine Learning and HPC",
+    supervisor: "Dr. Panos Christakoglou",
+    institution: "Maastricht Science Programme — FSE",
+    location: "Maastricht",
+    email: "Panos.Christakoglou@maastrichtuniversity.nl",
+    disciplines: ["Physics","Computer Science"],
+    types: ["Data Analysis","Simulation","Modelling"],
+    description: "Develop and explore next-generation methods for particle tracking at the High-Luminosity LHC using machine learning and high-performance computing.",
+    background: "Modern high-energy physics experiments rely on precise reconstruction of charged particle trajectories ('tracking') to enable physics measurements and discoveries. With the upcoming HL-LHC upgrade, simultaneous proton–proton interactions per event will increase dramatically, leading to extreme detector occupancies and rising computational demands. Traditional tracking algorithms are progressively challenged by these conditions due to combinatorial complexity and cost. This project is part of an ongoing collaboration between the University of Maastricht (MSP and DACS) and Nikhef, sitting at the interface of high-energy physics, machine learning and HPC.",
+    details: ["Machine learning for particle tracking — develop and evaluate neural network approaches (e.g. graph neural networks, convolutional models) for seeding, track finding or ambiguity resolution, with focus on low-momentum tracks","High-performance computing for tracking algorithms — study and improve performance on GPUs and multi-core CPUs using frameworks such as ACTS and its GPU-oriented extensions; profiling, optimisation and scalability under HL-LHC-like conditions","Efficient data representations and algorithm design — investigate how data layout, memory access patterns and algorithmic structure affect tracking performance, and how these can be redesigned for heterogeneous computing environments"],
+    methods: "ACTS framework, machine learning (GNNs, CNNs), GPU/CPU optimisation, profiling, simulation and reconstruction frameworks",
+    note: "A couple of open positions per semester. Collaboration with Nikhef and the DACS department — contact the supervisor for details.",
+    dateAdded: "2026-04"
+  },
+  {
+    title: "Axion-Like Particles at Particle Colliders",
+    supervisor: "Dr. Panos Christakoglou",
+    institution: "Maastricht Science Programme — FSE",
+    location: "Maastricht",
+    email: "Panos.Christakoglou@maastrichtuniversity.nl",
+    disciplines: ["Physics","Computer Science"],
+    types: ["Data Analysis","Simulation","Modelling"],
+    description: "Investigate the production and decay of Axion-Like Particles (ALPs) in high-energy collider environments, with a focus on simulation tools.",
+    background: "Axion-Like Particles (ALPs) are well-motivated extensions of the Standard Model. They arise in many theories beyond the Standard Model, including solutions to the strong CP problem, and offer candidates for dark matter. Depending on their mass and couplings, ALPs can be produced in high-energy collisions and may decay into Standard Model particles such as photons, leptons or hadrons. They provide a rich phenomenology connecting particle physics, cosmology and dark matter studies.",
+    objectives: ["Investigate ALP production and decay in collider environments","Develop and apply simulation tools for ALP signatures","Contribute to ongoing departmental ALP studies for current and future experiments, including the Future Circular Collider (FCC)"],
+    methods: "Simulation tools, BSM phenomenology, collider physics analysis",
+    note: "A couple of open positions per semester — contact the supervisor for details.",
+    dateAdded: "2026-04"
   },
 ];
