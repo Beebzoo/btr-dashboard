@@ -39,13 +39,13 @@
     // --- Breadcrumb Navigation ---
     var path = window.location.pathname.split('/').pop() || 'index.html';
     var breadcrumbMap = {
-        'february-cohort-2026.html': ['February 2026 Cohort'],
+        'february-cohort-2027.html': ['February 2027 Cohort'],
         'september-cohort-2026.html': ['September 2026 Cohort'],
         'before-you-start.html': ['Before You Start'],
         'writing-the-proposal.html': ['Writing the Proposal'],
         'writing-the-thesis.html': ['Writing the Thesis'],
         'btr-video.html': ['BTR Video'],
-        'timeline-february.html': ['February 2026 Cohort|february-cohort-2026.html', 'Timeline'],
+        'timeline-february.html': ['February 2027 Cohort|february-cohort-2027.html', 'Timeline'],
         'timeline-september.html': ['September 2026 Cohort|september-cohort-2026.html', 'Timeline'],
         'faq.html': ['FAQ'],
         'rubrics.html': ['Assessment Rubrics'],
