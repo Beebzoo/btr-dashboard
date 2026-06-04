@@ -4330,3 +4330,62 @@ ul {
     .page-before-you-start .modal-body { padding: 20px; }
     .supervisor-comparison { grid-template-columns: 1fr; }
 }
+
+
+/* ============================================================================
+   VISUAL REFRESH (2026)
+   Additive polish to bring the inner pages in line with the redesigned landing
+   page. Limited to backgrounds, corner radii, shadows, hover states and a small
+   heading accent — no changes to layout flow — so it is safe and can be removed
+   as one self-contained block.
+   ============================================================================ */
+
+/* Richer navy heroes with soft cyan/orange brand glows (echoes the landing) */
+.hero,
+.page-instructional .page-hero,
+.page-timeline .page-hero,
+.page-rubrics .page-hero {
+    background:
+        radial-gradient(900px 520px at 85% -25%, rgba(0, 188, 212, 0.20), transparent 60%),
+        radial-gradient(720px 480px at -5% 120%, rgba(232, 78, 16, 0.16), transparent 55%),
+        linear-gradient(150deg, var(--navy) 0%, var(--navy-deep) 72%, #00264f 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cards: softer corners and a deeper, brand-tinted lift on hover */
+.info-card,
+.resource-card,
+.platform-card { border-radius: 14px; }
+
+.info-card:hover,
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 38px rgba(0, 28, 61, 0.14);
+}
+
+.platform-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 28, 61, 0.16);
+}
+
+/* Primary call-to-action buttons */
+.cta-button { border-radius: 10px; }
+
+/* Section heading accent bar (subtle orange→cyan, echoes the landing) */
+.section-header h2 {
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.section-header h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--orange), var(--cyan));
+}
