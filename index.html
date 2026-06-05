@@ -19,333 +19,63 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --navy:        #001C3D;
-            --navy-deep:   #00132B;
-            --navy-soft:   #0A2A52;
-            --orange:      #E84E10;
-            --orange-soft: #ff7a45;
-            --cyan:        #00BCD4;
-            --ink:         #0a1626;
-            --white:       #ffffff;
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body:    'Open Sans', Arial, sans-serif;
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--white);
-            min-height: 100vh;
-            background:
-                radial-gradient(1200px 700px at 78% -10%, rgba(0,188,212,0.16), transparent 60%),
-                radial-gradient(900px 600px at 8% 110%, rgba(232,78,16,0.18), transparent 55%),
-                linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 70%, #00264f 100%);
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* faint dot grid overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 26px 26px;
-            mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 75%);
-            -webkit-mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 75%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* slow floating orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.5;
-            z-index: 0;
-            pointer-events: none;
-            animation: float 18s ease-in-out infinite;
-        }
-        .orb--cyan   { width: 420px; height: 420px; background: rgba(0,188,212,0.30); top: -120px; right: -80px; }
-        .orb--orange { width: 360px; height: 360px; background: rgba(232,78,16,0.28); bottom: -140px; left: -90px; animation-delay: -7s; }
-        .orb--blue   { width: 300px; height: 300px; background: rgba(40,110,210,0.30); top: 40%; left: 55%; animation-delay: -12s; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50%      { transform: translate(20px, -30px) scale(1.08); }
-        }
-
-        /* ---- top wordmark ---- */
-        .top {
-            position: relative;
-            z-index: 2;
-            max-width: 1080px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 26px 24px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .top img { height: 38px; }
-        .top .wm {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 0.14em;
-            color: rgba(255,255,255,0.82);
-        }
-        .top .badge {
-            margin-left: auto;
-            font-family: var(--font-heading);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            border: 1px solid rgba(0,188,212,0.4);
-            border-radius: 999px;
-            padding: 6px 14px;
-            background: rgba(0,188,212,0.08);
-        }
-
-        /* ---- main ---- */
-        .wrap {
-            position: relative;
-            z-index: 2;
-            flex: 1;
-            max-width: 1080px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 56px 24px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .eyebrow {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 12px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--orange-soft);
-            margin-bottom: 16px;
-        }
-        .hero h1 {
-            font-family: var(--font-heading);
-            font-weight: 800;
-            font-size: clamp(38px, 6vw, 68px);
-            line-height: 1.04;
-            letter-spacing: -0.02em;
-            margin-bottom: 18px;
-        }
-        .hero h1 span { color: var(--cyan); }
-        .hero p {
-            font-size: clamp(16px, 1.6vw, 19px);
-            line-height: 1.6;
-            max-width: 600px;
-            color: rgba(255,255,255,0.78);
-            margin-bottom: 44px;
-        }
-
-        /* ---- destination cards ---- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 24px 26px;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.10);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: var(--white);
-            text-decoration: none;
-            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            overflow: hidden;
-        }
-        .card::after {
-            content: "";
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 4px;
-            background: var(--cyan);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            background: rgba(255,255,255,0.09);
-            border-color: rgba(255,255,255,0.22);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-        }
-        .card:hover::after { opacity: 1; }
-        .card:focus-visible {
-            outline: 3px solid var(--cyan);
-            outline-offset: 3px;
-        }
-
-        .card .ic {
-            flex-shrink: 0;
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            background: rgba(0,188,212,0.14);
-            color: var(--cyan);
-        }
-        .card .ic svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-        .card .body { flex: 1; }
-        .card .title {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 3px;
-        }
-        .card .sub {
-            font-size: 13.5px;
-            color: rgba(255,255,255,0.62);
-        }
-        .card .arrow {
-            font-size: 22px;
-            color: rgba(255,255,255,0.45);
-            transition: transform 0.25s ease, color 0.25s ease;
-        }
-        .card:hover .arrow { transform: translateX(5px); color: var(--white); }
-
-        /* primary (Before You Start) */
-        .card--primary {
-            background: linear-gradient(135deg, rgba(232,78,16,0.92), rgba(196,61,13,0.92));
-            border-color: rgba(255,160,120,0.5);
-            grid-column: 1 / -1;
-        }
-        .card--primary .ic { background: rgba(255,255,255,0.18); color: var(--white); }
-        .card--primary .sub { color: rgba(255,255,255,0.85); }
-        .card--primary .arrow { color: rgba(255,255,255,0.8); }
-        .card--primary::after { background: var(--white); }
-        .card--primary:hover { box-shadow: 0 18px 44px rgba(232,78,16,0.4); }
-
-        /* status pill for cohorts */
-        .pill {
-            display: inline-block;
-            font-family: var(--font-heading);
-            font-size: 10.5px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 999px;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-        .pill--live { background: rgba(0,188,212,0.18); color: var(--cyan); }
-        .pill--soon { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
-
-        /* ---- footer ---- */
-        footer {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 26px 24px 30px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.6);
-        }
-        footer a { color: var(--cyan); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        footer .copy { margin-top: 6px; font-size: 12px; color: rgba(255,255,255,0.4); }
-
-        @media (max-width: 680px) {
-            .grid { grid-template-columns: 1fr; }
-            .top .wm { display: none; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .orb { animation: none; }
-            * { transition: none !important; }
-        }
-    </style>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="orb orb--cyan"></div>
-    <div class="orb orb--orange"></div>
-    <div class="orb orb--blue"></div>
+<body class="page-landing">
+    <!-- Animated background circles -->
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
 
-    <header class="top">
-        <img src="msp-logo.png" alt="Maastricht Science Programme">
-        <span class="wm">MAASTRICHT SCIENCE PROGRAMME</span>
-        <span class="badge">BTR Dashboard</span>
-    </header>
-
-    <main class="wrap">
-        <div class="hero">
-            <p class="eyebrow">Bachelor Thesis Research</p>
-            <h1>Your BTR, <span>start to finish.</span></h1>
-            <p>Everything you need for your Bachelor Thesis Research — timelines, deadlines, guidelines and resources. Pick your cohort or role to jump in.</p>
+    <!-- Main container -->
+    <div class="landing-container">
+        <!-- Logo section -->
+        <div class="landing-logo">
+            <img src="msp-logo.png" alt="Maastricht Science Programme">
+            <h1>MAASTRICHT SCIENCE PROGRAMME</h1>
         </div>
 
-        <nav class="grid" aria-label="Primary destinations">
-            <a href="before-you-start.html" class="card card--primary">
-                <span class="ic"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg></span>
-                <span class="body">
-                    <span class="title">Before You Start</span>
-                    <span class="sub">New to BTR? The complete onboarding checklist begins here.</span>
-                </span>
-                <span class="arrow">→</span>
+        <!-- Title section -->
+        <div class="landing-title">
+            <h2>Bachelor Thesis Research</h2>
+        </div>
+
+        <!-- Button container -->
+        <div class="landing-buttons">
+            <a href="before-you-start.html" class="landing-btn landing-btn--highlight">
+                <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg></span>
+                <span class="btn-text">Before You Start</span>
+                <span class="btn-arrow">→</span>
             </a>
 
-            <a href="february-cohort-2027.html" class="card">
-                <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-                <span class="body">
-                    <span class="title">February 2027 <span class="pill pill--soon">Upcoming</span></span>
-                    <span class="sub">Starts 25 Jan 2027 · timeline &amp; deadlines</span>
-                </span>
-                <span class="arrow">→</span>
+            <a href="february-cohort-2027.html" class="landing-btn">
+                <span class="btn-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/></svg></span>
+                <span class="btn-text">February 2027 Cohort</span>
+                <span class="btn-arrow">→</span>
             </a>
 
-            <a href="september-cohort-2026.html" class="card">
-                <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-                <span class="body">
-                    <span class="title">September 2026 <span class="pill pill--live">In progress</span></span>
-                    <span class="sub">Timeline &amp; deadlines for the current cohort</span>
-                </span>
-                <span class="arrow">→</span>
+            <a href="september-cohort-2026.html" class="landing-btn">
+                <span class="btn-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></span>
+                <span class="btn-text">September 2026 Cohort</span>
+                <span class="btn-arrow">→</span>
             </a>
 
-            <a href="supervisors.html" class="card" style="grid-column: 1 / -1;">
-                <span class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-                <span class="body">
-                    <span class="title">For Supervisors</span>
-                    <span class="sub">Submit a project, role overview, and supervision guidance.</span>
-                </span>
-                <span class="arrow">→</span>
+            <a href="supervisors.html" class="landing-btn landing-btn--orange">
+                <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <span class="btn-text">For Supervisors</span>
+                <span class="btn-arrow">→</span>
             </a>
-        </nav>
-    </main>
+        </div>
+    </div>
 
-    <footer>
+    <!-- Footer -->
+    <div class="footer--simple">
         <p>Questions? Contact <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a></p>
-        <p class="copy">© Maastricht University — Faculty of Science and Engineering</p>
-    </footer>
+        <p style="margin-top: 8px;">© Maastricht University - Faculty of Science and Engineering</p>
+    </div>
+<script src="nav.js"></script>
 </body>
 </html>
