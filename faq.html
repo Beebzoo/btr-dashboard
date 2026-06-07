@@ -31,6 +31,15 @@
             background: transparent; box-shadow: none; border-radius: 0;
         }
 
+        /* ---- Header: white like the rest of the site, so the logo stays visible ---- */
+        .page-faq .header {
+            background: var(--white); color: var(--navy);
+            box-shadow: 0 1px 0 #e6ebf2, 0 2px 12px rgba(16, 42, 75, 0.05);
+        }
+        .page-faq .logo { color: var(--navy); }
+        .page-faq .nav-menu a { color: var(--navy); opacity: 1; }
+        .page-faq .nav-menu a:hover { color: var(--cyan-dark); opacity: 1; }
+
         /* ---- Hero header ---- */
         .page-faq .page-header { text-align: center; margin: 52px 0 30px; }
         .page-faq .page-header h1 {
@@ -204,6 +213,10 @@
         }
         .no-results.show { display: block; }
         .no-results strong { color: var(--navy); }
+
+        /* ---- Footer: reset the 3-column grid so the message is truly centered ---- */
+        .page-faq .footer-content { display: block; text-align: center; }
+        .page-faq .footer-content p { margin: 0 auto; max-width: 640px; }
 
         /* ---- Expand-all safety (let big categories fully open) ---- */
         .page-faq .faq-category.active .category-content { max-height: 18000px; }
