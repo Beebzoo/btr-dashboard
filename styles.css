@@ -3770,31 +3770,24 @@ ul {
 
 /* Hero */
 .page-before-you-start .hero {
-    background:
-        radial-gradient(900px 520px at 85% -25%, rgba(0, 188, 212, 0.20), transparent 60%),
-        radial-gradient(700px 480px at 0% 120%, rgba(232, 78, 16, 0.16), transparent 55%),
-        linear-gradient(150deg, #001C3D 0%, #00152B 75%, #00264f 100%);
+    background: linear-gradient(135deg, #001C3D 0%, #00152B 100%);
     color: white;
-    padding: 56px 20px;
-    position: relative;
-    overflow: hidden;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 .page-before-you-start .hero h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 }
 
 .page-before-you-start .hero p {
-    font-size: 15.5px;
+    font-size: 20px;
     color: rgba(255,255,255,0.9);
-    max-width: 560px;
-    margin: 0 0 24px;
-    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 /* Container & Sections */
@@ -3813,19 +3806,8 @@ ul {
     font-size: 28px;
     color: #001C3D;
     margin-bottom: 25px;
-    padding-bottom: 16px;
-    position: relative;
-}
-
-.page-before-you-start .section h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 56px;
-    height: 3px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #E84E10, #00BCD4);
+    padding-bottom: 15px;
+    border-bottom: 3px solid #E84E10;
 }
 
 .page-before-you-start .section h3 {
@@ -3873,7 +3855,7 @@ ul {
     border-color: #00BCD4;
 }
 
-.page-before-you-start .info-card .info-icon {
+.page-before-you-start .info-icon {
     font-size: 48px;
     margin-bottom: 15px;
     animation: float 3s ease-in-out infinite;
