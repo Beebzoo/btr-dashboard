@@ -22,69 +22,200 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- FAQ interactive enhancements (scoped to this page) -->
+    <!-- FAQ visual design + interactive enhancements (scoped to this page) -->
     <style>
+        /* ---- Canvas & container ---- */
+        .page-faq { background: linear-gradient(180deg, #f4f7fb 0%, #e9eef6 100%); }
+        .page-faq .main-content {
+            max-width: 1000px; margin: 0 auto 72px; padding: 0 22px;
+            background: transparent; box-shadow: none; border-radius: 0;
+        }
+
+        /* ---- Hero header ---- */
+        .page-faq .page-header { text-align: center; margin: 52px 0 30px; }
+        .page-faq .page-header h1 {
+            font-size: 42px; letter-spacing: -0.025em; line-height: 1.08;
+            margin-bottom: 0; position: relative; display: inline-block;
+        }
+        .page-faq .page-header h1::after {
+            content: ""; position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%);
+            width: 60px; height: 4px; border-radius: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--cyan));
+        }
+        .page-faq .page-header p {
+            font-size: 17px; color: #5a6b7e; line-height: 1.6;
+            max-width: 620px; margin: 26px auto 0;
+        }
+
+        /* ---- Search ---- */
         .faq-search { position: relative; }
-        .search-box.faq-search input { padding-left: 48px; padding-right: 46px; }
+        .page-faq .search-box.faq-search {
+            max-width: 660px; margin: 0 auto 16px; padding: 0;
+            background: var(--white); border: 1px solid #e3e9f1; border-left: 1px solid #e3e9f1;
+            border-radius: 14px; box-shadow: 0 12px 30px rgba(16, 42, 75, 0.07);
+            transition: box-shadow var(--transition), border-color var(--transition);
+        }
+        .page-faq .search-box.faq-search:focus-within {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.15), 0 12px 30px rgba(16, 42, 75, 0.08);
+        }
+        .page-faq .search-box.faq-search input {
+            width: 100%; border: none; background: transparent;
+            padding: 15px 48px; font-size: 16px; border-radius: 14px;
+        }
+        .page-faq .search-box.faq-search input:focus { outline: none; }
         .faq-search .search-icon {
             position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-            width: 20px; height: 20px; stroke: #8a97a8; fill: none; stroke-width: 2;
+            width: 20px; height: 20px; stroke: #9aa7b8; fill: none; stroke-width: 2;
             stroke-linecap: round; stroke-linejoin: round; pointer-events: none;
         }
         .faq-search .clear-btn {
-            position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-            border: none; background: #e5e7eb; color: var(--navy);
-            width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            border: none; background: #eef2f7; color: #5a6b7e;
+            width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
             display: none; align-items: center; justify-content: center;
-            font-size: 18px; line-height: 1; padding: 0;
+            font-size: 18px; line-height: 1; padding: 0; transition: all var(--transition);
         }
-        .faq-search .clear-btn:hover { background: #d6dae0; }
+        .faq-search .clear-btn:hover { background: #e0e6ee; color: var(--navy); }
         .faq-search .clear-btn.show { display: inline-flex; }
 
         .search-meta {
-            text-align: center; font-size: 13px; color: var(--gray-500);
+            text-align: center; font-size: 13px; color: #6b7a8d;
             margin: 12px 0 0; min-height: 18px; font-weight: 600;
         }
 
+        /* ---- Category quick-nav chips ---- */
         .faq-nav {
-            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
-            max-width: 900px; margin: 18px auto 26px;
+            display: flex; flex-wrap: wrap; gap: 9px; justify-content: center;
+            max-width: 860px; margin: 20px auto 28px;
         }
         .faq-chip {
-            border: 1px solid var(--border-color); background: var(--white); color: var(--navy);
-            padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
-            font-family: var(--font-heading); cursor: pointer; transition: all var(--transition);
-            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid #e3e9f1; background: var(--white); color: #2b3a4d;
+            padding: 8px 15px; border-radius: 999px; font-size: 13px; font-weight: 600;
+            font-family: var(--font-heading); cursor: pointer;
+            transition: all var(--transition); display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 1px 2px rgba(16, 42, 75, 0.04);
         }
-        .faq-chip:hover { border-color: var(--cyan); color: var(--cyan-dark); transform: translateY(-1px); }
+        .faq-chip:hover {
+            border-color: var(--cyan); color: var(--cyan-dark);
+            transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 150, 180, 0.14);
+        }
         .faq-chip .chip-count {
-            background: #eef3f8; color: var(--gray-500);
-            border-radius: 999px; font-size: 11px; padding: 1px 8px; font-weight: 700;
+            background: #eef3f8; color: #6b7a8d;
+            border-radius: 999px; font-size: 11px; padding: 1px 8px; font-weight: 700; line-height: 1.6;
+        }
+        .faq-chip:hover .chip-count { background: #e2f5f9; color: var(--cyan-dark); }
+
+        /* ---- Controls ---- */
+        .page-faq .controls { justify-content: flex-end; gap: 8px; margin: 0 0 18px; }
+        .page-faq .control-btn {
+            background: var(--white); color: #5a6b7e; border: 1px solid #e3e9f1;
+            padding: 8px 14px; font-size: 13px; border-radius: 9px; font-weight: 600;
+        }
+        .page-faq .control-btn:hover {
+            background: #f6fbfd; color: var(--cyan-dark); border-color: var(--cyan); transform: none;
+        }
+        .page-faq .control-btn.secondary { background: var(--white); color: #5a6b7e; }
+        .page-faq .control-btn.secondary:hover { color: var(--navy); border-color: #cdd6e2; background: #f7f9fc; }
+
+        /* ---- Category card ---- */
+        .page-faq .faq-category {
+            border: 1px solid #e6ebf2; border-radius: 16px; background: var(--white);
+            box-shadow: 0 6px 22px rgba(16, 42, 75, 0.05); margin-bottom: 16px;
+            scroll-margin-top: 90px; transition: box-shadow var(--transition), border-color var(--transition);
+        }
+        .page-faq .faq-category:hover { border-color: #dbe3ee; box-shadow: 0 12px 30px rgba(16, 42, 75, 0.09); }
+        .page-faq .faq-category.active { box-shadow: 0 16px 36px rgba(16, 42, 75, 0.10); }
+
+        /* ---- Category header ---- */
+        .page-faq .category-header {
+            background: var(--white); padding: 20px 24px; display: flex; align-items: center; gap: 14px;
+            transition: background var(--transition);
+        }
+        .page-faq .category-header::before {
+            content: ""; width: 4px; height: 22px; border-radius: 3px; flex-shrink: 0;
+            background: linear-gradient(180deg, var(--cyan), var(--cyan-dark));
+        }
+        .page-faq .category-header:hover { background: #f8fafc; }
+        .page-faq .category-header h2 {
+            color: var(--navy); font-size: 18px; letter-spacing: -0.01em; margin: 0; flex: 1;
+        }
+        .page-faq .category-icon {
+            width: 28px; height: 28px; border-radius: 50%; background: #eef6fb; color: var(--cyan-dark);
+            display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;
+        }
+
+        /* ---- Items & questions ---- */
+        .page-faq .category-content { background: var(--white); border-top: 1px solid #eef2f7; border-radius: 0 0 16px 16px; }
+        .page-faq .faq-item { border-bottom: none; }
+        .page-faq .faq-item + .faq-item { border-top: 1px solid #eef2f7; }
+        .page-faq .faq-question { padding: 18px 24px; transition: background var(--transition); }
+        .page-faq .faq-question:hover { background: #f8fafc; }
+        .page-faq .faq-item.active > .faq-question { background: #f7fbfe; box-shadow: inset 3px 0 0 var(--cyan); }
+        .page-faq .faq-question h3 { font-size: 15.5px; font-weight: 600; color: var(--navy); line-height: 1.45; }
+        .page-faq .question-icon {
+            width: 26px; height: 26px; border-radius: 50%; background: #eef6fb; color: var(--cyan-dark);
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+            margin-left: 14px; flex-shrink: 0; transition: background var(--transition), color var(--transition);
+        }
+        .page-faq .faq-item.active .question-icon { background: var(--cyan); color: var(--white); transform: none; }
+
+        /* ---- Answer ---- */
+        .page-faq .faq-answer-content {
+            border-top: none; background: var(--white); color: #45525f;
+            font-size: 15px; line-height: 1.75; padding: 2px 24px 24px 24px;
+        }
+        .page-faq .faq-answer-content > *:first-child { margin-top: 0; }
+        .page-faq .faq-answer-content strong { color: var(--navy); font-weight: 600; }
+        .page-faq .faq-answer-content a {
+            color: var(--cyan-dark); text-decoration: none;
+            border-bottom: 1px solid rgba(0, 150, 180, 0.35); transition: border-color var(--transition);
+        }
+        .page-faq .faq-answer-content a:hover { border-bottom-color: var(--cyan-dark); }
+        .page-faq .faq-answer-content code {
+            background: #f1f5f9; border: 1px solid #e3e9f1; padding: 1px 6px;
+            border-radius: 5px; font-size: 13px; color: var(--navy);
         }
 
         mark.faq-hl { background: #fff1a8; color: inherit; padding: 0 1px; border-radius: 2px; }
 
+        /* ---- Note box ---- */
+        .page-faq .note-box {
+            background: #fff8ec; border: 1px solid #ffe2b0; border-left: 3px solid var(--orange);
+            border-radius: 10px; padding: 14px 16px; margin: 16px 0 4px;
+        }
+
+        /* ---- Table ---- */
+        .faq-answer-content table {
+            width: 100%; border-collapse: separate; border-spacing: 0; margin: 6px 0 14px;
+            font-size: 14px; border: 1px solid #e6ebf2; border-radius: 10px; overflow: hidden;
+        }
+        .faq-answer-content th, .faq-answer-content td {
+            border-bottom: 1px solid #eef2f7; padding: 10px 12px; text-align: left; vertical-align: top;
+        }
+        .faq-answer-content tr:last-child td { border-bottom: none; }
+        .faq-answer-content th { background: #f5f8fc; color: var(--navy); font-family: var(--font-heading); }
+
+        /* ---- No results ---- */
         .no-results {
-            display: none; text-align: center; padding: 44px 20px; color: var(--gray-500);
-            max-width: 700px; margin: 0 auto;
+            display: none; text-align: center; padding: 48px 20px; color: #6b7a8d;
+            max-width: 640px; margin: 0 auto; background: var(--white);
+            border: 1px solid #e6ebf2; border-radius: 16px; box-shadow: 0 6px 22px rgba(16, 42, 75, 0.05);
         }
         .no-results.show { display: block; }
         .no-results strong { color: var(--navy); }
 
-        .faq-category { scroll-margin-top: 90px; }
-        /* Let large categories fully expand, especially via "Expand All" */
+        /* ---- Expand-all safety (let big categories fully open) ---- */
         .page-faq .faq-category.active .category-content { max-height: 18000px; }
         .page-faq .faq-item.active .faq-answer { max-height: 4000px; }
 
-        .faq-answer-content table {
-            width: 100%; border-collapse: collapse; margin: 6px 0 14px; font-size: 14px;
+        @media (max-width: 640px) {
+            .page-faq .main-content { padding: 0 14px; }
+            .page-faq .page-header h1 { font-size: 32px; }
+            .page-faq .category-header { padding: 16px; }
+            .page-faq .faq-question { padding: 16px; }
+            .page-faq .faq-answer-content { padding: 2px 16px 20px; }
         }
-        .faq-answer-content th, .faq-answer-content td {
-            border: 1px solid var(--border-color); padding: 8px 10px; text-align: left; vertical-align: top;
-        }
-        .faq-answer-content th { background: #f1f5f9; color: var(--navy); }
-
-        @media (max-width: 600px) { .search-box.faq-search input { padding-left: 44px; } }
     </style>
 </head>
 <body class="page-content page-faq">
