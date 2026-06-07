@@ -765,7 +765,7 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
 }
 
@@ -811,43 +811,30 @@ ul {
     50% { transform: translateY(-12px) scale(1.03); }
 }
 
-/* Lightweight drifting star field (pure CSS, GPU transforms only) */
-.page-landing::before,
-.page-landing::after {
+/* Lightweight drifting star field (one composited, clipped layer) */
+.page-landing::before {
     content: "";
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: calc(100vh + 600px);
+    height: calc(100% + 600px);
     z-index: 0;
     pointer-events: none;
     background-repeat: repeat;
     background-size: 600px 600px;
+    background-image:
+        radial-gradient(2px 2px at 70px 90px, rgba(255,255,255,0.55), transparent),
+        radial-gradient(1.5px 1.5px at 220px 200px, rgba(215,238,255,0.5), transparent),
+        radial-gradient(2px 2px at 360px 120px, rgba(255,255,255,0.45), transparent),
+        radial-gradient(1.5px 1.5px at 500px 300px, rgba(220,240,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 120px 380px, rgba(255,255,255,0.45), transparent),
+        radial-gradient(2px 2px at 420px 460px, rgba(210,238,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 560px 540px, rgba(255,255,255,0.45), transparent),
+        radial-gradient(1.5px 1.5px at 280px 320px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 40px 540px, rgba(220,240,255,0.45), transparent);
+    animation: starDrift 80s linear infinite;
     will-change: transform;
-}
-
-.page-landing::before {
-    background-image:
-        radial-gradient(1.5px 1.5px at 40px 60px, rgba(255,255,255,0.55), transparent),
-        radial-gradient(1.5px 1.5px at 180px 200px, rgba(205,235,255,0.45), transparent),
-        radial-gradient(1px 1px at 320px 120px, rgba(255,255,255,0.4), transparent),
-        radial-gradient(1.5px 1.5px at 480px 280px, rgba(220,240,255,0.45), transparent),
-        radial-gradient(1px 1px at 90px 360px, rgba(255,255,255,0.35), transparent),
-        radial-gradient(1.5px 1.5px at 360px 460px, rgba(210,238,255,0.45), transparent),
-        radial-gradient(1px 1px at 540px 540px, rgba(255,255,255,0.4), transparent),
-        radial-gradient(1.5px 1.5px at 240px 320px, rgba(255,255,255,0.4), transparent);
-    animation: starDrift 90s linear infinite;
-}
-
-.page-landing::after {
-    background-image:
-        radial-gradient(2px 2px at 120px 100px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 420px 220px, rgba(190,230,255,0.5), transparent),
-        radial-gradient(2px 2px at 300px 420px, rgba(255,255,255,0.5), transparent),
-        radial-gradient(2px 2px at 540px 360px, rgba(210,238,255,0.5), transparent),
-        radial-gradient(1.5px 1.5px at 60px 500px, rgba(255,255,255,0.45), transparent);
-    animation: starDrift 60s linear infinite;
 }
 
 @keyframes starDrift {
@@ -856,11 +843,10 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .page-landing::before,
-    .page-landing::after { animation: none; }
+    .page-landing::before { animation: none; }
 }
 
-/* Keep the home-page footer above the fixed star layers */
+/* Keep the home-page content above the star layer */
 .page-landing .footer--simple { position: relative; z-index: 5; }
 
 /* Landing container */
@@ -940,32 +926,16 @@ ul {
     font-size: 16px;
     font-weight: 600;
     font-family: var(--font-heading);
-    transition: all var(--transition);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
-}
-
-.landing-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.landing-btn:hover::before {
-    left: 100%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .landing-btn:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    background: rgba(22, 62, 96, 0.45);
     border-color: rgba(0, 188, 212, 0.6);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
 
 .landing-btn .btn-icon {
@@ -1030,11 +1000,7 @@ ul {
 .landing-btn--orange:hover {
     background: rgba(232, 78, 16, 0.12);
     border-color: var(--orange);
-    box-shadow: 0 14px 40px rgba(232, 78, 16, 0.28);
-}
-
-.landing-btn--orange::before {
-    background: linear-gradient(90deg, transparent, rgba(232, 78, 16, 0.2), transparent);
+    box-shadow: 0 10px 24px rgba(232, 78, 16, 0.22);
 }
 
 /* Back button on landing pages */
