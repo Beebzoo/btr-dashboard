@@ -755,7 +755,10 @@ ul {
    PAGE TYPE: Landing / Hub (dark background)
    ============================================ */
 .page-landing {
-    background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy) 50%, var(--navy-deep) 100%);
+    background:
+        radial-gradient(1100px 680px at 82% -12%, rgba(0, 150, 180, 0.12), transparent 60%),
+        radial-gradient(900px 620px at 8% 112%, rgba(232, 78, 16, 0.05), transparent 55%),
+        linear-gradient(160deg, #082139 0%, #05182c 52%, #020f1e 100%);
     color: var(--white);
     min-height: 100vh;
     display: flex;
@@ -770,7 +773,7 @@ ul {
 .bg-circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(0, 188, 212, 0.05);
+    background: rgba(255, 255, 255, 0.025);
     animation: float 30s infinite ease-in-out;
 }
 
@@ -825,15 +828,17 @@ ul {
 }
 
 .landing-logo img {
-    height: 210px;
-    margin-bottom: 14px;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    height: 132px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1) drop-shadow(0 6px 16px rgba(0,0,0,0.35));
+    opacity: 0.96;
 }
 
 .landing-logo h1 {
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.72);
 }
 
 /* Landing title */
@@ -843,11 +848,12 @@ ul {
 }
 
 .landing-title h2 {
-    font-size: 40px;
+    font-size: 43px;
     font-weight: 700;
     margin-bottom: 14px;
     color: var(--white);
-    line-height: 1.2;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
 }
 
 .landing-title--orange h2 {
@@ -874,19 +880,19 @@ ul {
 
 .landing-btn {
     display: block;
-    padding: 20px 36px;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 17px 30px;
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
     color: var(--white);
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     font-family: var(--font-heading);
     transition: all var(--transition);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
 }
 
 .landing-btn::before {
@@ -905,10 +911,10 @@ ul {
 }
 
 .landing-btn:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--cyan);
-    box-shadow: 0 12px 48px rgba(0, 188, 212, 0.3);
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 188, 212, 0.6);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
 }
 
 .landing-btn .btn-icon {
@@ -954,26 +960,26 @@ ul {
 
 /* Landing button variants */
 .landing-btn--highlight {
-    background: rgba(0, 188, 212, 0.2);
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.22), rgba(0, 150, 180, 0.15));
     border-color: rgba(0, 188, 212, 0.5);
-    border-width: 3px;
+    border-width: 1px;
 }
 
 .landing-btn--highlight:hover {
-    background: rgba(0, 188, 212, 0.3);
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.3), rgba(0, 150, 180, 0.2));
     border-color: var(--cyan);
-    box-shadow: 0 12px 48px rgba(0, 188, 212, 0.4);
+    box-shadow: 0 14px 40px rgba(0, 188, 212, 0.28);
 }
 
 .landing-btn--orange {
-    border-color: rgba(232, 78, 16, 0.4);
-    box-shadow: 0 8px 32px rgba(232, 78, 16, 0.2);
+    border-color: rgba(232, 78, 16, 0.35);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
 }
 
 .landing-btn--orange:hover {
-    background: rgba(232, 78, 16, 0.15);
+    background: rgba(232, 78, 16, 0.12);
     border-color: var(--orange);
-    box-shadow: 0 12px 48px rgba(232, 78, 16, 0.4);
+    box-shadow: 0 14px 40px rgba(232, 78, 16, 0.28);
 }
 
 .landing-btn--orange::before {
